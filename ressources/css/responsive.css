@@ -1,0 +1,756 @@
+/* ============================================================
+   JOS DORE CORPORATE — RESPONSIVE
+   ------------------------------------------------------------
+   Media queries pour mobile, tablette et desktop.
+   À charger EN DERNIER après tous les autres CSS.
+   ------------------------------------------------------------
+   Breakpoints :
+   - Mobile      : < 640px
+   - Tablette    : 640px — 1023px
+   - Desktop     : 1024px — 1279px
+   - Large       : >= 1280px
+   ============================================================ */
+
+/* ============================================================
+   TABLETTE — à partir de 640px
+   ============================================================ */
+@media (min-width: 640px) {
+
+  /* Conteneurs */
+  .conteneur,
+  .conteneur-large {
+    padding: 0 var(--espace-6);
+  }
+
+  /* Header */
+  .header__inner {
+    padding: 0 var(--espace-6);
+  }
+
+  /* Grilles */
+  .grille--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grille--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Formulaires */
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Footer */
+  .footer__grille {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espace-8);
+  }
+
+  .footer__marque {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+
+}
+
+/* ============================================================
+   DESKTOP — à partir de 768px
+   ============================================================ */
+@media (min-width: 768px) {
+
+  /* Header */
+  .header__inner {
+    padding: 0 var(--espace-6);
+  }
+
+  .header__recherche {
+    display: block;
+  }
+
+  /* Sections */
+  .section,
+  .section-corporate {
+    padding: var(--espace-16) 0;
+  }
+
+  /* Grilles */
+  .grille--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--espace-20) 0 var(--espace-6);
+  }
+
+  .footer__grille {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .footer__marque {
+    grid-column: auto;
+    max-width: 340px;
+  }
+
+  /* Cartes */
+  .carte {
+    padding: var(--espace-6);
+  }
+
+  /* Boutons */
+  .btn--lg {
+    padding: 15px 30px;
+  }
+
+}
+
+/* ============================================================
+   DESKTOP LARGE — à partir de 1024px
+   ------------------------------------------------------------
+   C'est ici que la SIDEBAR devient fixe.
+   ============================================================ */
+@media (min-width: 1024px) {
+
+  /* Sidebar toujours visible */
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  /* Overlay inutile */
+  .overlay {
+    display: none !important;
+  }
+
+  /* Menu burger caché */
+  .menu-btn,
+  .header__menu {
+    display: none !important;
+  }
+
+  /* Main avec décalage pour la sidebar */
+  .main-avec-sidebar {
+    padding-left: calc(var(--sidebar-w) + var(--espace-6));
+    padding-right: var(--espace-6);
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  /* Header app : plus large */
+  .header--app .header__inner {
+    padding: 0 var(--espace-5);
+  }
+
+  /* Grilles étendues */
+  .grille--5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Footer large */
+  .footer__grille {
+    gap: var(--espace-12);
+  }
+
+  /* Hero corporate : 2 colonnes */
+  .hero-corporate__inner {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* Blog : 3 colonnes */
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Services : 3 colonnes */
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* ============================================================
+   LARGE — à partir de 1280px
+   ============================================================ */
+@media (min-width: 1280px) {
+
+  .conteneur {
+    padding: 0 var(--espace-8);
+  }
+
+  .section,
+  .section-corporate {
+    padding: var(--espace-20) 0;
+  }
+
+  .grille--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+}
+
+/* ============================================================
+   MOBILE — jusqu'à 767px
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* Header */
+  .header__inner {
+    padding: 0 var(--espace-4);
+    gap: var(--espace-3);
+  }
+
+  /* Menu burger visible */
+  .menu-btn {
+    display: inline-flex;
+  }
+
+  /* Navigation cachée (remplacée par sidebar) */
+  .nav {
+    display: none;
+  }
+
+  /* Recherche header cachée */
+  .header__recherche {
+    display: none;
+  }
+
+  /* Boutons header — masquer les libellés secondaires */
+  .header__actions .btn--ghost {
+    display: none;
+  }
+
+  /* Header actions plus compact */
+  .header__icone {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .header__avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 11px;
+  }
+
+  /* Sections */
+  .section,
+  .section-corporate {
+    padding: var(--espace-12) 0;
+  }
+
+  .section-head,
+  .section-corporate__head {
+    margin-bottom: var(--espace-8);
+  }
+
+  /* Titres */
+  .titre-xl {
+    font-size: var(--taille-2xl);
+  }
+  .titre-lg {
+    font-size: var(--taille-xl);
+  }
+
+  /* Cartes */
+  .carte {
+    padding: var(--espace-5);
+    border-radius: var(--rayon-md);
+  }
+
+  .carte__head {
+    margin-bottom: var(--espace-4);
+  }
+
+  /* Formulaires */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  /* Boutons */
+  .btn {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  .btn--lg {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* Footer principal */
+  .footer {
+    padding: var(--espace-12) 0 var(--espace-5);
+  }
+
+  .footer__grille {
+    grid-template-columns: 1fr;
+    gap: var(--espace-8);
+    margin-bottom: var(--espace-8);
+  }
+
+  .footer__bas {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--espace-3);
+  }
+
+  .footer__bas-liens {
+    justify-content: center;
+  }
+
+  /* Footer CTA */
+  .footer__cta {
+    padding: var(--espace-6) var(--espace-5);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer__cta-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Cookies */
+  .cookies {
+    padding: var(--espace-4);
+  }
+
+  .cookies__actions {
+    width: 100%;
+  }
+
+  .cookies__btn {
+    flex: 1;
+  }
+
+  /* ============================================================
+     HERO CORPORATE — MOBILE
+     ============================================================ */
+  .hero-corporate {
+    padding: 40px 0 60px;
+  }
+
+  .hero-corporate__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-corporate h1 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .hero-corporate p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-corporate__actions {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-corporate__actions .btn {
+    width: 100%;
+  }
+
+  .hero-corporate__points {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hero-carte {
+    max-width: 100%;
+    padding: 22px 18px;
+  }
+
+  /* ============================================================
+     SERVICES — MOBILE
+     ============================================================ */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 24px 20px;
+  }
+
+  /* ============================================================
+     POUR QUI — MOBILE
+     ============================================================ */
+  .pourqui-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pourqui-card {
+    padding: 24px 20px;
+  }
+
+  /* ============================================================
+     ÉTAPES — MOBILE
+     ============================================================ */
+  .etapes-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  /* ============================================================
+     AVANTAGES — MOBILE
+     ============================================================ */
+  .avantages-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .avantage {
+    padding: 22px 20px;
+  }
+
+  /* ============================================================
+     BLOG — MOBILE
+     ============================================================ */
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* ============================================================
+     CTA CORPORATE — MOBILE
+     ============================================================ */
+  .cta-corporate {
+    padding: 56px 20px;
+  }
+
+  .cta-corporate__actions {
+    flex-direction: column;
+  }
+
+  .cta-corporate__actions .btn {
+    width: 100%;
+  }
+
+  /* ============================================================
+     BOUTON WHATSAPP FLOTTANT — MOBILE
+     ============================================================ */
+  .btn-whatsapp-float {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+}
+
+/* ============================================================
+   TRÈS PETIT MOBILE — jusqu'à 480px
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* Header encore plus compact */
+  .header__inner {
+    padding: 0 var(--espace-3);
+    gap: var(--espace-2);
+  }
+
+  .logo__text {
+    font-size: 15px;
+  }
+
+  .logo__mark {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+  }
+
+  .logo__suffix {
+    display: none;
+  }
+
+  /* Sections */
+  .section,
+  .section-corporate {
+    padding: var(--espace-10) 0;
+  }
+
+  /* Conteneurs */
+  .conteneur,
+  .conteneur-large {
+    padding: 0 var(--espace-4);
+  }
+
+  /* Cartes */
+  .carte {
+    padding: var(--espace-4);
+  }
+
+  /* Titres */
+  .titre-xl {
+    font-size: 1.6rem;
+  }
+  .titre-lg {
+    font-size: 1.4rem;
+  }
+
+  /* Boutons */
+  .btn {
+    padding: 11px 18px;
+    font-size: 12px;
+  }
+
+  .btn--xl {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* Grilles */
+  .grille--2,
+  .grille--3,
+  .grille--4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer__liens a,
+  .footer__liens button {
+    font-size: 13px;
+  }
+
+  /* Cookies */
+  .cookies__inner {
+    gap: var(--espace-3);
+  }
+
+  /* Hero corporate */
+  .hero-corporate {
+    padding: 32px 0 48px;
+  }
+
+  .hero-corporate h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero-corporate p {
+    font-size: 1rem;
+  }
+
+  .hero-carte {
+    padding: 18px 14px;
+  }
+
+  /* Services cards */
+  .service-card {
+    padding: 20px 16px;
+  }
+
+  .service-card h3 {
+    font-size: 16px;
+  }
+
+  /* Pour qui cards */
+  .pourqui-card {
+    padding: 20px 16px;
+  }
+
+  .pourqui-card__icon {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+  }
+
+  /* Étapes */
+  .etape__num {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+
+  /* Avantages */
+  .avantage__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+}
+
+/* ============================================================
+   AJUSTEMENTS FIN — très petits écrans (< 360px)
+   ============================================================ */
+@media (max-width: 360px) {
+
+  .header__actions {
+    gap: 2px;
+  }
+
+  .header__icone {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .header__avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .logo__mark {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .btn-whatsapp-float {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+}
+
+/* ============================================================
+   AJUSTEMENTS SPÉCIFIQUES APP / ESPACE CLIENT
+   ============================================================ */
+
+/* En dessous de 1024px, la sidebar est masquée par défaut */
+/* Au-dessus, elle est fixe. */
+
+@media (max-width: 1023px) {
+  .main-avec-sidebar {
+    padding-left: var(--espace-4);
+    padding-right: var(--espace-4);
+  }
+}
+
+/* Sidebar scrollable sur tablette */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .sidebar {
+    padding-bottom: var(--espace-8);
+  }
+}
+
+/* ============================================================
+   ORIENTATION PAYSAGE — mobile
+   ============================================================ */
+@media (max-width: 767px) and (orientation: landscape) {
+
+  .section,
+  .section-corporate {
+    padding: var(--espace-8) 0;
+  }
+
+  .footer__grille {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-corporate {
+    padding: 32px 0 48px;
+  }
+
+}
+
+/* ============================================================
+   PRINT — version imprimable
+   ============================================================ */
+@media print {
+
+  .header,
+  .footer,
+  .sidebar,
+  .overlay,
+  .menu-btn,
+  .cookies,
+  .toast,
+  .btn-whatsapp-float {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .carte,
+  .service-card,
+  .pourqui-card,
+  .avantage {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .btn {
+    border: 1px solid #000;
+    background: transparent !important;
+    color: #000 !important;
+  }
+
+}
+
+/* ============================================================
+   PRÉFÉRENCES UTILISATEUR — contraste élevé
+   ============================================================ */
+@media (prefers-contrast: high) {
+
+  .carte,
+  .carte--plate,
+  .service-card,
+  .pourqui-card,
+  .avantage {
+    border-width: 2px;
+  }
+
+  .btn {
+    border-width: 3px;
+  }
+
+  .badge,
+  .badge-statut {
+    border: 1px solid currentColor;
+  }
+
+}
+
+/* ============================================================
+   PRÉFÉRENCES UTILISATEUR — réduction de mouvement
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  .header,
+  .sidebar,
+  .overlay,
+  .btn,
+  .carte,
+  .service-card,
+  .pourqui-card,
+  .avantage,
+  .blog-card,
+  a {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .btn-whatsapp-float__pulse {
+    animation: none !important;
+  }
+
+}

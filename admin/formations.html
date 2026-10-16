@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formations — Jos Dore | Administration</title>
+<meta name="description" content="Gestion des formations Jos Dore.">
+<meta name="theme-color" content="#DC2626">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — FORMATIONS
+     ============================================================ */
+
+  :root {
+    --admin-rouge: #DC2626;
+    --admin-rouge-fonce: #B91C1C;
+    --admin-rouge-bg: rgba(220,38,38,0.08);
+    --admin-grad: linear-gradient(135deg, #DC2626, #B91C1C);
+    --admin-sidebar-w: 280px;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(220,38,38,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: #fff; }
+  .header--admin .logo__mark::after { background: #fff; }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(220,38,38,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { padding-top: var(--header-h); min-height: 100vh; }
+  .main-admin {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 28px 20px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-admin {
+      margin-left: var(--admin-sidebar-w);
+      padding: 32px 28px 80px;
+    }
+  }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(220,38,38,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: #fff; }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: #fff; }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- BANDEAU YOUTUBE ---------- */
+  .info-youtube {
+    background: linear-gradient(135deg, rgba(220,38,38,0.05), rgba(220,38,38,0.01));
+    border: 1px solid rgba(220,38,38,0.2);
+    border-left: 4px solid #FF0000;
+    border-radius: var(--rayon-lg);
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .info-youtube__icone {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    background: #FF0000;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .info-youtube__contenu { flex: 1; min-width: 200px; }
+  .info-youtube__titre {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .info-youtube__titre i { color: #FF0000; font-size: 14px; }
+  .info-youtube__texte {
+    font-size: 12.5px;
+    color: var(--gris-600);
+    line-height: 1.5;
+  }
+
+  /* ---------- STATS MINI ---------- */
+  .stats-mini-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-mini-admin {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+  }
+  .stat-mini-admin:hover {
+    border-color: var(--admin-rouge);
+    box-shadow: 0 4px 12px rgba(10,37,64,0.06);
+  }
+  .stat-mini-admin__icone {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .stat-mini-admin__icone--rouge { background: var(--admin-rouge-bg); color: var(--admin-rouge); }
+  .stat-mini-admin__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-mini-admin__icone--or { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .stat-mini-admin__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-mini-admin__texte { min-width: 0; }
+  .stat-mini-admin__valeur {
+    font-family: var(--police-titre);
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .stat-mini-admin__label {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* ---------- BARRE D'OUTILS ---------- */
+  .barre-outils {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 16px 20px;
+  }
+  .recherche-admin {
+    flex: 1;
+    min-width: 240px;
+    position: relative;
+  }
+  .recherche-admin > i {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 17px;
+    pointer-events: none;
+  }
+  .recherche-admin input {
+    width: 100%;
+    padding: 11px 16px 11px 46px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .recherche-admin input::placeholder { color: var(--gris-400); }
+  .recherche-admin input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 4px rgba(220,38,38,0.1);
+  }
+
+  .filtres-admin {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filtre-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: var(--police-titre);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gris-600);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-admin:hover {
+    background: #fff;
+    border-color: var(--admin-rouge);
+    color: var(--admin-rouge);
+  }
+  .filtre-admin.is-actif {
+    background: var(--admin-rouge);
+    color: #fff;
+    border-color: var(--admin-rouge);
+  }
+  .filtre-admin__compteur {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    font-size: 11px; font-weight: 900;
+  }
+  .filtre-admin.is-actif .filtre-admin__compteur { background: rgba(255,255,255,0.25); }
+
+  .tri-admin {
+    padding: 9px 34px 9px 14px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .tri-admin:focus { outline: none; border-color: var(--admin-rouge); }
+
+  /* ---------- GRILLE FORMATIONS ---------- */
+  .formations-grille-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .formation-admin {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .formation-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+
+  /* Vignette YouTube */
+  .formation-admin__vignette {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    overflow: hidden;
+  }
+  .formation-admin__vignette img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .formation-admin:hover .formation-admin__vignette img {
+    transform: scale(1.05);
+  }
+  .formation-admin__badges {
+    position: absolute;
+    top: 12px; left: 12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  .formation-admin__badge {
+    padding: 5px 10px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .formation-admin__badge--statut-publiee { background: var(--vert); color: #fff; }
+  .formation-admin__badge--statut-brouillon { background: var(--or-fonce); color: #fff; }
+  .formation-admin__badge--statut-archivee { background: var(--gris-500); color: #fff; }
+  .formation-admin__badge--niveau {
+    background: rgba(10,37,64,0.85);
+    color: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .formation-admin__duree {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    padding: 4px 9px;
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .formation-admin__yt-icon {
+    position: absolute;
+    bottom: 10px; left: 10px;
+    padding: 4px 8px;
+    background: #FF0000;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+  }
+
+  /* Corps */
+  .formation-admin__corps {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .formation-admin__categorie {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .formation-admin__categorie i { font-size: 13px; }
+
+  .formation-admin__titre {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .formation-admin__desc {
+    font-size: 12.5px;
+    color: var(--gris-500);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Stats de la formation */
+  .formation-admin__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px 0;
+    margin-bottom: 14px;
+    border-top: 1px solid var(--gris-100);
+    border-bottom: 1px solid var(--gris-100);
+  }
+  .formation-admin__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .formation-admin__stat-valeur {
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1;
+  }
+  .formation-admin__stat-label {
+    font-size: 11px;
+    color: var(--gris-500);
+    font-weight: 600;
+  }
+
+  /* Barre progression moyenne */
+  .formation-admin__prog {
+    margin-bottom: 14px;
+  }
+  .formation-admin__prog-entete {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--gris-500);
+    margin-bottom: 6px;
+  }
+  .formation-admin__prog-barre {
+    height: 5px;
+    background: var(--gris-100);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .formation-admin__prog-remplie {
+    height: 100%;
+    background: var(--admin-grad);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  /* Actions */
+  .formation-admin__actions {
+    display: flex;
+    gap: 6px;
+  }
+  .btn-action-admin {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--police-titre);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-action-admin:hover {
+    background: var(--admin-rouge);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-action-admin--or:hover { background: var(--or); color: var(--nuit); }
+  .btn-action-admin--vert:hover { background: var(--vert); color: #fff; }
+  .btn-action-admin--danger:hover { background: var(--rouge); color: #fff; }
+  .btn-action-admin--icone {
+    flex: 0 0 36px;
+  }
+
+  /* ---------- ÉTAT VIDE ---------- */
+  .vide-admin {
+    background: #fff;
+    border: 2px dashed var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-admin__icone {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 20px;
+  }
+  .vide-admin__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .vide-admin__texte {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto 24px;
+  }
+
+  /* ---------- PAGINATION ---------- */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .pagination__info {
+    font-size: 13px;
+    color: var(--gris-500);
+    font-weight: 600;
+  }
+  .pagination__boutons { display: flex; gap: 6px; }
+  .pagination__btn {
+    min-width: 36px; height: 36px;
+    padding: 0 10px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: 10px;
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pagination__btn:hover:not(:disabled) {
+    border-color: var(--admin-rouge);
+    color: var(--admin-rouge);
+  }
+  .pagination__btn.is-actif {
+    background: var(--admin-rouge);
+    border-color: var(--admin-rouge);
+    color: #fff;
+  }
+  .pagination__btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* ---------- FOOTER ADMIN ---------- */
+  .app-footer--admin {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer--admin { margin-left: var(--admin-sidebar-w); }
+  }
+  .app-footer--admin a { color: var(--gris-500); text-decoration: none; }
+  .app-footer--admin a:hover { color: var(--admin-rouge); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) {
+    .main-admin { padding: 20px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .barre-outils { padding: 14px 16px; }
+    .recherche-admin { min-width: 100%; }
+    .formations-grille-admin { grid-template-columns: 1fr; gap: 16px; }
+    .formation-admin__corps { padding: 16px; }
+    .pagination { justify-content: center; }
+    .pagination__info { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER ADMIN                                                  -->
+<!-- ============================================================ -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+
+    <button class="header__menu" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR ADMIN                                                 -->
+<!-- ============================================================ -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i>
+    <span>Clients</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien">
+    <i class="fi fi-rr-document-signed"></i>
+    <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i>
+    <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Factures</span>
+    <span class="sidebar__lien-badge">3</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien">
+    <i class="fi fi-rr-pencil"></i>
+    <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien">
+    <i class="fi fi-rr-envelope"></i>
+    <span>Messages</span>
+    <span class="sidebar__lien-badge">2</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i>
+    <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Formations
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+          </h1>
+          <p class="page-entete__sous">
+            Gérez vos formations : création, contenu, publication.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnNouvelleFormation">
+            <i class="fi fi-rr-plus"></i> Nouvelle formation
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ BANDEAU YOUTUBE ============ -->
+      <div class="info-youtube">
+        <div class="info-youtube__icone">
+          <i class="fi fi-brands-youtube"></i>
+        </div>
+        <div class="info-youtube__contenu">
+          <div class="info-youtube__titre">
+            <i class="fi fi-rr-lock"></i> Vidéos hébergées sur YouTube en non répertorié
+          </div>
+          <div class="info-youtube__texte">
+            Collez simplement l'<strong>ID YouTube</strong> de chaque vidéo (11 caractères).
+            Les vidéos restent privées et ne sont accessibles que par vos clients.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ STATS MINI ============ -->
+      <div class="stats-mini-admin">
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--rouge">
+            <i class="fi fi-rr-graduation-cap"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sTotal">0</div>
+            <div class="stat-mini-admin__label">Formations totales</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--vert">
+            <i class="fi fi-rr-check-circle"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sPubliees">0</div>
+            <div class="stat-mini-admin__label">Publiées</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--or">
+            <i class="fi fi-rr-edit"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sBrouillons">0</div>
+            <div class="stat-mini-admin__label">Brouillons</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--bleu">
+            <i class="fi fi-rr-users"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sInscrits">0</div>
+            <div class="stat-mini-admin__label">Clients inscrits</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ BARRE D'OUTILS ============ -->
+      <div class="barre-outils">
+        <div class="recherche-admin">
+          <i class="fi fi-rr-search"></i>
+          <input type="search" id="rechercheFormation" placeholder="Rechercher une formation (titre, catégorie…)" autocomplete="off">
+        </div>
+
+        <div class="filtres-admin">
+          <button type="button" class="filtre-admin is-actif" data-filtre-formation="toutes">
+            <i class="fi fi-rr-apps"></i> Toutes
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-formation="publiee">
+            <i class="fi fi-rr-check-circle"></i> Publiées
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-formation="brouillon">
+            <i class="fi fi-rr-edit"></i> Brouillons
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-formation="archivee">
+            <i class="fi fi-rr-box"></i> Archivées
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+        </div>
+
+        <select class="tri-admin" id="triFormation">
+          <option value="recent">Plus récentes</option>
+          <option value="ancien">Plus anciennes</option>
+          <option value="inscrits-desc">Plus populaires</option>
+          <option value="titre-asc">Titre (A → Z)</option>
+        </select>
+      </div>
+
+      <!-- ============ GRILLE FORMATIONS ============ -->
+      <div class="formations-grille-admin" id="formationsGrille"></div>
+
+      <!-- ============ ÉTAT VIDE ============ -->
+      <div class="vide-admin" id="videFormations" style="display: none;">
+        <div class="vide-admin__icone">
+          <i class="fi fi-rr-graduation-cap"></i>
+        </div>
+        <div class="vide-admin__titre" id="videTitre">Aucune formation pour le moment</div>
+        <p class="vide-admin__texte" id="videTexte">
+          Créez votre première formation pour la proposer à vos clients.
+          Les vidéos seront hébergées sur YouTube en non répertorié.
+        </p>
+        <button type="button" class="btn btn--or btn--sm" id="btnNouvelleVide">
+          <i class="fi fi-rr-plus"></i> Créer ma première formation
+        </button>
+      </div>
+
+      <!-- ============ PAGINATION ============ -->
+      <div class="pagination" id="pagination" style="display: none;">
+        <div class="pagination__info" id="paginationInfo">0 formation affichée</div>
+        <div class="pagination__boutons" id="paginationBtns"></div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER ADMIN                                                  -->
+<!-- ============================================================ -->
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+  <div style="margin-top: 6px;">
+    <a href="/admin/parametres.html">Paramètres</a> ·
+    <a href="/" target="_blank">Site public</a> ·
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   ADMIN — FORMATIONS
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+  }
+
+  /* ============================================================
+     📊 DONNÉES FORMATIONS (DEMO — à brancher avec Supabase)
+     ============================================================ */
+  const FORMATIONS_DEMO = [
+    {
+      id: 'f-001',
+      titre: 'Initiation à l\'ordinateur — Les bases',
+      description: 'Allumer, éteindre, utiliser la souris et le clavier, gérer ses fichiers et dossiers.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Initiation',
+      niveau: 'Débutant',
+      duree: '1h 20',
+      statut: 'publiee',
+      inscrits: 8,
+      progressionMoyenne: 45,
+      creeLe: '2026-09-10T10:00:00Z'
+    },
+    {
+      id: 'f-002',
+      titre: 'Word — Créer un document professionnel',
+      description: 'Mise en forme, styles, tableaux et export PDF pour vos documents professionnels.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Bureautique',
+      niveau: 'Débutant',
+      duree: '1h 45',
+      statut: 'publiee',
+      inscrits: 12,
+      progressionMoyenne: 68,
+      creeLe: '2026-09-15T10:00:00Z'
+    },
+    {
+      id: 'f-003',
+      titre: 'Excel — Les formules essentielles',
+      description: 'SOMME, MOYENNE, SI, RECHERCHEV : les formules qu\'il faut maîtriser.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Bureautique',
+      niveau: 'Intermédiaire',
+      duree: '2h 10',
+      statut: 'publiee',
+      inscrits: 15,
+      progressionMoyenne: 52,
+      creeLe: '2026-09-22T10:00:00Z'
+    },
+    {
+      id: 'f-004',
+      titre: 'Sécurité en ligne — Se protéger des arnaques',
+      description: 'Reconnaître le phishing, créer des mots de passe solides, sauvegarder ses données.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Sécurité',
+      niveau: 'Tous niveaux',
+      duree: '55 min',
+      statut: 'publiee',
+      inscrits: 6,
+      progressionMoyenne: 30,
+      creeLe: '2026-09-28T10:00:00Z'
+    },
+    {
+      id: 'f-005',
+      titre: 'PowerPoint — Présentations percutantes',
+      description: 'Créer des slides claires et professionnelles pour vos réunions et présentations.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Bureautique',
+      niveau: 'Débutant',
+      duree: '1h 30',
+      statut: 'brouillon',
+      inscrits: 0,
+      progressionMoyenne: 0,
+      creeLe: '2026-10-10T10:00:00Z'
+    },
+    {
+      id: 'f-006',
+      titre: 'WordPress — Créer un site vitrine',
+      description: 'Installer, configurer et personnaliser un site WordPress simple.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Web',
+      niveau: 'Intermédiaire',
+      duree: '3h',
+      statut: 'brouillon',
+      inscrits: 0,
+      progressionMoyenne: 0,
+      creeLe: '2026-10-12T10:00:00Z'
+    },
+    {
+      id: 'f-007',
+      titre: 'Ancienne formation — Excel 2016',
+      description: 'Formation archivée, remplacée par la version 2026.',
+      videoId: 'dQw4w9WgXcQ',
+      categorie: 'Bureautique',
+      niveau: 'Débutant',
+      duree: '1h 15',
+      statut: 'archivee',
+      inscrits: 22,
+      progressionMoyenne: 100,
+      creeLe: '2025-06-01T10:00:00Z'
+    }
+  ];
+
+  // 🔽 État actuel : vide. Remplacer par FORMATIONS_DEMO pour tester.
+  const FORMATIONS = [];
+
+  /* ============================================================
+     ÉTAT
+     ============================================================ */
+  let filtreActif = 'toutes';
+  let termeRecherche = '';
+  let triActif = 'recent';
+  let pageActuelle = 1;
+  const PAR_PAGE = 9;
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+  function calculerStats() {
+    return {
+      total: FORMATIONS.length,
+      publiees: FORMATIONS.filter(f => f.statut === 'publiee').length,
+      brouillons: FORMATIONS.filter(f => f.statut === 'brouillon').length,
+      inscrits: FORMATIONS.reduce((sum, f) => sum + (f.inscrits || 0), 0)
+    };
+  }
+
+  function animer(id, cible) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (cible === 0) { el.textContent = '0'; return; }
+    let v = 0;
+    const pas = Math.max(1, Math.ceil(cible / 20));
+    const t = setInterval(() => {
+      v += pas;
+      if (v >= cible) { v = cible; clearInterval(t); }
+      el.textContent = v;
+    }, 30);
+  }
+
+  function majStats() {
+    const s = calculerStats();
+    animer('sTotal', s.total);
+    animer('sPubliees', s.publiees);
+    animer('sBrouillons', s.brouillons);
+    animer('sInscrits', s.inscrits);
+  }
+
+  /* ============================================================
+     COMPTEURS DES FILTRES
+     ============================================================ */
+  function majCompteursFiltres() {
+    const compteurs = {
+      toutes: FORMATIONS.length,
+      publiee: FORMATIONS.filter(f => f.statut === 'publiee').length,
+      brouillon: FORMATIONS.filter(f => f.statut === 'brouillon').length,
+      archivee: FORMATIONS.filter(f => f.statut === 'archivee').length
+    };
+    document.querySelectorAll('[data-filtre-formation]').forEach(btn => {
+      const cle = btn.dataset.filtreFormation;
+      const span = btn.querySelector('.filtre-admin__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  /* ============================================================
+     LIBELLÉS
+     ============================================================ */
+  const statutLibelles = {
+    publiee: { label: 'Publiée', icone: 'fi fi-rr-check-circle' },
+    brouillon: { label: 'Brouillon', icone: 'fi fi-rr-edit' },
+    archivee: { label: 'Archivée', icone: 'fi fi-rr-box' }
+  };
+  const categorieIcones = {
+    'Initiation': 'fi fi-rr-computer',
+    'Bureautique': 'fi fi-rr-document',
+    'Sécurité': 'fi fi-rr-shield-check',
+    'Web': 'fi fi-rr-globe',
+    'Réseaux': 'fi fi-rr-wifi',
+    'Autre': 'fi fi-rr-apps'
+  };
+
+  /* ============================================================
+     FILTRAGE / TRI / PAGINATION
+     ============================================================ */
+  function appliquerFiltres() {
+    let liste = [...FORMATIONS];
+
+    // Filtre statut
+    if (filtreActif !== 'toutes') {
+      liste = liste.filter(f => f.statut === filtreActif);
+    }
+
+    // Recherche
+    if (termeRecherche) {
+      const t = termeRecherche.toLowerCase();
+      liste = liste.filter(f => {
+        const texte = [f.titre, f.categorie, f.niveau, f.description].filter(Boolean).join(' ').toLowerCase();
+        return texte.includes(t);
+      });
+    }
+
+    // Tri
+    switch (triActif) {
+      case 'recent':
+        liste.sort((a, b) => new Date(b.creeLe) - new Date(a.creeLe));
+        break;
+      case 'ancien':
+        liste.sort((a, b) => new Date(a.creeLe) - new Date(b.creeLe));
+        break;
+      case 'inscrits-desc':
+        liste.sort((a, b) => (b.inscrits || 0) - (a.inscrits || 0));
+        break;
+      case 'titre-asc':
+        liste.sort((a, b) => (a.titre || '').localeCompare(b.titre || '', 'fr'));
+        break;
+    }
+
+    return liste;
+  }
+
+  /* ============================================================
+     RENDU
+     ============================================================ */
+  function rendreFormations() {
+    const grille = document.getElementById('formationsGrille');
+    const vide = document.getElementById('videFormations');
+    const pagination = document.getElementById('pagination');
+    if (!grille) return;
+
+    const listeFiltree = appliquerFiltres();
+
+    // État vide global
+    if (FORMATIONS.length === 0) {
+      grille.style.display = 'none';
+      pagination.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucune formation pour le moment';
+      document.getElementById('videTexte').textContent = 'Créez votre première formation pour la proposer à vos clients. Les vidéos seront hébergées sur YouTube en non répertorié.';
+      return;
+    }
+
+    // État vide filtre/recherche
+    if (listeFiltree.length === 0) {
+      grille.style.display = 'none';
+      pagination.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucun résultat';
+      document.getElementById('videTexte').textContent = 'Aucune formation ne correspond à votre recherche ou vos filtres.';
+      return;
+    }
+
+    grille.style.display = '';
+    vide.style.display = 'none';
+    pagination.style.display = '';
+
+    // Pagination
+    const totalPages = Math.ceil(listeFiltree.length / PAR_PAGE);
+    if (pageActuelle > totalPages) pageActuelle = totalPages;
+    const debut = (pageActuelle - 1) * PAR_PAGE;
+    const fin = Math.min(debut + PAR_PAGE, listeFiltree.length);
+    const page = listeFiltree.slice(debut, fin);
+
+    grille.innerHTML = '';
+    page.forEach(f => {
+      const s = statutLibelles[f.statut] || statutLibelles.brouillon;
+      const iconeCat = categorieIcones[f.categorie] || 'fi fi-rr-apps';
+
+      const carte = document.createElement('article');
+      carte.className = 'formation-admin';
+      carte.innerHTML = `
+        <div class="formation-admin__vignette">
+          <img
+            src="https://img.youtube.com/vi/${window.JosDore.UTILS.escapeHtml(f.videoId)}/maxresdefault.jpg"
+            alt="${window.JosDore.UTILS.escapeHtml(f.titre)}"
+            loading="lazy"
+            onerror="this.src='https://img.youtube.com/vi/${window.JosDore.UTILS.escapeHtml(f.videoId)}/hqdefault.jpg';"
+          >
+          <div class="formation-admin__badges">
+            <span class="formation-admin__badge formation-admin__badge--statut-${f.statut}">
+              ${s.label}
+            </span>
+            <span class="formation-admin__badge formation-admin__badge--niveau">
+              ${window.JosDore.UTILS.escapeHtml(f.niveau)}
+            </span>
+          </div>
+          <div class="formation-admin__yt-icon">
+            <i class="fi fi-brands-youtube"></i> Non listée
+          </div>
+          <div class="formation-admin__duree">
+            <i class="fi fi-rr-clock"></i> ${window.JosDore.UTILS.escapeHtml(f.duree)}
+          </div>
+        </div>
+
+        <div class="formation-admin__corps">
+          <div class="formation-admin__categorie">
+            <i class="${iconeCat}"></i> ${window.JosDore.UTILS.escapeHtml(f.categorie)}
+          </div>
+          <h3 class="formation-admin__titre">${window.JosDore.UTILS.escapeHtml(f.titre)}</h3>
+          <p class="formation-admin__desc">${window.JosDore.UTILS.escapeHtml(f.description)}</p>
+
+          <div class="formation-admin__stats">
+            <div class="formation-admin__stat">
+              <div class="formation-admin__stat-valeur">${f.inscrits || 0}</div>
+              <div class="formation-admin__stat-label">Inscrits</div>
+            </div>
+            <div class="formation-admin__stat">
+              <div class="formation-admin__stat-valeur">${f.progressionMoyenne || 0}%</div>
+              <div class="formation-admin__stat-label">Progression moy.</div>
+            </div>
+          </div>
+
+          <div class="formation-admin__prog">
+            <div class="formation-admin__prog-entete">
+              <span>Complétion moyenne</span>
+              <span>${f.progressionMoyenne || 0}%</span>
+            </div>
+            <div class="formation-admin__prog-barre">
+              <div class="formation-admin__prog-remplie" style="width: ${f.progressionMoyenne || 0}%"></div>
+            </div>
+          </div>
+
+          <div class="formation-admin__actions">
+            <a href="https://www.youtube.com/watch?v=${window.JosDore.UTILS.escapeHtml(f.videoId)}" target="_blank" rel="noopener" class="btn-action-admin btn-action-admin--icone" title="Voir sur YouTube">
+              <i class="fi fi-brands-youtube"></i>
+            </a>
+            <button type="button" class="btn-action-admin btn-action-admin--icone" data-action="modifier" data-id="${f.id}" title="Modifier">
+              <i class="fi fi-rr-pencil"></i>
+            </button>
+            ${f.statut === 'brouillon' ? `
+              <button type="button" class="btn-action-admin btn-action-admin--vert btn-action-admin--icone" data-action="publier" data-id="${f.id}" title="Publier">
+                <i class="fi fi-rr-check"></i>
+              </button>
+            ` : ''}
+            <button type="button" class="btn-action-admin btn-action-admin--danger btn-action-admin--icone" data-action="supprimer" data-id="${f.id}" title="Supprimer">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grille.appendChild(carte);
+    });
+
+    rendrePagination(listeFiltree.length, totalPages, debut, fin);
+
+    // Actions
+    grille.querySelectorAll('[data-action="modifier"]').forEach(btn => {
+      btn.addEventListener('click', () => modifierFormation(btn.dataset.id));
+    });
+    grille.querySelectorAll('[data-action="publier"]').forEach(btn => {
+      btn.addEventListener('click', () => publierFormation(btn.dataset.id));
+    });
+    grille.querySelectorAll('[data-action="supprimer"]').forEach(btn => {
+      btn.addEventListener('click', () => supprimerFormation(btn.dataset.id));
+    });
+  }
+
+  /* ============================================================
+     PAGINATION
+     ============================================================ */
+  function rendrePagination(total, totalPages, debut, fin) {
+    const info = document.getElementById('paginationInfo');
+    const btns = document.getElementById('paginationBtns');
+
+    if (info) {
+      info.textContent = `Affichage de ${debut + 1} à ${fin} sur ${total} formation${total > 1 ? 's' : ''}`;
+    }
+
+    if (!btns) return;
+    btns.innerHTML = '';
+
+    const btnPrec = document.createElement('button');
+    btnPrec.className = 'pagination__btn';
+    btnPrec.innerHTML = '<i class="fi fi-rr-angle-small-left"></i>';
+    btnPrec.disabled = pageActuelle === 1;
+    btnPrec.addEventListener('click', () => {
+      if (pageActuelle > 1) {
+        pageActuelle--;
+        rendreFormations();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    btns.appendChild(btnPrec);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const b = document.createElement('button');
+      b.className = 'pagination__btn' + (i === pageActuelle ? ' is-actif' : '');
+      b.textContent = i;
+      b.addEventListener('click', () => {
+        pageActuelle = i;
+        rendreFormations();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      btns.appendChild(b);
+    }
+
+    const btnSuiv = document.createElement('button');
+    btnSuiv.className = 'pagination__btn';
+    btnSuiv.innerHTML = '<i class="fi fi-rr-angle-small-right"></i>';
+    btnSuiv.disabled = pageActuelle === totalPages;
+    btnSuiv.addEventListener('click', () => {
+      if (pageActuelle < totalPages) {
+        pageActuelle++;
+        rendreFormations();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    btns.appendChild(btnSuiv);
+  }
+
+  /* ============================================================
+     ACTIONS
+     ============================================================ */
+  async function supprimerFormation(id) {
+    const f = FORMATIONS.find(x => x.id === id);
+    if (!f) return;
+
+    if (!window.JosDore.Widgets || !window.JosDore.Widgets.confirmer) return;
+
+    const confirme = await window.JosDore.Widgets.confirmer(
+      `Supprimer la formation "${f.titre}" ? Cette action est irréversible.`,
+      {
+        titre: 'Supprimer une formation',
+        libelleConfirmer: 'Supprimer',
+        libelleAnnuler: 'Annuler',
+        variante: 'rouge',
+        icone: 'fi fi-rr-trash'
+      }
+    );
+
+    if (confirme) {
+      const index = FORMATIONS.findIndex(x => x.id === id);
+      if (index !== -1) FORMATIONS.splice(index, 1);
+
+      window.JosDore.Widgets.toastSucces(`La formation "${f.titre}" a été supprimée.`);
+      majStats();
+      majCompteursFiltres();
+      rendreFormations();
+    }
+  }
+
+  async function publierFormation(id) {
+    const f = FORMATIONS.find(x => x.id === id);
+    if (!f) return;
+
+    if (!window.JosDore.Widgets || !window.JosDore.Widgets.confirmer) return;
+
+    const confirme = await window.JosDore.Widgets.confirmer(
+      `Publier la formation "${f.titre}" ? Elle sera visible par vos clients dans leur espace.`,
+      {
+        titre: 'Publier la formation',
+        libelleConfirmer: 'Publier',
+        libelleAnnuler: 'Annuler',
+        variante: 'vert',
+        icone: 'fi fi-rr-check-circle'
+      }
+    );
+
+    if (confirme) {
+      f.statut = 'publiee';
+      window.JosDore.Widgets.toastSucces('La formation est maintenant publiée.');
+      majStats();
+      majCompteursFiltres();
+      rendreFormations();
+    }
+  }
+
+  function modifierFormation(id) {
+    const f = FORMATIONS.find(x => x.id === id);
+    if (!f || !window.JosDore.Widgets) return;
+
+    window.JosDore.Widgets.alerter(
+      'Formation : ' + f.titre + '\n\n' +
+      'Catégorie : ' + f.categorie + '\n' +
+      'Niveau : ' + f.niveau + '\n' +
+      'Durée : ' + f.duree + '\n' +
+      'Vidéo YouTube ID : ' + f.videoId + '\n' +
+      'Statut : ' + f.statut + '\n' +
+      'Inscrits : ' + (f.inscrits || 0) + '\n\n' +
+      'Formulaire de modification complet à venir.',
+      { titre: 'Modifier la formation', icone: 'fi fi-rr-pencil' }
+    );
+  }
+
+  /* ============================================================
+     NOUVELLE FORMATION
+     ============================================================ */
+  function nouvelleFormation() {
+    if (!window.JosDore.Widgets) return;
+    window.JosDore.Widgets.alerter(
+      'Formulaire de création de formation à venir.\n\nProchainement :\n' +
+      '• Titre et description\n' +
+      '• ID YouTube (non répertorié)\n' +
+      '• Catégorie et niveau\n' +
+      '• Durée et statut',
+      { titre: 'Nouvelle formation', icone: 'fi fi-rr-plus', type: 'info' }
+    );
+  }
+
+  const btnNouvelle = document.getElementById('btnNouvelleFormation');
+  if (btnNouvelle) btnNouvelle.addEventListener('click', nouvelleFormation);
+
+  const btnNouvelleVide = document.getElementById('btnNouvelleVide');
+  if (btnNouvelleVide) btnNouvelleVide.addEventListener('click', nouvelleFormation);
+
+  /* ============================================================
+     ÉCOUTEURS
+     ============================================================ */
+
+  // Recherche
+  const rechercheInput = document.getElementById('rechercheFormation');
+  if (rechercheInput) {
+    let timer;
+    rechercheInput.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        termeRecherche = rechercheInput.value.trim();
+        pageActuelle = 1;
+        rendreFormations();
+      }, 250);
+    });
+  }
+
+  // Filtres
+  document.querySelectorAll('[data-filtre-formation]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre-formation]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtreFormation;
+      pageActuelle = 1;
+      rendreFormations();
+    });
+  });
+
+  // Tri
+  const triSelect = document.getElementById('triFormation');
+  if (triSelect) {
+    triSelect.addEventListener('change', () => {
+      triActif = triSelect.value;
+      pageActuelle = 1;
+      rendreFormations();
+    });
+  }
+
+  /* ============================================================
+     🚀 INITIALISATION
+     ============================================================ */
+  majStats();
+  majCompteursFiltres();
+  rendreFormations();
+
+  /* ---------- LOG ---------- */
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Admin formations chargé — ' + FORMATIONS.length + ' formations');
+  }
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos services — Jos Dore | Maintenance, Formation, Conseils</title>
+<meta name="description" content="Découvrez les 3 services Jos Dore : maintenance informatique (contrats TPE/PME + dépannage), formation initiation informatique, et articles & conseils.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Nos services — Jos Dore">
+<meta property="og:description" content="Maintenance informatique, formation, conseils. Trois expertises à votre service au Bénin.">
+<meta property="og:image" content="/ressources/images/og/og-services.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/services.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE SERVICES — Jos Dore
+     ============================================================ */
+
+  /* --- HERO SERVICES --- */
+  .hero-services {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-services::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-services::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-services__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-services__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-services h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-services h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-services p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-services__actions {
+    display: flex; gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* --- SECTION DÉTAIL SERVICE --- */
+  .section-service {
+    padding: 80px 0;
+  }
+  .section-service--grise {
+    background: var(--gris-50);
+  }
+
+  .service-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .service-detail--inverse .service-detail__visuel {
+    order: 2;
+  }
+
+  .service-detail__badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: var(--rayon-full);
+    color: var(--or-fonce);
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .service-detail__icon {
+    width: 72px; height: 72px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+    margin-bottom: 24px;
+  }
+
+  .service-detail h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .service-detail p {
+    font-size: 1rem;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .service-detail__liste {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .service-detail__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--gris-700);
+    line-height: 1.5;
+  }
+  .service-detail__item i {
+    color: var(--vert);
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .service-detail__item strong {
+    color: var(--gris-900);
+    font-weight: 700;
+  }
+
+  .service-detail__actions {
+    display: flex; gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* --- Bloc visuel (carte simulée) --- */
+  .service-visuel {
+    background: #fff;
+    border-radius: var(--rayon-lg);
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(10,37,64,0.12);
+    border: 1px solid var(--gris-200);
+  }
+  .service-visuel__entete {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gris-100);
+  }
+  .service-visuel__entete-icone {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--or), var(--or-fonce));
+    color: var(--nuit);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .service-visuel__entete-texte h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 2px;
+  }
+  .service-visuel__entete-texte p {
+    font-size: 12px;
+    color: var(--gris-500);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .service-visuel__ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gris-100);
+    font-size: 14px;
+  }
+  .service-visuel__ligne:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .service-visuel__label {
+    color: var(--gris-500);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .service-visuel__label i {
+    color: var(--or-fonce);
+    font-size: 16px;
+  }
+  .service-visuel__valeur {
+    color: var(--gris-900);
+    font-weight: 800;
+    font-family: var(--police-titre);
+  }
+  .service-visuel__valeur--or {
+    color: var(--or-fonce);
+  }
+  .service-visuel__valeur--vert {
+    color: var(--vert);
+  }
+
+  /* --- TABLEAU COMPARATIF --- */
+  .section-compare {
+    padding: 80px 0;
+    background: var(--gris-50);
+  }
+  .compare-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .compare-card {
+    background: #fff;
+    border: 2px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px 24px;
+    position: relative;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .compare-card:hover {
+    border-color: var(--or);
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+  }
+  .compare-card--vedette {
+    border-color: var(--or);
+    box-shadow: 0 20px 40px rgba(245,158,11,0.15);
+  }
+  .compare-card__badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 14px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .compare-card__titre {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .compare-card__sous {
+    font-size: 13px;
+    color: var(--gris-500);
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .compare-card__prix {
+    font-family: var(--police-titre);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--or-fonce);
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .compare-card__prix small {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gris-500);
+  }
+  .compare-card__desc {
+    font-size: 13px;
+    color: var(--gris-500);
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gris-100);
+    line-height: 1.5;
+  }
+  .compare-card__liste {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .compare-card__liste li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--gris-700);
+    line-height: 1.5;
+  }
+  .compare-card__liste li i {
+    color: var(--vert);
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .compare-card__liste li.na i {
+    color: var(--gris-300);
+  }
+
+  /* --- CTA --- */
+  .cta-services {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-services::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-services__inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-services h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+  .cta-services h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-services p {
+    color: #CBD5E1;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .cta-services__actions {
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- BOUTON WHATSAPP FLOTTANT --- */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 960px) {
+    .service-detail {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .service-detail--inverse .service-detail__visuel {
+      order: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-services { padding: 40px 0 56px; }
+    .hero-services__actions { flex-direction: column; }
+    .hero-services__actions .btn { width: 100%; }
+    .section-service,
+    .section-compare { padding: 56px 0; }
+    .service-detail { padding: 0 20px; }
+    .service-detail__actions { flex-direction: column; }
+    .service-detail__actions .btn { width: 100%; }
+    .compare-grille { padding: 0 16px; }
+    .service-visuel { padding: 24px 20px; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html" class="is-actif">Services</a>
+      <a href="/#pour-qui">Pour qui</a>
+      <a href="/#comment">Comment ça marche</a>
+      <a href="/blog/">Articles</a>
+      <a href="/a-propos.html">À propos</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO SERVICES ============ -->
+  <section class="hero-services">
+    <div class="hero-services__inner">
+      <div class="hero-services__badge">
+        <i class="fi fi-rr-apps"></i>
+        Nos services
+      </div>
+
+      <h1>Trois expertises,<br><span>un seul partenaire.</span></h1>
+
+      <p>
+        De la maintenance préventive à la formation, Jos Dore couvre
+        tous vos besoins informatiques au quotidien. Découvrez en détail
+        ce que nous faisons pour vous.
+      </p>
+
+      <div class="hero-services__actions">
+        <a href="#maintenance" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-settings"></i> Voir la maintenance
+        </a>
+        <a href="/contact.html" class="btn btn--ghost-light btn--lg">
+          <i class="fi fi-rr-calendar"></i> Demander un devis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE 1 — MAINTENANCE ============ -->
+  <section class="section-service" id="maintenance">
+    <div class="service-detail">
+
+      <div class="service-detail__texte">
+        <div class="service-detail__badge">
+          <i class="fi fi-rr-settings"></i>
+          Service 1
+        </div>
+
+        <div class="service-detail__icon">
+          <i class="fi fi-rr-settings"></i>
+        </div>
+
+        <h2>Maintenance informatique</h2>
+
+        <p>
+          Contrats préventifs pour TPE/PME et dépannage à domicile pour
+          particuliers. Nous prenons soin de votre parc informatique pour
+          éviter les pannes coûteuses et les pertes de données.
+        </p>
+
+        <div class="service-detail__liste">
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Contrats préventifs TPE/PME</strong> —
+              passages réguliers (mensuels ou trimestriels) pour vérifier,
+              mettre à jour et optimiser vos équipements.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Dépannage ponctuel</strong> —
+              intervention rapide en cas de panne, à domicile ou au bureau,
+              avec engagement de délai.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Gestion de parc informatique</strong> —
+              suivi complet de vos ordinateurs, imprimantes et équipements
+              réseau.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Sécurisation</strong> —
+              installation et configuration d'antivirus, pare-feu et solutions
+              de sauvegarde automatique.
+            </div>
+          </div>
+        </div>
+
+        <div class="service-detail__actions">
+          <a href="/service-maintenance.html" class="btn btn--or btn--lg">
+            En savoir plus <i class="fi fi-rr-arrow-right"></i>
+          </a>
+          <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20un%20devis%20pour%20la%20maintenance" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+            <i class="fi fi-brands-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="service-detail__visuel">
+        <div class="service-visuel">
+          <div class="service-visuel__entete">
+            <div class="service-visuel__entete-icone">
+              <i class="fi fi-sr-briefcase"></i>
+            </div>
+            <div class="service-visuel__entete-texte">
+              <h4>Formules disponibles</h4>
+              <p>Choisissez selon vos besoins</p>
+            </div>
+          </div>
+
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-user"></i> Dépannage particulier
+            </span>
+            <span class="service-visuel__valeur">Sur devis</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-building"></i> Contrat TPE/PME
+            </span>
+            <span class="service-visuel__valeur service-visuel__valeur--or">40 000 F/mois</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-shield-check"></i> Diagnostic initial
+            </span>
+            <span class="service-visuel__valeur service-visuel__valeur--vert">Gratuit</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-time-fast"></i> Délai d'intervention
+            </span>
+            <span class="service-visuel__valeur">24-48h</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SERVICE 2 — FORMATION ============ -->
+  <section class="section-service section-service--grise" id="formation">
+    <div class="service-detail service-detail--inverse">
+
+      <div class="service-detail__visuel">
+        <div class="service-visuel">
+          <div class="service-visuel__entete">
+            <div class="service-visuel__entete-icone">
+              <i class="fi fi-sr-graduation-cap"></i>
+            </div>
+            <div class="service-visuel__entete-texte">
+              <h4>Modules de formation</h4>
+              <p>Adaptés à votre niveau</p>
+            </div>
+          </div>
+
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-computer"></i> Initiation ordinateur
+            </span>
+            <span class="service-visuel__valeur">Débutant</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-document"></i> Word & traitement de texte
+            </span>
+            <span class="service-visuel__valeur">Tous niveaux</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-chart-histogram"></i> Excel & tableurs
+            </span>
+            <span class="service-visuel__valeur">Tous niveaux</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-globe"></i> Internet & email
+            </span>
+            <span class="service-visuel__valeur">Tous niveaux</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-shield-check"></i> Sécurité en ligne
+            </span>
+            <span class="service-visuel__valeur">Essentiel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-detail__texte">
+        <div class="service-detail__badge">
+          <i class="fi fi-rr-graduation-cap"></i>
+          Service 2
+        </div>
+
+        <div class="service-detail__icon">
+          <i class="fi fi-rr-graduation-cap"></i>
+        </div>
+
+        <h2>Formation initiation informatique</h2>
+
+        <p>
+          Formations pratiques pour vous ou vos équipes. De la prise en main
+          d'un ordinateur à la maîtrise des outils bureautiques essentiels,
+          nous vous accompagnons à votre rythme.
+        </p>
+
+        <div class="service-detail__liste">
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Initiation à l'ordinateur</strong> —
+              prise en main, gestion des fichiers, raccourcis essentiels,
+              bonnes pratiques.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Word, Excel, PowerPoint</strong> —
+              création de documents, tableaux, formules, présentations
+              professionnelles.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Navigation internet & email</strong> —
+              recherche efficace, création de compte, envoi de pièces jointes,
+              gestion des spams.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Bonnes pratiques de sécurité</strong> —
+              mots de passe, phishing, sauvegardes, protection des données
+              personnelles.
+            </div>
+          </div>
+        </div>
+
+        <div class="service-detail__actions">
+          <a href="/service-formation.html" class="btn btn--or btn--lg">
+            En savoir plus <i class="fi fi-rr-arrow-right"></i>
+          </a>
+          <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20des%20informations%20sur%20la%20formation" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+            <i class="fi fi-brands-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SERVICE 3 — ARTICLES ============ -->
+  <section class="section-service" id="articles">
+    <div class="service-detail">
+
+      <div class="service-detail__texte">
+        <div class="service-detail__badge">
+          <i class="fi fi-rr-pencil"></i>
+          Service 3
+        </div>
+
+        <div class="service-detail__icon">
+          <i class="fi fi-rr-pencil"></i>
+        </div>
+
+        <h2>Articles & conseils</h2>
+
+        <p>
+          Un blog régulier pour vous aider à mieux comprendre votre matériel,
+          à éviter les pièges et à faire les bons choix. Des articles simples,
+          concrets, adaptés au contexte béninois.
+        </p>
+
+        <div class="service-detail__liste">
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Guides pratiques</strong> —
+              comment résoudre un problème courant, entretenir son matériel,
+              allonger la durée de vie de son PC.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Conseils d'achat</strong> —
+              quel ordinateur choisir, où acheter au Bénin, éviter les pièges
+              des vendeurs.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Astuces de sécurité</strong> —
+              reconnaître un virus, se protéger du phishing, sauvegarder ses
+              données efficacement.
+            </div>
+          </div>
+          <div class="service-detail__item">
+            <i class="fi fi-rr-check-circle"></i>
+            <div>
+              <strong>Actualités tech au Bénin</strong> —
+              nouveautés, opportunités, tendances locales pour les TPE/PME
+              et les particuliers.
+            </div>
+          </div>
+        </div>
+
+        <div class="service-detail__actions">
+          <a href="/blog/" class="btn btn--or btn--lg">
+            Lire les articles <i class="fi fi-rr-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-detail__visuel">
+        <div class="service-visuel">
+          <div class="service-visuel__entete">
+            <div class="service-visuel__entete-icone">
+              <i class="fi fi-sr-document-signed"></i>
+            </div>
+            <div class="service-visuel__entete-texte">
+              <h4>Articles à venir</h4>
+              <p>Contenus réguliers et gratuits</p>
+            </div>
+          </div>
+
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-shield-check"></i> Reconnaître un virus
+            </span>
+            <span class="service-visuel__valeur service-visuel__valeur--or">Guide</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-shopping-cart"></i> Choisir son PC en 2026
+            </span>
+            <span class="service-visuel__valeur service-visuel__valeur--or">Conseil</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-cloud-upload"></i> Sauvegarder : règle 3-2-1
+            </span>
+            <span class="service-visuel__valeur service-visuel__valeur--or">Sécurité</span>
+          </div>
+          <div class="service-visuel__ligne">
+            <span class="service-visuel__label">
+              <i class="fi fi-rr-time-past"></i> Fréquence de publication
+            </span>
+            <span class="service-visuel__valeur">1-2 / mois</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TABLEAU COMPARATIF ============ -->
+  <section class="section-compare">
+    <div class="section-corporate__head" style="text-align:center;max-width:700px;margin:0 auto 56px;padding:0 24px;">
+      <span class="section-corporate__eyebrow">En résumé</span>
+      <h2>Quelle formule pour vous ?</h2>
+      <p>Comparez nos offres en un coup d'œil et choisissez ce qui vous correspond.</p>
+    </div>
+
+    <div class="compare-grille">
+
+      <div class="compare-card">
+        <div class="compare-card__titre">Dépannage ponctuel</div>
+        <div class="compare-card__sous">Pour les particuliers</div>
+        <div class="compare-card__prix">Sur devis</div>
+        <div class="compare-card__desc">Intervention rapide en cas de panne, sans engagement.</div>
+
+        <ul class="compare-card__liste">
+          <li><i class="fi fi-rr-check"></i> Intervention à domicile</li>
+          <li><i class="fi fi-rr-check"></i> Diagnostic complet</li>
+          <li><i class="fi fi-rr-check"></i> Réparation & nettoyage</li>
+          <li class="na"><i class="fi fi-rr-cross-small"></i> Suivi mensuel</li>
+          <li class="na"><i class="fi fi-rr-cross-small"></i> Visites préventives</li>
+        </ul>
+
+        <a href="/contact.html" class="btn btn--ghost btn--block">
+          Demander un devis
+        </a>
+      </div>
+
+      <div class="compare-card compare-card--vedette">
+        <div class="compare-card__badge">Recommandé TPE/PME</div>
+        <div class="compare-card__titre">Contrat TPE/PME</div>
+        <div class="compare-card__sous">Pour les entreprises</div>
+        <div class="compare-card__prix">40 000 <small>F/mois</small></div>
+        <div class="compare-card__desc">Sérénité totale pour votre parc informatique.</div>
+
+        <ul class="compare-card__liste">
+          <li><i class="fi fi-rr-check"></i> Visites préventives mensuelles</li>
+          <li><i class="fi fi-rr-check"></i> Support réactif illimité</li>
+          <li><i class="fi fi-rr-check"></i> Gestion de parc complète</li>
+          <li><i class="fi fi-rr-check"></i> Antivirus & sauvegardes</li>
+          <li><i class="fi fi-rr-check"></i> Rapports d'intervention</li>
+        </ul>
+
+        <a href="/contact.html" class="btn btn--or btn--block">
+          <i class="fi fi-rr-calendar"></i> Diagnostic gratuit
+        </a>
+      </div>
+
+      <div class="compare-card">
+        <div class="compare-card__titre">Formation</div>
+        <div class="compare-card__sous">Pour vous ou vos équipes</div>
+        <div class="compare-card__prix">Sur devis</div>
+        <div class="compare-card__desc">Formations sur mesure, chez vous ou dans nos locaux.</div>
+
+        <ul class="compare-card__liste">
+          <li><i class="fi fi-rr-check"></i> Programme personnalisé</li>
+          <li><i class="fi fi-rr-check"></i> Sessions flexibles</li>
+          <li><i class="fi fi-rr-check"></i> Support pédagogique fourni</li>
+          <li><i class="fi fi-rr-check"></i> Attestation de formation</li>
+          <li class="na"><i class="fi fi-rr-cross-small"></i> Maintenance incluse</li>
+        </ul>
+
+        <a href="/contact.html" class="btn btn--ghost btn--block">
+          Demander un devis
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-services">
+    <div class="cta-services__inner">
+      <h2>Un projet ? <span>Parlons-en.</span></h2>
+      <p>
+        Discutons de vos besoins. Le diagnostic initial est gratuit et sans
+        engagement. Nous vous proposerons la solution la mieux adaptée à
+        votre situation.
+      </p>
+      <div class="cta-services__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-calendar"></i> Demander un devis gratuit
+        </a>
+        <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20un%20devis" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20vous%20contacter" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://facebook.com/josdore" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://instagram.com/josdore" class="footer__reseau" aria-label="Instagram" target="_blank" rel="noopener"><i class="fi fi-brands-instagram"></i></a>
+        <a href="https://wa.me/2290128621407" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://linkedin.com/company/josdore" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+    <div>Fait avec <i class="fi fi-sr-heart"></i> à Abomey-Calavi</div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+</body>
+</html>

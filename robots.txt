@@ -1,0 +1,8 @@
+﻿User-agent: *
+Allow: /
+Disallow: /compte/
+Disallow: /espace-client/
+Disallow: /admin/
+Disallow: /ressources/js/
+Disallow: /ressources/donnees/
+Sitemap: https://josdore.com/sitemap.xml

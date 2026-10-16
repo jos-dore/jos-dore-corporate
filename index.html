@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jos Dore — Maintenance informatique & Infogérance au Bénin</title>
+<meta name="description" content="Jos Dore : maintenance informatique sur site à Cotonou et Abomey-Calavi. Contrats préventifs pour TPE/PME, dépannage à domicile, formation initiation informatique.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Jos Dore — Maintenance informatique & Infogérance">
+<meta property="og:description" content="Votre partenaire informatique de proximité au Bénin. Maintenance préventive, dépannage, formation.">
+<meta property="og:image" content="/ressources/images/og/og-landing.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE D'ACCUEIL CORPORATE — Jos Dore
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-corporate {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-corporate::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-corporate::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-corporate__inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-corporate__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-corporate h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-corporate h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-corporate p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+  .hero-corporate__actions {
+    display: flex; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .hero-corporate__points {
+    display: flex; gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-corporate__point {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: #CBD5E1;
+    font-weight: 600;
+  }
+  .hero-corporate__point i {
+    color: var(--or);
+    font-size: 16px;
+  }
+
+  /* Carte visuelle hero */
+  .hero-carte {
+    background: #fff;
+    border-radius: var(--rayon-lg);
+    padding: 28px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .hero-carte__titre {
+    font-family: var(--police-titre);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-carte__titre i {
+    color: var(--or-fonce);
+    font-size: 20px;
+  }
+  .hero-carte__ligne {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gris-100);
+    font-size: 14px;
+  }
+  .hero-carte__ligne:last-child { border-bottom: none; padding-bottom: 0; }
+  .hero-carte__label { color: var(--gris-500); font-weight: 600; }
+  .hero-carte__valeur {
+    color: var(--gris-900);
+    font-weight: 800;
+    font-family: var(--police-titre);
+  }
+  .hero-carte__valeur--or { color: var(--or-fonce); }
+
+  /* --- SECTION SERVICES --- */
+  .section-corporate { padding: 80px 0; }
+  .section-corporate--grise { background: var(--gris-50); }
+  .section-corporate__head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+  }
+  .section-corporate__eyebrow {
+    display: inline-block;
+    font-size: 12px; font-weight: 800;
+    color: var(--or-fonce);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-corporate h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    margin-bottom: 14px;
+  }
+  .section-corporate__head p {
+    font-size: 1.05rem;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* Cartes services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px 28px;
+    transition: var(--transition);
+    display: flex; flex-direction: column;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+  .service-card__icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .service-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 12px;
+  }
+  .service-card p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .service-card ul {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 20px;
+  }
+  .service-card ul li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13.5px;
+    color: var(--gris-700);
+    line-height: 1.5;
+  }
+  .service-card ul li i {
+    color: var(--vert);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .service-card__lien {
+    font-size: 13px; font-weight: 800;
+    color: var(--or-fonce);
+    display: inline-flex; align-items: center; gap: 5px;
+    text-decoration: none;
+    margin-top: auto;
+  }
+  .service-card__lien:hover { color: var(--or); text-decoration: none; }
+
+  /* --- POUR QUI --- */
+  .pourqui-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .pourqui-card {
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: var(--rayon-lg);
+    padding: 32px 24px;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .pourqui-card:hover {
+    border-color: var(--or);
+    box-shadow: var(--ombre-lg);
+  }
+  .pourqui-card__icon {
+    width: 72px; height: 72px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+  }
+  .pourqui-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .pourqui-card p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+  }
+
+  /* --- COMMENT ÇA MARCHE --- */
+  .etapes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .etape {
+    text-align: center;
+    position: relative;
+  }
+  .etape__num {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--grad-or);
+    color: #fff;
+    font-family: var(--police-titre);
+    font-size: 26px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 28px rgba(245,158,11,0.3);
+  }
+  .etape h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .etape p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* --- CHIFFRES / AVANTAGES --- */
+  .avantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .avantage {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 28px 24px;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .avantage:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-md);
+  }
+  .avantage__icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 16px;
+    border-radius: 15px;
+    background: rgba(245,158,11,0.12);
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .avantage h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .avantage p {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.6;
+  }
+
+  /* --- BLOG APERÇU --- */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .blog-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    text-decoration: none;
+  }
+  .blog-card__img {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.25);
+    font-size: 48px;
+    position: relative;
+  }
+  .blog-card__badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    padding: 4px 10px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .blog-card__body { padding: 20px; }
+  .blog-card__date {
+    font-size: 12px;
+    color: var(--gris-500);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .blog-card__titre {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .blog-card__desc {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.6;
+  }
+
+  /* --- CTA FINAL --- */
+  .cta-corporate {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-corporate::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-corporate__inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-corporate h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+  .cta-corporate h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-corporate p {
+    color: #CBD5E1;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .cta-corporate__actions {
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- BOUTON WHATSAPP FLOTTANT --- */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @media (max-width: 960px) {
+    .hero-corporate__inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-corporate p { margin-left: auto; margin-right: auto; }
+    .hero-corporate__actions { justify-content: center; }
+    .hero-corporate__points { justify-content: center; }
+    .hero-carte { max-width: 420px; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .hero-corporate { padding: 40px 0 60px; }
+    .hero-corporate__actions { flex-direction: column; }
+    .hero-corporate__actions .btn { width: 100%; }
+    .section-corporate { padding: 56px 0; }
+    .btn-whatsapp-float { width: 52px; height: 52px; font-size: 26px; bottom: 16px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#pour-qui">Pour qui</a>
+      <a href="#comment">Comment ça marche</a>
+      <a href="/blog/">Articles</a>
+      <a href="/a-propos.html">À propos</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-corporate">
+    <div class="hero-corporate__inner">
+
+      <div class="hero-corporate__texte">
+        <div class="hero-corporate__badge">
+          <i class="fi fi-rr-shield-check"></i>
+          Maintenance informatique au Bénin
+        </div>
+
+        <h1>Votre partenaire<br><span>informatique de proximité.</span></h1>
+
+        <p>
+          Jos Dore accompagne les TPE, PME et particuliers de Cotonou et
+          Abomey-Calavi dans la gestion, la maintenance et la sécurisation
+          de leur parc informatique. Réactivité, prévention, sérénité.
+        </p>
+
+        <div class="hero-corporate__actions">
+          <a href="#services" class="btn btn--or btn--lg">
+            <i class="fi fi-rr-apps"></i> Découvrir nos services
+          </a>
+          <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20discuter%20de%20vos%20services" target="_blank" rel="noopener" class="btn btn--ghost-light btn--lg">
+            <i class="fi fi-brands-whatsapp"></i> Discuter sur WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-corporate__points">
+          <div class="hero-corporate__point">
+            <i class="fi fi-rr-check-circle"></i>
+            Intervention rapide
+          </div>
+          <div class="hero-corporate__point">
+            <i class="fi fi-rr-check-circle"></i>
+            Diagnostic gratuit
+          </div>
+          <div class="hero-corporate__point">
+            <i class="fi fi-rr-check-circle"></i>
+            Entreprise formelle
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-carte">
+        <div class="hero-carte__titre">
+          <i class="fi fi-sr-briefcase"></i>
+          Nos formules
+        </div>
+
+        <div class="hero-carte__ligne">
+          <span class="hero-carte__label">Dépannage ponctuel</span>
+          <span class="hero-carte__valeur">Sur devis</span>
+        </div>
+        <div class="hero-carte__ligne">
+          <span class="hero-carte__label">Contrat TPE/PME</span>
+          <span class="hero-carte__valeur hero-carte__valeur--or">40 000 F/mois</span>
+        </div>
+        <div class="hero-carte__ligne">
+          <span class="hero-carte__label">Formation initiation</span>
+          <span class="hero-carte__valeur">Sur devis</span>
+        </div>
+        <div class="hero-carte__ligne">
+          <span class="hero-carte__label">Diagnostic initial</span>
+          <span class="hero-carte__valeur hero-carte__valeur--or">Gratuit</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section-corporate" id="services">
+    <div class="conteneur">
+      <div class="section-corporate__head">
+        <span class="section-corporate__eyebrow">Nos services</span>
+        <h2>Trois expertises à votre service</h2>
+        <p>
+          De la maintenance préventive à la formation, Jos Dore couvre
+          tous vos besoins informatiques au quotidien.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fi fi-rr-settings"></i></div>
+          <h3>Maintenance informatique</h3>
+          <p>
+            Contrats préventifs pour TPE/PME et dépannage à domicile pour
+            particuliers. Nous prenons soin de votre parc informatique.
+          </p>
+          <ul>
+            <li><i class="fi fi-rr-check"></i> Contrats préventifs mensuels ou trimestriels</li>
+            <li><i class="fi fi-rr-check"></i> Support réactif en cas de panne</li>
+            <li><i class="fi fi-rr-check"></i> Gestion complète du parc</li>
+            <li><i class="fi fi-rr-check"></i> Sécurisation (antivirus, sauvegardes)</li>
+          </ul>
+          <a href="/service-maintenance.html" class="service-card__lien">
+            En savoir plus <i class="fi fi-rr-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fi fi-rr-graduation-cap"></i></div>
+          <h3>Formation initiation informatique</h3>
+          <p>
+            Formations pratiques pour vous ou vos équipes. De la prise en main
+            d'un ordinateur à la maîtrise des outils bureautiques essentiels.
+          </p>
+          <ul>
+            <li><i class="fi fi-rr-check"></i> Initiation à l'ordinateur</li>
+            <li><i class="fi fi-rr-check"></i> Word, Excel, PowerPoint</li>
+            <li><i class="fi fi-rr-check"></i> Navigation internet et email</li>
+            <li><i class="fi fi-rr-check"></i> Bonnes pratiques de sécurité</li>
+          </ul>
+          <a href="/service-formation.html" class="service-card__lien">
+            En savoir plus <i class="fi fi-rr-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fi fi-rr-pencil"></i></div>
+          <h3>Articles & conseils</h3>
+          <p>
+            Un blog régulier pour vous aider à mieux comprendre votre matériel,
+            à éviter les pièges et à faire les bons choix.
+          </p>
+          <ul>
+            <li><i class="fi fi-rr-check"></i> Guides pratiques</li>
+            <li><i class="fi fi-rr-check"></i> Conseils d'achat</li>
+            <li><i class="fi fi-rr-check"></i> Astuces de sécurité</li>
+            <li><i class="fi fi-rr-check"></i> Actualités tech au Bénin</li>
+          </ul>
+          <a href="/blog/" class="service-card__lien">
+            Lire les articles <i class="fi fi-rr-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POUR QUI ============ -->
+  <section class="section-corporate section-corporate--grise" id="pour-qui">
+    <div class="conteneur">
+      <div class="section-corporate__head">
+        <span class="section-corporate__eyebrow">Pour qui ?</span>
+        <h2>Jos Dore s'adapte à vos besoins</h2>
+        <p>Que vous soyez une entreprise ou un particulier, nous avons la solution.</p>
+      </div>
+
+      <div class="pourqui-grid">
+
+        <div class="pourqui-card">
+          <div class="pourqui-card__icon"><i class="fi fi-rr-building"></i></div>
+          <h3>TPE & PME</h3>
+          <p>
+            Un contrat de maintenance préventive vous évite les pannes coûteuses
+            et vous garantit un parc informatique toujours opérationnel.
+          </p>
+        </div>
+
+        <div class="pourqui-card">
+          <div class="pourqui-card__icon"><i class="fi fi-rr-stethoscope"></i></div>
+          <h3>Cabinets & professions libérales</h3>
+          <p>
+            Cabinets médicaux, avocats, notaires : nous sécurisons vos données
+            sensibles et assurons la continuité de votre activité.
+          </p>
+        </div>
+
+        <div class="pourqui-card">
+          <div class="pourqui-card__icon"><i class="fi fi-rr-school"></i></div>
+          <h3>Écoles & centres de formation</h3>
+          <p>
+            Équipements partagés, réseaux, logiciels pédagogiques : nous vous
+            accompagnons dans votre transformation numérique.
+          </p>
+        </div>
+
+        <div class="pourqui-card">
+          <div class="pourqui-card__icon"><i class="fi fi-rr-home"></i></div>
+          <h3>Particuliers</h3>
+          <p>
+            Un ordinateur lent, un virus, un achat à conseiller ? Nous venons
+            chez vous pour vous aider rapidement.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMENT ÇA MARCHE ============ -->
+  <section class="section-corporate" id="comment">
+    <div class="conteneur">
+      <div class="section-corporate__head">
+        <span class="section-corporate__eyebrow">Comment ça marche</span>
+        <h2>Simple, rapide, efficace</h2>
+        <p>Trois étapes pour bénéficier de nos services.</p>
+      </div>
+
+      <div class="etapes-grid">
+
+        <div class="etape">
+          <div class="etape__num">1</div>
+          <h3>Vous nous contactez</h3>
+          <p>
+            Par WhatsApp, téléphone ou via le formulaire. Décrivez votre besoin
+            ou votre panne.
+          </p>
+        </div>
+
+        <div class="etape">
+          <div class="etape__num">2</div>
+          <h3>Diagnostic gratuit</h3>
+          <p>
+            Nous évaluons votre situation sur place ou à distance et vous
+            proposons la meilleure solution.
+          </p>
+        </div>
+
+        <div class="etape">
+          <div class="etape__num">3</div>
+          <h3>Intervention & suivi</h3>
+          <p>
+            Nous intervenons rapidement et assurons un suivi pour éviter
+            que le problème ne revienne.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AVANTAGES ============ -->
+  <section class="section-corporate section-corporate--grise">
+    <div class="conteneur">
+      <div class="section-corporate__head">
+        <span class="section-corporate__eyebrow">Pourquoi Jos Dore</span>
+        <h2>Ce qui fait notre différence</h2>
+      </div>
+
+      <div class="avantages-grid">
+
+        <div class="avantage">
+          <div class="avantage__icon"><i class="fi fi-rr-bolt"></i></div>
+          <h3>Réactivité</h3>
+          <p>Nous intervenons rapidement, souvent le jour même pour les urgences.</p>
+        </div>
+
+        <div class="avantage">
+          <div class="avantage__icon"><i class="fi fi-rr-shield-check"></i></div>
+          <h3>Sérieux & formalité</h3>
+          <p>Entreprise formelle : devis, factures, engagement contractuel.</p>
+        </div>
+
+        <div class="avantage">
+          <div class="avantage__icon"><i class="fi fi-rr-settings"></i></div>
+          <h3>Prévention</h3>
+          <p>Nous anticipons les pannes avant qu'elles ne vous coûtent cher.</p>
+        </div>
+
+        <div class="avantage">
+          <div class="avantage__icon"><i class="fi fi-rr-map-marker"></i></div>
+          <h3>Proximité</h3>
+          <p>Basés à Cotonou et Abomey-Calavi, nous sommes près de vous.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOG APERÇU ============ -->
+  <section class="section-corporate">
+    <div class="conteneur">
+      <div class="section-corporate__head">
+        <span class="section-corporate__eyebrow">Nos articles</span>
+        <h2>Conseils & actualités tech</h2>
+        <p>Des articles réguliers pour vous aider à mieux gérer votre informatique.</p>
+      </div>
+
+      <div class="blog-grid">
+
+        <a href="/blog/article.html?id=article-01" class="blog-card">
+          <div class="blog-card__img">
+            <i class="fi fi-rr-picture"></i>
+            <span class="blog-card__badge">Guide</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date"><i class="fi fi-rr-calendar"></i> Bientôt disponible</div>
+            <div class="blog-card__titre">Comment reconnaître un ordinateur infecté par un virus</div>
+            <p class="blog-card__desc">Les 7 signes qui ne trompent pas et comment réagir rapidement.</p>
+          </div>
+        </a>
+
+        <a href="/blog/article.html?id=article-02" class="blog-card">
+          <div class="blog-card__img">
+            <i class="fi fi-rr-picture"></i>
+            <span class="blog-card__badge">Conseil</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date"><i class="fi fi-rr-calendar"></i> Bientôt disponible</div>
+            <div class="blog-card__titre">Bien choisir son ordinateur portable en 2026</div>
+            <p class="blog-card__desc">Les critères essentiels pour ne pas se tromper.</p>
+          </div>
+        </a>
+
+        <a href="/blog/article.html?id=article-03" class="blog-card">
+          <div class="blog-card__img">
+            <i class="fi fi-rr-picture"></i>
+            <span class="blog-card__badge">Sécurité</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date"><i class="fi fi-rr-calendar"></i> Bientôt disponible</div>
+            <div class="blog-card__titre">Sauvegarder ses données : la règle 3-2-1</div>
+            <p class="blog-card__desc">La méthode simple pour ne jamais perdre vos fichiers importants.</p>
+          </div>
+        </a>
+
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="/blog/" class="btn btn--ghost btn--lg">
+          Voir tous les articles <i class="fi fi-rr-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-corporate">
+    <div class="cta-corporate__inner">
+      <h2>Prêt à <span>travailler sereinement</span> ?</h2>
+      <p>
+        Discutons de vos besoins. Le diagnostic initial est gratuit et sans
+        engagement. Nous vous proposerons la solution la mieux adaptée à
+        votre situation.
+      </p>
+      <div class="cta-corporate__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-calendar"></i> Demander un devis gratuit
+        </a>
+        <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20un%20devis" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20vous%20contacter" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://facebook.com/josdore" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://instagram.com/josdore" class="footer__reseau" aria-label="Instagram" target="_blank" rel="noopener"><i class="fi fi-brands-instagram"></i></a>
+        <a href="https://wa.me/2290128621407" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://linkedin.com/company/josdore" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+    <div>Fait avec <i class="fi fi-sr-heart"></i> à Abomey-Calavi</div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+</body>
+</html>

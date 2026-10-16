@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centre d'aide — Jos Dore | Nous sommes là pour vous</title>
+<meta name="description" content="Trouvez rapidement des réponses à vos questions sur la maintenance, la formation, les contrats et l'espace client Jos Dore.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Centre d'aide — Jos Dore">
+<meta property="og:description" content="Trouvez rapidement des réponses à vos questions. FAQ, contact support, guides.">
+<meta property="og:image" content="/ressources/images/og/og-aide.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/aide/">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE CENTRE D'AIDE — Jos Dore
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-aide {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-aide::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-aide::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-aide__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-aide__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-aide h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-aide h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-aide p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto 32px;
+  }
+
+  /* Barre de recherche */
+  .recherche-aide {
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .recherche-aide i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 20px;
+    pointer-events: none;
+  }
+  .recherche-aide input {
+    width: 100%;
+    padding: 18px 24px 18px 56px;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: var(--rayon-full);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--gris-900);
+    transition: var(--transition);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  }
+  .recherche-aide input::placeholder {
+    color: var(--gris-400);
+  }
+  .recherche-aide input:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3), 0 0 0 4px rgba(245,158,11,0.2);
+  }
+
+  /* Suggestions de recherche */
+  .suggestions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .suggestions__label {
+    font-size: 12px;
+    color: #94A3B8;
+    font-weight: 600;
+    margin-right: 6px;
+    align-self: center;
+  }
+  .suggestion {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--rayon-full);
+    color: #CBD5E1;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .suggestion:hover {
+    background: rgba(245,158,11,0.15);
+    border-color: var(--or);
+    color: var(--or);
+    text-decoration: none;
+  }
+
+  /* --- SECTION GÉNÉRIQUE --- */
+  .section-a {
+    padding: 80px 0;
+  }
+  .section-a--grise {
+    background: var(--gris-50);
+  }
+  .section-a__head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+    padding: 0 24px;
+  }
+  .section-a__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-a__head h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .section-a__head p {
+    font-size: 1.05rem;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* --- CATÉGORIES --- */
+  .categories-grille {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .categorie-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 28px 24px;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .categorie-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--grad-or);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .categorie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+    text-decoration: none;
+    color: inherit;
+  }
+  .categorie-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .categorie-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+  .categorie-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .categorie-card p {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .categorie-card__count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--or-fonce);
+  }
+  .categorie-card__count i {
+    font-size: 14px;
+    transition: transform var(--transition);
+  }
+  .categorie-card:hover .categorie-card__count i {
+    transform: translateX(4px);
+  }
+
+  /* --- QUESTIONS POPULAIRES --- */
+  .populaires-liste {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .populaire-item {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .populaire-item[open] {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .populaire-item summary {
+    padding: 20px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gris-900);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--police-titre);
+  }
+  .populaire-item summary::-webkit-details-marker { display: none; }
+  .populaire-item summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--or-fonce);
+    line-height: 1;
+    transition: transform var(--transition);
+    flex-shrink: 0;
+  }
+  .populaire-item[open] summary::after { content: '−'; }
+  .populaire-item__reponse {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    border-top: 1px solid var(--gris-100);
+    padding-top: 16px;
+  }
+  .populaire-item__reponse a {
+    color: var(--or-fonce);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(245,158,11,0.4);
+    text-underline-offset: 3px;
+  }
+  .populaire-item__reponse a:hover {
+    color: var(--or);
+  }
+
+  /* --- CONTACT RAPIDE --- */
+  .contact-rapide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .contact-rapide__card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px 28px;
+    text-align: center;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-rapide__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-rapide__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+  }
+  .contact-rapide__icon--whatsapp {
+    background: #25D366;
+    color: #fff;
+  }
+  .contact-rapide__card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .contact-rapide__card p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .contact-rapide__lien {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    margin-top: auto;
+  }
+  .contact-rapide__lien i {
+    transition: transform var(--transition);
+  }
+  .contact-rapide__card:hover .contact-rapide__lien i {
+    transform: translateX(4px);
+  }
+
+  /* --- CTA FINAL --- */
+  .cta-a {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 72px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-a::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-a__inner {
+    position: relative; z-index: 2;
+    max-width: 640px; margin: 0 auto;
+  }
+  .cta-a h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .cta-a h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-a p {
+    color: #CBD5E1;
+    font-size: 1rem;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .cta-a__actions {
+    display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- BOUTON WHATSAPP FLOTTANT --- */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .hero-aide { padding: 40px 0 56px; }
+    .section-a { padding: 56px 0; }
+    .recherche-aide input { padding: 16px 20px 16px 50px; font-size: 14px; }
+    .suggestions { justify-content: flex-start; overflow-x: auto; }
+    .cta-a { padding: 56px 20px; }
+    .cta-a__actions { flex-direction: column; }
+    .cta-a__actions .btn { width: 100%; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/#pour-qui">Pour qui</a>
+      <a href="/#comment">Comment ça marche</a>
+      <a href="/blog/">Articles</a>
+      <a href="/a-propos.html">À propos</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-aide">
+    <div class="hero-aide__inner">
+      <div class="hero-aide__badge">
+        <i class="fi fi-rr-interrogation"></i>
+        Centre d'aide
+      </div>
+
+      <h1>Comment pouvons-nous <span>vous aider ?</span></h1>
+
+      <p>
+        Trouvez rapidement des réponses à vos questions sur la maintenance,
+        la formation, les contrats et votre espace client.
+      </p>
+
+      <!-- Barre de recherche -->
+      <div class="recherche-aide">
+        <i class="fi fi-rr-search"></i>
+        <input
+          type="search"
+          id="rechercheAide"
+          placeholder="Rechercher une question…"
+          autocomplete="off"
+        >
+      </div>
+
+      <!-- Suggestions -->
+      <div class="suggestions">
+        <span class="suggestions__label">Populaire :</span>
+        <a href="/aide/faq.html" class="suggestion">Contrat maintenance</a>
+        <a href="/aide/faq.html" class="suggestion">Délai d'intervention</a>
+        <a href="/aide/faq.html" class="suggestion">Moyens de paiement</a>
+        <a href="/aide/faq.html" class="suggestion">Formation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATÉGORIES ============ -->
+  <section class="section-a">
+    <div class="section-a__head">
+      <span class="section-a__eyebrow">Parcourir</span>
+      <h2>Par catégorie</h2>
+      <p>
+        Chaque catégorie regroupe les questions et guides liés à un
+        thème précis.
+      </p>
+    </div>
+
+    <div class="categories-grille">
+
+      <a href="/aide/faq.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-settings"></i>
+        </div>
+        <h3>Maintenance & dépannage</h3>
+        <p>
+          Contrats, interventions, délais, garanties, gestion de parc
+          informatique.
+        </p>
+        <span class="categorie-card__count">
+          Voir la FAQ <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/faq.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-graduation-cap"></i>
+        </div>
+        <h3>Formation</h3>
+        <p>
+          Programmes, durées, tarifs, déroulement des sessions,
+          attestations.
+        </p>
+        <span class="categorie-card__count">
+          Voir la FAQ <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/faq.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-credit-card"></i>
+        </div>
+        <h3>Facturation & paiement</h3>
+        <p>
+          Devis, factures, moyens de paiement, échelonnement,
+          remboursements.
+        </p>
+        <span class="categorie-card__count">
+          Voir la FAQ <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/faq.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-user"></i>
+        </div>
+        <h3>Mon espace client</h3>
+        <p>
+          Connexion, inscription, mot de passe oublié, gestion du profil.
+        </p>
+        <span class="categorie-card__count">
+          Voir la FAQ <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/faq.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-shield-check"></i>
+        </div>
+        <h3>Sécurité & données</h3>
+        <p>
+          Protection des données, confidentialité, sauvegardes,
+          antivirus.
+        </p>
+        <span class="categorie-card__count">
+          Voir la FAQ <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/contact-support.html" class="categorie-card">
+        <div class="categorie-card__icon">
+          <i class="fi fi-rr-headset"></i>
+        </div>
+        <h3>Support personnalisé</h3>
+        <p>
+          Une question spécifique ? Contactez directement notre équipe
+          pour une réponse rapide.
+        </p>
+        <span class="categorie-card__count">
+          Contacter <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ QUESTIONS POPULAIRES ============ -->
+  <section class="section-a section-a--grise">
+    <div class="section-a__head">
+      <span class="section-a__eyebrow">Questions populaires</span>
+      <h2>Les plus fréquentes</h2>
+      <p>
+        Les questions que l'on nous pose le plus souvent, avec des
+        réponses claires.
+      </p>
+    </div>
+
+    <div class="populaires-liste">
+
+      <details class="populaire-item">
+        <summary>Combien coûte un contrat de maintenance pour une TPE/PME ?</summary>
+        <div class="populaire-item__reponse">
+          Le contrat TPE/PME est à <strong>40 000 FCFA/mois</strong>, sans
+          engagement de durée. Il inclut les visites préventives mensuelles,
+          le support réactif illimité, la gestion de parc et la sécurisation.
+          Pour plus de détails, consultez notre page
+          <a href="/service-maintenance.html">Maintenance</a>.
+        </div>
+      </details>
+
+      <details class="populaire-item">
+        <summary>Le diagnostic initial est-il vraiment gratuit ?</summary>
+        <div class="populaire-item__reponse">
+          Oui, à 100 %. Nous venons évaluer votre parc informatique, nous
+          identifions les problèmes potentiels et nous vous remettons un
+          rapport clair. Vous êtes ensuite libre d'accepter ou non notre
+          proposition. Aucun engagement.
+        </div>
+      </details>
+
+      <details class="populaire-item">
+        <summary>En combien de temps intervenez-vous en cas de panne ?</summary>
+        <div class="populaire-item__reponse">
+          En général, nous intervenons <strong>dans les 24 à 48 heures</strong>.
+          Pour les clients sous contrat, nous faisons notre possible pour
+          intervenir le jour même en cas d'urgence. Les problèmes simples
+          peuvent souvent être résolus à distance en quelques minutes.
+        </div>
+      </details>
+
+      <details class="populaire-item">
+        <summary>Quels moyens de paiement acceptez-vous ?</summary>
+        <div class="populaire-item__reponse">
+          Nous acceptons : <strong>Mobile Money</strong> (MTN, Moov),
+          <strong>espèces</strong>, et <strong>virement bancaire</strong>
+          pour les entreprises. Les modalités exactes sont précisées dans
+          le devis.
+        </div>
+      </details>
+
+      <details class="populaire-item">
+        <summary>Comment créer mon espace client ?</summary>
+        <div class="populaire-item__reponse">
+          Cliquez sur <a href="/compte/inscription.html">Créer un compte</a>
+          en haut de la page. Remplissez le formulaire avec votre nom, votre
+          email et un mot de passe. Vous aurez accès immédiatement à votre
+          tableau de bord.
+        </div>
+      </details>
+
+      <details class="populaire-item">
+        <summary>J'ai oublié mon mot de passe, que faire ?</summary>
+        <div class="populaire-item__reponse">
+          Pas de panique. Allez sur la page
+          <a href="/compte/mot-de-passe-oublie.html">Mot de passe oublié</a>
+          et entrez votre email. Vous recevrez un lien pour réinitialiser
+          votre mot de passe.
+        </div>
+      </details>
+
+    </div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <a href="/aide/faq.html" class="btn btn--ghost btn--lg">
+        Voir toutes les questions <i class="fi fi-rr-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT RAPIDE ============ -->
+  <section class="section-a">
+    <div class="section-a__head">
+      <span class="section-a__eyebrow">Besoin d'aide ?</span>
+      <h2>Nous sommes joignables</h2>
+      <p>
+        Vous ne trouvez pas la réponse ? Contactez-nous, nous répondons
+        rapidement.
+      </p>
+    </div>
+
+    <div class="contact-rapide">
+
+      <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20j'ai%20une%20question" target="_blank" rel="noopener" class="contact-rapide__card">
+        <div class="contact-rapide__icon contact-rapide__icon--whatsapp">
+          <i class="fi fi-brands-whatsapp"></i>
+        </div>
+        <h3>WhatsApp</h3>
+        <p>
+          Le moyen le plus rapide. Réponse en général dans l'heure
+          pendant les horaires d'ouverture.
+        </p>
+        <span class="contact-rapide__lien">
+          Ouvrir WhatsApp <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/aide/contact-support.html" class="contact-rapide__card">
+        <div class="contact-rapide__icon">
+          <i class="fi fi-rr-headset"></i>
+        </div>
+        <h3>Support par formulaire</h3>
+        <p>
+          Pour les demandes détaillées. Réponse sous 24h ouvrées,
+          à votre email.
+        </p>
+        <span class="contact-rapide__lien">
+          Ouvrir le formulaire <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+      <a href="/contact.html" class="contact-rapide__card">
+        <div class="contact-rapide__icon">
+          <i class="fi fi-rr-envelope"></i>
+        </div>
+        <h3>Formulaire de contact</h3>
+        <p>
+          Pour les demandes de devis ou les questions générales sur
+          nos services.
+        </p>
+        <span class="contact-rapide__lien">
+          Nous écrire <i class="fi fi-rr-arrow-right"></i>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-a">
+    <div class="cta-a__inner">
+      <h2>On n'a pas répondu à <span>votre question</span> ?</h2>
+      <p>
+        Écrivez-nous directement. Nous prendrons le temps de vous
+        répondre précisément, sans engagement.
+      </p>
+      <div class="cta-a__actions">
+        <a href="/aide/contact-support.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-headset"></i> Contact support
+        </a>
+        <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20j'ai%20une%20question" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20j'ai%20une%20question" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://facebook.com/josdore" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://instagram.com/josdore" class="footer__reseau" aria-label="Instagram" target="_blank" rel="noopener"><i class="fi fi-brands-instagram"></i></a>
+        <a href="https://wa.me/2290128621407" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://linkedin.com/company/josdore" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+    <div>Fait avec <i class="fi fi-sr-heart"></i> à Abomey-Calavi</div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   RECHERCHE DANS LE CENTRE D'AIDE
+   ------------------------------------------------------------
+   Pour l'instant, la recherche redirige vers la FAQ avec un
+   paramètre. Plus tard, on pourra indexer vraiment les questions.
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const recherche = document.getElementById('rechercheAide');
+  if (!recherche) return;
+
+  recherche.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const terme = recherche.value.trim();
+      if (terme.length > 0) {
+        window.location.href = '/aide/faq.html?recherche=' + encodeURIComponent(terme);
+      }
+    }
+  });
+
+});
+</script>
+
+</body>
+</html>

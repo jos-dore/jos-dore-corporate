@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éditer un article — Jos Dore | Administration</title>
+<meta name="description" content="Éditeur d'article Jos Dore.">
+<meta name="theme-color" content="#DC2626">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — ÉDITEUR D'ARTICLE
+     ============================================================ */
+
+  :root {
+    --admin-rouge: #DC2626;
+    --admin-rouge-fonce: #B91C1C;
+    --admin-rouge-bg: rgba(220,38,38,0.08);
+    --admin-grad: linear-gradient(135deg, #DC2626, #B91C1C);
+    --admin-sidebar-w: 280px;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(220,38,38,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: #fff; }
+  .header--admin .logo__mark::after { background: #fff; }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(220,38,38,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { padding-top: var(--header-h); min-height: 100vh; }
+  .main-admin {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 28px 20px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-admin {
+      margin-left: var(--admin-sidebar-w);
+      padding: 32px 28px 80px;
+    }
+  }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(220,38,38,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: #fff; }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: #fff; }
+
+  /* ---------- FIL D'ARIANE ---------- */
+  .fil-admin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gris-500);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .fil-admin a {
+    color: var(--gris-500);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .fil-admin a:hover { color: var(--admin-rouge); }
+  .fil-admin i { font-size: 11px; color: var(--gris-300); }
+  .fil-admin__actif { color: var(--gris-900); font-weight: 700; }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__statut {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .page-entete__statut--brouillon { background: rgba(245,158,11,0.14); color: var(--or-fonce); }
+  .page-entete__statut--publie { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .page-entete__statut--nouveau { background: var(--admin-rouge-bg); color: var(--admin-rouge); }
+  .page-entete__sous {
+    font-size: 14.5px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- LAYOUT ÉDITEUR ---------- */
+  .editeur-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  @media (max-width: 1024px) {
+    .editeur-layout { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- BLOC ÉDITEUR ---------- */
+  .bloc-edit {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .bloc-edit__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gris-100);
+    background: var(--gris-50);
+    flex-wrap: wrap;
+  }
+  .bloc-edit__titre {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--police-titre);
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.01em;
+  }
+  .bloc-edit__titre i { color: var(--admin-rouge); font-size: 17px; }
+  .bloc-edit__corps { padding: 20px; }
+
+  /* Champs */
+  .champ-edit { margin-bottom: 18px; }
+  .champ-edit:last-child { margin-bottom: 0; }
+  .champ-edit__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--gris-700);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .champ-edit__label .requis { color: var(--rouge); }
+  .champ-edit__label .compteur {
+    font-size: 10.5px;
+    color: var(--gris-400);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+  .champ-edit__input {
+    width: 100%;
+    padding: 12px 15px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .champ-edit__input:focus {
+    outline: none;
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 4px rgba(220,38,38,0.1);
+  }
+  .champ-edit__input--titre {
+    font-size: 20px;
+    font-weight: 800;
+    padding: 16px 18px;
+    font-family: var(--police-titre);
+    letter-spacing: -0.02em;
+  }
+  .champ-edit__input--textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.6;
+    font-family: inherit;
+  }
+  .champ-edit__aide {
+    font-size: 12px;
+    color: var(--gris-500);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .champ-edit__slug-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .champ-edit__slug-prefix {
+    padding: 12px 14px;
+    background: var(--gris-100);
+    border: 1.5px solid var(--gris-200);
+    border-right: none;
+    border-radius: var(--rayon-sm) 0 0 var(--rayon-sm);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-500);
+    white-space: nowrap;
+  }
+  .champ-edit__slug-wrap .champ-edit__input {
+    border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0;
+  }
+
+  /* ---------- ÉDITEUR RICHE ---------- */
+  .editeur-riche {
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-sm);
+    overflow: hidden;
+    background: #fff;
+    transition: var(--transition);
+  }
+  .editeur-riche:focus-within {
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 4px rgba(220,38,38,0.1);
+  }
+  .editeur-riche__barre {
+    display: flex;
+    gap: 2px;
+    padding: 8px;
+    background: var(--gris-50);
+    border-bottom: 1px solid var(--gris-200);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .editeur-riche__btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: var(--gris-600);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .editeur-riche__btn:hover {
+    background: #fff;
+    color: var(--gris-900);
+  }
+  .editeur-riche__btn.is-actif {
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+  }
+  .editeur-riche__sep {
+    width: 1px;
+    height: 20px;
+    background: var(--gris-200);
+    margin: 0 4px;
+    align-self: center;
+  }
+  .editeur-riche__zone {
+    min-height: 380px;
+    max-height: 700px;
+    overflow-y: auto;
+    padding: 20px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--gris-700);
+    outline: none;
+    font-family: inherit;
+  }
+  .editeur-riche__zone:empty::before {
+    content: 'Rédigez votre article ici…';
+    color: var(--gris-400);
+    pointer-events: none;
+  }
+  .editeur-riche__zone h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin: 24px 0 12px;
+    line-height: 1.3;
+  }
+  .editeur-riche__zone h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin: 20px 0 10px;
+    line-height: 1.3;
+  }
+  .editeur-riche__zone p { margin-bottom: 14px; }
+  .editeur-riche__zone ul,
+  .editeur-riche__zone ol {
+    margin: 0 0 14px 20px;
+    padding-left: 20px;
+  }
+  .editeur-riche__zone ul { list-style: disc; }
+  .editeur-riche__zone ol { list-style: decimal; }
+  .editeur-riche__zone li { margin-bottom: 6px; }
+  .editeur-riche__zone strong { font-weight: 800; color: var(--gris-900); }
+  .editeur-riche__zone em { font-style: italic; }
+  .editeur-riche__zone a {
+    color: var(--admin-rouge);
+    text-decoration: underline;
+  }
+  .editeur-riche__zone blockquote {
+    border-left: 4px solid var(--or);
+    padding: 8px 16px;
+    margin: 14px 0;
+    background: var(--gris-50);
+    color: var(--gris-600);
+    font-style: italic;
+    border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0;
+  }
+
+  /* ---------- COLONNE LATÉRALE ---------- */
+  .panneau-lateral { display: flex; flex-direction: column; gap: 20px; }
+
+  /* Bloc publication */
+  .bloc-side {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+  }
+  .bloc-side__entete {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gris-100);
+    background: var(--gris-50);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.01em;
+  }
+  .bloc-side__entete i {
+    color: var(--admin-rouge);
+    font-size: 16px;
+  }
+  .bloc-side__corps { padding: 18px; }
+
+  /* Info-statut */
+  .info-statut {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--rayon-sm);
+    margin-bottom: 16px;
+  }
+  .info-statut--brouillon { background: rgba(245,158,11,0.08); }
+  .info-statut--publie { background: rgba(22,163,74,0.08); }
+  .info-statut__icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .info-statut--brouillon .info-statut__icone { background: rgba(245,158,11,0.15); color: var(--or-fonce); }
+  .info-statut--publie .info-statut__icone { background: rgba(22,163,74,0.15); color: var(--vert); }
+  .info-statut__texte { flex: 1; min-width: 0; }
+  .info-statut__titre {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 2px;
+  }
+  .info-statut__desc {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    line-height: 1.4;
+  }
+
+  /* Boutons d'action latéral */
+  .btn-side {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: var(--rayon-sm);
+    font-family: var(--police-titre);
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+  .btn-side:last-child { margin-bottom: 0; }
+  .btn-side--primary {
+    background: var(--admin-grad);
+    color: #fff;
+  }
+  .btn-side--primary:hover {
+    box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-side--or {
+    background: var(--grad-or);
+    color: var(--nuit);
+  }
+  .btn-side--or:hover {
+    box-shadow: 0 8px 20px rgba(245,158,11,0.3);
+    transform: translateY(-1px);
+  }
+  .btn-side--ghost {
+    background: #fff;
+    color: var(--gris-700);
+    border: 1.5px solid var(--gris-200);
+  }
+  .btn-side--ghost:hover {
+    border-color: var(--gris-900);
+    color: var(--gris-900);
+  }
+  .btn-side--danger {
+    background: transparent;
+    color: var(--rouge);
+    border: 1.5px solid rgba(220,38,38,0.3);
+  }
+  .btn-side--danger:hover {
+    background: rgba(220,38,38,0.06);
+    border-color: var(--rouge);
+  }
+  .btn-side:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Select / choix catégorie */
+  .choix-categorie {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .choix-cat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-sm);
+    background: #fff;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    position: relative;
+  }
+  .choix-cat-item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .choix-cat-item__icone {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    transition: var(--transition);
+  }
+  .choix-cat-item span { flex: 1; }
+  .choix-cat-item:hover {
+    border-color: var(--admin-rouge);
+    background: rgba(220,38,38,0.02);
+  }
+  .choix-cat-item:has(input:checked) {
+    border-color: var(--admin-rouge);
+    background: var(--admin-rouge-bg);
+  }
+  .choix-cat-item:has(input:checked) .choix-cat-item__icone {
+    background: var(--admin-grad);
+    color: #fff;
+  }
+  .choix-cat-item:has(input:checked) span {
+    color: var(--admin-rouge);
+  }
+
+  /* Image à la une */
+  .image-une {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    border-radius: var(--rayon-sm);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 32px;
+    margin-bottom: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .image-une:hover {
+    filter: brightness(1.1);
+  }
+  .image-une img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .image-une__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 800;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  .image-une:hover .image-une__overlay { opacity: 1; }
+  .image-une__input {
+    position: absolute;
+    width: 0; height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* SEO */
+  .seo-compteur {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--gris-500);
+    margin-bottom: 6px;
+  }
+  .seo-compteur__valeur {
+    color: var(--gris-900);
+    font-family: var(--police-titre);
+    font-weight: 900;
+  }
+  .seo-compteur__valeur.is-ok { color: var(--vert); }
+  .seo-compteur__valeur.is-warn { color: var(--or-fonce); }
+  .seo-compteur__valeur.is-erreur { color: var(--rouge); }
+  .seo-barre {
+    height: 4px;
+    background: var(--gris-100);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .seo-barre__remplie {
+    height: 100%;
+    background: var(--grad-or);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* Info bulle */
+  .info-bulle {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(37,99,235,0.05);
+    border-radius: var(--rayon-sm);
+    border-left: 3px solid var(--bleu);
+    font-size: 12px;
+    color: var(--gris-600);
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+  .info-bulle i {
+    color: var(--bleu);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .info-bulle strong { color: var(--gris-900); font-weight: 800; }
+
+  /* ---------- MODALE APERÇU ---------- */
+  .modale-apercu {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,37,64,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modale-apercu.is-visible { display: flex; }
+  .modale-apercu__contenu {
+    background: #fff;
+    border-radius: var(--rayon-lg);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: popIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .modale-apercu__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 22px;
+    background: linear-gradient(135deg, #1E293B, #0F172A);
+    color: #fff;
+  }
+  .modale-apercu__titre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .modale-apercu__titre i { color: var(--or); font-size: 18px; }
+  .modale-apercu__fermer {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .modale-apercu__fermer:hover {
+    background: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+  }
+  .modale-apercu__corps {
+    padding: 32px 40px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .modale-apercu__corps h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+  .modale-apercu__meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--gris-500);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gris-100);
+    font-weight: 600;
+  }
+  .modale-apercu__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .modale-apercu__meta i { color: var(--or-fonce); }
+
+  /* ---------- FOOTER ---------- */
+  .app-footer--admin {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer--admin { margin-left: var(--admin-sidebar-w); }
+  }
+  .app-footer--admin a { color: var(--gris-500); text-decoration: none; }
+  .app-footer--admin a:hover { color: var(--admin-rouge); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) {
+    .main-admin { padding: 20px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .editeur-layout { gap: 16px; }
+    .bloc-edit__corps { padding: 16px; }
+    .editeur-riche__zone { padding: 16px 18px; font-size: 15px; min-height: 280px; }
+    .champ-edit__input--titre { font-size: 17px; padding: 14px 16px; }
+    .champ-edit__slug-prefix { font-size: 12px; padding: 12px 10px; }
+    .modale-apercu__corps { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER ADMIN                                                  -->
+<!-- ============================================================ -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+
+    <button class="header__menu" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR ADMIN                                                 -->
+<!-- ============================================================ -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i>
+    <span>Clients</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien">
+    <i class="fi fi-rr-document-signed"></i>
+    <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i>
+    <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Factures</span>
+    <span class="sidebar__lien-badge">3</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-pencil"></i>
+    <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien">
+    <i class="fi fi-rr-envelope"></i>
+    <span>Messages</span>
+    <span class="sidebar__lien-badge">2</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i>
+    <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- ============ FIL D'ARIANE ============ -->
+      <div class="fil-admin">
+        <a href="/admin/index.html">
+          <i class="fi fi-rr-apps"></i> Tableau de bord
+        </a>
+        <i class="fi fi-rr-angle-small-right"></i>
+        <a href="/admin/articles.html">Articles</a>
+        <i class="fi fi-rr-angle-small-right"></i>
+        <span class="fil-admin__actif" id="filTitre">Nouvel article</span>
+      </div>
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            <span id="titrePage">Nouvel article</span>
+            <span class="page-entete__statut page-entete__statut--nouveau" id="statutPage">
+              <i class="fi fi-rr-edit"></i> Nouveau
+            </span>
+          </h1>
+          <p class="page-entete__sous" id="sousPage">
+            Rédigez et publiez votre article. Sauvegarde automatique activée.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/articles.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Retour
+          </a>
+          <button type="button" class="btn btn--ghost btn--sm" id="btnApercu">
+            <i class="fi fi-rr-eye"></i> Aperçu
+          </button>
+          <button type="button" class="btn btn--or btn--sm" id="btnSauvegarder">
+            <i class="fi fi-rr-disk"></i> Enregistrer
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ LAYOUT ÉDITEUR ============ -->
+      <div class="editeur-layout">
+
+        <!-- ============ COLONNE PRINCIPALE ============ -->
+        <div>
+
+          <!-- Titre + Slug -->
+          <section class="bloc-edit">
+            <div class="bloc-edit__corps">
+              <div class="champ-edit">
+                <label class="champ-edit__label" for="champTitre">
+                  Titre de l'article <span class="requis">*</span>
+                  <span class="compteur" id="compteurTitre">0/100</span>
+                </label>
+                <input
+                  type="text"
+                  id="champTitre"
+                  class="champ-edit__input champ-edit__input--titre"
+                  placeholder="Un titre accrocheur et clair…"
+                  maxlength="100"
+                  autocomplete="off"
+                >
+              </div>
+
+              <div class="champ-edit">
+                <label class="champ-edit__label" for="champSlug">
+                  URL de l'article (slug)
+                </label>
+                <div class="champ-edit__slug-wrap">
+                  <span class="champ-edit__slug-prefix">josdore.com/blog/</span>
+                  <input
+                    type="text"
+                    id="champSlug"
+                    class="champ-edit__input"
+                    placeholder="mon-article"
+                    autocomplete="off"
+                  >
+                </div>
+                <div class="champ-edit__aide">
+                  Généré automatiquement depuis le titre. Modifiable manuellement.
+                </div>
+              </div>
+
+              <div class="champ-edit">
+                <label class="champ-edit__label" for="champExtrait">
+                  Extrait <span class="requis">*</span>
+                  <span class="compteur" id="compteurExtrait">0/200</span>
+                </label>
+                <textarea
+                  id="champExtrait"
+                  class="champ-edit__input champ-edit__input--textarea"
+                  placeholder="Résumé court de l'article (visible dans la liste et sur les réseaux sociaux)…"
+                  maxlength="200"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- Éditeur de contenu -->
+          <section class="bloc-edit">
+            <div class="bloc-edit__entete">
+              <div class="bloc-edit__titre">
+                <i class="fi fi-rr-document"></i> Contenu de l'article
+              </div>
+              <div style="font-size: 12px; color: var(--gris-500); font-weight: 600;" id="compteurMots">
+                0 mot
+              </div>
+            </div>
+            <div class="bloc-edit__corps">
+              <div class="editeur-riche">
+                <div class="editeur-riche__barre" id="barreEditeur">
+                  <button type="button" class="editeur-riche__btn" data-cmd="bold" title="Gras (Ctrl+B)">
+                    <i class="fi fi-sr-bold"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="italic" title="Italique (Ctrl+I)">
+                    <i class="fi fi-sr-italic"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="underline" title="Souligné">
+                    <i class="fi fi-sr-underline"></i>
+                  </button>
+                  <div class="editeur-riche__sep"></div>
+                  <button type="button" class="editeur-riche__btn" data-cmd="formatBlock" data-value="h2" title="Titre H2">
+                    <i class="fi fi-rr-heading"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="formatBlock" data-value="h3" title="Titre H3">
+                    <i class="fi fi-rr-heading"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="formatBlock" data-value="p" title="Paragraphe">
+                    <i class="fi fi-rr-text"></i>
+                  </button>
+                  <div class="editeur-riche__sep"></div>
+                  <button type="button" class="editeur-riche__btn" data-cmd="insertUnorderedList" title="Liste à puces">
+                    <i class="fi fi-rr-list"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="insertOrderedList" title="Liste numérotée">
+                    <i class="fi fi-rr-list-check"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="formatBlock" data-value="blockquote" title="Citation">
+                    <i class="fi fi-rr-quote-right"></i>
+                  </button>
+                  <div class="editeur-riche__sep"></div>
+                  <button type="button" class="editeur-riche__btn" data-action="lien" title="Insérer un lien">
+                    <i class="fi fi-rr-link"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="removeFormat" title="Effacer la mise en forme">
+                    <i class="fi fi-rr-eraser"></i>
+                  </button>
+                  <div class="editeur-riche__sep"></div>
+                  <button type="button" class="editeur-riche__btn" data-cmd="undo" title="Annuler (Ctrl+Z)">
+                    <i class="fi fi-rr-undo"></i>
+                  </button>
+                  <button type="button" class="editeur-riche__btn" data-cmd="redo" title="Refaire (Ctrl+Y)">
+                    <i class="fi fi-rr-redo"></i>
+                  </button>
+                </div>
+                <div
+                  class="editeur-riche__zone"
+                  id="zoneEditeur"
+                  contenteditable="true"
+                  spellcheck="true"
+                ></div>
+              </div>
+              <div class="info-bulle">
+                <i class="fi fi-rr-info"></i>
+                <div>
+                  Utilisez la barre d'outils pour formater votre texte.
+                  Les raccourcis classiques fonctionnent (<strong>Ctrl+B</strong> gras,
+                  <strong>Ctrl+I</strong> italique, <strong>Ctrl+Z</strong> annuler).
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- ============ COLONNE LATÉRALE ============ -->
+        <div class="panneau-lateral">
+
+          <!-- Publication -->
+          <section class="bloc-side">
+            <div class="bloc-side__entete">
+              <i class="fi fi-rr-rocket"></i> Publication
+            </div>
+            <div class="bloc-side__corps">
+
+              <div class="info-statut info-statut--brouillon" id="infoStatut">
+                <div class="info-statut__icone">
+                  <i class="fi fi-rr-edit" id="infoStatutIcone"></i>
+                </div>
+                <div class="info-statut__texte">
+                  <div class="info-statut__titre" id="infoStatutTitre">Brouillon</div>
+                  <div class="info-statut__desc" id="infoStatutDesc">Article non publié</div>
+                </div>
+              </div>
+
+              <button type="button" class="btn-side btn-side--or" id="btnSauvegarderSide">
+                <i class="fi fi-rr-disk"></i> Enregistrer
+              </button>
+
+              <button type="button" class="btn-side btn-side--primary" id="btnPublier">
+                <i class="fi fi-rr-check-circle"></i> Publier l'article
+              </button>
+
+              <button type="button" class="btn-side btn-side--danger" id="btnSupprimer" style="display: none;">
+                <i class="fi fi-rr-trash"></i> Supprimer l'article
+              </button>
+
+            </div>
+          </section>
+
+          <!-- Catégorie -->
+          <section class="bloc-side">
+            <div class="bloc-side__entete">
+              <i class="fi fi-rr-tag"></i> Catégorie
+            </div>
+            <div class="bloc-side__corps">
+              <div class="choix-categorie" id="choixCategorie">
+                <label class="choix-cat-item">
+                  <input type="radio" name="categorie" value="guide" checked>
+                  <div class="choix-cat-item__icone"><i class="fi fi-rr-document"></i></div>
+                  <span>Guide</span>
+                </label>
+                <label class="choix-cat-item">
+                  <input type="radio" name="categorie" value="conseil">
+                  <div class="choix-cat-item__icone"><i class="fi fi-rr-bulb"></i></div>
+                  <span>Conseil</span>
+                </label>
+                <label class="choix-cat-item">
+                  <input type="radio" name="categorie" value="securite">
+                  <div class="choix-cat-item__icone"><i class="fi fi-rr-shield-check"></i></div>
+                  <span>Sécurité</span>
+                </label>
+                <label class="choix-cat-item">
+                  <input type="radio" name="categorie" value="actualite">
+                  <div class="choix-cat-item__icone"><i class="fi fi-rr-megaphone"></i></div>
+                  <span>Actualité</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- Image à la une -->
+          <section class="bloc-side">
+            <div class="bloc-side__entete">
+              <i class="fi fi-rr-picture"></i> Image à la une
+            </div>
+            <div class="bloc-side__corps">
+              <div class="image-une" id="imageUne">
+                <i class="fi fi-rr-picture"></i>
+                <div class="image-une__overlay">
+                  <i class="fi fi-rr-camera"></i>
+                  <span>Changer l'image</span>
+                </div>
+                <input type="file" id="inputImage" class="image-une__input" accept="image/png,image/jpeg,image/webp">
+              </div>
+              <div class="champ-edit__aide" style="margin-top: 0;">
+                Format 16:9 recommandé · Max 2 Mo · JPG, PNG, WebP
+              </div>
+              <button type="button" class="btn-side btn-side--ghost" id="btnRetirerImage" style="display: none; margin-top: 12px;">
+                <i class="fi fi-rr-trash"></i> Retirer l'image
+              </button>
+            </div>
+          </section>
+
+          <!-- SEO -->
+          <section class="bloc-side">
+            <div class="bloc-side__entete">
+              <i class="fi fi-rr-search-alt"></i> Référencement (SEO)
+            </div>
+            <div class="bloc-side__corps">
+
+              <label class="champ-edit__label" style="display: flex; justify-content: space-between;">
+                Titre SEO
+                <span class="compteur" id="compteurSeoTitre">0/60</span>
+              </label>
+              <input
+                type="text"
+                id="champSeoTitre"
+                class="champ-edit__input"
+                placeholder="Titre optimisé pour Google"
+                maxlength="60"
+                autocomplete="off"
+              >
+              <div class="seo-barre" style="margin-top: 8px;">
+                <div class="seo-barre__remplie" id="seoBarreTitre" style="width: 0%;"></div>
+              </div>
+
+              <label class="champ-edit__label" style="display: flex; justify-content: space-between; margin-top: 4px;">
+                Description SEO
+                <span class="compteur" id="compteurSeoDesc">0/160</span>
+              </label>
+              <textarea
+                id="champSeoDesc"
+                class="champ-edit__input champ-edit__input--textarea"
+                placeholder="Description pour les moteurs de recherche"
+                maxlength="160"
+                style="min-height: 60px;"
+              ></textarea>
+              <div class="seo-barre" style="margin-top: 8px;">
+                <div class="seo-barre__remplie" id="seoBarreDesc" style="width: 0%;"></div>
+              </div>
+
+              <div class="info-bulle">
+                <i class="fi fi-rr-bulb"></i>
+                <div>
+                  <strong>Titre :</strong> 50-60 caractères<br>
+                  <strong>Description :</strong> 140-160 caractères
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- MODALE APERÇU                                                -->
+<!-- ============================================================ -->
+<div class="modale-apercu" id="modaleApercu" role="dialog" aria-modal="true">
+  <div class="modale-apercu__contenu">
+
+    <div class="modale-apercu__entete">
+      <div class="modale-apercu__titre">
+        <i class="fi fi-rr-eye"></i> Aperçu de l'article
+      </div>
+      <button type="button" class="modale-apercu__fermer" id="modaleApercuFermer" aria-label="Fermer">
+        <i class="fi fi-rr-cross-small"></i>
+      </button>
+    </div>
+
+    <div class="modale-apercu__corps" id="modaleApercuCorps">
+      <!-- Rempli par JS -->
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTER ADMIN                                                  -->
+<!-- ============================================================ -->
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+  <div style="margin-top: 6px;">
+    <a href="/admin/parametres.html">Paramètres</a> ·
+    <a href="/" target="_blank">Site public</a> ·
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   ADMIN — ÉDITEUR D'ARTICLE
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+  }
+
+  /* ============================================================
+     DONNÉES — Récupération de l'article à éditer
+     ============================================================ */
+  const params = new URLSearchParams(window.location.search);
+  const articleId = params.get('id');
+
+  // Article DEMO (si on édite un article existant)
+  const ARTICLE_DEMO = {
+    id: 'art-001',
+    titre: 'Comment reconnaître un ordinateur infecté par un virus',
+    slug: 'reconnaitre-ordinateur-infecte-virus',
+    extrait: 'Les 7 signes qui ne trompent pas et comment réagir rapidement.',
+    categorie: 'securite',
+    statut: 'publie',
+    contenu: '<p>Votre ordinateur est devenu lent, il redémarre tout seul, des fenêtres s\'ouvrent sans raison ? Ces symptômes peuvent indiquer une infection par un virus.</p><h2>Les 7 signes qui ne trompent pas</h2><p>Un ordinateur infecté présente souvent plusieurs de ces symptômes en même temps.</p>',
+    image: null,
+    seoTitre: 'Reconnaître un virus informatique — Guide Jos Dore',
+    seoDesc: 'Les 7 signes qui ne trompent pas et comment réagir rapidement en cas d\'infection.'
+  };
+
+  // État de l'article en cours d'édition
+  let ARTICLE = {
+    id: articleId || null,
+    titre: '',
+    slug: '',
+    extrait: '',
+    categorie: 'guide',
+    statut: 'brouillon',
+    contenu: '',
+    image: null,
+    seoTitre: '',
+    seoDesc: ''
+  };
+
+  // Si on édite un article existant (DEMO)
+  if (articleId) {
+    // Plus tard : charger depuis Supabase par ID
+    // Pour l'instant on charge le DEMO
+    ARTICLE = { ...ARTICLE_DEMO, id: articleId };
+
+    // Mettre à jour le fil d'Ariane
+    document.getElementById('filTitre').textContent = ARTICLE.titre;
+    document.getElementById('titrePage').textContent = 'Modifier l\'article';
+
+    // Afficher le bouton supprimer
+    document.getElementById('btnSupprimer').style.display = '';
+  }
+
+  /* ============================================================
+     RÉFÉRENCES DOM
+     ============================================================ */
+  const champTitre = document.getElementById('champTitre');
+  const champSlug = document.getElementById('champSlug');
+  const champExtrait = document.getElementById('champExtrait');
+  const zoneEditeur = document.getElementById('zoneEditeur');
+  const champSeoTitre = document.getElementById('champSeoTitre');
+  const champSeoDesc = document.getElementById('champSeoDesc');
+
+  const compteurTitre = document.getElementById('compteurTitre');
+  const compteurExtrait = document.getElementById('compteurExtrait');
+  const compteurMots = document.getElementById('compteurMots');
+  const compteurSeoTitre = document.getElementById('compteurSeoTitre');
+  const compteurSeoDesc = document.getElementById('compteurSeoDesc');
+  const seoBarreTitre = document.getElementById('seoBarreTitre');
+  const seoBarreDesc = document.getElementById('seoBarreDesc');
+
+  /* ============================================================
+     PRÉ-REMPLIR LE FORMULAIRE
+     ============================================================ */
+  function preRemplir() {
+    champTitre.value = ARTICLE.titre || '';
+    champSlug.value = ARTICLE.slug || '';
+    champExtrait.value = ARTICLE.extrait || '';
+    zoneEditeur.innerHTML = ARTICLE.contenu || '';
+    champSeoTitre.value = ARTICLE.seoTitre || '';
+    champSeoDesc.value = ARTICLE.seoDesc || '';
+
+    // Catégorie
+    const catInput = document.querySelector(`input[name="categorie"][value="${ARTICLE.categorie}"]`);
+    if (catInput) catInput.checked = true;
+
+    // Image
+    if (ARTICLE.image) {
+      afficherImage(ARTICLE.image);
+    }
+
+    // Statut
+    majStatut(ARTICLE.statut);
+
+    // Compteurs
+    majCompteurs();
+    majSEO();
+    majMots();
+  }
+
+  /* ============================================================
+     STATUT
+     ============================================================ */
+  function majStatut(statut) {
+    const info = document.getElementById('infoStatut');
+    const icone = document.getElementById('infoStatutIcone');
+    const titre = document.getElementById('infoStatutTitre');
+    const desc = document.getElementById('infoStatutDesc');
+    const statutPage = document.getElementById('statutPage');
+
+    info.classList.remove('info-statut--brouillon', 'info-statut--publie');
+
+    if (statut === 'publie') {
+      info.classList.add('info-statut--publie');
+      icone.className = 'fi fi-rr-check-circle';
+      titre.textContent = 'Publié';
+      desc.textContent = 'Article visible publiquement';
+      statutPage.className = 'page-entete__statut page-entete__statut--publie';
+      statutPage.innerHTML = '<i class="fi fi-rr-check-circle"></i> Publié';
+      document.getElementById('btnPublier').innerHTML = '<i class="fi fi-rr-refresh"></i> Mettre à jour';
+    } else {
+      info.classList.add('info-statut--brouillon');
+      icone.className = 'fi fi-rr-edit';
+      titre.textContent = 'Brouillon';
+      desc.textContent = 'Article non publié';
+      statutPage.className = 'page-entete__statut page-entete__statut--brouillon';
+      statutPage.innerHTML = '<i class="fi fi-rr-edit"></i> Brouillon';
+      document.getElementById('btnPublier').innerHTML = '<i class="fi fi-rr-check-circle"></i> Publier l\'article';
+    }
+  }
+
+  /* ============================================================
+     COMPTEURS
+     ============================================================ */
+  function majCompteurs() {
+    if (compteurTitre) {
+      const len = champTitre.value.length;
+      compteurTitre.textContent = len + '/100';
+    }
+    if (compteurExtrait) {
+      const len = champExtrait.value.length;
+      compteurExtrait.textContent = len + '/200';
+    }
+  }
+
+  function majMots() {
+    if (!compteurMots) return;
+    const texte = zoneEditeur.textContent || '';
+    const mots = texte.trim() ? texte.trim().split(/\s+/).length : 0;
+    compteurMots.textContent = mots + ' mot' + (mots > 1 ? 's' : '');
+  }
+
+  function majSEO() {
+    const lenTitre = champSeoTitre.value.length;
+    const lenDesc = champSeoDesc.value.length;
+
+    // Titre
+    compteurSeoTitre.textContent = lenTitre + '/60';
+    const pctTitre = Math.min(100, (lenTitre / 60) * 100);
+    seoBarreTitre.style.width = pctTitre + '%';
+
+    // Couleur selon la longueur
+    if (lenTitre === 0) {
+      seoBarreTitre.style.background = 'var(--gris-200)';
+      compteurSeoTitre.className = 'compteur';
+    } else if (lenTitre < 30) {
+      seoBarreTitre.style.background = 'var(--rouge)';
+      compteurSeoTitre.className = 'compteur seo-compteur__valeur is-erreur';
+    } else if (lenTitre <= 60) {
+      seoBarreTitre.style.background = 'var(--vert)';
+      compteurSeoTitre.className = 'compteur seo-compteur__valeur is-ok';
+    } else {
+      seoBarreTitre.style.background = 'var(--or-fonce)';
+      compteurSeoTitre.className = 'compteur seo-compteur__valeur is-warn';
+    }
+
+    // Description
+    compteurSeoDesc.textContent = lenDesc + '/160';
+    const pctDesc = Math.min(100, (lenDesc / 160) * 100);
+    seoBarreDesc.style.width = pctDesc + '%';
+
+    if (lenDesc === 0) {
+      seoBarreDesc.style.background = 'var(--gris-200)';
+      compteurSeoDesc.className = 'compteur';
+    } else if (lenDesc < 100) {
+      seoBarreDesc.style.background = 'var(--or-fonce)';
+      compteurSeoDesc.className = 'compteur seo-compteur__valeur is-warn';
+    } else if (lenDesc <= 160) {
+      seoBarreDesc.style.background = 'var(--vert)';
+      compteurSeoDesc.className = 'compteur seo-compteur__valeur is-ok';
+    } else {
+      seoBarreDesc.style.background = 'var(--rouge)';
+      compteurSeoDesc.className = 'compteur seo-compteur__valeur is-erreur';
+    }
+  }
+
+  /* ============================================================
+     SLUG AUTO-GÉNÉRÉ
+     ============================================================ */
+  function genererSlug(texte) {
+    return String(texte || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .substring(0, 80);
+  }
+
+  // Slug change manuellement → on n'écrase plus
+  let slugModifieManuellement = !!ARTICLE.slug;
+
+  champSlug.addEventListener('input', () => {
+    slugModifieManuellement = true;
+  });
+
+  /* ============================================================
+     ÉVÉNEMENTS FORMULAIRE
+     ============================================================ */
+  champTitre.addEventListener('input', () => {
+    majCompteurs();
+    // Auto-slug
+    if (!slugModifieManuellement) {
+      champSlug.value = genererSlug(champTitre.value);
+    }
+    // Auto SEO titre (si vide)
+    if (!champSeoTitre.value || champSeoTitre.value === champTitre.value.slice(0, -1)) {
+      champSeoTitre.value = champTitre.value.substring(0, 60);
+    }
+    majSEO();
+  });
+
+  champExtrait.addEventListener('input', () => {
+    majCompteurs();
+    // Auto SEO description
+    if (!champSeoDesc.value || champSeoDesc.value === champExtrait.value.slice(0, -1)) {
+      champSeoDesc.value = champExtrait.value.substring(0, 160);
+    }
+    majSEO();
+  });
+
+  champSeoTitre.addEventListener('input', majSEO);
+  champSeoDesc.addEventListener('input', majSEO);
+
+  /* ============================================================
+     ÉDITEUR RICHE
+     ============================================================ */
+  // Commandes de base (document.execCommand — déprécié mais fonctionnel partout)
+  document.getElementById('barreEditeur').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+
+    e.preventDefault();
+
+    const cmd = btn.dataset.cmd;
+    const action = btn.dataset.action;
+    const value = btn.dataset.value || null;
+
+    if (action === 'lien') {
+      const url = prompt('Entrez l\'URL du lien :', 'https://');
+      if (url) {
+        document.execCommand('createLink', false, url);
+      }
+      zoneEditeur.focus();
+      return;
+    }
+
+    if (cmd) {
+      // Pour formatBlock, il faut passer la valeur entre chevrons
+      if (cmd === 'formatBlock' && value) {
+        document.execCommand(cmd, false, '<' + value + '>');
+      } else {
+        document.execCommand(cmd, false, value);
+      }
+      zoneEditeur.focus();
+      majMots();
+    }
+  });
+
+  zoneEditeur.addEventListener('input', () => {
+    majMots();
+    autoSauvegarde();
+  });
+
+  // Gestion des raccourcis clavier (Ctrl+B, Ctrl+I déjà gérés par navigateur)
+  zoneEditeur.addEventListener('keydown', (e) => {
+    // Ctrl+S → enregistrer
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      sauvegarder();
+    }
+  });
+
+  /* ============================================================
+     IMAGE À LA UNE
+     ============================================================ */
+  const imageUne = document.getElementById('imageUne');
+  const inputImage = document.getElementById('inputImage');
+  const btnRetirerImage = document.getElementById('btnRetirerImage');
+
+  imageUne.addEventListener('click', () => inputImage.click());
+
+  inputImage.addEventListener('change', (e) => {
+    const fichier = e.target.files && e.target.files[0];
+    if (!fichier) return;
+
+    if (fichier.size > 2 * 1024 * 1024) {
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastErreur('Image trop lourde. Maximum 2 Mo.');
+      }
+      return;
+    }
+
+    const typesAcceptes = ['image/png', 'image/jpeg', 'image/webp'];
+    if (!typesAcceptes.includes(fichier.type)) {
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastErreur('Format non supporté.');
+      }
+      return;
+    }
+
+    const lecteur = new FileReader();
+    lecteur.onload = (ev) => {
+      ARTICLE.image = ev.target.result;
+      afficherImage(ARTICLE.image);
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastSucces('Image ajoutée.');
+      }
+    };
+    lecteur.readAsDataURL(fichier);
+  });
+
+  function afficherImage(src) {
+    if (!imageUne) return;
+    imageUne.innerHTML = `
+      <img src="${src}" alt="">
+      <div class="image-une__overlay">
+        <i class="fi fi-rr-camera"></i>
+        <span>Changer l'image</span>
+      </div>
+      <input type="file" id="inputImage" class="image-une__input" accept="image/png,image/jpeg,image/webp">
+    `;
+    // Reconstruire les écouteurs
+    const newInput = imageUne.querySelector('#inputImage');
+    newInput.addEventListener('change', (e) => {
+      const fichier = e.target.files && e.target.files[0];
+      if (!fichier) return;
+      const lecteur = new FileReader();
+      lecteur.onload = (ev) => {
+        ARTICLE.image = ev.target.result;
+        afficherImage(ARTICLE.image);
+      };
+      lecteur.readAsDataURL(fichier);
+    });
+
+    btnRetirerImage.style.display = '';
+  }
+
+  btnRetirerImage.addEventListener('click', (e) => {
+    e.stopPropagation();
+    ARTICLE.image = null;
+    imageUne.innerHTML = `
+      <i class="fi fi-rr-picture"></i>
+      <div class="image-une__overlay">
+        <i class="fi fi-rr-camera"></i>
+        <span>Choisir une image</span>
+      </div>
+      <input type="file" id="inputImage" class="image-une__input" accept="image/png,image/jpeg,image/webp">
+    `;
+    // Reconstruire les écouteurs
+    const newInput = imageUne.querySelector('#inputImage');
+    newInput.addEventListener('change', (e) => {
+      const fichier = e.target.files && e.target.files[0];
+      if (!fichier) return;
+      const lecteur = new FileReader();
+      lecteur.onload = (ev) => {
+        ARTICLE.image = ev.target.result;
+        afficherImage(ARTICLE.image);
+      };
+      lecteur.readAsDataURL(fichier);
+    });
+    btnRetirerImage.style.display = 'none';
+  });
+
+  /* ============================================================
+     SAUVEGARDE
+     ============================================================ */
+  function collecterDonnees() {
+    const categorieInput = document.querySelector('input[name="categorie"]:checked');
+    return {
+      id: ARTICLE.id || ('art-' + Date.now().toString(36)),
+      titre: champTitre.value.trim(),
+      slug: champSlug.value.trim() || genererSlug(champTitre.value),
+      extrait: champExtrait.value.trim(),
+      categorie: categorieInput ? categorieInput.value : 'guide',
+      statut: ARTICLE.statut,
+      contenu: zoneEditeur.innerHTML,
+      image: ARTICLE.image,
+      seoTitre: champSeoTitre.value.trim(),
+      seoDesc: champSeoDesc.value.trim(),
+      auteur: session?.nom || 'Ulrich H.',
+      creeLe: ARTICLE.creeLe || new Date().toISOString(),
+      publieLe: ARTICLE.publieLe || null
+    };
+  }
+
+  function valider() {
+    if (!champTitre.value.trim()) {
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur('Le titre est obligatoire.');
+      champTitre.focus();
+      return false;
+    }
+    if (!champExtrait.value.trim()) {
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur('L\'extrait est obligatoire.');
+      champExtrait.focus();
+      return false;
+    }
+    if (!zoneEditeur.textContent.trim()) {
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur('Le contenu est vide.');
+      zoneEditeur.focus();
+      return false;
+    }
+    return true;
+  }
+
+  function sauvegarder(publier = false) {
+    if (!valider()) return;
+
+    const donnees = collecterDonnees();
+    if (publier) {
+      donnees.statut = 'publie';
+      if (!donnees.publieLe) donnees.publieLe = new Date().toISOString();
+    }
+
+    // Sauvegarder dans localStorage (simulation)
+    try {
+      const articles = JSON.parse(localStorage.getItem('josdore_articles_brouillons') || '[]');
+      const index = articles.findIndex(a => a.id === donnees.id);
+      if (index !== -1) {
+        articles[index] = donnees;
+      } else {
+        articles.push(donnees);
+      }
+      localStorage.setItem('josdore_articles_brouillons', JSON.stringify(articles));
+    } catch (e) {
+      console.warn('Erreur sauvegarde :', e);
+    }
+
+    // Mettre à jour l'article en cours
+    ARTICLE = { ...ARTICLE, ...donnees };
+
+    // Feedback
+    if (window.JosDore.Widgets) {
+      if (publier) {
+        window.JosDore.Widgets.toastSucces('L\'article a été publié.', 'Publié !');
+      } else {
+        window.JosDore.Widgets.toastSucces('Vos modifications sont enregistrées.');
+      }
+    }
+
+    // Mettre à jour l'affichage
+    majStatut(ARTICLE.statut);
+
+    // Si c'était un nouveau, mettre à jour l'URL
+    if (!articleId) {
+      history.replaceState(null, '', '/admin/article-editer.html?id=' + donnees.id);
+      document.getElementById('btnSupprimer').style.display = '';
+      document.getElementById('titrePage').textContent = 'Modifier l\'article';
+      document.getElementById('filTitre').textContent = donnees.titre;
+    }
+  }
+
+  // Auto-sauvegarde toutes les 30 secondes si modifié
+  let autoSauvegardeTimer = null;
+  function autoSauvegarde() {
+    clearTimeout(autoSauvegardeTimer);
+    autoSauvegardeTimer = setTimeout(() => {
+      if (champTitre.value.trim() && zoneEditeur.textContent.trim()) {
+        // Sauvegarde silencieuse
+        const donnees = collecterDonnees();
+        try {
+          const articles = JSON.parse(localStorage.getItem('josdore_articles_brouillons') || '[]');
+          const index = articles.findIndex(a => a.id === donnees.id);
+          if (index !== -1) {
+            articles[index] = donnees;
+          } else {
+            articles.push(donnees);
+          }
+          localStorage.setItem('josdore_articles_brouillons', JSON.stringify(articles));
+          // Feedback discret
+          const sousPage = document.getElementById('sousPage');
+          if (sousPage) {
+            sousPage.textContent = 'Sauvegardé automatiquement à ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+          }
+        } catch (e) {}
+      }
+    }, 30000);
+  }
+
+  /* ============================================================
+     BOUTONS
+     ============================================================ */
+  document.getElementById('btnSauvegarder').addEventListener('click', () => sauvegarder(false));
+  document.getElementById('btnSauvegarderSide').addEventListener('click', () => sauvegarder(false));
+  document.getElementById('btnPublier').addEventListener('click', () => sauvegarder(true));
+
+  // Supprimer
+  document.getElementById('btnSupprimer').addEventListener('click', async () => {
+    if (!window.JosDore.Widgets || !window.JosDore.Widgets.confirmer) return;
+    const confirme = await window.JosDore.Widgets.confirmer(
+      'Supprimer définitivement cet article ? Cette action est irréversible.',
+      {
+        titre: 'Supprimer l\'article',
+        libelleConfirmer: 'Supprimer',
+        libelleAnnuler: 'Annuler',
+        variante: 'rouge'
+      }
+    );
+    if (confirme) {
+      try {
+        const articles = JSON.parse(localStorage.getItem('josdore_articles_brouillons') || '[]');
+        const filtered = articles.filter(a => a.id !== ARTICLE.id);
+        localStorage.setItem('josdore_articles_brouillons', JSON.stringify(filtered));
+      } catch (e) {}
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastSucces('Article supprimé.');
+      }
+      setTimeout(() => {
+        window.location.href = '/admin/articles.html';
+      }, 1000);
+    }
+  });
+
+  /* ============================================================
+     MODALE APERÇU
+     ============================================================ */
+  const modaleApercu = document.getElementById('modaleApercu');
+  const modaleApercuCorps = document.getElementById('modaleApercuCorps');
+  const modaleApercuFermer = document.getElementById('modaleApercuFermer');
+
+  document.getElementById('btnApercu').addEventListener('click', () => {
+    const titre = champTitre.value.trim() || 'Titre de l\'article';
+    const extrait = champExtrait.value.trim() || '';
+    const contenu = zoneEditeur.innerHTML;
+    const catInput = document.querySelector('input[name="categorie"]:checked');
+    const cat = catInput ? catInput.value : 'guide';
+    const catLabels = { guide: 'Guide', conseil: 'Conseil', securite: 'Sécurité', actualite: 'Actualité' };
+
+    const dateAffichee = new Date().toLocaleDateString('fr-FR', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+
+    let imageHtml = '';
+    if (ARTICLE.image) {
+      imageHtml = '<img src="' + ARTICLE.image + '" alt="" style="width: 100%; border-radius: 14px; margin-bottom: 24px; aspect-ratio: 16/9; object-fit: cover;">';
+    }
+
+    modaleApercuCorps.innerHTML = `
+      ${imageHtml}
+      <h1>${window.JosDore.UTILS.escapeHtml(titre)}</h1>
+      <div class="modale-apercu__meta">
+        <span><i class="fi fi-rr-tag"></i> ${catLabels[cat] || cat}</span>
+        <span><i class="fi fi-rr-user"></i> ${session?.nom || 'Ulrich H.'}</span>
+        <span><i class="fi fi-rr-calendar"></i> ${dateAffichee}</span>
+      </div>
+      ${extrait ? '<p style="font-size: 1.1rem; color: var(--gris-600); line-height: 1.7; margin-bottom: 24px; font-weight: 500;">' + window.JosDore.UTILS.escapeHtml(extrait) + '</p>' : ''}
+      <div style="font-size: 16px; line-height: 1.75; color: var(--gris-700);">
+        ${contenu || '<p style="color: var(--gris-400); font-style: italic;">Aucun contenu pour l\'instant…</p>'}
+      </div>
+    `;
+
+    modaleApercu.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function fermerApercu() {
+    modaleApercu.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  }
+
+  modaleApercuFermer.addEventListener('click', fermerApercu);
+  modaleApercu.addEventListener('click', (e) => {
+    if (e.target === modaleApercu) fermerApercu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modaleApercu.classList.contains('is-visible')) {
+      fermerApercu();
+    }
+  });
+
+  /* ============================================================
+     🚀 INITIALISATION
+     ============================================================ */
+  preRemplir();
+
+  /* ---------- LOG ---------- */
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Éditeur article chargé', { mode: articleId ? 'édition' : 'création' });
+  }
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mises à jour — Jos Dore | Nouveautés de votre espace</title>
+<meta name="description" content="Découvrez les nouveautés, améliorations et annonces de votre espace client Jos Dore.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE MISES À JOUR — Jos Dore
+     ============================================================ */
+
+  body { background: var(--gris-50); }
+
+  .app-layout {
+    padding-top: var(--header-h);
+    min-height: 100vh;
+  }
+  .main-app {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 32px 24px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-app {
+      margin-left: var(--sidebar-w);
+      padding: 40px 32px 80px;
+    }
+  }
+  .main-app__inner { max-width: 1000px; margin: 0 auto; }
+
+  /* ============================================================
+     EN-TÊTE DE PAGE
+     ============================================================ */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    background: rgba(220,38,38,0.10);
+    color: var(--rouge);
+    border-radius: var(--rayon-full);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .page-entete__badge.is-vide {
+    background: var(--gris-100);
+    color: var(--gris-500);
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ============================================================
+     BANDEAU INFO
+     ============================================================ */
+  .info-bandeau {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-left: 4px solid var(--or);
+    border-radius: var(--rayon-lg);
+    padding: 16px 22px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .info-bandeau__icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--grad-or);
+    color: var(--nuit);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .info-bandeau__contenu { flex: 1; min-width: 200px; }
+  .info-bandeau__titre {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 3px;
+  }
+  .info-bandeau__texte {
+    font-size: 13px;
+    color: var(--gris-600);
+    line-height: 1.55;
+  }
+
+  /* ============================================================
+     FILTRES
+     ============================================================ */
+  .filtres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .filtre-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover { border-color: var(--or); color: var(--or-fonce); }
+  .filtre-btn.is-actif {
+    background: var(--or);
+    border-color: var(--or);
+    color: var(--nuit);
+  }
+  .filtre-btn__compteur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(10,37,64,0.08);
+    font-size: 11px;
+    font-weight: 900;
+  }
+  .filtre-btn.is-actif .filtre-btn__compteur { background: rgba(10,37,64,0.15); }
+
+  /* ============================================================
+     LISTE MISES À JOUR
+     ============================================================ */
+  .maj-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .maj-carte {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 22px 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .maj-carte::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--grad-or);
+  }
+  .maj-carte:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ombre-md);
+    border-color: transparent;
+  }
+  .maj-carte.is-non-lue {
+    background: linear-gradient(135deg, rgba(245,158,11,0.03), rgba(245,158,11,0.01));
+    border-color: rgba(245,158,11,0.35);
+  }
+  .maj-carte.is-non-lue::before {
+    background: var(--grad-or);
+    box-shadow: 0 0 12px rgba(245,158,11,0.5);
+  }
+
+  /* Icône latérale */
+  .maj-carte__icone {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .maj-carte__icone--nouveaute { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .maj-carte__icone--amelioration { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .maj-carte__icone--correctif { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .maj-carte__icone--annonce { background: rgba(124,58,237,0.10); color: var(--violet); }
+
+  /* Contenu */
+  .maj-carte__contenu { flex: 1; min-width: 0; }
+
+  .maj-carte__entete {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .maj-carte__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .maj-carte__badge--nouveaute { background: rgba(245,158,11,0.14); color: var(--or-fonce); }
+  .maj-carte__badge--amelioration { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .maj-carte__badge--correctif { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .maj-carte__badge--annonce { background: rgba(124,58,237,0.10); color: var(--violet); }
+
+  .maj-carte__nouveau {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    background: var(--rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: pulseBadge 2s ease-in-out infinite;
+  }
+  @keyframes pulseBadge {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.06); opacity: 0.9; }
+  }
+
+  .maj-carte__date {
+    font-size: 12px;
+    color: var(--gris-500);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .maj-carte__date i {
+    color: var(--or-fonce);
+    font-size: 13px;
+  }
+
+  .maj-carte__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .maj-carte__texte {
+    font-size: 14px;
+    color: var(--gris-600);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* Liste à puces */
+  .maj-carte__details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 12px 16px;
+    background: var(--gris-50);
+    border-radius: var(--rayon-sm);
+  }
+  .maj-carte__details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gris-600);
+    line-height: 1.5;
+  }
+  .maj-carte__details li i {
+    color: var(--vert);
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .maj-carte__actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .maj-carte__actions .btn {
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+
+  /* ============================================================
+     ÉTAT VIDE
+     ============================================================ */
+  .vide-bloc {
+    background: #fff;
+    border: 2px dashed var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-bloc__icone {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: rgba(245,158,11,0.08);
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 20px;
+  }
+  .vide-bloc__titre {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .vide-bloc__texte {
+    font-size: 14.5px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    max-width: 460px;
+    margin: 0 auto 24px;
+  }
+  .vide-bloc__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     MINI FOOTER
+     ============================================================ */
+  .app-footer {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer { margin-left: var(--sidebar-w); }
+  }
+  .app-footer__liens {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .app-footer a {
+    color: var(--gris-500);
+    text-decoration: none;
+  }
+  .app-footer a:hover { color: var(--or-fonce); }
+
+  /* ============================================================
+     WHATSAPP
+     ============================================================ */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.08);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1023px) {
+    .main-app { padding: 24px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .info-bandeau { padding: 14px 18px; }
+    .maj-carte {
+      padding: 18px 18px;
+      gap: 14px;
+      flex-direction: column;
+    }
+    .maj-carte__icone {
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+    }
+    .maj-carte__date {
+      margin-left: 0;
+      width: 100%;
+    }
+    .maj-carte__titre { font-size: 15.5px; }
+    .maj-carte__actions { flex-direction: column; }
+    .maj-carte__actions .btn { width: 100%; }
+    .vide-bloc { padding: 40px 20px; }
+    .vide-bloc__actions { flex-direction: column; }
+    .vide-bloc__actions .btn { width: 100%; }
+    .btn-whatsapp-float {
+      width: 48px; height: 48px;
+      font-size: 24px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER APP                                                    -->
+<!-- ============================================================ -->
+<header class="header header--app" id="header">
+  <div class="header__inner">
+
+    <button class="header__menu" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/espace-client/tableau-de-bord.html" class="logo" aria-label="Jos Dore — Espace client">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Espace client</span>
+      </div>
+    </a>
+
+    <div class="header__actions">
+      <a href="/espace-client/mises-a-jour.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/aide/" class="header__icone" aria-label="Aide">
+        <i class="fi fi-rr-interrogation"></i>
+      </a>
+      <a href="/espace-client/mon-profil.html" class="header__avatar" data-user-avatar title="Mon profil">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR                                                       -->
+<!-- ============================================================ -->
+<aside class="sidebar" id="sidebar" aria-label="Navigation de l'espace client">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Client</span>
+        <i class="fi fi-rr-check-circle" title="Compte vérifié"></i>
+      </div>
+      <div class="sidebar__profil-role" data-user-role>client</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Mon espace</div>
+
+  <a href="/espace-client/tableau-de-bord.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <a href="/espace-client/mes-services.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings"></i>
+    <span>Mes services</span>
+  </a>
+
+  <a href="/espace-client/mes-formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Mes formations</span>
+  </a>
+
+  <a href="/espace-client/mes-factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Mes factures</span>
+  </a>
+
+  <a href="/espace-client/mises-a-jour.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-bell"></i>
+    <span>Mises à jour</span>
+    <span class="sidebar__lien-badge" id="sidebarBadge">0</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon compte</div>
+
+  <a href="/espace-client/mon-profil.html" class="sidebar__lien">
+    <i class="fi fi-rr-user"></i>
+    <span>Mon profil</span>
+  </a>
+
+  <a href="/espace-client/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+
+  <a href="/aide/" class="sidebar__lien">
+    <i class="fi fi-rr-interrogation"></i>
+    <span>Aide & support</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="app-layout">
+  <div class="main-app">
+    <div class="main-app__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Mises à jour
+            <span class="page-entete__badge" id="badgeNonLues">0 non lues</span>
+          </h1>
+          <p class="page-entete__sous">
+            Découvrez les nouveautés, améliorations et annonces de votre espace.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <button type="button" class="btn btn--ghost btn--sm" id="btnToutMarquerLu">
+            <i class="fi fi-rr-check-double"></i> Tout marquer comme lu
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ BANDEAU INFO ============ -->
+      <div class="info-bandeau">
+        <div class="info-bandeau__icone">
+          <i class="fi fi-rr-bell"></i>
+        </div>
+        <div class="info-bandeau__contenu">
+          <div class="info-bandeau__titre">Restez informé</div>
+          <div class="info-bandeau__texte">
+            Nous mettons à jour votre espace régulièrement. Revenez
+            souvent pour ne rien manquer des nouveautés Jos Dore.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ FILTRES ============ -->
+      <div class="filtres">
+        <button type="button" class="filtre-btn is-actif" data-filtre="toutes">
+          <i class="fi fi-rr-apps"></i>
+          Toutes
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="non-lues">
+          <i class="fi fi-rr-eye"></i>
+          Non lues
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="nouveaute">
+          <i class="fi fi-rr-bolt"></i>
+          Nouveautés
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="amelioration">
+          <i class="fi fi-rr-chart-line-up"></i>
+          Améliorations
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="annonce">
+          <i class="fi fi-rr-megaphone"></i>
+          Annonces
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+      </div>
+
+      <!-- ============ LISTE ============ -->
+      <div class="maj-liste" id="majListe"></div>
+
+      <!-- ============ ÉTAT VIDE ============ -->
+      <div class="vide-bloc" id="videMaj" style="display: none;">
+        <div class="vide-bloc__icone">
+          <i class="fi fi-rr-bell"></i>
+        </div>
+        <div class="vide-bloc__titre">Aucune mise à jour pour le moment</div>
+        <p class="vide-bloc__texte">
+          Vous êtes à jour ! Revenez régulièrement pour découvrir les
+          nouveautés de votre espace client.
+        </p>
+        <div class="vide-bloc__actions">
+          <a href="/espace-client/tableau-de-bord.html" class="btn btn--or">
+            <i class="fi fi-rr-apps"></i> Retour au tableau de bord
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- MINI FOOTER                                                   -->
+<!-- ============================================================ -->
+<footer class="app-footer">
+  <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+  <div class="app-footer__liens">
+    <a href="/legal/mentions-legales.html">Mentions légales</a>
+    <a href="/legal/cgu.html">CGU</a>
+    <a href="/legal/confidentialite.html">Confidentialité</a>
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- WHATSAPP                                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20j'ai%20une%20question" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter le support">
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   MISES À JOUR — Protection + Rendu + Marquer comme lu
+   ============================================================
+   COMMENT AJOUTER UNE MISE À JOUR ?
+
+   1. Ouvrez ce fichier dans VS Code
+   2. Cherchez le tableau MISES_A_JOUR ci-dessous
+   3. Ajoutez une nouvelle entrée :
+
+   {
+     id: 'maj-005',                          // identifiant unique
+     type: 'nouveaute',                      // 'nouveaute' | 'amelioration' | 'correctif' | 'annonce'
+     titre: 'Titre de la mise à jour',
+     texte: 'Courte description…',
+     details: [                              // optionnel : liste à puces
+       'Détail 1',
+       'Détail 2'
+     ],
+     date: '2026-10-15',                     // format ISO
+     actions: [                              // optionnel : boutons
+       { libelle: 'Découvrir', icone: 'fi fi-rr-arrow-right', href: '/lien' }
+     ]
+   }
+
+   4. Enregistrez → la mise à jour apparaît automatiquement ✅
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger();
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Client';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+    document.querySelectorAll('[data-user-role]').forEach(el => {
+      el.textContent = session.role === 'admin' ? 'Administrateur' : 'Client';
+    });
+  }
+
+  /* ============================================================
+     📢 LISTE DES MISES À JOUR
+     ------------------------------------------------------------
+     👉 Remplace, ajoute ou modifie les entrées ci-dessous.
+        Le tri se fait automatiquement par date décroissante.
+     ============================================================ */
+  const MISES_A_JOUR = [
+    {
+      id: 'maj-001',
+      type: 'nouveaute',
+      titre: 'Bienvenue sur votre espace client Jos Dore 🎉',
+      texte: 'Votre espace client est maintenant en ligne. Vous pouvez suivre vos services, formations, factures et votre matériel informatique depuis un seul endroit.',
+      details: [
+        'Suivi des contrats et interventions',
+        'Formations accessibles depuis votre espace',
+        'Factures centralisées',
+        'Suivi de votre parc informatique'
+      ],
+      date: '2026-10-15',
+      actions: [
+        { libelle: 'Explorer mon espace', icone: 'fi fi-rr-apps', href: '/espace-client/tableau-de-bord.html' }
+      ]
+    },
+    {
+      id: 'maj-002',
+      type: 'annonce',
+      titre: 'Diagnostic gratuit pour les nouveaux clients',
+      texte: 'Profitez d\'un diagnostic complet de votre parc informatique à 0 FCFA. Sans engagement, il vous permet d\'évaluer l\'état de vos équipements et d\'anticiper les pannes.',
+      details: [
+        'Évaluation complète de vos équipements',
+        'Rapport clair et détaillé',
+        'Recommandations personnalisées',
+        'Sans aucun engagement'
+      ],
+      date: '2026-10-10',
+      actions: [
+        { libelle: 'Réserver mon diagnostic', icone: 'fi fi-rr-calendar', href: '/contact.html' }
+      ]
+    },
+    {
+      id: 'maj-003',
+      type: 'nouveaute',
+      titre: 'Nouvelle section : Mon matériel',
+      texte: 'Une nouvelle section dans votre espace vous permet désormais de suivre tous vos équipements enregistrés chez Jos Dore, avec leurs caractéristiques et leur historique.',
+      details: [
+        'Fiche complète par équipement',
+        'Historique des interventions',
+        'Suivi des contrats associés',
+        'Bouton "Signaler" en un clic'
+      ],
+      date: '2026-10-05',
+      actions: [
+        { libelle: 'Voir mon matériel', icone: 'fi fi-rr-computer', href: '/espace-client/mes-factures.html#materiel' }
+      ]
+    },
+    {
+      id: 'maj-004',
+      type: 'amelioration',
+      titre: 'Amélioration de la page Mes services',
+      texte: 'Nous avons retravaillé la page de suivi de vos services pour la rendre plus claire et plus rapide à utiliser.',
+      details: [
+        'Affichage des contrats plus lisible',
+        'Filtres par statut',
+        'Suivi de progression des visites',
+        'Accès direct au support WhatsApp'
+      ],
+      date: '2026-09-28'
+    },
+    {
+      id: 'maj-005',
+      type: 'correctif',
+      titre: 'Corrections et stabilité',
+      texte: 'Quelques corrections pour améliorer la stabilité de l\'espace client.',
+      details: [
+        'Meilleure gestion des sessions',
+        'Corrections sur mobile',
+        'Amélioration de la vitesse de chargement'
+      ],
+      date: '2026-09-20'
+    },
+    {
+      id: 'maj-006',
+      type: 'annonce',
+      titre: 'Formations bientôt disponibles en vidéo',
+      texte: 'Nos formations seront bientôt accessibles directement en vidéo depuis votre espace client. Restez connectés !',
+      details: [
+        'Initiation à l\'ordinateur',
+        'Word, Excel, PowerPoint',
+        'Sécurité en ligne',
+        'Accessibles quand vous voulez'
+      ],
+      date: '2026-09-15'
+    }
+  ];
+
+  /* ============================================================
+     ⚙️ CLÉ DE STOCKAGE (pour mémoriser les lues)
+     ============================================================ */
+  const CLE_LUES = 'josdore_maj_lues_' + (session ? session.id : 'anonyme');
+
+  function getLues() {
+    try {
+      return JSON.parse(localStorage.getItem(CLE_LUES) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setLues(liste) {
+    try {
+      localStorage.setItem(CLE_LUES, JSON.stringify(liste));
+    } catch (e) {}
+  }
+
+  function estLue(id) {
+    return getLues().includes(id);
+  }
+
+  function marquerLue(id) {
+    const lues = getLues();
+    if (!lues.includes(id)) {
+      lues.push(id);
+      setLues(lues);
+    }
+  }
+
+  function marquerToutLue() {
+    const ids = MISES_A_JOUR.map(m => m.id);
+    setLues(ids);
+  }
+
+  /* ============================================================
+     🔢 COMPTEURS
+     ============================================================ */
+  function compterNonLues() {
+    return MISES_A_JOUR.filter(m => !estLue(m.id)).length;
+  }
+
+  function majBadges() {
+    const nb = compterNonLues();
+
+    // Badge dans l'en-tête
+    const badge = document.getElementById('badgeNonLues');
+    if (badge) {
+      if (nb > 0) {
+        badge.textContent = nb + ' non lue' + (nb > 1 ? 's' : '');
+        badge.classList.remove('is-vide');
+      } else {
+        badge.textContent = 'Tout est lu';
+        badge.classList.add('is-vide');
+      }
+    }
+
+    // Badge dans la sidebar
+    const sidebarBadge = document.getElementById('sidebarBadge');
+    if (sidebarBadge) {
+      if (nb > 0) {
+        sidebarBadge.textContent = nb;
+        sidebarBadge.style.display = '';
+      } else {
+        sidebarBadge.style.display = 'none';
+      }
+    }
+
+    // Badge dans le header (notifs)
+    document.querySelectorAll('[data-badge-notifs]').forEach(el => {
+      if (nb > 0) {
+        el.textContent = nb > 99 ? '99+' : nb;
+        el.style.display = 'flex';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+
+  /* ============================================================
+     🔀 FILTRES
+     ============================================================ */
+  let filtreActif = 'toutes';
+
+  function majCompteursFiltres() {
+    const compteurs = {
+      toutes: MISES_A_JOUR.length,
+      'non-lues': compterNonLues(),
+      nouveaute: MISES_A_JOUR.filter(m => m.type === 'nouveaute').length,
+      amelioration: MISES_A_JOUR.filter(m => m.type === 'amelioration').length,
+      annonce: MISES_A_JOUR.filter(m => m.type === 'annonce').length
+    };
+
+    document.querySelectorAll('[data-filtre]').forEach(btn => {
+      const cle = btn.dataset.filtre;
+      const span = btn.querySelector('.filtre-btn__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  document.querySelectorAll('[data-filtre]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtre;
+      rendreMisesAJour();
+    });
+  });
+
+  /* ============================================================
+     🎨 RENDU
+     ============================================================ */
+  function rendreMisesAJour() {
+    const conteneur = document.getElementById('majListe');
+    const vide = document.getElementById('videMaj');
+    if (!conteneur) return;
+
+    // Filtrer
+    let liste = MISES_A_JOUR;
+    if (filtreActif === 'non-lues') {
+      liste = MISES_A_JOUR.filter(m => !estLue(m.id));
+    } else if (filtreActif !== 'toutes') {
+      liste = MISES_A_JOUR.filter(m => m.type === filtreActif);
+    }
+
+    // Trier par date décroissante
+    liste = [...liste].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // État vide
+    if (liste.length === 0) {
+      conteneur.innerHTML = '';
+      vide.style.display = '';
+
+      // Adapter le message selon le filtre
+      const titre = document.querySelector('#videMaj .vide-bloc__titre');
+      const texte = document.querySelector('#videMaj .vide-bloc__texte');
+      if (filtreActif === 'non-lues') {
+        if (titre) titre.textContent = 'Vous êtes à jour !';
+        if (texte) texte.textContent = 'Vous avez lu toutes les mises à jour. Revenez régulièrement pour découvrir les prochaines nouveautés.';
+      } else if (filtreActif !== 'toutes') {
+        if (titre) titre.textContent = 'Aucune mise à jour dans cette catégorie';
+        if (texte) texte.textContent = 'Essayez un autre filtre pour découvrir d\'autres mises à jour.';
+      } else {
+        if (titre) titre.textContent = 'Aucune mise à jour pour le moment';
+        if (texte) texte.textContent = 'Vous êtes à jour ! Revenez régulièrement pour découvrir les nouveautés de votre espace client.';
+      }
+      return;
+    }
+
+    vide.style.display = 'none';
+    conteneur.innerHTML = '';
+
+    // Libellés et icônes selon le type
+    const libelles = {
+      nouveaute: { label: 'Nouveauté', icone: 'fi fi-rr-bolt' },
+      amelioration: { label: 'Amélioration', icone: 'fi fi-rr-chart-line-up' },
+      correctif: { label: 'Correctif', icone: 'fi fi-rr-check-circle' },
+      annonce: { label: 'Annonce', icone: 'fi fi-rr-megaphone' }
+    };
+
+    liste.forEach(m => {
+      const infos = libelles[m.type] || { label: m.type, icone: 'fi fi-rr-info' };
+      const lue = estLue(m.id);
+
+      const carte = document.createElement('article');
+      carte.className = 'maj-carte' + (lue ? '' : ' is-non-lue');
+      carte.dataset.id = m.id;
+      carte.dataset.type = m.type;
+
+      // Construire les détails
+      let detailsHTML = '';
+      if (m.details && m.details.length > 0) {
+        detailsHTML = `
+          <ul class="maj-carte__details">
+            ${m.details.map(d => `
+              <li><i class="fi fi-rr-check"></i> ${window.JosDore.UTILS.escapeHtml(d)}</li>
+            `).join('')}
+          </ul>
+        `;
+      }
+
+      // Construire les actions
+      let actionsHTML = '';
+      if (m.actions && m.actions.length > 0) {
+        actionsHTML = m.actions.map(a => `
+          <a href="${window.JosDore.UTILS.escapeHtml(a.href)}" class="btn btn--or btn--sm">
+            <i class="${window.JosDore.UTILS.escapeHtml(a.icone || 'fi fi-rr-arrow-right')}"></i>
+            ${window.JosDore.UTILS.escapeHtml(a.libelle)}
+          </a>
+        `).join('');
+      }
+
+      // Ajouter un bouton "Marquer comme lu" si non lue
+      let btnMarquerLu = '';
+      if (!lue) {
+        btnMarquerLu = `
+          <button type="button" class="btn btn--ghost btn--sm" data-action="marquer-lu" data-id="${m.id}">
+            <i class="fi fi-rr-check"></i> Marquer comme lu
+          </button>
+        `;
+      }
+
+      carte.innerHTML = `
+        <div class="maj-carte__icone maj-carte__icone--${m.type}">
+          <i class="${infos.icone}"></i>
+        </div>
+
+        <div class="maj-carte__contenu">
+          <div class="maj-carte__entete">
+            <span class="maj-carte__badge maj-carte__badge--${m.type}">
+              <i class="${infos.icone}"></i> ${infos.label}
+            </span>
+            ${!lue ? '<span class="maj-carte__nouveau">Nouveau</span>' : ''}
+            <span class="maj-carte__date">
+              <i class="fi fi-rr-calendar"></i>
+              ${window.JosDore.UTILS.formaterDate(m.date, 'court')}
+            </span>
+          </div>
+
+          <h3 class="maj-carte__titre">${window.JosDore.UTILS.escapeHtml(m.titre)}</h3>
+
+          <p class="maj-carte__texte">${window.JosDore.UTILS.escapeHtml(m.texte)}</p>
+
+          ${detailsHTML}
+
+          <div class="maj-carte__actions">
+            ${actionsHTML}
+            ${btnMarquerLu}
+          </div>
+        </div>
+      `;
+
+      conteneur.appendChild(carte);
+    });
+
+    // Écouteurs sur les boutons "Marquer comme lu"
+    conteneur.querySelectorAll('[data-action="marquer-lu"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = btn.dataset.id;
+        marquerLue(id);
+        majBadges();
+        majCompteursFiltres();
+        rendreMisesAJour();
+
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastSucces('Marquée comme lue.');
+        }
+      });
+    });
+  }
+
+  /* ============================================================
+     ✅ BOUTON "TOUT MARQUER COMME LU"
+     ============================================================ */
+  const btnToutMarquer = document.getElementById('btnToutMarquerLu');
+  if (btnToutMarquer) {
+    btnToutMarquer.addEventListener('click', () => {
+      const nb = compterNonLues();
+      if (nb === 0) {
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastInfo('Aucune mise à jour non lue.');
+        }
+        return;
+      }
+
+      if (confirm('Marquer les ' + nb + ' mise(s) à jour comme lues ?')) {
+        marquerToutLue();
+        majBadges();
+        majCompteursFiltres();
+        rendreMisesAJour();
+
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastSucces('Toutes les mises à jour sont lues.');
+        }
+      }
+    });
+  }
+
+  /* ============================================================
+     🚀 INITIALISATION
+     ============================================================ */
+  majBadges();
+  majCompteursFiltres();
+  rendreMisesAJour();
+
+  /* ---------- LOG ---------- */
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Mises à jour chargées — ' + MISES_A_JOUR.length + ' entrées');
+  }
+
+});
+</script>
+
+</body>
+</html>

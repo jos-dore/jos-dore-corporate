@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Jos Dore | Devis gratuit & diagnostic</title>
+<meta name="description" content="Contactez Jos Dore pour un devis gratuit ou un diagnostic : formulaire, WhatsApp, téléphone. Maintenance informatique à Cotonou et Abomey-Calavi.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Contact — Jos Dore">
+<meta property="og:description" content="Demandez un devis gratuit ou un diagnostic. Réponse en moins de 24h.">
+<meta property="og:image" content="/ressources/images/og/og-contact.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/contact.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE CONTACT — Jos Dore
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-contact {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-contact::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-contact::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-contact__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-contact__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-contact h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-contact h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-contact p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto 32px;
+  }
+  .hero-contact__points {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-contact__point {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #CBD5E1;
+    font-weight: 600;
+  }
+  .hero-contact__point i {
+    color: var(--or);
+    font-size: 16px;
+  }
+
+  /* --- SECTION CONTACT --- */
+  .section-contact {
+    padding: 80px 0;
+  }
+
+  .contact-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* --- COLONNE GAUCHE : INFOS --- */
+  .contact-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-info-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: var(--transition);
+  }
+  .contact-info-card:hover {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+    transform: translateY(-2px);
+  }
+
+  .contact-info-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .contact-info-card__contenu {
+    flex: 1;
+    min-width: 0;
+  }
+  .contact-info-card__titre {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .contact-info-card__valeur {
+    font-family: var(--police-titre);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+  .contact-info-card__valeur a {
+    color: var(--gris-900);
+    text-decoration: none;
+  }
+  .contact-info-card__valeur a:hover {
+    color: var(--or-fonce);
+  }
+  .contact-info-card__note {
+    font-size: 13px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+
+  /* Carte WhatsApp spéciale */
+  .contact-info-card--whatsapp {
+    background: linear-gradient(135deg, rgba(37,211,102,0.08), rgba(37,211,102,0.03));
+    border-color: rgba(37,211,102,0.25);
+  }
+  .contact-info-card--whatsapp .contact-info-card__icon {
+    background: #25D366;
+    color: #fff;
+  }
+
+  /* Disponibilité */
+  .contact-dispo {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: var(--rayon-lg);
+    padding: 24px;
+  }
+  .contact-dispo__titre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 16px;
+  }
+  .contact-dispo__titre i {
+    color: var(--vert);
+    font-size: 18px;
+  }
+  .contact-dispo__ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(245,158,11,0.15);
+    font-size: 14px;
+  }
+  .contact-dispo__ligne:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .contact-dispo__jour {
+    color: var(--gris-700);
+    font-weight: 600;
+  }
+  .contact-dispo__heure {
+    color: var(--gris-900);
+    font-weight: 800;
+    font-family: var(--police-titre);
+  }
+  .contact-dispo__heure--ferme {
+    color: var(--gris-400);
+  }
+
+  /* --- COLONNE DROITE : FORMULAIRE --- */
+  .contact-form {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 40px 36px;
+    box-shadow: var(--ombre-md);
+  }
+  .contact-form__entete {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gris-100);
+  }
+  .contact-form__titre {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.02em;
+  }
+  .contact-form__titre i {
+    color: var(--or-fonce);
+    font-size: 24px;
+  }
+  .contact-form__sous {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+  }
+
+  /* Options de type de demande */
+  .contact-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .contact-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 2px solid var(--gris-200);
+    border-radius: var(--rayon-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gris-700);
+    position: relative;
+  }
+  .contact-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .contact-option i {
+    font-size: 18px;
+    color: var(--gris-500);
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+  .contact-option:hover {
+    border-color: var(--or);
+    background: rgba(245,158,11,0.03);
+  }
+  .contact-option input:checked ~ i {
+    color: var(--or-fonce);
+  }
+  .contact-option input:checked ~ span {
+    color: var(--gris-900);
+  }
+  .contact-option:has(input:checked) {
+    border-color: var(--or);
+    background: rgba(245,158,11,0.08);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+  }
+
+  .contact-option--large {
+    grid-column: span 2;
+  }
+
+  /* Succès */
+  .contact-succes {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .contact-succes.is-visible {
+    display: block;
+  }
+  .contact-succes__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(22,163,74,0.12);
+    color: var(--vert);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 20px;
+  }
+  .contact-succes h3 {
+    font-size: 22px;
+    color: var(--gris-900);
+    margin-bottom: 12px;
+  }
+  .contact-succes p {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- SECTION CTA WHATSAPP --- */
+  .section-whatsapp {
+    padding: 64px 0;
+    background: var(--gris-50);
+  }
+  .whatsapp-bloc {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .whatsapp-bloc__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 24px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.3);
+  }
+  .whatsapp-bloc h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--gris-900);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .whatsapp-bloc p {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- FAQ --- */
+  .faq-c-liste {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-c-item {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .faq-c-item[open] {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .faq-c-item summary {
+    padding: 20px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gris-900);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--police-titre);
+  }
+  .faq-c-item summary::-webkit-details-marker { display: none; }
+  .faq-c-item summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--or-fonce);
+    line-height: 1;
+    transition: transform var(--transition);
+    flex-shrink: 0;
+  }
+  .faq-c-item[open] summary::after { content: '−'; }
+  .faq-c-item__reponse {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    border-top: 1px solid var(--gris-100);
+    padding-top: 16px;
+  }
+
+  /* --- BOUTON WHATSAPP FLOTTANT --- */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 960px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-contact { padding: 40px 0 56px; }
+    .section-contact { padding: 56px 0; }
+    .section-whatsapp { padding: 48px 0; }
+    .contact-form { padding: 28px 22px; }
+    .contact-form__titre { font-size: 18px; }
+    .contact-options { grid-template-columns: 1fr; }
+    .contact-option--large { grid-column: auto; }
+    .contact-info-card { padding: 20px; }
+    .contact-dispo { padding: 20px; }
+    .whatsapp-bloc__icon { width: 64px; height: 64px; font-size: 32px; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/#pour-qui">Pour qui</a>
+      <a href="/#comment">Comment ça marche</a>
+      <a href="/blog/">Articles</a>
+      <a href="/a-propos.html">À propos</a>
+      <a href="/contact.html" class="is-actif">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="https://wa.me/2290128621407" target="_blank" rel="noopener" class="btn btn--or btn--sm">
+        <i class="fi fi-brands-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-contact">
+    <div class="hero-contact__inner">
+      <div class="hero-contact__badge">
+        <i class="fi fi-rr-comment-alt"></i>
+        Contact & devis
+      </div>
+
+      <h1>Parlons de <span>votre projet.</span></h1>
+
+      <p>
+        Un besoin, une panne, un projet de formation ? Écrivez-nous ou
+        contactez-nous directement par WhatsApp. Réponse en moins de 24h.
+      </p>
+
+      <div class="hero-contact__points">
+        <div class="hero-contact__point">
+          <i class="fi fi-rr-check-circle"></i>
+          Réponse &lt; 24h
+        </div>
+        <div class="hero-contact__point">
+          <i class="fi fi-rr-check-circle"></i>
+          Diagnostic gratuit
+        </div>
+        <div class="hero-contact__point">
+          <i class="fi fi-rr-check-circle"></i>
+          Sans engagement
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section-contact">
+    <div class="contact-layout">
+
+      <!-- ===== Colonne gauche : infos ===== -->
+      <div class="contact-infos">
+
+        <!-- WhatsApp (mis en avant) -->
+        <div class="contact-info-card contact-info-card--whatsapp">
+          <div class="contact-info-card__icon">
+            <i class="fi fi-brands-whatsapp"></i>
+          </div>
+          <div class="contact-info-card__contenu">
+            <div class="contact-info-card__titre">WhatsApp (le + rapide)</div>
+            <div class="contact-info-card__valeur">
+              <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore" target="_blank" rel="noopener">+229 01 28 62 14 07</a>
+            </div>
+            <div class="contact-info-card__note">
+              Envoyez-nous un message, on vous répond en général dans l'heure.
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-info-card">
+          <div class="contact-info-card__icon">
+            <i class="fi fi-rr-envelope"></i>
+          </div>
+          <div class="contact-info-card__contenu">
+            <div class="contact-info-card__titre">Email</div>
+            <div class="contact-info-card__valeur">
+              <a href="mailto:contact@josdore.com">contact@josdore.com</a>
+            </div>
+            <div class="contact-info-card__note">
+              Pour les demandes détaillées, devis, partenariats.
+            </div>
+          </div>
+        </div>
+
+        <!-- Localisation -->
+        <div class="contact-info-card">
+          <div class="contact-info-card__icon">
+            <i class="fi fi-rr-marker"></i>
+          </div>
+          <div class="contact-info-card__contenu">
+            <div class="contact-info-card__titre">Zone d'intervention</div>
+            <div class="contact-info-card__valeur">Cotonou & Abomey-Calavi</div>
+            <div class="contact-info-card__note">
+              Nous intervenons aussi à Porto-Novo et Ouidah sur demande.
+            </div>
+          </div>
+        </div>
+
+        <!-- Disponibilité -->
+        <div class="contact-dispo">
+          <div class="contact-dispo__titre">
+            <i class="fi fi-sr-clock"></i>
+            Disponibilité
+          </div>
+          <div class="contact-dispo__ligne">
+            <span class="contact-dispo__jour">Lundi — Vendredi</span>
+            <span class="contact-dispo__heure">08h — 19h</span>
+          </div>
+          <div class="contact-dispo__ligne">
+            <span class="contact-dispo__jour">Samedi</span>
+            <span class="contact-dispo__heure">09h — 17h</span>
+          </div>
+          <div class="contact-dispo__ligne">
+            <span class="contact-dispo__jour">Dimanche</span>
+            <span class="contact-dispo__heure contact-dispo__heure--ferme">Fermé</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== Colonne droite : formulaire ===== -->
+      <div class="contact-form">
+
+        <div class="contact-form__entete">
+          <h2 class="contact-form__titre">
+            <i class="fi fi-rr-document-signed"></i>
+            Demander un devis
+          </h2>
+          <p class="contact-form__sous">
+            Remplissez ce formulaire. Nous vous répondrons sous 24h.
+            <strong>Aucun engagement.</strong>
+          </p>
+        </div>
+
+        <!-- Formulaire -->
+        <form id="contactForm" novalidate>
+
+          <!-- Type de demande -->
+          <div class="form-groupe">
+            <label class="form-label">Votre demande concerne <span class="requis">*</span></label>
+            <div class="contact-options">
+              <label class="contact-option">
+                <input type="radio" name="type" value="maintenance" required>
+                <i class="fi fi-rr-settings"></i>
+                <span>Maintenance</span>
+              </label>
+              <label class="contact-option">
+                <input type="radio" name="type" value="formation">
+                <i class="fi fi-rr-graduation-cap"></i>
+                <span>Formation</span>
+              </label>
+              <label class="contact-option">
+                <input type="radio" name="type" value="depannage">
+                <i class="fi fi-rr-tools"></i>
+                <span>Dépannage</span>
+              </label>
+              <label class="contact-option">
+                <input type="radio" name="type" value="autre">
+                <i class="fi fi-rr-comment"></i>
+                <span>Autre</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nom + Email -->
+          <div class="form-row">
+            <div class="form-groupe">
+              <label for="nom" class="form-label">Nom complet <span class="requis">*</span></label>
+              <div class="form-input-wrap">
+                <i class="fi fi-rr-user"></i>
+                <input type="text" id="nom" name="nom" class="form-input" placeholder="Ex : Koffi Adande" required autocomplete="name">
+              </div>
+            </div>
+            <div class="form-groupe">
+              <label for="email" class="form-label">Email <span class="requis">*</span></label>
+              <div class="form-input-wrap">
+                <i class="fi fi-rr-envelope"></i>
+                <input type="email" id="email" name="email" class="form-input" placeholder="vous@exemple.com" required autocomplete="email">
+              </div>
+            </div>
+          </div>
+
+          <!-- Téléphone + Entreprise -->
+          <div class="form-row">
+            <div class="form-groupe">
+              <label for="telephone" class="form-label">
+                Téléphone <span class="requis">*</span>
+              </label>
+              <div class="form-input-wrap">
+                <i class="fi fi-rr-phone-call"></i>
+                <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="+229 ..." required autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-groupe">
+              <label for="entreprise" class="form-label">
+                Entreprise <span class="optionnel">Optionnel</span>
+              </label>
+              <div class="form-input-wrap">
+                <i class="fi fi-rr-building"></i>
+                <input type="text" id="entreprise" name="entreprise" class="form-input" placeholder="Ex : SARL Exemple" autocomplete="organization">
+              </div>
+            </div>
+          </div>
+
+          <!-- Ville -->
+          <div class="form-groupe">
+            <label for="ville" class="form-label">Ville / Zone</label>
+            <div class="form-input-wrap">
+              <i class="fi fi-rr-marker"></i>
+              <select id="ville" name="ville" class="form-select">
+                <option value="">Sélectionnez votre ville</option>
+                <option value="Cotonou">Cotonou</option>
+                <option value="Abomey-Calavi">Abomey-Calavi</option>
+                <option value="Porto-Novo">Porto-Novo</option>
+                <option value="Ouidah">Ouidah</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-groupe">
+            <label for="message" class="form-label">
+              Décrivez votre besoin <span class="requis">*</span>
+            </label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Ex : Nous avons 5 ordinateurs au bureau, ils ralentissent. Nous cherchons un contrat de maintenance préventive." required></textarea>
+            <div class="form-help" id="helpMessage">Soyez aussi précis que possible pour un devis plus juste.</div>
+          </div>
+
+          <!-- Case RGPD -->
+          <div class="form-groupe">
+            <label class="form-check">
+              <input type="checkbox" id="rgpd" name="rgpd" required>
+              <span>
+                J'accepte que Jos Dore conserve mes informations pour me
+                recontacter. <a href="/legal/confidentialite.html" style="color:var(--or-fonce);font-weight:700;">Voir la politique de confidentialité</a>.
+              </span>
+            </label>
+          </div>
+
+          <!-- Bouton -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn--or btn--lg">
+              <i class="fi fi-rr-paper-plane"></i> Envoyer ma demande
+            </button>
+            <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20un%20devis" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+              <i class="fi fi-brands-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+
+        </form>
+
+        <!-- Message de succès (masqué par défaut) -->
+        <div class="contact-succes" id="contactSucces">
+          <div class="contact-succes__icon">
+            <i class="fi fi-rr-check-circle"></i>
+          </div>
+          <h3>Demande envoyée !</h3>
+          <p>
+            Merci pour votre message. Nous vous répondrons sous 24h.
+            Pour une réponse immédiate, contactez-nous sur WhatsApp.
+          </p>
+          <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20viens%20d'envoyer%20une%20demande%20via%20le%20site" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+            <i class="fi fi-brands-whatsapp"></i> Continuer sur WhatsApp
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BLOC WHATSAPP ============ -->
+  <section class="section-whatsapp">
+    <div class="whatsapp-bloc">
+      <div class="whatsapp-bloc__icon">
+        <i class="fi fi-brands-whatsapp"></i>
+      </div>
+      <h2>Besoin d'une réponse immédiate ?</h2>
+      <p>
+        WhatsApp est le moyen le plus rapide de nous joindre. Envoyez-nous
+        un message avec une photo de votre problème si besoin.
+      </p>
+      <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20j'ai%20une%20question" target="_blank" rel="noopener" class="btn btn--whatsapp btn--xl">
+        <i class="fi fi-brands-whatsapp"></i> Ouvrir WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section-contact" style="background: var(--gris-50);">
+    <div class="section-corporate__head" style="text-align:center;max-width:700px;margin:0 auto 56px;padding:0 24px;">
+      <span class="section-corporate__eyebrow">Questions fréquentes</span>
+      <h2>Avant de nous écrire…</h2>
+      <p>Les réponses aux questions que vous vous posez peut-être.</p>
+    </div>
+
+    <div class="faq-c-liste">
+
+      <details class="faq-c-item">
+        <summary>Le devis est-il vraiment gratuit ?</summary>
+        <div class="faq-c-item__reponse">
+          Oui, <strong>100 % gratuit et sans engagement</strong>. Nous vous
+          proposons une solution adaptée et vous restez libre d'accepter
+          ou de refuser. Aucun frais caché, aucun paiement avant votre
+          accord.
+        </div>
+      </details>
+
+      <details class="faq-c-item">
+        <summary>En combien de temps répondez-vous ?</summary>
+        <div class="faq-c-item__reponse">
+          Sur <strong>WhatsApp</strong> : réponse en général dans l'heure
+          (pendant les horaires d'ouverture). Par <strong>email ou
+          formulaire</strong> : réponse sous <strong>24h ouvrées</strong>
+          maximum. En cas d'urgence, privilégiez WhatsApp.
+        </div>
+      </details>
+
+      <details class="faq-c-item">
+        <summary>Puis-je demander un déplacement à domicile ?</summary>
+        <div class="faq-c-item__reponse">
+          Bien sûr. Nous nous déplaçons à <strong>Cotonou</strong>,
+          <strong>Abomey-Calavi</strong>, et sur demande à Porto-Novo ou
+          Ouidah. Pour les interventions à domicile, un diagnostic gratuit
+          peut être programmé selon votre disponibilité.
+        </div>
+      </details>
+
+      <details class="faq-c-item">
+        <summary>Quels sont les moyens de paiement acceptés ?</summary>
+        <div class="faq-c-item__reponse">
+          Nous acceptons : <strong>Mobile Money</strong> (MTN, Moov),
+          <strong>espèces</strong>, <strong>virement bancaire</strong>
+          (pour les entreprises). Les modalités exactes sont précisées
+          dans le devis.
+        </div>
+      </details>
+
+      <details class="faq-c-item">
+        <summary>Faut-il un contrat pour bénéficier de vos services ?</summary>
+        <div class="faq-c-item__reponse">
+          Non. Vous pouvez faire appel à nous ponctuellement, pour un
+          dépannage par exemple. Le <strong>contrat de maintenance</strong>
+          est recommandé pour les TPE/PME qui veulent éviter les pannes
+          et bénéficier d'un suivi régulier.
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20vous%20contacter" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://facebook.com/josdore" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://instagram.com/josdore" class="footer__reseau" aria-label="Instagram" target="_blank" rel="noopener"><i class="fi fi-brands-instagram"></i></a>
+        <a href="https://wa.me/2290128621407" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://linkedin.com/company/josdore" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+    <div>Fait avec <i class="fi fi-sr-heart"></i> à Abomey-Calavi</div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   GESTION DU FORMULAIRE DE CONTACT
+   ------------------------------------------------------------
+   Pour le moment, la soumission est simulée (front-end).
+   Plus tard, on branchera un vrai backend (Supabase).
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.getElementById('contactForm');
+  const succes = document.getElementById('contactSucces');
+
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Vérification HTML5 native
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Récupération des données
+    const formData = new FormData(form);
+    const donnees = {
+      type:        formData.get('type'),
+      nom:         formData.get('nom'),
+      email:       formData.get('email'),
+      telephone:   formData.get('telephone'),
+      entreprise:  formData.get('entreprise'),
+      ville:       formData.get('ville'),
+      message:     formData.get('message'),
+      recuLe:      new Date().toISOString()
+    };
+
+    // Sauvegarde locale (simulation d'envoi)
+    try {
+      const demandes = JSON.parse(localStorage.getItem('josdore_demandes_contact') || '[]');
+      demandes.push(donnees);
+      localStorage.setItem('josdore_demandes_contact', JSON.stringify(demandes));
+    } catch (err) {
+      console.warn('Impossible de sauvegarder la demande :', err);
+    }
+
+    // Affiche le message de succès
+    form.style.display = 'none';
+    succes.classList.add('is-visible');
+
+    // Toast de confirmation
+    if (window.JosDore && window.JosDore.Widgets) {
+      window.JosDore.Widgets.toastSucces(
+        'Nous vous répondrons sous 24h.',
+        'Demande envoyée avec succès !'
+      );
+    }
+
+    // Scroll vers le haut du formulaire
+    succes.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+});
+</script>
+
+</body>
+</html>

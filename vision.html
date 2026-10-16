@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre vision — Jos Dore | Grandir avec vous, étape par étape</title>
+<meta name="description" content="Découvrez la vision de Jos Dore : grandir progressivement pour offrir toujours plus de services aux TPE/PME, écoles et particuliers du Bénin.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Notre vision — Jos Dore">
+<meta property="og:description" content="Grandir avec vous, étape par étape. Découvrez la vision de Jos Dore.">
+<meta property="og:image" content="/ressources/images/og/og-vision.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/vision.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE VISION — Jos Dore
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-vision {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-vision::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-vision::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-vision__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-vision__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-vision h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-vision h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-vision p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* --- SECTION GÉNÉRIQUE --- */
+  .section-v {
+    padding: 80px 0;
+  }
+  .section-v--grise {
+    background: var(--gris-50);
+  }
+  .section-v__head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+    padding: 0 24px;
+  }
+  .section-v__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-v__head h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .section-v__head p {
+    font-size: 1.05rem;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* --- CITATION PRINCIPALE --- */
+  .citation-vision {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+  }
+  .citation-vision__texte {
+    font-family: var(--police-titre);
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 700;
+    color: var(--gris-900);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding: 0 40px;
+  }
+  .citation-vision__texte span {
+    color: var(--or-fonce);
+  }
+  .citation-vision__auteur {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--gris-500);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* --- TEXTE SIMPLE --- */
+  .texte-bloc {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .texte-bloc p {
+    font-size: 16px;
+    color: var(--gris-700);
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .texte-bloc p:last-child {
+    margin-bottom: 0;
+  }
+  .texte-bloc strong {
+    color: var(--gris-900);
+    font-weight: 700;
+  }
+
+  /* --- PHASES (timeline) --- */
+  .phases-grille {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .phase-card {
+    background: #fff;
+    border: 2px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px 28px;
+    position: relative;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .phase-card:hover {
+    border-color: var(--or);
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+  }
+  .phase-card--active {
+    border-color: var(--or);
+    box-shadow: 0 20px 40px rgba(245,158,11,0.15);
+  }
+  .phase-card__badge {
+    position: absolute;
+    top: -12px; left: 24px;
+    padding: 5px 14px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .phase-card__badge--futur {
+    background: var(--gris-200);
+    color: var(--gris-700);
+  }
+
+  .phase-card__num {
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--or-fonce);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .phase-card__num--futur {
+    color: var(--gris-400);
+  }
+
+  .phase-card__icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  .phase-card__icon--futur {
+    background: var(--gris-100);
+    color: var(--gris-500);
+  }
+
+  .phase-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .phase-card__duree {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    border-radius: var(--rayon-full);
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .phase-card p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .phase-card__liste {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gris-100);
+  }
+  .phase-card__liste li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--gris-700);
+    line-height: 1.5;
+  }
+  .phase-card__liste li i {
+    color: var(--vert);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .phase-card__liste li.futur i {
+    color: var(--gris-300);
+  }
+
+  /* --- ÉCOSYSTÈME (services futurs) --- */
+  .ecosysteme-grille {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .eco-item {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 28px 22px;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .eco-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-md);
+    border-color: var(--or);
+  }
+  .eco-item__icon {
+    width: 64px; height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+  }
+  .eco-item h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .eco-item p {
+    font-size: 13px;
+    color: var(--gris-500);
+    line-height: 1.6;
+  }
+
+  /* --- PRINCIPES --- */
+  .principes-liste {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .principe-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    transition: var(--transition);
+  }
+  .principe-item:hover {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .principe-item__icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .principe-item h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 6px;
+  }
+  .principe-item p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* --- CHIFFRES CLÉS --- */
+  .chiffres-grille {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .chiffre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .chiffre__valeur {
+    font-family: var(--police-titre);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--or-fonce);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .chiffre__label {
+    font-size: 13px;
+    color: var(--gris-500);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* --- CTA --- */
+  .cta-v {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-v::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-v__inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-v h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+  .cta-v h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-v p {
+    color: #CBD5E1;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .cta-v__actions {
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- BOUTON WHATSAPP FLOTTANT --- */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .hero-vision { padding: 40px 0 56px; }
+    .section-v { padding: 56px 0; }
+    .citation-vision__texte { padding: 0 20px; font-size: 1.15rem; }
+    .phase-card { padding: 28px 22px; }
+    .principe-item { flex-direction: column; gap: 12px; }
+    .cta-v__actions { flex-direction: column; }
+    .cta-v__actions .btn { width: 100%; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/#pour-qui">Pour qui</a>
+      <a href="/#comment">Comment ça marche</a>
+      <a href="/blog/">Articles</a>
+      <a href="/a-propos.html">À propos</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-vision">
+    <div class="hero-vision__inner">
+      <div class="hero-vision__badge">
+        <i class="fi fi-rr-rocket"></i>
+        Notre vision
+      </div>
+
+      <h1>Grandir avec vous,<br><span>étape par étape.</span></h1>
+
+      <p>
+        Chez Jos Dore, nous croyons qu'une entreprise se construit dans
+        la durée, en écoutant ses clients et en s'améliorant chaque jour.
+        Notre ambition : devenir votre partenaire informatique de
+        confiance, pour longtemps.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CITATION ============ -->
+  <section class="section-v">
+    <div class="citation-vision">
+      <div class="citation-vision__texte">
+        "Notre objectif est simple : que nos clients
+        <span>oublient qu'ils ont un problème informatique.</span>"
+      </div>
+      <div class="citation-vision__auteur">— Ulrich Hounkpe, fondateur</div>
+    </div>
+  </section>
+
+  <!-- ============ NOTRE AMBITION ============ -->
+  <section class="section-v section-v--grise">
+    <div class="section-v__head">
+      <span class="section-v__eyebrow">Notre ambition</span>
+      <h2>Toujours plus proches de vous</h2>
+      <p>
+        Nous construisons Jos Dore comme une relation de confiance qui
+        grandit avec le temps.
+      </p>
+    </div>
+
+    <div class="texte-bloc">
+      <p>
+        Nous avons commencé avec une idée simple : offrir un service de
+        maintenance informatique <strong>sérieux, réactif et accessible</strong>
+        aux TPE/PME et aux particuliers du Bénin. Aujourd'hui, c'est notre
+        quotidien.
+      </p>
+
+      <p>
+        Mais nous ne voulons pas nous arrêter là. Notre ambition est de
+        construire progressivement un ensemble de services complémentaires,
+        pour accompagner nos clients dans tous leurs besoins numériques :
+        <strong>maintenance, formation, conseils, et bientôt de nouveaux
+        outils pratiques</strong>.
+      </p>
+
+      <p>
+        Chaque nouveauté que nous ajoutons est pensée pour vous simplifier
+        la vie. Pas de course à la technologie : juste des solutions
+        concrètes, utiles et accessibles. C'est ainsi que nous voulons
+        bâtir une entreprise durable, proche de ses clients.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ÉTAPES ============ -->
+  <section class="section-v">
+    <div class="section-v__head">
+      <span class="section-v__eyebrow">Notre parcours</span>
+      <h2>Aujourd'hui et demain</h2>
+      <p>Voici ce qui est disponible dès maintenant, et ce qui arrive.</p>
+    </div>
+
+    <div class="phases-grille">
+
+      <!-- Aujourd'hui -->
+      <div class="phase-card phase-card--active">
+        <div class="phase-card__badge">Disponible</div>
+        <div class="phase-card__num">Aujourd'hui</div>
+        <div class="phase-card__icon">
+          <i class="fi fi-rr-settings"></i>
+        </div>
+        <h3>Nos services actuels</h3>
+        <span class="phase-card__duree">En place</span>
+        <p>
+          Ce que nous faisons pour vous dès maintenant : dépannage,
+          contrats de maintenance, formation informatique et conseils.
+        </p>
+        <ul class="phase-card__liste">
+          <li><i class="fi fi-rr-check"></i> Maintenance préventive</li>
+          <li><i class="fi fi-rr-check"></i> Dépannage rapide</li>
+          <li><i class="fi fi-rr-check"></i> Formation initiation</li>
+          <li><i class="fi fi-rr-check"></i> Conseils & articles</li>
+        </ul>
+      </div>
+
+      <!-- Bientôt -->
+      <div class="phase-card">
+        <div class="phase-card__badge phase-card__badge--futur">Bientôt</div>
+        <div class="phase-card__num">Prochainement</div>
+        <div class="phase-card__icon">
+          <i class="fi fi-rr-user"></i>
+        </div>
+        <h3>Votre espace client</h3>
+        <span class="phase-card__duree">En préparation</span>
+        <p>
+          Un espace personnel où vous pourrez suivre vos services,
+          consulter vos factures et retrouver vos formations en un clin d'œil.
+        </p>
+        <ul class="phase-card__liste">
+          <li class="futur"><i class="fi fi-rr-check"></i> Connexion sécurisée</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Suivi de vos services</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Factures en ligne</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Formations à venir</li>
+        </ul>
+      </div>
+
+      <!-- Demain -->
+      <div class="phase-card">
+        <div class="phase-card__badge phase-card__badge--futur">Demain</div>
+        <div class="phase-card__num phase-card__num--futur">Vision</div>
+        <div class="phase-card__icon phase-card__icon--futur">
+          <i class="fi fi-rr-apps"></i>
+        </div>
+        <h3>Toujours plus de services</h3>
+        <span class="phase-card__duree">Notre ambition</span>
+        <p>
+          Petit à petit, nous enrichirons Jos Dore pour vous offrir
+          toujours plus d'outils et de services autour de l'informatique.
+        </p>
+        <ul class="phase-card__liste">
+          <li class="futur"><i class="fi fi-rr-check"></i> Réseau de techniciens</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Cours en ligne</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Outils pratiques</li>
+          <li class="futur"><i class="fi fi-rr-check"></i> Et bien plus…</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ NOS PRINCIPES ============ -->
+  <section class="section-v section-v--grise">
+    <div class="section-v__head">
+      <span class="section-v__eyebrow">Nos principes</span>
+      <h2>Ce qui compte pour nous</h2>
+      <p>Quatre principes qui guident chacune de nos décisions.</p>
+    </div>
+
+    <div class="principes-liste">
+
+      <div class="principe-item">
+        <div class="principe-item__icon">
+          <i class="fi fi-rr-time-fast"></i>
+        </div>
+        <div>
+          <h4>Rester simple et efficace</h4>
+          <p>
+            Nous privilégions les solutions concrètes et accessibles,
+            plutôt que la complexité. Un bon service, c'est un service
+            que vous comprenez et qui vous aide vraiment.
+          </p>
+        </div>
+      </div>
+
+      <div class="principe-item">
+        <div class="principe-item__icon">
+          <i class="fi fi-rr-comment-alt"></i>
+        </div>
+        <div>
+          <h4>Écouter nos clients</h4>
+          <p>
+            Vos retours sont précieux. Chaque remarque, chaque suggestion
+            nous aide à nous améliorer. Nos clients sont nos premiers
+            partenaires.
+          </p>
+        </div>
+      </div>
+
+      <div class="principe-item">
+        <div class="principe-item__icon">
+          <i class="fi fi-rr-shield-check"></i>
+        </div>
+        <div>
+          <h4>Rester formel et transparent</h4>
+          <p>
+            Devis clair, factures claires, engagement clair. Nous
+            construisons une entreprise sérieuse, pas un service informel.
+          </p>
+        </div>
+      </div>
+
+      <div class="principe-item">
+        <div class="principe-item__icon">
+          <i class="fi fi-rr-heart"></i>
+        </div>
+        <div>
+          <h4>Rester proche des gens</h4>
+          <p>
+            La technologie doit servir les personnes, pas l'inverse.
+            Nous gardons toujours en tête les réalités locales et les
+            besoins concrets de nos clients.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CHIFFRES CLÉS ============ -->
+  <section class="section-v">
+    <div class="section-v__head">
+      <span class="section-v__eyebrow">En chiffres</span>
+      <h2>Notre engagement, concrètement</h2>
+    </div>
+
+    <div class="chiffres-grille">
+
+      <div class="chiffre">
+        <div class="chiffre__valeur">24-48h</div>
+        <div class="chiffre__label">Délai d'intervention</div>
+      </div>
+
+      <div class="chiffre">
+        <div class="chiffre__valeur">100%</div>
+        <div class="chiffre__label">Diagnostic gratuit</div>
+      </div>
+
+      <div class="chiffre">
+        <div class="chiffre__valeur">2</div>
+        <div class="chiffre__label">Villes couvertes</div>
+      </div>
+
+      <div class="chiffre">
+        <div class="chiffre__valeur">+100</div>
+        <div class="chiffre__label">Interventions déjà réalisées</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-v">
+    <div class="cta-v__inner">
+      <h2>Envie de <span>travailler avec nous</span> ?</h2>
+      <p>
+        Discutons de votre situation. Le diagnostic initial est gratuit
+        et sans engagement. Nous vous proposerons la solution la mieux
+        adaptée à vos besoins.
+      </p>
+      <div class="cta-v__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-calendar"></i> Diagnostic gratuit
+        </a>
+        <a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20discuter" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/2290128621407?text=Bonjour%20Jos%20Dore%2C%20je%20souhaite%20vous%20contacter" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://facebook.com/josdore" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://instagram.com/josdore" class="footer__reseau" aria-label="Instagram" target="_blank" rel="noopener"><i class="fi fi-brands-instagram"></i></a>
+        <a href="https://wa.me/2290128621407" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://linkedin.com/company/josdore" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+    <div>Fait avec <i class="fi fi-sr-heart"></i> à Abomey-Calavi</div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+</body>
+</html>

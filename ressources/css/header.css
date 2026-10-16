@@ -1,0 +1,629 @@
+/* ============================================================
+   JOS DORE CORPORATE — HEADER & NAVIGATION
+   ------------------------------------------------------------
+   Header sticky, logo, navigation desktop, menu burger,
+   sidebar (drawer), overlay, actions utilisateur.
+   À charger APRÈS variables.css.
+   ============================================================ */
+
+/* ============================================================
+   HEADER — STRUCTURE DE BASE
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gris-200);
+  transition: var(--transition);
+}
+
+.header.is-scrolled {
+  box-shadow: var(--ombre-md);
+}
+
+.header__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--espace-6);
+  display: flex;
+  align-items: center;
+  gap: var(--espace-5);
+  position: relative;
+}
+
+/* Variante pour les pages internes (espace-client, admin) */
+.header--app {
+  position: fixed;
+}
+
+.header--app .header__inner {
+  max-width: 100%;
+  padding: 0 var(--espace-4);
+}
+
+/* ============================================================
+   LOGO JOS DORE
+   ============================================================ */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  font-family: var(--police-titre);
+  font-weight: var(--poids-black);
+  font-size: 18px;
+  color: var(--gris-900);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.logo:hover { text-decoration: none; opacity: 0.9; }
+
+.logo__mark {
+  width: 40px;
+  height: 40px;
+  background: var(--nuit);
+  color: var(--or);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: var(--poids-black);
+  position: relative;
+  flex-shrink: 0;
+}
+.logo__mark::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  background: var(--or);
+  border-radius: 50%;
+}
+
+.logo__text span { color: var(--or); }
+
+.logo__suffix {
+  display: block;
+  font-size: 9px;
+  font-weight: var(--poids-bold);
+  color: var(--gris-500);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   NAVIGATION DESKTOP
+   ============================================================ */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-5);
+  flex: 1;
+}
+
+.nav a {
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-semi);
+  color: var(--gris-700);
+  position: relative;
+  padding: var(--espace-2) 0;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav a:hover {
+  color: var(--or-fonce);
+}
+
+.nav a.is-actif {
+  color: var(--or-fonce);
+  font-weight: var(--poids-extra);
+}
+
+.nav a.is-actif::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--or);
+  border-radius: var(--rayon-full);
+}
+
+/* ============================================================
+   RECHERCHE HEADER (optionnel)
+   ============================================================ */
+.header__recherche {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  display: none;
+}
+
+.header__recherche i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gris-500);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.header__recherche input {
+  width: 100%;
+  padding: 9px 14px 9px 38px;
+  background: var(--gris-100);
+  border: 1.5px solid transparent;
+  border-radius: var(--rayon-full);
+  font-size: var(--taille-sm);
+  color: var(--gris-900);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.header__recherche input::placeholder { color: var(--gris-500); }
+
+.header__recherche input:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--or);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+/* ============================================================
+   ACTIONS UTILISATEUR
+   ============================================================ */
+.header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  flex-shrink: 0;
+}
+
+.header__lien {
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-semi);
+  color: var(--gris-700);
+  text-decoration: none;
+}
+.header__lien:hover { color: var(--or-fonce); text-decoration: none; }
+.header__lien strong { color: var(--or-fonce); }
+
+/* Icônes (notifications, messages) */
+.header__icone {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gris-700);
+  font-size: 18px;
+  transition: var(--transition);
+  position: relative;
+  text-decoration: none;
+}
+.header__icone:hover {
+  background: var(--gris-100);
+  color: var(--gris-900);
+  text-decoration: none;
+}
+
+/* Badge de notification */
+.header__badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  background: var(--rouge);
+  color: #fff;
+  border-radius: var(--rayon-full);
+  font-size: 9px;
+  font-weight: var(--poids-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  font-family: var(--police-titre);
+  line-height: 1;
+}
+
+/* Avatar utilisateur */
+.header__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--grad-or);
+  color: var(--nuit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--police-titre);
+  font-weight: var(--poids-black);
+  font-size: 12px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--gris-200);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.header__avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px var(--or);
+}
+
+/* ============================================================
+   MENU BURGER (mobile)
+   ============================================================ */
+.menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--rayon-sm);
+  border: 1px solid var(--gris-200);
+  background: #fff;
+  color: var(--gris-900);
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.menu-btn:hover {
+  border-color: var(--gris-900);
+  background: var(--gris-50);
+}
+
+/* Variante icône simple sans bordure */
+.menu-btn--simple {
+  border: none;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+}
+.menu-btn--simple:hover {
+  background: var(--gris-100);
+}
+
+/* ============================================================
+   SIDEBAR (drawer latéral gauche)
+   ============================================================ */
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  bottom: 0;
+  left: 0;
+  width: 280px;
+  background: #fff;
+  border-right: 1px solid var(--gris-200);
+  padding: var(--espace-4) var(--espace-3);
+  overflow-y: auto;
+  z-index: 60;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+}
+
+/* Profil utilisateur en haut de sidebar */
+.sidebar__profil {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-3);
+  padding: var(--espace-3) var(--espace-3) var(--espace-4);
+  border-bottom: 1px solid var(--gris-100);
+  margin-bottom: var(--espace-3);
+}
+
+.sidebar__profil-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--grad-or);
+  color: var(--nuit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--poids-black);
+  font-size: 14px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sidebar__profil-nom {
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-extra);
+  color: var(--gris-900);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.sidebar__profil-nom i {
+  color: var(--bleu);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.sidebar__profil-role {
+  font-size: 11px;
+  color: var(--gris-500);
+  font-weight: var(--poids-semi);
+  line-height: 1.3;
+}
+
+/* Titre de section dans la sidebar */
+.sidebar__titre {
+  font-size: 10px;
+  font-weight: var(--poids-extra);
+  color: var(--gris-500);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: var(--espace-3) var(--espace-3) var(--espace-2);
+}
+
+/* Lien de navigation dans la sidebar */
+.sidebar__lien {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-3);
+  padding: 10px var(--espace-3);
+  border-radius: var(--rayon-sm);
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-semi);
+  color: var(--gris-700);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 2px;
+}
+
+.sidebar__lien i {
+  font-size: 17px;
+  color: var(--gris-500);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.sidebar__lien:hover {
+  background: var(--gris-100);
+  color: var(--gris-900);
+  text-decoration: none;
+}
+.sidebar__lien:hover i {
+  color: var(--gris-900);
+}
+
+.sidebar__lien.is-actif {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--or-fonce);
+  font-weight: var(--poids-extra);
+}
+.sidebar__lien.is-actif i {
+  color: var(--or-fonce);
+}
+
+/* Badge dans la sidebar */
+.sidebar__lien-badge {
+  margin-left: auto;
+  padding: 2px 7px;
+  background: var(--or);
+  color: var(--nuit);
+  border-radius: var(--rayon-full);
+  font-size: 10px;
+  font-weight: var(--poids-black);
+  font-family: var(--police-titre);
+  line-height: 1.4;
+}
+
+.sidebar__lien-badge--rouge {
+  background: var(--rouge);
+  color: #fff;
+}
+
+/* Séparateur */
+.sidebar__sep {
+  height: 1px;
+  background: var(--gris-100);
+  margin: var(--espace-3) var(--espace-3);
+}
+
+/* Lien danger (déconnexion) */
+.sidebar__lien--danger { color: var(--rouge); }
+.sidebar__lien--danger i { color: var(--rouge); }
+.sidebar__lien--danger:hover {
+  background: rgba(220, 38, 38, 0.08);
+}
+
+/* ============================================================
+   OVERLAY (fond sombre derrière la sidebar)
+   ============================================================ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 37, 64, 0.45);
+  z-index: var(--z-overlay);
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.overlay.is-open {
+  display: block;
+  opacity: 1;
+}
+
+/* ============================================================
+   HEADER — VARIANTES
+   ============================================================ */
+
+/* Header transparent (hero) */
+.header--transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.header--transparent .logo { color: #fff; }
+.header--transparent .logo__suffix { color: rgba(255,255,255,0.6); }
+.header--transparent .nav a { color: rgba(255, 255, 255, 0.85); }
+.header--transparent .nav a:hover { color: var(--or); }
+.header--transparent .menu-btn {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+}
+
+/* Header app (fixe avec sidebar) */
+.header--app .header__menu {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--rayon-sm);
+  align-items: center;
+  justify-content: center;
+  color: var(--gris-700);
+  font-size: 20px;
+  transition: var(--transition);
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+}
+.header--app .header__menu:hover {
+  background: var(--gris-100);
+  color: var(--gris-900);
+}
+
+/* ============================================================
+   BADGE SPÉCIAL (Admin)
+   ============================================================ */
+.header__badge-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  background: linear-gradient(135deg, var(--rouge), #B91C1C);
+  color: #fff;
+  border-radius: var(--rayon-full);
+  font-size: 9px;
+  font-weight: var(--poids-black);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 4px;
+  flex-shrink: 0;
+  font-family: var(--police-titre);
+}
+.header__badge-admin i { font-size: 10px; }
+
+/* ============================================================
+   BREADCRUMB (fil d'Ariane)
+   ============================================================ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  font-size: var(--taille-sm);
+  color: var(--gris-500);
+  padding: var(--espace-4) 0;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--gris-500);
+  text-decoration: none;
+}
+.breadcrumb a:hover { color: var(--or-fonce); }
+
+.breadcrumb i {
+  font-size: 11px;
+  color: var(--gris-300);
+}
+
+.breadcrumb__actif {
+  color: var(--gris-900);
+  font-weight: var(--poids-extra);
+}
+
+/* ============================================================
+   RETOUR (lien retour en haut de page)
+   ============================================================ */
+.retour {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-2);
+  margin-bottom: var(--espace-4);
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-bold);
+  color: var(--gris-500);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.retour:hover {
+  color: var(--or-fonce);
+  text-decoration: none;
+}
+
+.retour i { font-size: 14px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width: 768px) {
+  .header__inner {
+    padding: 0 var(--espace-6);
+  }
+}
+
+@media (max-width: 960px) {
+  .nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+  }
+
+  .header__search {
+    display: none;
+  }
+
+  .header__actions .btn--ghost {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .header__inner {
+    padding: 0 var(--espace-4);
+    gap: var(--espace-3);
+  }
+
+  .logo__suffix {
+    display: none;
+  }
+
+  .header__actions .btn--sm {
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+}
