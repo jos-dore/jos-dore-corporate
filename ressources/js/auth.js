@@ -10,8 +10,12 @@
 
   const { CONFIG, CONST, STORAGE, UTILS, LOG } = global.JosDore;
   
-  // On récupère le client Supabase (initialisé dans config.js ou en global)
-  const supabase = global.supabase || (global.JosDore && global.JosDore.supabase);
+  // On récupère le client Supabase (initialisé dans config.js)
+  const supabase = (global.JosDore && global.JosDore.supabase) || null;
+
+  if (!supabase) {
+    console.error('[Auth] ERREUR FATALE : Le client Supabase est introuvable. Vérifie config.js');
+  }
 
   /* ============================================================
      1. SESSION UTILISATEUR
@@ -60,7 +64,7 @@
      2. INSCRIPTION
      ============================================================ */
   async function inscrire(donnees) {
-    const { nom, email, telephone, motDePasse, entreprise } = donnees;
+    const { nom, email, telephone, motDePasse, entreprise, role } = donnees;
 
     if (!nom || String(nom).trim().length < 2) return { succes: false, erreur: 'Le nom doit contenir au moins 2 caractères.' };
     if (!UTILS.validerEmail(email)) return { succes: false, erreur: 'Adresse email invalide.' };
@@ -73,20 +77,41 @@
       email: email,
       password: motDePasse,
       options: {
-        data: { nom: nom, telephone: telephone, entreprise: entreprise }
+        data: { 
+          nom: nom, 
+          telephone: telephone || null, 
+          entreprise: entreprise || null,
+          role: role || 'client'
+        }
       }
     });
 
     if (error) return { succes: false, erreur: error.message };
 
-    // 2. Mise à jour du profil (créé automatiquement par le trigger SQL)
-    if (data.user) {
-      await supabase.from('profiles').update({
-        telephone: telephone,
-        entreprise: entreprise
-      }).eq('id', data.user.id);
+    // 2. Si la confirmation par email est activée, data.session est null
+    if (!data.session) {
+      return { 
+        succes: true, 
+        necessiteConfirmation: true, 
+        utilisateur: data.user 
+      };
+    }
 
-      // 3. Connexion immédiate
+    // 3. Mise à jour du profil (avec vérification de l'erreur)
+    if (data.user) {
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({
+          telephone: telephone || null,
+          entreprise: entreprise || null
+        })
+        .eq('id', data.user.id);
+
+      if (profileError) {
+        console.warn('[Auth] Impossible de mettre à jour le profil directement :', profileError.message);
+      }
+
+      // 4. Connexion immédiate
       return await connecter(email, motDePasse);
     }
 
@@ -106,7 +131,10 @@
       password: motDePasse,
     });
 
-    if (error) return { succes: false, erreur: 'Email ou mot de passe incorrect.' };
+    if (error) {
+      console.error('[Auth] Erreur de connexion :', error.message);
+      return { succes: false, erreur: error.message }; // Renvoie le vrai message d'erreur
+    }
 
     // 2. Récupération du profil complet
     const { data: profil } = await supabase
@@ -183,13 +211,14 @@
   }
 
   /* ============================================================
-     6. RÉCUPÉRATION DE MOT DE PASSE
+     6. RÉCUPÉRATION DE MOT DE PASSE (CORRIGÉE)
      ============================================================ */
   async function demanderReinitialisation(email) {
     if (!supabase) return { succes: false, erreur: 'Erreur de configuration.' };
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/compte/connexion.html',
+      // 👇 MODIFICATION ICI : Redirection vers la page de réinitialisation 👇
+      redirectTo: window.location.origin + '/compte/reinitialiser-mot-de-passe.html',
     });
 
     if (error) return { succes: false, erreur: error.message };
