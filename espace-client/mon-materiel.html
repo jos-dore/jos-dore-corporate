@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon matériel — Jos Dore | Mon espace client</title>
+<meta name="description" content="Gérez votre parc informatique : ordinateurs, imprimantes, équipements réseau.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  :root { --sidebar-w: 280px; }
+  body { background: var(--gris-50); }
+  .app-layout { min-height: 100vh; }
+  @media (min-width: 1024px) {
+    .sidebar { display: block !important; transform: translateX(0) !important; }
+    .overlay { display: none !important; }
+  }
+  .main-app {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 32px 24px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-app {
+      margin-left: var(--sidebar-w);
+      padding: 40px 32px 80px;
+    }
+  }
+  .main-app__inner { max-width: 1200px; margin: 0 auto; }
+
+  /* ============================================================
+     EN-TÊTE
+     ============================================================ */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ============================================================
+     BANDEAU INFO
+     ============================================================ */
+  .info-bandeau {
+    background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(37,99,235,0.02));
+    border: 1px solid rgba(37,99,235,0.2);
+    border-left: 4px solid var(--bleu);
+    border-radius: var(--rayon-lg);
+    padding: 16px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .info-bandeau__icone {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--bleu);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .info-bandeau__contenu { flex: 1; min-width: 200px; }
+  .info-bandeau__titre {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 3px;
+  }
+  .info-bandeau__texte {
+    font-size: 13px;
+    color: var(--gris-600);
+    line-height: 1.55;
+  }
+
+  /* ============================================================
+     MINI STATS
+     ============================================================ */
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .mini-stat {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: var(--transition);
+  }
+  .mini-stat:hover { border-color: var(--or); box-shadow: var(--ombre-sm); }
+  .mini-stat__icone {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .mini-stat__icone--or { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .mini-stat__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .mini-stat__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .mini-stat__icone--rouge { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .mini-stat__texte { min-width: 0; }
+  .mini-stat__valeur {
+    font-family: var(--police-titre);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .mini-stat__label {
+    font-size: 12.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+     BARRE FILTRES + RECHERCHE
+     ============================================================ */
+  .barre-filtres {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .filtres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .filtre-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover { border-color: var(--or); color: var(--or-fonce); }
+  .filtre-btn.is-actif {
+    background: var(--or);
+    border-color: var(--or);
+    color: var(--nuit);
+  }
+  .filtre-btn__compteur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(10,37,64,0.08);
+    font-size: 11px;
+    font-weight: 900;
+  }
+  .filtre-btn.is-actif .filtre-btn__compteur { background: rgba(10,37,64,0.15); }
+
+  .recherche {
+    position: relative;
+    min-width: 240px;
+    flex: 0 1 320px;
+  }
+  .recherche > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .recherche__input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .recherche__input:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 0 0 4px rgba(245,158,11,0.12);
+  }
+
+  /* ============================================================
+     GRILLE MATÉRIEL
+     ============================================================ */
+  .materiel-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .materiel-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .materiel-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--grad-or);
+  }
+  .materiel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+
+  .materiel-card__photo {
+    height: 140px;
+    background: linear-gradient(135deg, rgba(10,37,64,0.04), rgba(10,37,64,0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    color: var(--or-fonce);
+    overflow: hidden;
+    position: relative;
+  }
+  .materiel-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .materiel-card__statut-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    padding: 5px 11px;
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
+  .materiel-card__statut-badge--sous-contrat { background: var(--vert); color: #fff; }
+  .materiel-card__statut-badge--hors-contrat { background: var(--gris-500); color: #fff; }
+  .materiel-card__statut-badge--a-surveiller { background: var(--or); color: var(--nuit); }
+  .materiel-card__statut-badge--en-panne { background: var(--rouge); color: #fff; }
+
+  .materiel-card__corps {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .materiel-card__type {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--or-fonce);
+    margin-bottom: 6px;
+  }
+  .materiel-card__nom {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 4px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  .materiel-card__marque {
+    font-size: 12.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .materiel-card__specs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 0;
+    border-top: 1px solid var(--gris-100);
+    border-bottom: 1px solid var(--gris-100);
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .materiel-card__spec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--gris-600);
+    gap: 8px;
+  }
+  .materiel-card__spec-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gris-500);
+    font-weight: 600;
+  }
+  .materiel-card__spec-label i {
+    color: var(--or-fonce);
+    font-size: 13px;
+  }
+  .materiel-card__spec-valeur {
+    color: var(--gris-900);
+    font-weight: 700;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 55%;
+  }
+
+  .materiel-card__actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .materiel-card__actions .btn {
+    flex: 1;
+    padding: 9px 10px;
+    font-size: 12px;
+    min-width: 0;
+  }
+  .btn-icone-action {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--gris-100);
+    color: var(--gris-700);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .btn-icone-action:hover {
+    background: var(--or);
+    color: var(--nuit);
+  }
+  .btn-icone-action--danger:hover {
+    background: var(--rouge);
+    color: #fff;
+  }
+
+  /* ============================================================
+     ÉTAT VIDE
+     ============================================================ */
+  .vide-bloc {
+    background: #fff;
+    border: 2px dashed var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-bloc__icone {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: rgba(245,158,11,0.08);
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 20px;
+  }
+  .vide-bloc__titre {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .vide-bloc__texte {
+    font-size: 14.5px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    max-width: 460px;
+    margin: 0 auto 24px;
+  }
+  .vide-bloc__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     SPINNER
+     ============================================================ */
+  .chargement-services {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px 20px;
+    color: var(--gris-500);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .chargement-services__spinner {
+    width: 24px; height: 24px;
+    border: 3px solid rgba(245,158,11,0.2);
+    border-top-color: var(--or);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ============================================================
+     MODALES
+     ============================================================ */
+  .modale-mat {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,37,64,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modale-mat.is-visible { display: flex; }
+
+  .modale-mat__contenu {
+    background: #fff;
+    border-radius: var(--rayon-lg);
+    max-width: 620px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: popIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .modale-mat__entete {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #0A2540, #1E3A5F);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  .modale-mat__titre {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modale-mat__titre i { color: var(--or); font-size: 20px; }
+  .modale-mat__fermer {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .modale-mat__fermer:hover {
+    background: rgba(255,255,255,0.25);
+    transform: rotate(90deg);
+  }
+  .modale-mat__corps { padding: 24px; }
+  .modale-mat__pied {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gris-100);
+    background: var(--gris-50);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    position: sticky;
+    bottom: 0;
+  }
+
+  /* ============================================================
+     FORMULAIRE
+     ============================================================ */
+  .champ-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 640px) { .champ-row { grid-template-columns: 1fr; } }
+
+  .champ {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+  }
+  .champ__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--gris-700);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .champ__label .requis { color: var(--rouge); }
+  .champ__label .optionnel {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gris-500);
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 2px 8px;
+    background: var(--gris-100);
+    border-radius: var(--rayon-full);
+  }
+  .champ__input,
+  .champ__textarea,
+  .champ__select {
+    width: 100%;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .champ__input:focus,
+  .champ__textarea:focus,
+  .champ__select:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 0 0 4px rgba(245,158,11,0.12);
+  }
+  .champ__input.is-invalide,
+  .champ__textarea.is-invalide,
+  .champ__select.is-invalide {
+    border-color: var(--rouge);
+    background: #FFFBFB;
+  }
+  .champ__textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.55;
+  }
+  .champ__select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
+  .champ__aide {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .champ--hidden { display: none !important; }
+
+  /* ============================================================
+     MODALE DÉTAILS
+     ============================================================ */
+  .detail-section {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gris-100);
+  }
+  .detail-section:last-child { border-bottom: none; padding-bottom: 0; }
+  .detail-section:first-child { padding-top: 0; }
+  .detail-section__titre {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .detail-ligne {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 13.5px;
+  }
+  .detail-ligne__label {
+    color: var(--gris-500);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .detail-ligne__valeur {
+    color: var(--gris-900);
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+  }
+
+  /* ============================================================
+     MINI FOOTER
+     ============================================================ */
+  .app-footer {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) { .app-footer { margin-left: var(--sidebar-w); } }
+  .app-footer__liens {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .app-footer a { color: var(--gris-500); text-decoration: none; }
+  .app-footer a:hover { color: var(--or-fonce); }
+
+  /* ============================================================
+     WHATSAPP
+     ============================================================ */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.08);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1023px) {
+    .main-app { padding: 24px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .info-bandeau { padding: 14px 18px; }
+    .materiel-grille { grid-template-columns: 1fr; gap: 16px; }
+    .barre-filtres { flex-direction: column; align-items: stretch; }
+    .recherche { flex: 1 1 auto; min-width: 0; }
+    .modale-mat__corps { padding: 20px; }
+    .modale-mat__pied { flex-direction: column; }
+    .modale-mat__pied .btn { width: 100%; }
+    .vide-bloc { padding: 40px 20px; }
+    .vide-bloc__actions { flex-direction: column; }
+    .vide-bloc__actions .btn { width: 100%; }
+    .btn-whatsapp-float {
+      width: 48px; height: 48px;
+      font-size: 24px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER APP                                                    -->
+<!-- ============================================================ -->
+<header class="header header--app" id="header">
+  <div class="header__inner">
+
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/espace-client/tableau-de-bord.html" class="logo" aria-label="Jos Dore — Espace client">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Espace client</span>
+      </div>
+    </a>
+
+    <div class="header__actions">
+      <a href="/espace-client/mises-a-jour.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/aide/" class="header__icone" aria-label="Aide">
+        <i class="fi fi-rr-interrogation"></i>
+      </a>
+      <a href="/espace-client/mon-profil.html" class="header__avatar" data-user-avatar title="Mon profil">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR                                                       -->
+<!-- ============================================================ -->
+<aside class="sidebar" id="sidebar" aria-label="Navigation de l'espace client">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Client</span>
+        <i class="fi fi-rr-check-circle" title="Compte vérifié"></i>
+      </div>
+      <div class="sidebar__profil-role" data-user-role>client</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Mon espace</div>
+
+  <a href="/espace-client/tableau-de-bord.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+  <a href="/espace-client/mes-services.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings"></i>
+    <span>Mes services</span>
+  </a>
+  <a href="/espace-client/mes-formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Mes formations</span>
+  </a>
+  <a href="/espace-client/mes-factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Mes factures</span>
+  </a>
+  <a href="/espace-client/mon-materiel.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-computer"></i>
+    <span>Mon matériel</span>
+  </a>
+  <a href="/espace-client/mises-a-jour.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Mises à jour</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon compte</div>
+
+  <a href="/espace-client/mon-profil.html" class="sidebar__lien">
+    <i class="fi fi-rr-user"></i>
+    <span>Mon profil</span>
+  </a>
+  <a href="/espace-client/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/aide/" class="sidebar__lien">
+    <i class="fi fi-rr-interrogation"></i>
+    <span>Aide & support</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="app-layout">
+  <div class="main-app">
+    <div class="main-app__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">Mon matériel</h1>
+          <p class="page-entete__sous">
+            Gérez votre parc informatique : ordinateurs, imprimantes, équipements réseau.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/aide/contact-support.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-headset"></i> Support
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnAjouterTop">
+            <i class="fi fi-rr-plus"></i> Ajouter un équipement
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ BANDEAU INFO ============ -->
+      <div class="info-bandeau">
+        <div class="info-bandeau__icone">
+          <i class="fi fi-rr-info"></i>
+        </div>
+        <div class="info-bandeau__contenu">
+          <div class="info-bandeau__titre">Enregistrez vos équipements</div>
+          <div class="info-bandeau__texte">
+            Déclarez vos ordinateurs, imprimantes et équipements réseau.
+            Cela nous permet de mieux vous accompagner et d'anticiper
+            les pannes avant qu'elles n'arrivent.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ MINI STATS ============ -->
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--or">
+            <i class="fi fi-rr-computer"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatTotal">—</div>
+            <div class="mini-stat__label">Équipements totaux</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--vert">
+            <i class="fi fi-rr-shield-check"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatSousContrat">—</div>
+            <div class="mini-stat__label">Sous contrat</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--bleu">
+            <i class="fi fi-rr-time-fast"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatAVerifier">—</div>
+            <div class="mini-stat__label">À surveiller</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--rouge">
+            <i class="fi fi-rr-warning"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatEnPanne">—</div>
+            <div class="mini-stat__label">En panne</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ BARRE FILTRES + RECHERCHE ============ -->
+      <div class="barre-filtres">
+        <div class="filtres">
+          <button type="button" class="filtre-btn is-actif" data-filtre="tous">
+            <i class="fi fi-rr-apps"></i> Tous
+            <span class="filtre-btn__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-btn" data-filtre="ordinateur">
+            <i class="fi fi-rr-computer"></i> Ordinateurs
+            <span class="filtre-btn__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-btn" data-filtre="peripherique">
+            <i class="fi fi-rr-print"></i> Périphériques
+            <span class="filtre-btn__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-btn" data-filtre="reseau">
+            <i class="fi fi-rr-wifi"></i> Réseau
+            <span class="filtre-btn__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-btn" data-filtre="en-panne">
+            <i class="fi fi-rr-warning"></i> En panne
+            <span class="filtre-btn__compteur">0</span>
+          </button>
+        </div>
+
+        <div class="recherche">
+          <i class="fi fi-rr-search"></i>
+          <input type="text" class="recherche__input" id="rechercheInput" placeholder="Rechercher un équipement…" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- ============ SPINNER ============ -->
+      <div class="chargement-services" id="chargementMateriel">
+        <div class="chargement-services__spinner"></div>
+        <span>Chargement de votre matériel…</span>
+      </div>
+
+      <!-- ============ GRILLE ============ -->
+      <div class="materiel-grille" id="materielGrille" style="display:none;"></div>
+
+      <!-- ============ ÉTAT VIDE ============ -->
+      <div class="vide-bloc" id="videMateriel" style="display:none;">
+        <div class="vide-bloc__icone">
+          <i class="fi fi-rr-computer"></i>
+        </div>
+        <div class="vide-bloc__titre" id="videTitre">Aucun équipement enregistré</div>
+        <p class="vide-bloc__texte" id="videTexte">
+          Ajoutez vos ordinateurs, imprimantes et équipements réseau.
+          Cela nous permet de mieux vous accompagner dans la gestion
+          de votre parc informatique.
+        </p>
+        <div class="vide-bloc__actions">
+          <button type="button" class="btn btn--or" id="btnAjouterVide">
+            <i class="fi fi-rr-plus"></i> Ajouter mon premier équipement
+          </button>
+          <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--ghost">
+            <i class="fi fi-brands-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- MODALE AJOUT / MODIFICATION                                   -->
+<!-- ============================================================ -->
+<div class="modale-mat" id="modaleAjout" role="dialog" aria-modal="true" aria-labelledby="modaleAjoutTitre">
+  <div class="modale-mat__contenu">
+
+    <div class="modale-mat__entete">
+      <h2 class="modale-mat__titre" id="modaleAjoutTitre">
+        <i class="fi fi-rr-plus"></i> Ajouter un équipement
+      </h2>
+      <button type="button" class="modale-mat__fermer" id="modaleAjoutFermer" aria-label="Fermer">
+        <i class="fi fi-rr-cross-small"></i>
+      </button>
+    </div>
+
+    <form id="formMateriel" novalidate>
+      <div class="modale-mat__corps">
+
+        <div class="champ">
+          <label class="champ__label" for="matType">
+            Type d'équipement <span class="requis">*</span>
+          </label>
+          <select id="matType" class="champ__select" required>
+            <option value="">— Sélectionnez un type —</option>
+            <option value="ordinateur_fixe">Ordinateur fixe (PC bureau)</option>
+            <option value="ordinateur_portable">Ordinateur portable</option>
+            <option value="imprimante">Imprimante</option>
+            <option value="scanner">Scanner</option>
+            <option value="routeur">Routeur / Box internet</option>
+            <option value="switch">Switch réseau</option>
+            <option value="nas">NAS / Serveur</option>
+            <option value="onduleur">Onduleur</option>
+            <option value="ecran">Écran / Moniteur</option>
+            <option value="telephone">Téléphone IP</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label" for="matNom">
+              Nom / Description <span class="requis">*</span>
+            </label>
+            <input type="text" id="matNom" class="champ__input" placeholder="Ex : PC Bureau Principal" required>
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matMarque">
+              Marque <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="text" id="matMarque" class="champ__input" placeholder="Ex : HP, Dell, Epson">
+          </div>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label" for="matModele">
+              Modèle <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="text" id="matModele" class="champ__input" placeholder="Ex : ProDesk 400 G7">
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matNumeroSerie">
+              N° de série <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="text" id="matNumeroSerie" class="champ__input" placeholder="Ex : HP-4X8K-2024">
+          </div>
+        </div>
+
+        <!-- Specs ordinateur (affichées si type = ordinateur_*) -->
+        <div class="champ-row" id="champsOrdi" style="display:none;">
+          <div class="champ">
+            <label class="champ__label" for="matOs">Système</label>
+            <input type="text" id="matOs" class="champ__input" placeholder="Ex : Windows 11 Pro">
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matProcesseur">Processeur</label>
+            <input type="text" id="matProcesseur" class="champ__input" placeholder="Ex : Intel Core i5">
+          </div>
+        </div>
+
+        <div class="champ-row" id="champsOrdi2" style="display:none;">
+          <div class="champ">
+            <label class="champ__label" for="matRam">RAM</label>
+            <input type="text" id="matRam" class="champ__input" placeholder="Ex : 16 Go">
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matStockage">Stockage</label>
+            <input type="text" id="matStockage" class="champ__input" placeholder="Ex : 512 Go SSD">
+          </div>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label" for="matDateAchat">
+              Date d'achat <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="date" id="matDateAchat" class="champ__input">
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matGarantie">
+              Garantie jusqu'au <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="date" id="matGarantie" class="champ__input">
+          </div>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label" for="matLocalisation">
+              Localisation <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="text" id="matLocalisation" class="champ__input" placeholder="Ex : Bureau direction">
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="matUtilisateur">
+              Utilisateur assigné <span class="optionnel">Optionnel</span>
+            </label>
+            <input type="text" id="matUtilisateur" class="champ__input" placeholder="Ex : Marie D.">
+          </div>
+        </div>
+
+        <div class="champ">
+          <label class="champ__label" for="matStatut">
+            Statut <span class="requis">*</span>
+          </label>
+          <select id="matStatut" class="champ__select" required>
+            <option value="hors-contrat">Hors contrat</option>
+            <option value="sous-contrat">Sous contrat de maintenance</option>
+            <option value="a-surveiller">À surveiller</option>
+            <option value="en-panne">En panne</option>
+          </select>
+        </div>
+
+        <div class="champ">
+          <label class="champ__label" for="matNotes">
+            Notes <span class="optionnel">Optionnel</span>
+          </label>
+          <textarea id="matNotes" class="champ__textarea" placeholder="Informations complémentaires sur cet équipement…"></textarea>
+        </div>
+
+      </div>
+
+      <div class="modale-mat__pied">
+        <button type="button" class="btn btn--ghost" id="modaleAjoutAnnuler">Annuler</button>
+        <button type="submit" class="btn btn--or" id="modaleAjoutEnregistrer">
+          <i class="fi fi-rr-check"></i> Enregistrer
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODALE DÉTAILS                                                -->
+<!-- ============================================================ -->
+<div class="modale-mat" id="modaleDetails" role="dialog" aria-modal="true" aria-labelledby="modaleDetailsTitre">
+  <div class="modale-mat__contenu">
+
+    <div class="modale-mat__entete">
+      <h2 class="modale-mat__titre" id="modaleDetailsTitre">
+        <i class="fi fi-rr-eye"></i> Détails de l'équipement
+      </h2>
+      <button type="button" class="modale-mat__fermer" id="modaleDetailsFermer" aria-label="Fermer">
+        <i class="fi fi-rr-cross-small"></i>
+      </button>
+    </div>
+
+    <div class="modale-mat__corps" id="modaleDetailsCorps">
+      <!-- Injecté dynamiquement -->
+    </div>
+
+    <div class="modale-mat__pied">
+      <button type="button" class="btn btn--ghost" id="modaleDetailsFermer2">Fermer</button>
+      <button type="button" class="btn btn--or" id="modaleDetailsModifier">
+        <i class="fi fi-rr-edit"></i> Modifier
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MINI FOOTER                                                   -->
+<!-- ============================================================ -->
+<footer class="app-footer">
+  <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+  <div class="app-footer__liens">
+    <a href="/legal/mentions-legales.html">Mentions légales</a>
+    <a href="/legal/cgu.html">CGU</a>
+    <a href="/legal/confidentialite.html">Confidentialité</a>
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- WHATSAPP                                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter le support">
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   MON MATÉRIEL — CRUD complet avec Supabase
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger();
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (!session) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  document.querySelectorAll('[data-user-prenom]').forEach(el => {
+    el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Client';
+  });
+  document.querySelectorAll('[data-user-initiales]').forEach(el => {
+    el.textContent = window.JosDore.UTILS.initiales(session.nom);
+  });
+  document.querySelectorAll('[data-user-role]').forEach(el => {
+    el.textContent = session.role === 'admin' ? 'Administrateur' : 'Client';
+  });
+
+  /* ============================================================
+     CONFIG TYPES
+     ============================================================ */
+  const TYPES = {
+    ordinateur_fixe: { label: 'Ordinateur fixe', icone: 'fi fi-rr-computer', groupe: 'ordinateur' },
+    ordinateur_portable: { label: 'Ordinateur portable', icone: 'fi fi-rr-laptop', groupe: 'ordinateur' },
+    imprimante: { label: 'Imprimante', icone: 'fi fi-rr-print', groupe: 'peripherique' },
+    scanner: { label: 'Scanner', icone: 'fi fi-rr-print', groupe: 'peripherique' },
+    routeur: { label: 'Routeur', icone: 'fi fi-rr-wifi', groupe: 'reseau' },
+    switch: { label: 'Switch réseau', icone: 'fi fi-rr-network', groupe: 'reseau' },
+    nas: { label: 'NAS / Serveur', icone: 'fi fi-rr-server', groupe: 'reseau' },
+    onduleur: { label: 'Onduleur', icone: 'fi fi-rr-battery', groupe: 'peripherique' },
+    ecran: { label: 'Écran', icone: 'fi fi-rr-monitor', groupe: 'peripherique' },
+    telephone: { label: 'Téléphone IP', icone: 'fi fi-rr-phone-call', groupe: 'peripherique' },
+    autre: { label: 'Autre équipement', icone: 'fi fi-rr-box', groupe: 'autre' }
+  };
+
+  const STATUTS = {
+    'sous-contrat': { label: 'Sous contrat', cls: 'sous-contrat' },
+    'hors-contrat': { label: 'Hors contrat', cls: 'hors-contrat' },
+    'a-surveiller': { label: 'À surveiller', cls: 'a-surveiller' },
+    'en-panne': { label: 'En panne', cls: 'en-panne' }
+  };
+
+  /* ============================================================
+     CHARGEMENT DU MATÉRIEL
+     ============================================================ */
+  let MATERIEL = [];
+
+  async function chargerMateriel() {
+    if (!supabase || !session) return [];
+    try {
+      const { data, error } = await supabase
+        .from('materiel')
+        .select('*')
+        .eq('user_id', session.id)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.warn('[Matériel] Table :', error.message);
+        return [];
+      }
+      return data || [];
+    } catch (e) {
+      console.warn('[Matériel] Erreur :', e);
+      return [];
+    }
+  }
+
+  MATERIEL = await chargerMateriel();
+
+  const spinner = document.getElementById('chargementMateriel');
+  if (spinner) spinner.style.display = 'none';
+
+  /* ============================================================
+     ÉTAT GLOBAL
+     ============================================================ */
+  let filtreActif = 'tous';
+  let recherche = '';
+  let equipementEnEdition = null;
+  let equipementDetail = null;
+
+  /* ============================================================
+     HELPERS
+     ============================================================ */
+  function typeInfo(type) {
+    return TYPES[type] || TYPES.autre;
+  }
+
+  function statutInfo(statut) {
+    return STATUTS[statut] || STATUTS['hors-contrat'];
+  }
+
+  function formatDate(d) {
+    if (!d) return '—';
+    try {
+      return new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+    } catch (e) { return '—'; }
+  }
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+  function animer(id, cible) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (cible === 0) { el.textContent = '0'; return; }
+    let v = 0;
+    const pas = Math.max(1, Math.ceil(cible / 20));
+    const t = setInterval(() => {
+      v += pas;
+      if (v >= cible) { v = cible; clearInterval(t); }
+      el.textContent = v;
+    }, 30);
+  }
+
+  function majStats() {
+    animer('mStatTotal', MATERIEL.length);
+    animer('mStatSousContrat', MATERIEL.filter(m => m.statut === 'sous-contrat').length);
+    animer('mStatAVerifier', MATERIEL.filter(m => m.statut === 'a-surveiller').length);
+    animer('mStatEnPanne', MATERIEL.filter(m => m.statut === 'en-panne').length);
+  }
+
+  /* ============================================================
+     COMPTEURS FILTRES
+     ============================================================ */
+  function majCompteursFiltres() {
+    const compteurs = {
+      tous: MATERIEL.length,
+      ordinateur: MATERIEL.filter(m => typeInfo(m.type).groupe === 'ordinateur').length,
+      peripherique: MATERIEL.filter(m => typeInfo(m.type).groupe === 'peripherique').length,
+      reseau: MATERIEL.filter(m => typeInfo(m.type).groupe === 'reseau').length,
+      'en-panne': MATERIEL.filter(m => m.statut === 'en-panne').length
+    };
+    document.querySelectorAll('[data-filtre]').forEach(btn => {
+      const cle = btn.dataset.filtre;
+      const span = btn.querySelector('.filtre-btn__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  /* ============================================================
+     RENDU GRILLE
+     ============================================================ */
+  function rendreMateriel() {
+    const grille = document.getElementById('materielGrille');
+    const vide = document.getElementById('videMateriel');
+    const titre = document.getElementById('videTitre');
+    const texte = document.getElementById('videTexte');
+    if (!grille || !vide) return;
+
+    // Filtrer
+    let liste = MATERIEL;
+
+    if (filtreActif === 'en-panne') {
+      liste = liste.filter(m => m.statut === 'en-panne');
+    } else if (filtreActif !== 'tous') {
+      liste = liste.filter(m => typeInfo(m.type).groupe === filtreActif);
+    }
+
+    // Recherche
+    if (recherche) {
+      const r = recherche.toLowerCase();
+      liste = liste.filter(m =>
+        (m.nom || '').toLowerCase().includes(r) ||
+        (m.marque || '').toLowerCase().includes(r) ||
+        (m.modele || '').toLowerCase().includes(r) ||
+        (m.numero_serie || '').toLowerCase().includes(r)
+      );
+    }
+
+    // État vide
+    if (liste.length === 0) {
+      grille.innerHTML = '';
+      grille.style.display = 'none';
+      vide.style.display = '';
+
+      if (MATERIEL.length === 0) {
+        if (titre) titre.textContent = 'Aucun équipement enregistré';
+        if (texte) texte.textContent = 'Ajoutez vos ordinateurs, imprimantes et équipements réseau. Cela nous permet de mieux vous accompagner dans la gestion de votre parc informatique.';
+      } else if (recherche) {
+        if (titre) titre.textContent = 'Aucun résultat';
+        if (texte) texte.textContent = 'Aucun équipement ne correspond à votre recherche. Essayez un autre terme.';
+      } else {
+        if (titre) titre.textContent = 'Aucun équipement dans cette catégorie';
+        if (texte) texte.textContent = 'Essayez un autre filtre pour voir vos autres équipements.';
+      }
+      return;
+    }
+
+    vide.style.display = 'none';
+    grille.style.display = '';
+    grille.innerHTML = '';
+
+    liste.forEach(m => {
+      const info = typeInfo(m.type);
+      const st = statutInfo(m.statut);
+
+      // Specs visibles
+      let specs = [];
+      if (info.groupe === 'ordinateur') {
+        if (m.os) specs.push({ label: 'Système', valeur: m.os, icone: 'fi fi-rr-apps' });
+        if (m.ram) specs.push({ label: 'RAM', valeur: m.ram, icone: 'fi fi-rr-memory' });
+        if (m.stockage) specs.push({ label: 'Stockage', valeur: m.stockage, icone: 'fi fi-rr-hdd' });
+      } else {
+        if (m.numero_serie) specs.push({ label: 'N° série', valeur: m.numero_serie, icone: 'fi fi-rr-barcode' });
+      }
+
+      let specsHTML = '';
+      if (specs.length > 0) {
+        specsHTML = specs.map(s => `
+          <div class="materiel-card__spec">
+            <span class="materiel-card__spec-label"><i class="${s.icone}"></i> ${window.JosDore.UTILS.escapeHtml(s.label)}</span>
+            <span class="materiel-card__spec-valeur">${window.JosDore.UTILS.escapeHtml(s.valeur)}</span>
+          </div>
+        `).join('');
+      } else {
+        specsHTML = '<div class="materiel-card__spec" style="justify-content:center;color:var(--gris-400);font-style:italic;">Aucune spécification renseignée</div>';
+      }
+
+      const carte = document.createElement('article');
+      carte.className = 'materiel-card';
+      carte.dataset.id = m.id;
+      carte.innerHTML = `
+        <div class="materiel-card__photo">
+          ${m.photo_url
+            ? `<img src="${window.JosDore.UTILS.escapeHtml(m.photo_url)}" alt="${window.JosDore.UTILS.escapeHtml(m.nom)}" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'${info.icone}\\'></i>';">`
+            : `<i class="${info.icone}"></i>`
+          }
+          <span class="materiel-card__statut-badge materiel-card__statut-badge--${st.cls}">
+            ${st.label}
+          </span>
+        </div>
+
+        <div class="materiel-card__corps">
+          <div class="materiel-card__type">${window.JosDore.UTILS.escapeHtml(info.label)}</div>
+          <div class="materiel-card__nom">${window.JosDore.UTILS.escapeHtml(m.nom || 'Sans nom')}</div>
+          <div class="materiel-card__marque">${window.JosDore.UTILS.escapeHtml([m.marque, m.modele].filter(Boolean).join(' · ') || '—')}</div>
+
+          <div class="materiel-card__specs">
+            ${specsHTML}
+          </div>
+
+          <div class="materiel-card__actions">
+            <button type="button" class="btn btn--ghost btn--sm" data-action="details" data-id="${m.id}">
+              <i class="fi fi-rr-eye"></i> Détails
+            </button>
+            <button type="button" class="btn btn--or btn--sm" data-action="signaler" data-id="${m.id}">
+              <i class="fi fi-rr-warning"></i> Signaler
+            </button>
+            <button type="button" class="btn-icone-action" data-action="modifier" data-id="${m.id}" title="Modifier">
+              <i class="fi fi-rr-edit"></i>
+            </button>
+            <button type="button" class="btn-icone-action btn-icone-action--danger" data-action="supprimer" data-id="${m.id}" title="Supprimer">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grille.appendChild(carte);
+    });
+
+    /* ---------- Écouteurs actions ---------- */
+    grille.querySelectorAll('[data-action="details"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const m = MATERIEL.find(x => x.id === btn.dataset.id);
+        if (m) ouvrirDetails(m);
+      });
+    });
+
+    grille.querySelectorAll('[data-action="modifier"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const m = MATERIEL.find(x => x.id === btn.dataset.id);
+        if (m) ouvrirFormulaire(m);
+      });
+    });
+
+    grille.querySelectorAll('[data-action="supprimer"]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const m = MATERIEL.find(x => x.id === btn.dataset.id);
+        if (!m) return;
+
+        const confirmerFn = window.JosDore.Widgets && window.JosDore.Widgets.confirmer
+          ? window.JosDore.Widgets.confirmer
+          : (msg) => Promise.resolve(confirm(msg));
+
+        const ok = await confirmerFn(
+          'Supprimer définitivement « ' + m.nom + ' » ? Cette action est irréversible.',
+          { titre: 'Supprimer l\'équipement', libelleConfirmer: 'Supprimer', variante: 'rouge', icone: 'fi fi-rr-trash' }
+        );
+        if (!ok) return;
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fi fi-rr-refresh"></i>';
+
+        try {
+          if (supabase && m.id) {
+            await supabase.from('materiel').delete().eq('id', m.id).eq('user_id', session.id);
+          }
+          MATERIEL = MATERIEL.filter(x => x.id !== m.id);
+          majStats();
+          majCompteursFiltres();
+          rendreMateriel();
+
+          if (window.JosDore.Widgets) {
+            window.JosDore.Widgets.toastSucces('Équipement supprimé.');
+          }
+        } catch (e) {
+          console.warn('[Matériel] Suppression :', e);
+          if (window.JosDore.Widgets) {
+            window.JosDore.Widgets.toastErreur('Erreur lors de la suppression.');
+          }
+        }
+      });
+    });
+
+    grille.querySelectorAll('[data-action="signaler"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const m = MATERIEL.find(x => x.id === btn.dataset.id);
+        if (!m) return;
+
+        const msg = 'Bonjour Jos Dore,\n\nJ\'ai un problème avec mon équipement :\n\n' +
+                    '📦 ' + m.nom + '\n' +
+                    '🏷️ ' + (m.marque || '—') + ' ' + (m.modele || '') + '\n' +
+                    (m.numero_serie ? '🔢 N° série : ' + m.numero_serie + '\n' : '') +
+                    '\nMerci de me recontacter.';
+
+        window.open('https://wa.me/message/JWTG7DIGJR4XA1?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      });
+    });
+  }
+
+  /* ============================================================
+     OUVERTURE MODALES
+     ============================================================ */
+  const modaleAjout = document.getElementById('modaleAjout');
+  const modaleDetails = document.getElementById('modaleDetails');
+  const modaleAjoutTitre = document.getElementById('modaleAjoutTitre');
+  const formMateriel = document.getElementById('formMateriel');
+
+  function resetFormulaire() {
+    if (!formMateriel) return;
+    formMateriel.reset();
+    formMateriel.querySelectorAll('.is-invalide').forEach(el => el.classList.remove('is-invalide'));
+    document.getElementById('champsOrdi').style.display = 'none';
+    document.getElementById('champsOrdi2').style.display = 'none';
+    equipementEnEdition = null;
+  }
+
+  function ouvrirFormulaire(materielExistant) {
+    if (!modaleAjout) return;
+    resetFormulaire();
+
+    if (materielExistant) {
+      equipementEnEdition = materielExistant;
+      modaleAjoutTitre.innerHTML = '<i class="fi fi-rr-edit"></i> Modifier l\'équipement';
+
+      document.getElementById('matType').value = materielExistant.type || '';
+      document.getElementById('matNom').value = materielExistant.nom || '';
+      document.getElementById('matMarque').value = materielExistant.marque || '';
+      document.getElementById('matModele').value = materielExistant.modele || '';
+      document.getElementById('matNumeroSerie').value = materielExistant.numero_serie || '';
+      document.getElementById('matOs').value = materielExistant.os || '';
+      document.getElementById('matProcesseur').value = materielExistant.processeur || '';
+      document.getElementById('matRam').value = materielExistant.ram || '';
+      document.getElementById('matStockage').value = materielExistant.stockage || '';
+      document.getElementById('matDateAchat').value = materielExistant.date_achat || '';
+      document.getElementById('matGarantie').value = materielExistant.garantie_jusquau || '';
+      document.getElementById('matLocalisation').value = materielExistant.localisation || '';
+      document.getElementById('matUtilisateur').value = materielExistant.utilisateur_assigne || '';
+      document.getElementById('matStatut').value = materielExistant.statut || 'hors-contrat';
+      document.getElementById('matNotes').value = materielExistant.notes || '';
+
+      // Afficher/masquer les champs ordinateur
+      const type = materielExistant.type || '';
+      const isOrdi = type === 'ordinateur_fixe' || type === 'ordinateur_portable';
+      document.getElementById('champsOrdi').style.display = isOrdi ? '' : 'none';
+      document.getElementById('champsOrdi2').style.display = isOrdi ? '' : 'none';
+    } else {
+      modaleAjoutTitre.innerHTML = '<i class="fi fi-rr-plus"></i> Ajouter un équipement';
+    }
+
+    modaleAjout.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerFormulaire() {
+    if (!modaleAjout) return;
+    modaleAjout.classList.remove('is-visible');
+    document.body.style.overflow = '';
+    equipementEnEdition = null;
+  }
+
+  function ouvrirDetails(m) {
+    if (!modaleDetails) return;
+    equipementDetail = m;
+
+    const info = typeInfo(m.type);
+    const st = statutInfo(m.statut);
+
+    function ligne(label, valeur) {
+      if (!valeur) return '';
+      return `<div class="detail-ligne"><span class="detail-ligne__label">${window.JosDore.UTILS.escapeHtml(label)}</span><span class="detail-ligne__valeur">${window.JosDore.UTILS.escapeHtml(valeur)}</span></div>`;
+    }
+
+    let html = `
+      <div class="detail-section">
+        <div class="detail-section__titre"><i class="${info.icone}"></i> ${window.JosDore.UTILS.escapeHtml(info.label)}</div>
+        <div class="detail-ligne"><span class="detail-ligne__label">Statut</span><span class="materiel-card__statut-badge materiel-card__statut-badge--${st.cls}" style="position:static;display:inline-block;">${st.label}</span></div>
+        ${ligne('Nom', m.nom)}
+        ${ligne('Marque', m.marque)}
+        ${ligne('Modèle', m.modele)}
+        ${ligne('N° série', m.numero_serie)}
+      </div>
+    `;
+
+    if (info.groupe === 'ordinateur' && (m.os || m.processeur || m.ram || m.stockage)) {
+      html += `
+        <div class="detail-section">
+          <div class="detail-section__titre"><i class="fi fi-rr-computer"></i> Caractéristiques</div>
+          ${ligne('Système', m.os)}
+          ${ligne('Processeur', m.processeur)}
+          ${ligne('RAM', m.ram)}
+          ${ligne('Stockage', m.stockage)}
+        </div>
+      `;
+    }
+
+    if (m.date_achat || m.garantie_jusquau) {
+      html += `
+        <div class="detail-section">
+          <div class="detail-section__titre"><i class="fi fi-rr-calendar"></i> Achat & garantie</div>
+          ${ligne('Date d\'achat', m.date_achat ? formatDate(m.date_achat) : '')}
+          ${ligne('Garantie jusqu\'au', m.garantie_jusquau ? formatDate(m.garantie_jusquau) : '')}
+        </div>
+      `;
+    }
+
+    if (m.localisation || m.utilisateur_assigne) {
+      html += `
+        <div class="detail-section">
+          <div class="detail-section__titre"><i class="fi fi-rr-marker"></i> Localisation</div>
+          ${ligne('Localisation', m.localisation)}
+          ${ligne('Utilisateur assigné', m.utilisateur_assigne)}
+        </div>
+      `;
+    }
+
+    if (m.derniere_intervention || m.prochain_passage) {
+      html += `
+        <div class="detail-section">
+          <div class="detail-section__titre"><i class="fi fi-rr-tools"></i> Suivi Jos Dore</div>
+          ${ligne('Dernière intervention', m.derniere_intervention ? formatDate(m.derniere_intervention) : '')}
+          ${ligne('Prochain passage', m.prochain_passage ? formatDate(m.prochain_passage) : '')}
+        </div>
+      `;
+    }
+
+    if (m.notes) {
+      html += `
+        <div class="detail-section">
+          <div class="detail-section__titre"><i class="fi fi-rr-document"></i> Notes</div>
+          <div class="detail-ligne" style="flex-direction:column;align-items:stretch;">
+            <span class="detail-ligne__valeur" style="text-align:left;font-weight:400;color:var(--gris-700);line-height:1.6;">${window.JosDore.UTILS.escapeHtml(m.notes)}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById('modaleDetailsCorps').innerHTML = html;
+    modaleDetails.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerDetails() {
+    if (!modaleDetails) return;
+    modaleDetails.classList.remove('is-visible');
+    document.body.style.overflow = '';
+    equipementDetail = null;
+  }
+
+  /* ============================================================
+     ÉCOUTEURS MODALES
+     ============================================================ */
+  document.getElementById('modaleAjoutFermer').addEventListener('click', fermerFormulaire);
+  document.getElementById('modaleAjoutAnnuler').addEventListener('click', fermerFormulaire);
+  document.getElementById('modaleDetailsFermer').addEventListener('click', fermerDetails);
+  document.getElementById('modaleDetailsFermer2').addEventListener('click', fermerDetails);
+
+  document.getElementById('modaleDetailsModifier').addEventListener('click', () => {
+    if (equipementDetail) {
+      fermerDetails();
+      setTimeout(() => ouvrirFormulaire(equipementDetail), 150);
+    }
+  });
+
+  [modaleAjout, modaleDetails].forEach(modale => {
+    if (modale) {
+      modale.addEventListener('click', (e) => {
+        if (e.target === modale) {
+          if (modale === modaleAjout) fermerFormulaire();
+          else fermerDetails();
+        }
+      });
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (modaleAjout && modaleAjout.classList.contains('is-visible')) fermerFormulaire();
+      if (modaleDetails && modaleDetails.classList.contains('is-visible')) fermerDetails();
+    }
+  });
+
+  /* ============================================================
+     AFFICHAGE CHAMPS ORDINATEUR SELON TYPE
+     ============================================================ */
+  document.getElementById('matType').addEventListener('change', (e) => {
+    const type = e.target.value;
+    const isOrdi = type === 'ordinateur_fixe' || type === 'ordinateur_portable';
+    document.getElementById('champsOrdi').style.display = isOrdi ? '' : 'none';
+    document.getElementById('champsOrdi2').style.display = isOrdi ? '' : 'none';
+  });
+
+  /* ============================================================
+     SOUMISSION FORMULAIRE
+     ============================================================ */
+  formMateriel.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn = document.getElementById('modaleAjoutEnregistrer');
+    formMateriel.querySelectorAll('.is-invalide').forEach(el => el.classList.remove('is-invalide'));
+
+    // Validation
+    const type = document.getElementById('matType').value;
+    const nom = document.getElementById('matNom').value.trim();
+    const statut = document.getElementById('matStatut').value;
+
+    if (!type) {
+      document.getElementById('matType').classList.add('is-invalide');
+      document.getElementById('matType').focus();
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur('Veuillez choisir un type.');
+      return;
+    }
+
+    if (nom.length < 2) {
+      document.getElementById('matNom').classList.add('is-invalide');
+      document.getElementById('matNom').focus();
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur('Le nom doit contenir au moins 2 caractères.');
+      return;
+    }
+
+    const donnees = {
+      user_id: session.id,
+      type: type,
+      nom: nom,
+      marque: document.getElementById('matMarque').value.trim() || null,
+      modele: document.getElementById('matModele').value.trim() || null,
+      numero_serie: document.getElementById('matNumeroSerie').value.trim() || null,
+      os: document.getElementById('matOs').value.trim() || null,
+      processeur: document.getElementById('matProcesseur').value.trim() || null,
+      ram: document.getElementById('matRam').value.trim() || null,
+      stockage: document.getElementById('matStockage').value.trim() || null,
+      date_achat: document.getElementById('matDateAchat').value || null,
+      garantie_jusquau: document.getElementById('matGarantie').value || null,
+      localisation: document.getElementById('matLocalisation').value.trim() || null,
+      utilisateur_assigne: document.getElementById('matUtilisateur').value.trim() || null,
+      statut: statut,
+      sous_contrat: statut === 'sous-contrat',
+      notes: document.getElementById('matNotes').value.trim() || null,
+      updated_at: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    const label = equipementEnEdition ? 'Mise à jour…' : 'Enregistrement…';
+    btn.innerHTML = '<i class="fi fi-rr-refresh"></i> ' + label;
+
+    try {
+      if (!supabase) throw new Error('Supabase non disponible');
+
+      if (equipementEnEdition) {
+        // Mise à jour
+        const { error } = await supabase
+          .from('materiel')
+          .update(donnees)
+          .eq('id', equipementEnEdition.id)
+          .eq('user_id', session.id);
+        if (error) throw new Error(error.message);
+
+        // Mise à jour locale
+        const index = MATERIEL.findIndex(x => x.id === equipementEnEdition.id);
+        if (index !== -1) MATERIEL[index] = { ...MATERIEL[index], ...donnees };
+
+        if (window.JosDore.Widgets) window.JosDore.Widgets.toastSucces('Équipement modifié avec succès.');
+      } else {
+        // Création
+        const { data, error } = await supabase
+          .from('materiel')
+          .insert(donnees)
+          .select()
+          .single();
+        if (error) throw new Error(error.message);
+
+        if (data) MATERIEL.unshift(data);
+
+        if (window.JosDore.Widgets) window.JosDore.Widgets.toastSucces('Équipement ajouté avec succès.');
+      }
+
+      majStats();
+      majCompteursFiltres();
+      rendreMateriel();
+      fermerFormulaire();
+
+    } catch (err) {
+      console.error('[Matériel] Submit :', err);
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastErreur('Erreur : ' + (err.message || 'impossible de sauvegarder.'));
+      }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fi fi-rr-check"></i> Enregistrer';
+    }
+  });
+
+  /* ============================================================
+     BOUTONS "AJOUTER"
+     ============================================================ */
+  document.getElementById('btnAjouterTop').addEventListener('click', () => ouvrirFormulaire(null));
+  document.getElementById('btnAjouterVide').addEventListener('click', () => ouvrirFormulaire(null));
+
+  /* ============================================================
+     FILTRES & RECHERCHE
+     ============================================================ */
+  document.querySelectorAll('[data-filtre]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtre;
+      rendreMateriel();
+    });
+  });
+
+  const rechercheInput = document.getElementById('rechercheInput');
+  if (rechercheInput) {
+    rechercheInput.addEventListener('input', (e) => {
+      recherche = e.target.value.trim();
+      rendreMateriel();
+    });
+  }
+
+  /* ============================================================
+     INITIALISATION
+     ============================================================ */
+  majStats();
+  majCompteursFiltres();
+  rendreMateriel();
+
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Mon matériel chargé — ' + MATERIEL.length + ' équipements');
+  }
+
+});
+</script>
+
+</body>
+</html>

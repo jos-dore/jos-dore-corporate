@@ -1,0 +1,47 @@
+﻿[
+  {
+    "id": "art-001",
+    "titre": "Comment reconnaître un ordinateur infecté par un virus",
+    "slug": "reconnaitre-ordinateur-infecte-virus",
+    "extrait": "Les 7 signes qui ne trompent pas et comment réagir rapidement avant de perdre vos données.",
+    "contenu": "<p>Votre ordinateur est soudainement plus lent ? Des fenêtres publicitaires s'ouvrent sans cesse ? Il est peut-être infecté.</p><h3>1. Les ralentissements inexpliqués</h3><p>Si votre PC met 10 minutes à démarrer alors qu'il était rapide avant, c'est un signe.</p><h3>2. Les fenêtres pop-up</h3><p>Des publicités intempestives apparaissent, même quand vous ne naviguez pas sur internet.</p><h3>Que faire ?</h3><p>Déconnectez-vous d'internet, lancez une analyse antivirus complète, et contactez Jos Dore si le problème persiste.</p>",
+    "image": "/ressources/images/blog/virus.jpg",
+    "auteur": "Ulrich Hounkpe",
+    "date_creation": "2026-10-15T10:00:00.000Z",
+    "categorie": "Sécurité",
+    "tags": ["virus", "antivirus", "sécurité", "lenteur"],
+    "statut": "publie",
+    "temps_lecture": 4,
+    "vues": 124
+  },
+  {
+    "id": "art-002",
+    "titre": "Bien choisir son ordinateur portable en 2026",
+    "slug": "bien-choisir-ordinateur-portable-2026",
+    "extrait": "Les critères essentiels pour ne pas se tromper : processeur, RAM, autonomie et budget.",
+    "contenu": "<p>Acheter un ordinateur portable peut être un casse-tête. Voici nos conseils pour faire le bon choix au Bénin.</p><h3>1. Le processeur (CPU)</h3><p>Pour la bureautique, un Intel Core i3 ou i5 récent suffit. Pour le graphisme, visez un i7.</p><h3>2. La mémoire vive (RAM)</h3><p>8 Go est le minimum absolu en 2026. 16 Go est recommandé pour être tranquille.</p><h3>3. Le stockage</h3><p>Fuyez les disques durs mécaniques (HDD). Exigez un SSD, c'est beaucoup plus rapide.</p>",
+    "image": "/ressources/images/blog/choisir-pc.jpg",
+    "auteur": "Ulrich Hounkpe",
+    "date_creation": "2026-10-18T09:30:00.000Z",
+    "categorie": "Conseils",
+    "tags": ["achat", "portable", "matériel", "guide"],
+    "statut": "publie",
+    "temps_lecture": 6,
+    "vues": 89
+  },
+  {
+    "id": "art-003",
+    "titre": "Sauvegarder ses données : la règle 3-2-1",
+    "slug": "sauvegarder-donnees-regle-3-2-1",
+    "extrait": "La méthode simple et infaillible pour ne jamais perdre vos fichiers importants.",
+    "contenu": "<p>Un disque dur peut tomber en panne à tout moment. Pour dormir sur vos deux oreilles, appliquez la règle 3-2-1.</p><h3>La règle 3-2-1 :</h3><ul><li><strong>3</strong> copies de vos données au total.</li><li>Sur <strong>2</strong> supports différents (ex: votre PC + un disque externe).</li><li>Dont <strong>1</strong> copie située ailleurs (ex: dans le Cloud).</li></ul><p>Jos Dore peut vous aider à mettre en place cette solution automatiquement.</p>",
+    "image": "/ressources/images/blog/sauvegarde.jpg",
+    "auteur": "Ulrich Hounkpe",
+    "date_creation": "2026-10-20T14:15:00.000Z",
+    "categorie": "Sécurité",
+    "tags": ["sauvegarde", "cloud", "données", "prévention"],
+    "statut": "publie",
+    "temps_lecture": 3,
+    "vues": 210
+  }
+]

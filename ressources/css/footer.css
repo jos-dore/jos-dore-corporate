@@ -1,0 +1,241 @@
+/* ============================================================
+   JOS DORE CORPORATE — FOOTER
+   ------------------------------------------------------------
+   Gère le pied de page principal (4 colonnes), les réseaux sociaux
+   et le bas de page (copyright, mentions légales).
+   ============================================================ */
+
+/* ============================================================
+   1. STRUCTURE DU FOOTER
+   ============================================================ */
+.footer {
+  background: var(--gris-900);
+  color: var(--gris-400);
+  padding: var(--espace-16) 0 var(--espace-6);
+  margin-top: auto;
+}
+
+.footer__grille {
+  max-width: 1280px;
+  margin: 0 auto var(--espace-10);
+  padding: 0 var(--espace-6);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--espace-10);
+}
+
+/* ============================================================
+   2. COLONNE MARQUE (Logo & Description)
+   ============================================================ */
+.footer__marque {
+  max-width: 340px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-2);
+  font-family: var(--police-titre);
+  font-weight: var(--poids-black);
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: var(--espace-4);
+  text-decoration: none;
+}
+
+.footer__logo:hover {
+  text-decoration: none;
+}
+
+.footer__logo .logo__mark {
+  background: var(--or);
+  color: var(--nuit);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footer__logo .logo__mark::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  background: var(--nuit);
+  border-radius: 50%;
+}
+
+.footer__logo span {
+  color: var(--or);
+}
+
+.footer__desc {
+  font-size: var(--taille-sm);
+  line-height: 1.7;
+  margin-bottom: var(--espace-5);
+}
+
+.footer__desc strong {
+  color: #fff;
+  font-weight: var(--poids-extra);
+}
+
+/* ============================================================
+   3. RÉSEAUX SOCIAUX
+   ============================================================ */
+.footer__reseaux {
+  display: flex;
+  gap: var(--espace-2);
+  flex-wrap: wrap;
+}
+
+.footer__reseau {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--gris-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.footer__reseau:hover {
+  background: var(--or);
+  color: var(--nuit);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+/* ============================================================
+   4. COLONNES DE LIENS
+   ============================================================ */
+.footer__titre {
+  color: #fff;
+  font-size: var(--taille-sm);
+  font-weight: var(--poids-extra);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--espace-4);
+  font-family: var(--police-titre);
+}
+
+.footer__liens {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-3);
+}
+
+.footer__liens a,
+.footer__liens button {
+  font-size: var(--taille-sm);
+  color: var(--gris-400);
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.footer__liens a:hover,
+.footer__liens button:hover {
+  color: var(--or);
+  text-decoration: none;
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   5. BAS DE PAGE (Copyright & Mentions légales)
+   ============================================================ */
+.footer__bas {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--espace-6) var(--espace-6) 0;
+  border-top: 1px solid var(--gris-800);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espace-4);
+  flex-wrap: wrap;
+  font-size: var(--taille-sm);
+}
+
+.footer__bas-liens {
+  display: flex;
+  gap: var(--espace-5);
+  flex-wrap: wrap;
+}
+
+.footer__bas-liens a {
+  color: var(--gris-400);
+  text-decoration: none;
+}
+
+.footer__bas-liens a:hover {
+  color: var(--or);
+  text-decoration: none;
+}
+
+/* ============================================================
+   6. RESPONSIVE — TABLETTE (max 900px)
+   ============================================================ */
+@media (max-width: 900px) {
+  .footer__grille {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espace-8);
+  }
+  
+  .footer__marque {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+}
+
+/* ============================================================
+   7. RESPONSIVE — MOBILE (max 640px)
+   ============================================================ */
+@media (max-width: 640px) {
+  .footer {
+    padding: var(--espace-12) 0 var(--espace-5);
+  }
+  
+  .footer__grille {
+    grid-template-columns: 1fr;
+    gap: var(--espace-8);
+    margin-bottom: var(--espace-8);
+  }
+  
+  .footer__bas {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--espace-3);
+  }
+  
+  .footer__bas-liens {
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   8. PRINT (Mode Impression)
+   ============================================================ */
+@media print {
+  .footer {
+    display: none !important;
+  }
+}

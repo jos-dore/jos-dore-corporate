@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes formations — Jos Dore | Mon espace client</title>
+<meta name="description" content="Suivez vos formations Jos Dore : initiation informatique, bureautique, sécurité.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  :root { --sidebar-w: 280px; }
+  body { background: var(--gris-50); }
+  .app-layout { min-height: 100vh; }
+  @media (min-width: 1024px) {
+    .sidebar { display: block !important; transform: translateX(0) !important; }
+    .overlay { display: none !important; }
+  }
+  .main-app {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 32px 24px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-app {
+      margin-left: var(--sidebar-w);
+      padding: 40px 32px 80px;
+    }
+  }
+  .main-app__inner { max-width: 1200px; margin: 0 auto; }
+
+  /* ============================================================
+     EN-TÊTE DE PAGE
+     ============================================================ */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ============================================================
+     BANDEAU INFO
+     ============================================================ */
+  .info-bandeau {
+    background: linear-gradient(135deg, rgba(220,38,38,0.06), rgba(220,38,38,0.02));
+    border: 1px solid rgba(220,38,38,0.2);
+    border-left: 4px solid #FF0000;
+    border-radius: var(--rayon-lg);
+    padding: 16px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .info-bandeau__icone {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: #FF0000;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .info-bandeau__contenu { flex: 1; min-width: 200px; }
+  .info-bandeau__titre {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-bandeau__titre i { color: #FF0000; font-size: 16px; }
+  .info-bandeau__texte {
+    font-size: 13px;
+    color: var(--gris-600);
+    line-height: 1.55;
+  }
+
+  /* ============================================================
+     BANDEAU PAIEMENT (avertissement)
+     ============================================================ */
+  .bandeau-paiement {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.3);
+    border-left: 4px solid var(--or);
+    border-radius: var(--rayon-lg);
+    padding: 16px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .bandeau-paiement__icone {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--grad-or);
+    color: var(--nuit);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .bandeau-paiement__contenu { flex: 1; min-width: 200px; }
+  .bandeau-paiement__titre {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 3px;
+  }
+  .bandeau-paiement__texte {
+    font-size: 13px;
+    color: var(--gris-600);
+    line-height: 1.55;
+  }
+
+  /* ============================================================
+     MINI STATS
+     ============================================================ */
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .mini-stat {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: var(--transition);
+  }
+  .mini-stat:hover { border-color: var(--or); box-shadow: var(--ombre-sm); }
+  .mini-stat__icone {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .mini-stat__icone--or { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .mini-stat__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .mini-stat__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .mini-stat__icone--rouge { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .mini-stat__texte { min-width: 0; }
+  .mini-stat__valeur {
+    font-family: var(--police-titre);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .mini-stat__label {
+    font-size: 12.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+     FILTRES
+     ============================================================ */
+  .filtres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .filtre-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover { border-color: var(--or); color: var(--or-fonce); }
+  .filtre-btn.is-actif {
+    background: var(--or);
+    border-color: var(--or);
+    color: var(--nuit);
+  }
+  .filtre-btn--verrou {
+    border-color: rgba(220,38,38,0.3);
+    color: var(--rouge);
+  }
+  .filtre-btn--verrou:hover { border-color: var(--rouge); }
+  .filtre-btn--verrou.is-actif {
+    background: var(--rouge);
+    border-color: var(--rouge);
+    color: #fff;
+  }
+  .filtre-btn__compteur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(10,37,64,0.08);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .filtre-btn.is-actif .filtre-btn__compteur { background: rgba(10,37,64,0.15); }
+  .filtre-btn--verrou.is-actif .filtre-btn__compteur { background: rgba(255,255,255,0.25); color: #fff; }
+
+  /* ============================================================
+     GRILLE FORMATIONS
+     ============================================================ */
+  .formations-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+  }
+
+  .formation-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .formation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+  .formation-card--verrouillee {
+    border-color: rgba(220,38,38,0.25);
+  }
+  .formation-card--verrouillee::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, var(--rouge), #991B1B);
+    z-index: 3;
+  }
+
+  .formation-card__vignette {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .formation-card--verrouillee .formation-card__vignette {
+    cursor: not-allowed;
+  }
+  .formation-card__vignette img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, filter 0.3s ease;
+  }
+  .formation-card:hover .formation-card__vignette img { transform: scale(1.05); }
+  .formation-card--verrouillee .formation-card__vignette img {
+    filter: blur(6px) brightness(0.6);
+    transform: scale(1.1);
+  }
+
+  /* Cadenas sur vignette verrouillée */
+  .formation-card__cadenas {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: rgba(220,38,38,0.95);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 12px 32px rgba(220,38,38,0.5);
+    z-index: 3;
+    animation: pulseLock 2s ease-in-out infinite;
+  }
+  @keyframes pulseLock {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%      { transform: translate(-50%, -50%) scale(1.08); }
+  }
+
+  .formation-card__play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(255,0,0,0.92);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    pointer-events: none;
+  }
+  .formation-card:hover .formation-card__play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #FF0000;
+  }
+  .formation-card__play::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,0,0,0.4);
+    animation: pulsePlay 2s ease-out infinite;
+  }
+  @keyframes pulsePlay {
+    0%   { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .formation-card__badges {
+    position: absolute;
+    top: 12px; left: 12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  .formation-card__badge {
+    padding: 5px 10px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .formation-card__badge--niveau {
+    background: rgba(10,37,64,0.85);
+    color: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .formation-card__badge--terminee {
+    background: var(--vert);
+    color: #fff;
+  }
+  .formation-card__badge--encours {
+    background: var(--bleu);
+    color: #fff;
+  }
+  .formation-card__badge--verrou {
+    background: var(--rouge);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .formation-card__duree {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    padding: 4px 9px;
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    backdrop-filter: blur(8px);
+    letter-spacing: 0.3px;
+    z-index: 2;
+  }
+
+  .formation-card__corps {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .formation-card__titre {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .formation-card__desc {
+    font-size: 13px;
+    color: var(--gris-500);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .formation-card__progression { margin-bottom: 16px; }
+  .formation-card__progression-entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gris-500);
+    margin-bottom: 8px;
+  }
+  .formation-card__progression-valeur {
+    font-family: var(--police-titre);
+    font-weight: 900;
+    color: var(--or-fonce);
+  }
+  .formation-card__progression-barre {
+    height: 6px;
+    background: var(--gris-100);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .formation-card__progression-remplie {
+    height: 100%;
+    background: var(--grad-or);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+  .formation-card__progression-remplie--terminee {
+    background: linear-gradient(135deg, var(--vert), #059669);
+  }
+
+  /* Bloc prix pour formation verrouillée */
+  .formation-card__prix {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: var(--rayon-md);
+    margin-bottom: 14px;
+  }
+  .formation-card__prix-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gris-500);
+    margin-bottom: 2px;
+  }
+  .formation-card__prix-valeur {
+    font-family: var(--police-titre);
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--or-fonce);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .formation-card__prix-badge {
+    padding: 5px 11px;
+    background: var(--rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .formation-card__actions {
+    display: flex;
+    gap: 8px;
+  }
+  .formation-card__actions .btn {
+    flex: 1;
+    padding: 11px 14px;
+    font-size: 13px;
+  }
+  .formation-card__actions .btn[disabled] { opacity: 0.6; cursor: wait; }
+
+  /* ============================================================
+     ÉTAT VIDE
+     ============================================================ */
+  .vide-bloc {
+    background: #fff;
+    border: 2px dashed var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-bloc__icone {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: rgba(245,158,11,0.08);
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 20px;
+  }
+  .vide-bloc__titre {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .vide-bloc__texte {
+    font-size: 14.5px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    max-width: 460px;
+    margin: 0 auto 24px;
+  }
+  .vide-bloc__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     SPINNER
+     ============================================================ */
+  .chargement-services {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px 20px;
+    color: var(--gris-500);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .chargement-services__spinner {
+    width: 24px; height: 24px;
+    border: 3px solid rgba(245,158,11,0.2);
+    border-top-color: var(--or);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ============================================================
+     MODALE PAIEMENT
+     ============================================================ */
+  .modale-paiement {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,37,64,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modale-paiement.is-visible { display: flex; }
+  .modale-paiement__contenu {
+    background: #fff;
+    border-radius: var(--rayon-lg);
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: popIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .modale-paiement__entete {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #0A2540, #1E3A5F);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: var(--rayon-lg) var(--rayon-lg) 0 0;
+  }
+  .modale-paiement__titre {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modale-paiement__titre i { color: var(--or); font-size: 20px; }
+  .modale-paiement__fermer {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .modale-paiement__fermer:hover {
+    background: rgba(255,255,255,0.25);
+    transform: rotate(90deg);
+  }
+  .modale-paiement__corps { padding: 24px; }
+  .modale-paiement__formation {
+    background: var(--gris-50);
+    border-radius: var(--rayon-md);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .modale-paiement__formation-titre {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .modale-paiement__formation-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--gris-500);
+    font-weight: 600;
+  }
+  .modale-paiement__formation-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .modale-paiement__formation-meta i { color: var(--or-fonce); font-size: 13px; }
+
+  .modale-paiement__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.10), rgba(245,158,11,0.03));
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: var(--rayon-md);
+    margin-bottom: 20px;
+  }
+  .modale-paiement__total-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+  }
+  .modale-paiement__total-valeur {
+    font-family: var(--police-titre);
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--or-fonce);
+    letter-spacing: -0.02em;
+  }
+
+  .modale-paiement__methodes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .modale-paiement__methode {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 2px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .modale-paiement__methode:hover {
+    border-color: var(--or);
+    background: rgba(245,158,11,0.03);
+  }
+  .modale-paiement__methode.is-actif {
+    border-color: var(--or);
+    background: rgba(245,158,11,0.08);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+  }
+  .modale-paiement__methode-icone {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    background: rgba(10,37,64,0.06);
+    color: var(--nuit);
+  }
+  .modale-paiement__methode-texte { flex: 1; }
+  .modale-paiement__methode-titre {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 2px;
+  }
+  .modale-paiement__methode-desc {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    line-height: 1.4;
+  }
+  .modale-paiement__methode-radio {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--gris-300);
+    flex-shrink: 0;
+    position: relative;
+    transition: var(--transition);
+  }
+  .modale-paiement__methode.is-actif .modale-paiement__methode-radio {
+    border-color: var(--or);
+    background: var(--or);
+  }
+  .modale-paiement__methode.is-actif .modale-paiement__methode-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--nuit);
+  }
+
+  .modale-paiement__info {
+    background: rgba(37,99,235,0.06);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: var(--rayon-md);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 12.5px;
+    color: var(--gris-700);
+    line-height: 1.55;
+    display: flex;
+    gap: 10px;
+  }
+  .modale-paiement__info i {
+    color: var(--bleu);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .modale-paiement__actions {
+    display: flex;
+    gap: 10px;
+  }
+  .modale-paiement__actions .btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     MINI FOOTER
+     ============================================================ */
+  .app-footer {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) { .app-footer { margin-left: var(--sidebar-w); } }
+  .app-footer__liens {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .app-footer a { color: var(--gris-500); text-decoration: none; }
+  .app-footer a:hover { color: var(--or-fonce); }
+
+  /* ============================================================
+     WHATSAPP
+     ============================================================ */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.08);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1023px) {
+    .main-app { padding: 24px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .info-bandeau { padding: 14px 18px; }
+    .bandeau-paiement { padding: 14px 18px; }
+    .formations-grille { grid-template-columns: 1fr; gap: 16px; }
+    .formation-card__corps { padding: 18px; }
+    .formation-card__actions { flex-direction: column; }
+    .formation-card__cadenas { width: 56px; height: 56px; font-size: 26px; }
+    .vide-bloc { padding: 40px 20px; }
+    .vide-bloc__actions { flex-direction: column; }
+    .vide-bloc__actions .btn { width: 100%; }
+    .modale-paiement__actions { flex-direction: column; }
+    .btn-whatsapp-float {
+      width: 48px; height: 48px;
+      font-size: 24px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER APP                                                    -->
+<!-- ============================================================ -->
+<header class="header header--app" id="header">
+  <div class="header__inner">
+
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/espace-client/tableau-de-bord.html" class="logo" aria-label="Jos Dore — Espace client">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Espace client</span>
+      </div>
+    </a>
+
+    <div class="header__actions">
+      <a href="/espace-client/mises-a-jour.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/aide/" class="header__icone" aria-label="Aide">
+        <i class="fi fi-rr-interrogation"></i>
+      </a>
+      <a href="/espace-client/mon-profil.html" class="header__avatar" data-user-avatar title="Mon profil">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR                                                       -->
+<!-- ============================================================ -->
+<aside class="sidebar" id="sidebar" aria-label="Navigation de l'espace client">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Client</span>
+        <i class="fi fi-rr-check-circle" title="Compte vérifié"></i>
+      </div>
+      <div class="sidebar__profil-role" data-user-role>client</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Mon espace</div>
+
+  <a href="/espace-client/tableau-de-bord.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+  <a href="/espace-client/mes-services.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings"></i>
+    <span>Mes services</span>
+  </a>
+  <a href="/espace-client/mes-formations.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Mes formations</span>
+  </a>
+  <a href="/espace-client/mes-factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Mes factures</span>
+  </a>
+  <a href="/espace-client/mon-materiel.html" class="sidebar__lien">
+    <i class="fi fi-rr-computer"></i>
+    <span>Mon matériel</span>
+  </a>
+  <a href="/espace-client/mises-a-jour.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Mises à jour</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon compte</div>
+
+  <a href="/espace-client/mon-profil.html" class="sidebar__lien">
+    <i class="fi fi-rr-user"></i>
+    <span>Mon profil</span>
+  </a>
+  <a href="/espace-client/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/aide/" class="sidebar__lien">
+    <i class="fi fi-rr-interrogation"></i>
+    <span>Aide & support</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="app-layout">
+  <div class="main-app">
+    <div class="main-app__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">Mes formations</h1>
+          <p class="page-entete__sous">
+            Retrouvez toutes vos formations et suivez votre progression.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/aide/contact-support.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-headset"></i> Support
+          </a>
+          <a href="/service-formation.html" class="btn btn--or btn--sm">
+            <i class="fi fi-rr-plus"></i> Nouvelle formation
+          </a>
+        </div>
+      </div>
+
+      <!-- ============ BANDEAU YOUTUBE ============ -->
+      <div class="info-bandeau">
+        <div class="info-bandeau__icone">
+          <i class="fi fi-brands-youtube"></i>
+        </div>
+        <div class="info-bandeau__contenu">
+          <div class="info-bandeau__titre">
+            <i class="fi fi-rr-lock"></i>
+            Formations privées Jos Dore
+          </div>
+          <div class="info-bandeau__texte">
+            Toutes nos formations sont hébergées sur YouTube en mode
+            <strong>non répertorié</strong>. Elles ne sont accessibles
+            qu'ici, depuis votre espace client.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ BANDEAU PAIEMENT ============ -->
+      <div class="bandeau-paiement" id="bandeauPaiement" style="display:none;">
+        <div class="bandeau-paiement__icone">
+          <i class="fi fi-rr-lock"></i>
+        </div>
+        <div class="bandeau-paiement__contenu">
+          <div class="bandeau-paiement__titre">Accès payant</div>
+          <div class="bandeau-paiement__texte">
+            Certaines formations sont payantes. Une fois réglées, elles
+            sont accessibles <strong>à vie</strong> depuis votre espace.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ MINI STATS ============ -->
+      <div class="mini-stats">
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--or">
+            <i class="fi fi-rr-graduation-cap"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatFormations">—</div>
+            <div class="mini-stat__label">Formations disponibles</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--bleu">
+            <i class="fi fi-rr-play"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatEnCours">—</div>
+            <div class="mini-stat__label">En cours</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--vert">
+            <i class="fi fi-rr-check-circle"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatTerminees">—</div>
+            <div class="mini-stat__label">Terminées</div>
+          </div>
+        </div>
+
+        <div class="mini-stat">
+          <div class="mini-stat__icone mini-stat__icone--rouge">
+            <i class="fi fi-rr-lock"></i>
+          </div>
+          <div class="mini-stat__texte">
+            <div class="mini-stat__valeur" id="mStatAVerrouiller">—</div>
+            <div class="mini-stat__label">À débloquer</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============ FILTRES ============ -->
+      <div class="filtres">
+        <button type="button" class="filtre-btn is-actif" data-filtre="tous">
+          <i class="fi fi-rr-apps"></i>
+          Toutes
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn filtre-btn--verrou" data-filtre="a-payer">
+          <i class="fi fi-rr-lock"></i>
+          À débloquer
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="en-cours">
+          <i class="fi fi-rr-play"></i>
+          En cours
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="terminee">
+          <i class="fi fi-rr-check-circle"></i>
+          Terminées
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+        <button type="button" class="filtre-btn" data-filtre="a-venir">
+          <i class="fi fi-rr-time-past"></i>
+          À venir
+          <span class="filtre-btn__compteur">0</span>
+        </button>
+      </div>
+
+      <!-- ============ SPINNER ============ -->
+      <div class="chargement-services" id="chargementFormations">
+        <div class="chargement-services__spinner"></div>
+        <span>Chargement de vos formations…</span>
+      </div>
+
+      <!-- ============ GRILLE FORMATIONS ============ -->
+      <div class="formations-grille" id="formationsGrille" style="display:none;"></div>
+
+      <!-- ============ ÉTAT VIDE ============ -->
+      <div class="vide-bloc" id="videFormations" style="display:none;">
+        <div class="vide-bloc__icone">
+          <i class="fi fi-rr-graduation-cap"></i>
+        </div>
+        <div class="vide-bloc__titre">Aucune formation pour le moment</div>
+        <p class="vide-bloc__texte">
+          Vous n'avez pas encore de formation active. Découvrez nos
+          programmes d'initiation informatique, de bureautique et de
+          sécurité en ligne.
+        </p>
+        <div class="vide-bloc__actions">
+          <a href="/service-formation.html" class="btn btn--or">
+            <i class="fi fi-rr-graduation-cap"></i> Découvrir les formations
+          </a>
+          <a href="/contact.html" class="btn btn--ghost">
+            <i class="fi fi-rr-calendar"></i> Nous contacter
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- MODALE LECTEUR VIDÉO                                          -->
+<!-- ============================================================ -->
+<div class="modale-video" id="modaleVideo" role="dialog" aria-modal="true" aria-labelledby="modaleVideoTitre">
+  <div class="modale-video__contenu">
+
+    <div class="modale-video__entete">
+      <h2 class="modale-video__titre" id="modaleVideoTitre">Formation</h2>
+      <button type="button" class="modale-video__fermer" id="modaleVideoFermer" aria-label="Fermer la vidéo">
+        <i class="fi fi-rr-cross-small"></i>
+      </button>
+    </div>
+
+    <div class="modale-video__lecteur" id="modaleVideoLecteur"></div>
+
+    <div class="modale-video__pied">
+      <div class="modale-video__infos" id="modaleVideoInfos">
+        <span><i class="fi fi-rr-user"></i> Jos Dore</span>
+        <span><i class="fi fi-rr-lock"></i> Vidéo privée</span>
+        <span><i class="fi fi-brands-youtube"></i> YouTube</span>
+      </div>
+      <div class="modale-video__pied-actions">
+        <button type="button" class="btn btn--vert btn--sm" id="modaleVideoTerminer">
+          <i class="fi fi-rr-check-circle"></i> Marquer terminée
+        </button>
+        <a href="#" id="modaleVideoOuvrirYT" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+          <i class="fi fi-brands-youtube"></i> YouTube
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODALE PAIEMENT                                               -->
+<!-- ============================================================ -->
+<div class="modale-paiement" id="modalePaiement" role="dialog" aria-modal="true" aria-labelledby="modalePaiementTitre">
+  <div class="modale-paiement__contenu">
+
+    <div class="modale-paiement__entete">
+      <h2 class="modale-paiement__titre" id="modalePaiementTitre">
+        <i class="fi fi-rr-lock"></i> Débloquer la formation
+      </h2>
+      <button type="button" class="modale-paiement__fermer" id="modalePaiementFermer" aria-label="Fermer">
+        <i class="fi fi-rr-cross-small"></i>
+      </button>
+    </div>
+
+    <div class="modale-paiement__corps">
+
+      <div class="modale-paiement__formation">
+        <div class="modale-paiement__formation-titre" id="paiementFormationTitre">—</div>
+        <div class="modale-paiement__formation-meta">
+          <span><i class="fi fi-rr-clock"></i> <span id="paiementFormationDuree">—</span></span>
+          <span><i class="fi fi-rr-signal-alt"></i> <span id="paiementFormationNiveau">—</span></span>
+        </div>
+      </div>
+
+      <div class="modale-paiement__total">
+        <span class="modale-paiement__total-label">Montant à payer</span>
+        <span class="modale-paiement__total-valeur" id="paiementMontant">— FCFA</span>
+      </div>
+
+      <div class="modale-paiement__methodes" id="paiementMethodes">
+        <div class="modale-paiement__methode is-actif" data-methode="kkiapay">
+          <div class="modale-paiement__methode-icone"><i class="fi fi-rr-credit-card"></i></div>
+          <div class="modale-paiement__methode-texte">
+            <div class="modale-paiement__methode-titre">Mobile Money / Carte</div>
+            <div class="modale-paiement__methode-desc">MTN, Moov, Visa, Mastercard (via Kkiapay)</div>
+          </div>
+          <div class="modale-paiement__methode-radio"></div>
+        </div>
+
+        <div class="modale-paiement__methode" data-methode="whatsapp">
+          <div class="modale-paiement__methode-icone" style="background: rgba(37,211,102,0.12); color: #25D366;">
+            <i class="fi fi-brands-whatsapp"></i>
+          </div>
+          <div class="modale-paiement__methode-texte">
+            <div class="modale-paiement__methode-titre">Payer via WhatsApp</div>
+            <div class="modale-paiement__methode-desc">Mobile Money direct + preuve de paiement</div>
+          </div>
+          <div class="modale-paiement__methode-radio"></div>
+        </div>
+      </div>
+
+      <div class="modale-paiement__info">
+        <i class="fi fi-rr-shield-check"></i>
+        <span>Paiement sécurisé. Votre accès est débloqué <strong>immédiatement</strong> après confirmation.</span>
+      </div>
+
+      <div class="modale-paiement__actions">
+        <button type="button" class="btn btn--ghost" id="paiementAnnuler">Annuler</button>
+        <button type="button" class="btn btn--or" id="paiementConfirmer">
+          <i class="fi fi-rr-lock-open-alt"></i> Payer maintenant
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MINI FOOTER                                                   -->
+<!-- ============================================================ -->
+<footer class="app-footer">
+  <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+  <div class="app-footer__liens">
+    <a href="/legal/mentions-legales.html">Mentions légales</a>
+    <a href="/legal/cgu.html">CGU</a>
+    <a href="/legal/confidentialite.html">Confidentialité</a>
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- WHATSAPP                                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter le support">
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   MES FORMATIONS — Payantes / verrouillage + Supabase
+   ------------------------------------------------------------
+   Cycle de vie d'une formation :
+     a-payer (verrouillée) → a-venir → en-cours → terminee
+
+   Une formation est VERROUILLÉE si :
+     - son prix > 0
+     - ET son statut === 'a-payer'
+
+   Une formation GRATUITE (prix = 0) n'est jamais verrouillée.
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ---------- PROTECTION ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger();
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Client';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+    document.querySelectorAll('[data-user-role]').forEach(el => {
+      el.textContent = session.role === 'admin' ? 'Administrateur' : 'Client';
+    });
+  }
+
+  /* ============================================================
+     CATALOGUE PAR DÉFAUT (fallback si Supabase vide/absent)
+     ============================================================ */
+  const CATALOGUE_DEFAUT = [
+    {
+      formation_id: 'f-001',
+      titre: 'Initiation à l\'ordinateur — Les bases',
+      description: 'Allumer, éteindre, utiliser la souris et le clavier, gérer ses fichiers.',
+      video_id: 'dQw4w9WgXcQ',
+      duree: '1h 20',
+      niveau: 'Débutant',
+      categorie: 'Initiation',
+      prix: 15000,
+      progression: 0,
+      statut: 'a-payer'
+    },
+    {
+      formation_id: 'f-002',
+      titre: 'Word — Créer un document professionnel',
+      description: 'Mise en forme, styles, tableaux et export PDF.',
+      video_id: 'dQw4w9WgXcQ',
+      duree: '1h 45',
+      niveau: 'Débutant',
+      categorie: 'Bureautique',
+      prix: 25000,
+      progression: 0,
+      statut: 'a-payer'
+    },
+    {
+      formation_id: 'f-003',
+      titre: 'Excel — Les formules essentielles',
+      description: 'SOMME, MOYENNE, SI, RECHERCHEV : les formules essentielles.',
+      video_id: 'dQw4w9WgXcQ',
+      duree: '2h 10',
+      niveau: 'Intermédiaire',
+      categorie: 'Bureautique',
+      prix: 35000,
+      progression: 0,
+      statut: 'a-payer'
+    },
+    {
+      formation_id: 'f-004',
+      titre: 'Sécurité en ligne — Se protéger des arnaques',
+      description: 'Reconnaître le phishing, créer des mots de passe solides, sauvegarder.',
+      video_id: 'dQw4w9WgXcQ',
+      duree: '55 min',
+      niveau: 'Tous niveaux',
+      categorie: 'Sécurité',
+      prix: 10000,
+      progression: 0,
+      statut: 'a-payer'
+    }
+  ];
+
+  /* ============================================================
+     CHARGEMENT DES FORMATIONS
+     ============================================================ */
+  let FORMATIONS = [];
+
+  async function chargerFormations() {
+    if (!supabase || !session) return CATALOGUE_DEFAUT;
+    try {
+      const { data, error } = await supabase
+        .from('inscriptions')
+        .select('*')
+        .eq('user_id', session.id)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.warn('[Formations] Table inscriptions :', error.message);
+        return CATALOGUE_DEFAUT;
+      }
+
+      if (!data || data.length === 0) return CATALOGUE_DEFAUT;
+
+      return data.map(f => {
+        const prix = Number(f.prix || 0);
+        let statut = (f.statut || 'a-payer').toLowerCase();
+
+        // Si formation gratuite et statut a-payer → a-venir
+        if (prix === 0 && statut === 'a-payer') statut = 'a-venir';
+
+        return {
+          id: f.id,
+          formation_id: f.formation_id || f.id,
+          titre: f.titre || 'Formation',
+          description: f.description || '',
+          video_id: f.video_id || 'dQw4w9WgXcQ',
+          duree: f.duree || '—',
+          niveau: f.niveau || 'Tous niveaux',
+          categorie: f.categorie || 'Formation',
+          prix: prix,
+          progression: typeof f.progression === 'number' ? f.progression : 0,
+          statut: statut
+        };
+      });
+    } catch (e) {
+      console.warn('[Formations] Erreur :', e);
+      return CATALOGUE_DEFAUT;
+    }
+  }
+
+  FORMATIONS = await chargerFormations();
+
+  /* ---------- Helpers ---------- */
+  function estVerrouillee(f) {
+    return (f.prix || 0) > 0 && f.statut === 'a-payer';
+  }
+
+  const spinner = document.getElementById('chargementFormations');
+  if (spinner) spinner.style.display = 'none';
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+  function calculerStats() {
+    return {
+      total: FORMATIONS.length,
+      enCours: FORMATIONS.filter(f => f.statut === 'en-cours').length,
+      terminees: FORMATIONS.filter(f => f.statut === 'terminee').length,
+      aVerrouiller: FORMATIONS.filter(f => estVerrouillee(f)).length
+    };
+  }
+
+  function animer(id, cible, suffixe) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    suffixe = suffixe || '';
+    if (cible === 0) { el.textContent = '0' + suffixe; return; }
+    if (typeof cible !== 'number') { el.textContent = cible + suffixe; return; }
+    let v = 0;
+    const pas = Math.max(1, Math.ceil(cible / 20));
+    const t = setInterval(() => {
+      v += pas;
+      if (v >= cible) { v = cible; clearInterval(t); }
+      el.textContent = v + suffixe;
+    }, 30);
+  }
+
+  const stats = calculerStats();
+  animer('mStatFormations', stats.total);
+  animer('mStatEnCours', stats.enCours);
+  animer('mStatTerminees', stats.terminees);
+  animer('mStatAVerrouiller', stats.aVerrouiller);
+
+  /* ---------- Afficher le bandeau paiement si nécessaire ---------- */
+  const bandeau = document.getElementById('bandeauPaiement');
+  if (bandeau && stats.aVerrouiller > 0) {
+    bandeau.style.display = '';
+  }
+
+  /* ============================================================
+     FILTRES
+     ============================================================ */
+  const filtres = document.querySelectorAll('.filtre-btn');
+  let filtreActif = 'tous';
+
+  function majCompteursFiltres() {
+    const compteurs = {
+      tous: FORMATIONS.length,
+      'a-payer': FORMATIONS.filter(f => estVerrouillee(f)).length,
+      'en-cours': FORMATIONS.filter(f => f.statut === 'en-cours').length,
+      terminee: FORMATIONS.filter(f => f.statut === 'terminee').length,
+      'a-venir': FORMATIONS.filter(f => f.statut === 'a-venir').length
+    };
+    filtres.forEach(btn => {
+      const cle = btn.dataset.filtre;
+      const span = btn.querySelector('.filtre-btn__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  filtres.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtres.forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtre;
+      rendreFormations();
+    });
+  });
+
+  /* ============================================================
+     MISE À JOUR D'UNE FORMATION
+     ============================================================ */
+  async function mettreAJourFormation(formationId, changements) {
+    const f = FORMATIONS.find(x => x.formation_id === formationId || x.id === formationId);
+    if (f) Object.assign(f, changements);
+
+    if (supabase && session && f && f.id) {
+      try {
+        await supabase
+          .from('inscriptions')
+          .update(changements)
+          .eq('id', f.id)
+          .eq('user_id', session.id);
+      } catch (e) {
+        console.warn('[Formations] Update :', e);
+      }
+    }
+  }
+
+  /* ============================================================
+     DÉBLOCAGE APRÈS PAIEMENT
+     ============================================================ */
+  async function debloquerFormation(formationId, methode) {
+    const f = FORMATIONS.find(x => x.formation_id === formationId || x.id === formationId);
+    if (!f) return;
+
+    // ✅ Enregistrer le paiement (Supabase)
+    if (supabase && session && f.id) {
+      try {
+        await supabase.from('paiements_formation').insert({
+          user_id: session.id,
+          inscription_id: f.id,
+          montant: f.prix,
+          fournisseur: methode || 'kkiapay',
+          statut: 'reussi',
+          reference: 'SIM-' + Date.now()
+        });
+      } catch (e) {
+        console.warn('[Formations] Paiement :', e);
+      }
+    }
+
+    // ✅ Débloquer la formation
+    await mettreAJourFormation(formationId, {
+      statut: 'a-venir',
+      payee_le: new Date().toISOString()
+    });
+
+    if (window.JosDore.Widgets) {
+      window.JosDore.Widgets.toastSucces('Formation débloquée ! Vous pouvez maintenant commencer.', 'Paiement confirmé 🎉');
+    }
+  }
+
+  /* ============================================================
+     RENDU DES FORMATIONS
+     ============================================================ */
+  function rendreFormations() {
+    const grille = document.getElementById('formationsGrille');
+    const vide = document.getElementById('videFormations');
+    if (!grille || !vide) return;
+
+    let liste = FORMATIONS;
+    if (filtreActif === 'a-payer') {
+      liste = FORMATIONS.filter(f => estVerrouillee(f));
+    } else if (filtreActif !== 'tous') {
+      liste = FORMATIONS.filter(f => f.statut === filtreActif);
+    }
+
+    if (liste.length === 0) {
+      grille.innerHTML = '';
+      grille.style.display = 'none';
+
+      if (FORMATIONS.length === 0) {
+        vide.style.display = '';
+      } else {
+        vide.style.display = 'none';
+        grille.style.display = '';
+        grille.innerHTML = `
+          <div class="vide-bloc" style="grid-column: 1 / -1;">
+            <div class="vide-bloc__icone">
+              <i class="fi fi-rr-search"></i>
+            </div>
+            <div class="vide-bloc__titre">Aucune formation dans cette catégorie</div>
+            <p class="vide-bloc__texte">Essayez un autre filtre.</p>
+            <div class="vide-bloc__actions">
+              <button type="button" class="btn btn--or" id="btnRetourToutes">
+                <i class="fi fi-rr-apps"></i> Voir toutes les formations
+              </button>
+            </div>
+          </div>
+        `;
+        const btn = document.getElementById('btnRetourToutes');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            const filtreTous = document.querySelector('.filtre-btn[data-filtre="tous"]');
+            if (filtreTous) filtreTous.click();
+          });
+        }
+      }
+      return;
+    }
+
+    vide.style.display = 'none';
+    grille.style.display = '';
+    grille.innerHTML = '';
+
+    liste.forEach(f => {
+      const verrouillee = estVerrouillee(f);
+      const carte = document.createElement('article');
+      carte.className = 'formation-card' + (verrouillee ? ' formation-card--verrouillee' : '');
+      carte.dataset.statut = f.statut;
+
+      /* ---------- Badges ---------- */
+      let statutBadge = '';
+      if (verrouillee) {
+        statutBadge = '<span class="formation-card__badge formation-card__badge--verrou"><i class="fi fi-rr-lock"></i> Paiement requis</span>';
+      } else if (f.statut === 'en-cours') {
+        statutBadge = '<span class="formation-card__badge formation-card__badge--encours">En cours</span>';
+      } else if (f.statut === 'terminee') {
+        statutBadge = '<span class="formation-card__badge formation-card__badge--terminee">Terminée</span>';
+      } else if (f.statut === 'a-venir') {
+        statutBadge = '<span class="formation-card__badge">À venir</span>';
+      }
+
+      /* ---------- Progression ---------- */
+      const progressionClasse = f.statut === 'terminee' ? ' formation-card__progression-remplie--terminee' : '';
+      const labelProgression = verrouillee
+        ? 'Bloquée'
+        : f.statut === 'terminee'
+          ? 'Terminée ✓'
+          : f.statut === 'a-venir'
+            ? 'Pas encore commencée'
+            : f.progression + ' %';
+      const pourcentageAffiche = verrouillee ? 0 : (f.statut === 'terminee' ? 100 : (f.progression || 0));
+
+      /* ---------- Bouton principal ---------- */
+      let boutonPrincipal = '';
+      let boutonSecondaire = '';
+
+      if (verrouillee) {
+        boutonPrincipal = `
+          <button type="button"
+                  class="btn btn--or btn--sm"
+                  data-action="payer"
+                  data-formation-id="${window.JosDore.UTILS.escapeHtml(f.formation_id)}"
+                  data-titre="${window.JosDore.UTILS.escapeHtml(f.titre)}"
+                  data-duree="${window.JosDore.UTILS.escapeHtml(f.duree)}"
+                  data-niveau="${window.JosDore.UTILS.escapeHtml(f.niveau)}"
+                  data-prix="${f.prix}"
+                  style="flex: 2;">
+            <i class="fi fi-rr-lock-open-alt"></i> Payer ${window.JosDore.UTILS.formaterMontant(f.prix)}
+          </button>
+        `;
+        boutonSecondaire = `
+          <button type="button"
+                  class="btn btn--ghost btn--sm"
+                  data-action="apercu"
+                  data-formation-id="${window.JosDore.UTILS.escapeHtml(f.formation_id)}"
+                  title="Aperçu de la formation">
+            <i class="fi fi-rr-eye"></i>
+          </button>
+        `;
+      } else {
+        const labelBouton = f.statut === 'terminee' ? 'Revoir' : (f.statut === 'a-venir' ? 'Commencer' : 'Continuer');
+        const iconeBouton = f.statut === 'terminee' ? 'fi fi-rr-refresh' : 'fi fi-rr-play';
+
+        boutonPrincipal = `
+          <button type="button"
+                  class="btn btn--or btn--sm"
+                  data-action="lire"
+                  data-video-id="${window.JosDore.UTILS.escapeHtml(f.video_id)}"
+                  data-titre="${window.JosDore.UTILS.escapeHtml(f.titre)}"
+                  data-formation-id="${window.JosDore.UTILS.escapeHtml(f.formation_id)}">
+            <i class="${iconeBouton}"></i> ${labelBouton}
+          </button>
+        `;
+
+        if (f.statut !== 'terminee') {
+          boutonSecondaire = `
+            <button type="button"
+                    class="btn btn--vert btn--sm"
+                    data-action="terminer"
+                    data-formation-id="${window.JosDore.UTILS.escapeHtml(f.formation_id)}"
+                    title="Marquer comme terminée">
+              <i class="fi fi-rr-check"></i> Terminer
+            </button>
+          `;
+        } else {
+          boutonSecondaire = `
+            <button type="button"
+                    class="btn btn--ghost btn--sm"
+                    data-action="yt-direct"
+                    data-video-id="${window.JosDore.UTILS.escapeHtml(f.video_id)}"
+                    title="Ouvrir sur YouTube">
+              <i class="fi fi-brands-youtube"></i>
+            </button>
+          `;
+        }
+      }
+
+      /* ---------- Bloc prix (si verrouillée) ---------- */
+      const prixBloc = verrouillee ? `
+        <div class="formation-card__prix">
+          <div>
+            <div class="formation-card__prix-label">Prix de la formation</div>
+            <div class="formation-card__prix-valeur">${window.JosDore.UTILS.formaterMontant(f.prix)}</div>
+          </div>
+          <span class="formation-card__prix-badge">Paiement requis</span>
+        </div>
+      ` : '';
+
+      carte.innerHTML = `
+        <div class="formation-card__vignette"
+             data-video-id="${window.JosDore.UTILS.escapeHtml(f.video_id)}"
+             data-titre="${window.JosDore.UTILS.escapeHtml(f.titre)}"
+             data-formation-id="${window.JosDore.UTILS.escapeHtml(f.formation_id)}"
+             data-verrouillee="${verrouillee ? '1' : '0'}">
+          <img
+            src="https://img.youtube.com/vi/${window.JosDore.UTILS.escapeHtml(f.video_id)}/maxresdefault.jpg"
+            alt="${window.JosDore.UTILS.escapeHtml(f.titre)}"
+            loading="lazy"
+            onerror="this.src='https://img.youtube.com/vi/${window.JosDore.UTILS.escapeHtml(f.video_id)}/hqdefault.jpg';"
+          >
+          ${verrouillee
+            ? '<div class="formation-card__cadenas"><i class="fi fi-sr-lock"></i></div>'
+            : '<div class="formation-card__play"><i class="fi fi-sr-play"></i></div>'
+          }
+          <div class="formation-card__badges">
+            ${statutBadge}
+            <span class="formation-card__badge formation-card__badge--niveau">${window.JosDore.UTILS.escapeHtml(f.niveau)}</span>
+          </div>
+          <div class="formation-card__duree">
+            <i class="fi fi-rr-clock"></i> ${window.JosDore.UTILS.escapeHtml(f.duree)}
+          </div>
+        </div>
+
+        <div class="formation-card__corps">
+          <div class="formation-card__titre">${window.JosDore.UTILS.escapeHtml(f.titre)}</div>
+          <p class="formation-card__desc">${window.JosDore.UTILS.escapeHtml(f.description)}</p>
+
+          ${prixBloc}
+
+          <div class="formation-card__progression">
+            <div class="formation-card__progression-entete">
+              <span>Progression</span>
+              <span class="formation-card__progression-valeur">${labelProgression}</span>
+            </div>
+            <div class="formation-card__progression-barre">
+              <div class="formation-card__progression-remplie${progressionClasse}" style="width: ${pourcentageAffiche}%"></div>
+            </div>
+          </div>
+
+          <div class="formation-card__actions">
+            ${boutonPrincipal}
+            ${boutonSecondaire}
+          </div>
+        </div>
+      `;
+      grille.appendChild(carte);
+    });
+
+    /* ---------- Écouteurs ---------- */
+
+    // ✅ Payer
+    grille.querySelectorAll('[data-action="payer"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        ouvrirModalePaiement({
+          formationId: btn.dataset.formationId,
+          titre: btn.dataset.titre,
+          duree: btn.dataset.duree,
+          niveau: btn.dataset.niveau,
+          prix: Number(btn.dataset.prix) || 0
+        });
+      });
+    });
+
+    // ✅ Aperçu (formation verrouillée)
+    grille.querySelectorAll('[data-action="apercu"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = FORMATIONS.find(x => x.formation_id === btn.dataset.formationId || x.id === btn.dataset.formationId);
+        if (!f) return;
+
+        const texte =
+          'Titre : ' + f.titre + '\n' +
+          'Description : ' + f.description + '\n' +
+          'Durée : ' + f.duree + '\n' +
+          'Niveau : ' + f.niveau + '\n' +
+          'Catégorie : ' + f.categorie + '\n' +
+          'Prix : ' + window.JosDore.UTILS.formaterMontant(f.prix) + '\n\n' +
+          '👉 Payez pour débloquer l\'accès à vie.';
+
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.alerter(texte, {
+            titre: 'Aperçu de la formation',
+            icone: 'fi fi-rr-graduation-cap'
+          });
+        }
+      });
+    });
+
+    // ✅ Lire
+    grille.querySelectorAll('[data-action="lire"]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const formationId = btn.dataset.formationId;
+        const f = FORMATIONS.find(x => x.formation_id === formationId || x.id === formationId);
+
+        // Sécurité : ne devrait pas arriver, mais on vérifie
+        if (f && estVerrouillee(f)) {
+          ouvrirModalePaiement({
+            formationId,
+            titre: f.titre,
+            duree: f.duree,
+            niveau: f.niveau,
+            prix: f.prix
+          });
+          return;
+        }
+
+        if (f && f.statut === 'a-venir') {
+          await mettreAJourFormation(formationId, { statut: 'en-cours' });
+          majCompteursFiltres();
+          animer('mStatEnCours', FORMATIONS.filter(x => x.statut === 'en-cours').length);
+        }
+
+        ouvrirVideo(btn.dataset.videoId, btn.dataset.titre, formationId);
+      });
+    });
+
+    // ✅ Terminer
+    grille.querySelectorAll('[data-action="terminer"]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const formationId = btn.dataset.formationId;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fi fi-rr-refresh"></i>';
+
+        await mettreAJourFormation(formationId, { statut: 'terminee', progression: 100 });
+
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastSucces('Formation marquée comme terminée ! 🎉');
+        }
+
+        majCompteursFiltres();
+        rendreFormations();
+
+        const s = calculerStats();
+        animer('mStatEnCours', s.enCours);
+        animer('mStatTerminees', s.terminees);
+      });
+    });
+
+    // ✅ YouTube direct
+    grille.querySelectorAll('[data-action="yt-direct"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.open('https://www.youtube.com/watch?v=' + btn.dataset.videoId, '_blank', 'noopener');
+      });
+    });
+
+    // ✅ Clic vignette
+    grille.querySelectorAll('.formation-card__vignette').forEach(v => {
+      v.addEventListener('click', async () => {
+        const formationId = v.dataset.formationId;
+        const verrouillee = v.dataset.verrouillee === '1';
+        const f = FORMATIONS.find(x => x.formation_id === formationId || x.id === formationId);
+
+        if (verrouillee && f) {
+          ouvrirModalePaiement({
+            formationId,
+            titre: f.titre,
+            duree: f.duree,
+            niveau: f.niveau,
+            prix: f.prix
+          });
+          return;
+        }
+
+        if (f && f.statut === 'a-venir') {
+          await mettreAJourFormation(formationId, { statut: 'en-cours' });
+          majCompteursFiltres();
+          animer('mStatEnCours', FORMATIONS.filter(x => x.statut === 'en-cours').length);
+        }
+        ouvrirVideo(v.dataset.videoId, v.dataset.titre, formationId);
+      });
+    });
+  }
+
+  majCompteursFiltres();
+  rendreFormations();
+
+  /* ============================================================
+     MODALE VIDÉO
+     ============================================================ */
+  const modale = document.getElementById('modaleVideo');
+  const lecteur = document.getElementById('modaleVideoLecteur');
+  const titreModale = document.getElementById('modaleVideoTitre');
+  const btnFermer = document.getElementById('modaleVideoFermer');
+  const btnTerminer = document.getElementById('modaleVideoTerminer');
+  const lienYT = document.getElementById('modaleVideoOuvrirYT');
+
+  let formationEnCours = null;
+
+  function ouvrirVideo(videoId, titre, formationId) {
+    if (!modale || !lecteur) return;
+
+    lecteur.innerHTML = '';
+    formationEnCours = formationId || null;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' +
+                 encodeURIComponent(videoId) +
+                 '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute('title', titre || 'Formation Jos Dore');
+    lecteur.appendChild(iframe);
+
+    if (titreModale) titreModale.textContent = titre || 'Formation Jos Dore';
+    if (lienYT) lienYT.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(videoId);
+
+    const f = FORMATIONS.find(x => x.formation_id === formationId || x.id === formationId);
+    if (btnTerminer) {
+      btnTerminer.style.display = (f && f.statut === 'terminee') ? 'none' : '';
+    }
+
+    modale.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerVideo() {
+    if (!modale) return;
+    modale.classList.remove('is-visible');
+    document.body.style.overflow = '';
+    setTimeout(() => { if (lecteur) lecteur.innerHTML = ''; }, 200);
+    formationEnCours = null;
+  }
+
+  if (btnFermer) btnFermer.addEventListener('click', fermerVideo);
+
+  if (btnTerminer) {
+    btnTerminer.addEventListener('click', async () => {
+      if (!formationEnCours) return;
+      btnTerminer.disabled = true;
+      btnTerminer.innerHTML = '<i class="fi fi-rr-refresh"></i> Enregistrement…';
+      await mettreAJourFormation(formationEnCours, { statut: 'terminee', progression: 100 });
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastSucces('Formation marquée comme terminée ! 🎉');
+      majCompteursFiltres();
+      rendreFormations();
+      const s = calculerStats();
+      animer('mStatEnCours', s.enCours);
+      animer('mStatTerminees', s.terminees);
+      btnTerminer.disabled = false;
+      btnTerminer.innerHTML = '<i class="fi fi-rr-check-circle"></i> Marquer terminée';
+      fermerVideo();
+    });
+  }
+
+  if (modale) {
+    modale.addEventListener('click', (e) => {
+      if (e.target === modale) fermerVideo();
+    });
+  }
+
+  /* ============================================================
+     MODALE PAIEMENT
+     ============================================================ */
+  const modalePaiement = document.getElementById('modalePaiement');
+  const paiementFormationTitre = document.getElementById('paiementFormationTitre');
+  const paiementFormationDuree = document.getElementById('paiementFormationDuree');
+  const paiementFormationNiveau = document.getElementById('paiementFormationNiveau');
+  const paiementMontant = document.getElementById('paiementMontant');
+  const modalePaiementFermer = document.getElementById('modalePaiementFermer');
+  const paiementAnnuler = document.getElementById('paiementAnnuler');
+  const paiementConfirmer = document.getElementById('paiementConfirmer');
+
+  let paiementEnCours = null;
+  let methodePaiement = 'kkiapay';
+
+  function ouvrirModalePaiement(opts) {
+    if (!modalePaiement) return;
+
+    paiementEnCours = opts;
+    methodePaiement = 'kkiapay';
+
+    if (paiementFormationTitre) paiementFormationTitre.textContent = opts.titre || 'Formation';
+    if (paiementFormationDuree) paiementFormationDuree.textContent = opts.duree || '—';
+    if (paiementFormationNiveau) paiementFormationNiveau.textContent = opts.niveau || '—';
+    if (paiementMontant) paiementMontant.textContent = window.JosDore.UTILS.formaterMontant(opts.prix || 0);
+
+    // Reset méthodes
+    document.querySelectorAll('.modale-paiement__methode').forEach(m => {
+      m.classList.toggle('is-actif', m.dataset.methode === 'kkiapay');
+    });
+
+    modalePaiement.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerModalePaiement() {
+    if (!modalePaiement) return;
+    modalePaiement.classList.remove('is-visible');
+    document.body.style.overflow = '';
+    paiementEnCours = null;
+  }
+
+  if (modalePaiementFermer) modalePaiementFermer.addEventListener('click', fermerModalePaiement);
+  if (paiementAnnuler) paiementAnnuler.addEventListener('click', fermerModalePaiement);
+
+  if (modalePaiement) {
+    modalePaiement.addEventListener('click', (e) => {
+      if (e.target === modalePaiement) fermerModalePaiement();
+    });
+  }
+
+  // Sélection méthode
+  document.querySelectorAll('.modale-paiement__methode').forEach(m => {
+    m.addEventListener('click', () => {
+      document.querySelectorAll('.modale-paiement__methode').forEach(x => x.classList.remove('is-actif'));
+      m.classList.add('is-actif');
+      methodePaiement = m.dataset.methode;
+    });
+  });
+
+  // Confirmation
+  if (paiementConfirmer) {
+    paiementConfirmer.addEventListener('click', async () => {
+      if (!paiementEnCours) return;
+
+      paiementConfirmer.disabled = true;
+      paiementConfirmer.innerHTML = '<i class="fi fi-rr-refresh"></i> Traitement…';
+
+      try {
+        if (methodePaiement === 'whatsapp') {
+          // Message WhatsApp pré-rempli
+          const msg = 'Bonjour Jos Dore, je souhaite payer la formation :\n\n' +
+                      '📚 ' + paiementEnCours.titre + '\n' +
+                      '💰 Montant : ' + window.JosDore.UTILS.formaterMontant(paiementEnCours.prix) + '\n' +
+                      '🆔 ID : ' + paiementEnCours.formationId + '\n\n' +
+                      'Merci de me communiquer les modalités Mobile Money.';
+          const url = 'https://wa.me/message/JWTG7DIGJR4XA1?text=' + encodeURIComponent(msg);
+          window.open(url, '_blank', 'noopener');
+
+          if (window.JosDore.Widgets) {
+            window.JosDore.Widgets.toastInfo(
+              'Envoyez la preuve de paiement sur WhatsApp. Votre accès sera débloqué sous 24h.',
+              'Paiement en attente'
+            );
+          }
+        } else {
+          // ✅ Simulation Kkiapay : à brancher réellement plus tard
+          await debloquerFormation(paiementEnCours.formationId, methodePaiement);
+
+          majCompteursFiltres();
+          rendreFormations();
+
+          const s = calculerStats();
+          animer('mStatAVerrouiller', s.aVerrouiller);
+
+          // Re-masquer le bandeau si plus rien à débloquer
+          const bandeauEl = document.getElementById('bandeauPaiement');
+          if (bandeauEl && s.aVerrouiller === 0) {
+            bandeauEl.style.display = 'none';
+          }
+        }
+
+        fermerModalePaiement();
+      } catch (err) {
+        console.error('[Paiement]', err);
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastErreur('Erreur lors du paiement. Contactez le support.');
+        }
+      } finally {
+        paiementConfirmer.disabled = false;
+        paiementConfirmer.innerHTML = '<i class="fi fi-rr-lock-open-alt"></i> Payer maintenant';
+      }
+    });
+  }
+
+  /* ---------- Échap pour fermer toutes les modales ---------- */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (modale && modale.classList.contains('is-visible')) fermerVideo();
+      if (modalePaiement && modalePaiement.classList.contains('is-visible')) fermerModalePaiement();
+    }
+  });
+
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Mes formations — ' + FORMATIONS.length + ' formations, ' + stats.aVerrouiller + ' verrouillées');
+  }
+
+});
+</script>
+
+</body>
+</html>

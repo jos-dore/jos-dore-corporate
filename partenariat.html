@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partenariat — Jos Dore | Devenons partenaires</title>
+<meta name="description" content="Vous êtes une école, une entreprise, une association ou un technicien ? Devenons partenaires et construisons ensemble un écosystème informatique au Bénin.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Partenariat — Jos Dore">
+<meta property="og:description" content="Devenons partenaires. Écoles, entreprises, associations, techniciens : construisons ensemble.">
+<meta property="og:image" content="/ressources/images/og/og-partenariat.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/partenariat.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE PARTENARIAT — Styles spécifiques
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-part {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-part::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-part::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-part__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-part__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-part h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-part h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-part p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto 32px;
+  }
+  .hero-part__actions {
+    display: flex; gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* --- SECTION GÉNÉRIQUE --- */
+  .section-p {
+    padding: 80px 0;
+  }
+  .section-p--grise {
+    background: var(--gris-50);
+  }
+  .section-p__head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+    padding: 0 24px;
+  }
+  .section-p__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-p__head h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .section-p__head p {
+    font-size: 1.05rem;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* --- POURQUOI NOUS --- */
+  .pourquoi-grille {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .pourquoi-item {
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: var(--rayon-lg);
+    padding: 32px 24px;
+    transition: var(--transition);
+  }
+  .pourquoi-item:hover {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .pourquoi-item__icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  .pourquoi-item h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 10px;
+  }
+  .pourquoi-item p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+  }
+
+  /* --- TYPES DE PARTENAIRES --- */
+  .types-grille {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .type-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px 28px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .type-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+  .type-card__icon {
+    width: 64px; height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .type-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 12px;
+  }
+  .type-card p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .type-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--gris-100);
+  }
+  .type-card ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--gris-700);
+    line-height: 1.5;
+  }
+  .type-card ul li i {
+    color: var(--vert);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* --- AVANTAGES --- */
+  .avantages-grille {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .avantage-p {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    transition: var(--transition);
+  }
+  .avantage-p:hover {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .avantage-p__icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(22,163,74,0.12), rgba(22,163,74,0.04));
+    color: var(--vert);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .avantage-p h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 6px;
+  }
+  .avantage-p p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+  }
+
+  /* --- PROCESS --- */
+  .process-p-grille {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+  }
+  .process-p-step {
+    text-align: center;
+  }
+  .process-p-step__num {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--grad-or);
+    color: #fff;
+    font-family: var(--police-titre);
+    font-size: 26px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 28px rgba(245,158,11,0.3);
+  }
+  .process-p-step h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--gris-900);
+  }
+  .process-p-step p {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.65;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* --- FAQ --- */
+  .faq-p-liste {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-p-item {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .faq-p-item[open] {
+    border-color: var(--or);
+    box-shadow: var(--ombre-md);
+  }
+  .faq-p-item summary {
+    padding: 20px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gris-900);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--police-titre);
+  }
+  .faq-p-item summary::-webkit-details-marker { display: none; }
+  .faq-p-item summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--or-fonce);
+    line-height: 1;
+    transition: transform var(--transition);
+    flex-shrink: 0;
+  }
+  .faq-p-item[open] summary::after { content: '−'; }
+  .faq-p-item__reponse {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    border-top: 1px solid var(--gris-100);
+    padding-top: 16px;
+  }
+
+  /* --- CTA --- */
+  .cta-p {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-p::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-p__inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-p h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+  .cta-p h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-p p {
+    color: #CBD5E1;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .cta-p__actions {
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .hero-part { padding: 40px 0 56px; }
+    .hero-part__actions { flex-direction: column; }
+    .hero-part__actions .btn { width: 100%; }
+    .section-p { padding: 56px 0; }
+    .avantage-p { flex-direction: column; gap: 12px; }
+    .cta-p__actions { flex-direction: column; }
+    .cta-p__actions .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER (Menu Desktop + Mobile)                                -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html">Académie</a>
+      <a href="/outils.html">Outils</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" style="display:none; md:inline-flex;">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+        <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR MOBILE                                                -->
+<!-- ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien"><i class="fi fi-rr-gamepad"></i> Jeux & Quiz</a>
+  <a href="/blog/" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/a-propos.html" class="sidebar__lien"><i class="fi fi-rr-info"></i> À propos</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+  
+  <div class="sidebar__sep"></div>
+  <div style="padding: 10px 16px;">
+    <a href="/contact.html" class="btn btn--or btn--block" style="width: 100%;">Devis gratuit</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-part">
+    <div class="hero-part__inner">
+      <div class="hero-part__badge">
+        <i class="fi fi-rr-handshake"></i> Partenariat
+      </div>
+      <h1>Construisons <span>ensemble.</span></h1>
+      <p>Écoles, entreprises, associations, techniciens indépendants : si vous partagez notre envie d'un numérique plus accessible au Bénin, nous serions ravis de collaborer avec vous.</p>
+      <div class="hero-part__actions">
+        <a href="#contact-partenariat" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-comment-alt"></i> Proposer un partenariat
+        </a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--ghost-light btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POURQUOI NOUS ============ -->
+  <section class="section-p">
+    <div class="section-p__head">
+      <span class="section-p__eyebrow">Pourquoi nous ?</span>
+      <h2>Ce que nous apportons</h2>
+      <p>Un partenaire sérieux, formel et engagé, qui prend le temps de comprendre vos besoins avant de proposer une solution.</p>
+    </div>
+    <div class="pourquoi-grille">
+      <div class="pourquoi-item">
+        <div class="pourquoi-item__icon"><i class="fi fi-rr-shield-check"></i></div>
+        <h3>Sérieux & formel</h3>
+        <p>Entreprise structurée, devis clairs, engagement écrit. Nous travaillons dans les règles pour vous protéger.</p>
+      </div>
+      <div class="pourquoi-item">
+        <div class="pourquoi-item__icon"><i class="fi fi-rr-bolt"></i></div>
+        <h3>Réactivité</h3>
+        <p>Réponses rapides, décisions prises vite, interventions dans les délais. Nous respectons votre temps.</p>
+      </div>
+      <div class="pourquoi-item">
+        <div class="pourquoi-item__icon"><i class="fi fi-rr-handshake"></i></div>
+        <h3>Approche gagnant-gagnant</h3>
+        <p>Nous cherchons des partenariats durables, où chacun y trouve son compte. Pas de relation déséquilibrée.</p>
+      </div>
+      <div class="pourquoi-item">
+        <div class="pourquoi-item__icon"><i class="fi fi-rr-map-marker"></i></div>
+        <h3>Proximité</h3>
+        <p>Basés à Abomey-Calavi, nous connaissons le terrain et les réalités locales du Bénin.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TYPES DE PARTENAIRES ============ -->
+  <section class="section-p section-p--grise">
+    <div class="section-p__head">
+      <span class="section-p__eyebrow">Vous êtes…</span>
+      <h2>Avec qui nous collaborons</h2>
+      <p>Chaque partenariat est différent. Voici quelques exemples.</p>
+    </div>
+    <div class="types-grille">
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-school"></i></div>
+        <h3>Écoles & centres de formation</h3>
+        <p>Vous voulez initier vos élèves à l'informatique ou moderniser votre parc ? Nous pouvons collaborer sur des programmes de formation ou de maintenance.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Formation informatique élèves</li>
+          <li><i class="fi fi-rr-check"></i> Maintenance du parc scolaire</li>
+          <li><i class="fi fi-rr-check"></i> Conseils d'équipement</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-building"></i></div>
+        <h3>Entreprises & organisations</h3>
+        <p>Vous cherchez un partenaire informatique pour votre organisation ou pour vos clients ? Discutons d'une collaboration sur le long terme.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Sous-traitance informatique</li>
+          <li><i class="fi fi-rr-check"></i> Maintenance de votre parc</li>
+          <li><i class="fi fi-rr-check"></i> Formation de vos équipes</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-users"></i></div>
+        <h3>Associations & ONG</h3>
+        <p>Vous œuvrez pour l'inclusion numérique ou l'éducation ? Nous serions fiers de contribuer à vos projets.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Soutien technique bénévole</li>
+          <li><i class="fi fi-rr-check"></i> Ateliers de sensibilisation</li>
+          <li><i class="fi fi-rr-check"></i> Formation des bénéficiaires</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-wrench-simple"></i></div>
+        <h3>Techniciens indépendants</h3>
+        <p>Vous êtes technicien et cherchez un réseau formel pour développer votre activité ? Parlons-en.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Collaboration sur missions</li>
+          <li><i class="fi fi-rr-check"></i> Sous-traitance ponctuelle</li>
+          <li><i class="fi fi-rr-check"></i> Réseau Jos Dore</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-shop"></i></div>
+        <h3>Commerçants de matériel</h3>
+        <p>Vous vendez du matériel informatique ? Nous pouvons orienter nos clients vers vous, et vous vers nous.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Recommandations croisées</li>
+          <li><i class="fi fi-rr-check"></i> Offres groupées</li>
+          <li><i class="fi fi-rr-check"></i> Installation pour vos clients</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <div class="type-card__icon"><i class="fi fi-rr-comment-alt"></i></div>
+        <h3>Autre projet ?</h3>
+        <p>Vous avez une idée différente, une vision, un projet ? Nous sommes toujours ouverts aux discussions.</p>
+        <ul>
+          <li><i class="fi fi-rr-check"></i> Prendre contact</li>
+          <li><i class="fi fi-rr-check"></i> Expliquer votre projet</li>
+          <li><i class="fi fi-rr-check"></i> Voir ce qu'on peut faire</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AVANTAGES ============ -->
+  <section class="section-p">
+    <div class="section-p__head">
+      <span class="section-p__eyebrow">Ce que vous y gagnez</span>
+      <h2>Les avantages du partenariat</h2>
+      <p>Une collaboration concrète, avec des bénéfices pour les deux parties.</p>
+    </div>
+    <div class="avantages-grille">
+      <div class="avantage-p">
+        <div class="avantage-p__icon"><i class="fi fi-rr-users"></i></div>
+        <div>
+          <h4>Un partenaire fiable</h4>
+          <p>Nous tenons nos engagements. Si nous disons oui, c'est oui. Vous pouvez compter sur nous.</p>
+        </div>
+      </div>
+      <div class="avantage-p">
+        <div class="avantage-p__icon"><i class="fi fi-rr-chart-line-up"></i></div>
+        <div>
+          <h4>Des opportunités concrètes</h4>
+          <p>Recommandations mutuelles, missions partagées, visibilité croisée : nous créons de la valeur ensemble.</p>
+        </div>
+      </div>
+      <div class="avantage-p">
+        <div class="avantage-p__icon"><i class="fi fi-rr-comment-alt"></i></div>
+        <div>
+          <h4>Une communication simple</h4>
+          <p>Pas de bureaucratie. Un appel, un message WhatsApp, et c'est parti. Nous allons droit au but.</p>
+        </div>
+      </div>
+      <div class="avantage-p">
+        <div class="avantage-p__icon"><i class="fi fi-rr-document-signed"></i></div>
+        <div>
+          <h4>Un cadre clair</h4>
+          <p>Chaque collaboration est formalisée : conventions claires, engagement écrit, transparence totale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section-p section-p--grise">
+    <div class="section-p__head">
+      <span class="section-p__eyebrow">Comment démarrer</span>
+      <h2>Simple et rapide</h2>
+      <p>Quatre étapes pour construire un partenariat solide.</p>
+    </div>
+    <div class="process-p-grille">
+      <div class="process-p-step">
+        <div class="process-p-step__num">1</div>
+        <h3>Vous nous contactez</h3>
+        <p>Par WhatsApp ou via le formulaire. Dites-nous qui vous êtes et ce que vous envisagez.</p>
+      </div>
+      <div class="process-p-step">
+        <div class="process-p-step__num">2</div>
+        <h3>On échange</h3>
+        <p>Un premier appel ou une rencontre pour comprendre vos besoins et vos attentes.</p>
+      </div>
+      <div class="process-p-step">
+        <div class="process-p-step__num">3</div>
+        <h3>On pose les bases</h3>
+        <p>Si le courant passe, nous formalisons la collaboration par une convention claire.</p>
+      </div>
+      <div class="process-p-step">
+        <div class="process-p-step__num">4</div>
+        <h3>On avance ensemble</h3>
+        <p>C'est parti. Nous collaborons, nous ajustons, nous grandissons ensemble dans le temps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section-p">
+    <div class="section-p__head">
+      <span class="section-p__eyebrow">Questions fréquentes</span>
+      <h2>Vous avez des questions ?</h2>
+      <p>Voici les réponses aux questions les plus courantes.</p>
+    </div>
+    <div class="faq-p-liste">
+      <details class="faq-p-item">
+        <summary>Le partenariat est-il payant ?</summary>
+        <div class="faq-p-item__reponse">Non, la discussion initiale est toujours gratuite. Si une collaboration implique des services payants (formation, maintenance, sous-traitance), nous en discutons et formalisons un devis clair. Aucun frais caché.</div>
+      </details>
+      <details class="faq-p-item">
+        <summary>Quels types de collaborations acceptez-vous ?</summary>
+        <div class="faq-p-item__reponse">Nous étudions chaque proposition au cas par cas. Nos collaborations les plus courantes concernent la formation, la maintenance de parc, les recommandations mutuelles et la sous-traitance. Si votre projet est différent, parlez-nous en : nous sommes toujours ouverts.</div>
+      </details>
+      <details class="faq-p-item">
+        <summary>Combien de temps faut-il pour mettre en place un partenariat ?</summary>
+        <div class="faq-p-item__reponse">Cela dépend de la complexité. Pour une collaboration simple (recommandations mutuelles par exemple), tout peut être réglé en quelques jours. Pour un partenariat plus structuré, comptez quelques semaines le temps de bien définir les choses.</div>
+      </details>
+      <details class="faq-p-item">
+        <summary>Je suis technicien indépendant, comment ça marche ?</summary>
+        <div class="faq-p-item__reponse">Nous construisons progressivement un réseau de techniciens de confiance. Si vous souhaitez rejoindre cette dynamique, contactez-nous avec votre profil et vos compétences. Nous échangeons ensemble pour voir comment collaborer.</div>
+      </details>
+      <details class="faq-p-item">
+        <summary>Faut-il un statut juridique pour être partenaire ?</summary>
+        <div class="faq-p-item__reponse">Non, pas systématiquement. Tout dépend du type de collaboration. Pour certaines missions, un statut formel est préférable, mais nous pouvons commencer par des échanges informels et voir ensuite.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-p" id="contact-partenariat">
+    <div class="cta-p__inner">
+      <h2>Envie de <span>collaborer</span> ?</h2>
+      <p>Dites-nous qui vous êtes et ce que vous imaginez. Nous prendrons le temps d'échanger, sans engagement. Les meilleures choses commencent par une conversation.</p>
+      <div class="cta-p__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-comment-alt"></i> Proposer un partenariat
+        </a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Explorer</h4>
+      <div class="footer__liens">
+        <a href="/services.html">Nos services</a>
+        <a href="/boutique.html">Boutique</a>
+        <a href="/academie.html">Académie</a>
+        <a href="/outils.html">Outils gratuits</a>
+        <a href="/jeux.html">Jeux & Quiz</a>
+        <a href="/blog/">Articles & Conseils</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+      <h4 class="footer__titre" style="margin-top: 24px;">Communauté</h4>
+      <div class="footer__liens">
+        <a href="https://whatsapp.com/channel/0029VbDlvsH7IUYeKsw8p32Q" target="_blank" rel="noopener">Chaîne WhatsApp</a>
+        <a href="https://chat.whatsapp.com/L16NYw18Uk84JuAcYQYTNx" target="_blank" rel="noopener">Groupe WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+</body>
+</html>

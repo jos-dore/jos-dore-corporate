@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notifications — Jos Dore | Administration</title>
+<meta name="description" content="Gestion des notifications admin Jos Dore.">
+<meta name="theme-color" content="#DC2626">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — NOTIFICATIONS
+     ============================================================ */
+
+  :root {
+    --admin-rouge: #DC2626;
+    --admin-rouge-fonce: #B91C1C;
+    --admin-rouge-bg: rgba(220,38,38,0.08);
+    --admin-grad: linear-gradient(135deg, #DC2626, #B91C1C);
+    --admin-sidebar-w: 280px;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(220,38,38,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: #fff; }
+  .header--admin .logo__mark::after { background: #fff; }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(220,38,38,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { padding-top: var(--header-h); min-height: 100vh; }
+  .main-admin {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 28px 20px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-admin {
+      margin-left: var(--admin-sidebar-w);
+      padding: 32px 28px 80px;
+    }
+  }
+  .main-admin__inner { max-width: 1200px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(220,38,38,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: #fff; }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: #fff; }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .page-entete__badge-non-lu {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .page-entete__badge-non-lu.is-vide {
+    background: var(--gris-100);
+    color: var(--gris-500);
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- BARRE D'OUTILS ---------- */
+  .barre-outils {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 16px 20px;
+  }
+  .recherche-admin {
+    flex: 1;
+    min-width: 240px;
+    position: relative;
+  }
+  .recherche-admin > i {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 17px;
+    pointer-events: none;
+  }
+  .recherche-admin input {
+    width: 100%;
+    padding: 11px 16px 11px 46px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .recherche-admin input::placeholder { color: var(--gris-400); }
+  .recherche-admin input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 4px rgba(220,38,38,0.1);
+  }
+
+  .filtres-admin {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filtre-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: var(--police-titre);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gris-600);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-admin:hover {
+    background: #fff;
+    border-color: var(--admin-rouge);
+    color: var(--admin-rouge);
+  }
+  .filtre-admin.is-actif {
+    background: var(--admin-rouge);
+    color: #fff;
+    border-color: var(--admin-rouge);
+  }
+  .filtre-admin__compteur {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    font-size: 11px; font-weight: 900;
+  }
+  .filtre-admin.is-actif .filtre-admin__compteur { background: rgba(255,255,255,0.25); }
+
+  /* ---------- BLOC ---------- */
+  .bloc-admin {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+  }
+  .bloc-admin__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gris-100);
+    flex-wrap: wrap;
+  }
+  .bloc-admin__titre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.02em;
+  }
+  .bloc-admin__titre i { color: var(--admin-rouge); font-size: 18px; }
+  .bloc-admin__compteur {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 24px; height: 24px;
+    padding: 0 8px;
+    border-radius: 12px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    font-family: var(--police-titre);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  /* ---------- LISTE NOTIFICATIONS ---------- */
+  .notif-liste {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--gris-100);
+    transition: var(--transition);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:hover {
+    background: var(--gris-50);
+    text-decoration: none;
+    color: inherit;
+  }
+  .notif-item.is-non-lu {
+    background: rgba(220,38,38,0.02);
+  }
+  .notif-item.is-non-lu::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--admin-grad);
+  }
+  .notif-item.is-non-lu .notif-item__titre {
+    font-weight: 900;
+    color: var(--gris-900);
+  }
+  .notif-item.is-non-lu .notif-item__texte {
+    color: var(--gris-700);
+    font-weight: 600;
+  }
+
+  /* Icône */
+  .notif-item__icone {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .notif-item__icone--client { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .notif-item__icone--facture { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .notif-item__icone--intervention { background: var(--admin-rouge-bg); color: var(--admin-rouge); }
+  .notif-item__icone--formation { background: rgba(124,58,237,0.10); color: var(--violet); }
+  .notif-item__icone--message { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .notif-item__icone--systeme { background: var(--gris-100); color: var(--gris-500); }
+  .notif-item__icone--contrat { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .notif-item__icone--alerte { background: rgba(220,38,38,0.10); color: var(--rouge); }
+
+  /* Contenu */
+  .notif-item__contenu { flex: 1; min-width: 0; }
+  .notif-item__entete {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .notif-item__titre {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--gris-700);
+    line-height: 1.4;
+    flex: 1;
+    min-width: 200px;
+  }
+  .notif-item__nouveau {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: pulseBadge 2s ease-in-out infinite;
+  }
+  @keyframes pulseBadge {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.06); opacity: 0.9; }
+  }
+
+  .notif-item__texte {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.55;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .notif-item__meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--gris-400);
+    font-weight: 600;
+  }
+  .notif-item__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .notif-item__meta i { font-size: 13px; }
+
+  /* Actions */
+  .notif-item__actions {
+    display: flex;
+    gap: 6px;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+  .btn-notif-action {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .btn-notif-action:hover {
+    background: var(--admin-rouge);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-notif-action--or:hover { background: var(--or); color: var(--nuit); }
+  .btn-notif-action--vert:hover { background: var(--vert); color: #fff; }
+  .btn-notif-action--gris:hover { background: var(--gris-500); color: #fff; }
+
+  /* ---------- ÉTAT VIDE ---------- */
+  .vide-admin {
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-admin__icone {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 20px;
+  }
+  .vide-admin__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .vide-admin__texte {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto 24px;
+  }
+
+  /* ---------- FOOTER ADMIN ---------- */
+  .app-footer--admin {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer--admin { margin-left: var(--admin-sidebar-w); }
+  }
+  .app-footer--admin a { color: var(--gris-500); text-decoration: none; }
+  .app-footer--admin a:hover { color: var(--admin-rouge); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) {
+    .main-admin { padding: 20px 16px 64px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .barre-outils { padding: 14px 16px; }
+    .recherche-admin { min-width: 100%; }
+    .notif-item { padding: 14px 16px; gap: 12px; }
+    .notif-item__icone { width: 40px; height: 40px; font-size: 17px; }
+    .notif-item__actions { flex-direction: column; }
+    .notif-item__actions .btn-notif-action { width: 30px; height: 30px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER ADMIN                                                  -->
+<!-- ============================================================ -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+
+    <button class="header__menu" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR ADMIN                                                 -->
+<!-- ============================================================ -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i>
+    <span>Clients</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien">
+    <i class="fi fi-rr-document-signed"></i>
+    <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i>
+    <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Factures</span>
+    <span class="sidebar__lien-badge">3</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien">
+    <i class="fi fi-rr-pencil"></i>
+    <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien">
+    <i class="fi fi-rr-envelope"></i>
+    <span>Messages</span>
+    <span class="sidebar__lien-badge">2</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-bell"></i>
+    <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i>
+    <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Notifications
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+            <span class="page-entete__badge-non-lu" id="badgeNonLues">0 non lues</span>
+          </h1>
+          <p class="page-entete__sous">
+            Suivez l'activité de votre entreprise en temps réel.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnToutMarquerLu">
+            <i class="fi fi-rr-check-double"></i> Tout marquer lu
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ BARRE D'OUTILS ============ -->
+      <div class="barre-outils">
+        <div class="recherche-admin">
+          <i class="fi fi-rr-search"></i>
+          <input type="search" id="rechercheNotif" placeholder="Rechercher une notification…" autocomplete="off">
+        </div>
+
+        <div class="filtres-admin">
+          <button type="button" class="filtre-admin is-actif" data-filtre-notif="toutes">
+            <i class="fi fi-rr-apps"></i> Toutes
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-notif="non-lues">
+            <i class="fi fi-rr-eye"></i> Non lues
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-notif="client">
+            <i class="fi fi-rr-users"></i> Clients
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-notif="facture">
+            <i class="fi fi-rr-credit-card"></i> Factures
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-notif="intervention">
+            <i class="fi fi-rr-tools"></i> Interventions
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ LISTE ============ -->
+      <div class="bloc-admin">
+        <div class="bloc-admin__entete">
+          <h2 class="bloc-admin__titre">
+            <i class="fi fi-rr-bell"></i>
+            Toutes les notifications
+            <span class="bloc-admin__compteur" id="compteurNotifs">0</span>
+          </h2>
+        </div>
+
+        <div class="notif-liste" id="notifListe">
+          <!-- Rempli par JS -->
+        </div>
+
+        <!-- État vide -->
+        <div class="vide-admin" id="videNotifs" style="display: none;">
+          <div class="vide-admin__icone">
+            <i class="fi fi-rr-bell"></i>
+          </div>
+          <div class="vide-admin__titre" id="videTitre">Aucune notification</div>
+          <p class="vide-admin__texte" id="videTexte">
+            Vous êtes à jour ! Toutes vos notifications apparaîtront ici.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER ADMIN                                                  -->
+<!-- ============================================================ -->
+<footer class="app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+  <div style="margin-top: 6px;">
+    <a href="/admin/parametres.html">Paramètres</a> ·
+    <a href="/" target="_blank">Site public</a> ·
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   ADMIN — NOTIFICATIONS
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+  }
+
+  /* ============================================================
+     📊 DONNÉES NOTIFICATIONS (DEMO — à brancher avec Supabase)
+     ============================================================ */
+  const NOTIFICATIONS_DEMO = [
+    {
+      id: 'n-001',
+      type: 'client',
+      titre: 'Nouveau client inscrit',
+      texte: 'Koffi Adande vient de créer un compte sur votre site.',
+      date: new Date(Date.now() - 10 * 60 * 1000).toISOString(),
+      lu: false,
+      lien: '/admin/client-detail.html?id=c-001'
+    },
+    {
+      id: 'n-002',
+      type: 'message',
+      titre: 'Nouveau message client',
+      texte: 'École Les Génies vous a envoyé un message concernant une intervention de maintenance.',
+      date: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
+      lu: false,
+      lien: '/admin/messages.html'
+    },
+    {
+      id: 'n-003',
+      type: 'alerte',
+      titre: 'Facture en retard de paiement',
+      texte: 'La facture JD-2026-0039 du Cabinet Zenith Avocats a dépassé son échéance de 15 jours.',
+      date: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+      lu: false,
+      lien: '/admin/factures.html'
+    },
+    {
+      id: 'n-004',
+      type: 'intervention',
+      titre: 'Intervention planifiée demain',
+      texte: 'Rappel : Intervention préventive chez SARL KAD Technologie demain à 09h00.',
+      date: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+      lu: false,
+      lien: '/admin/interventions.html'
+    },
+    {
+      id: 'n-005',
+      type: 'facture',
+      titre: 'Paiement reçu',
+      texte: 'Koffi Adande a payé la facture JD-2026-0041 d\'un montant de 25 000 FCFA.',
+      date: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/factures.html'
+    },
+    {
+      id: 'n-006',
+      type: 'contrat',
+      titre: 'Contrat bientôt à échéance',
+      texte: 'Le contrat JD-CT-2026-006 d\'Aline Dossou expire dans 20 jours.',
+      date: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/contrats.html'
+    },
+    {
+      id: 'n-007',
+      type: 'formation',
+      titre: 'Formation terminée',
+      texte: 'Un client a terminé la formation "Excel — Les formules essentielles".',
+      date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/formations.html'
+    },
+    {
+      id: 'n-008',
+      type: 'client',
+      titre: 'Client désactivé',
+      texte: 'Le compte d\'Aline Dossou a été désactivé suite à son départ.',
+      date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/clients.html'
+    },
+    {
+      id: 'n-009',
+      type: 'systeme',
+      titre: 'Sauvegarde automatique réussie',
+      texte: 'La sauvegarde quotidienne de vos données a été effectuée avec succès.',
+      date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true
+    },
+    {
+      id: 'n-010',
+      type: 'intervention',
+      titre: 'Intervention terminée',
+      texte: 'L\'intervention de nettoyage chez Pharmacie du Lac a été marquée comme terminée.',
+      date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/interventions.html'
+    },
+    {
+      id: 'n-011',
+      type: 'message',
+      titre: 'Message client',
+      texte: 'Boutique 2M vous a remercié pour l\'intervention rapide.',
+      date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true,
+      lien: '/admin/messages.html'
+    },
+    {
+      id: 'n-012',
+      type: 'systeme',
+      titre: 'Mise à jour de l\'administration',
+      texte: 'Une nouvelle version de votre espace admin est disponible. Découvrez les nouveautés.',
+      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+      lu: true
+    }
+  ];
+
+  // 🔽 État actuel
+  const NOTIFICATIONS = NOTIFICATIONS_DEMO;
+
+  /* ============================================================
+     ÉTAT
+     ============================================================ */
+  let filtreActif = 'toutes';
+  let termeRecherche = '';
+
+  /* ============================================================
+     LIBELLÉS
+     ============================================================ */
+  const typeLibelles = {
+    client: { icone: 'fi fi-rr-user-add', classe: 'client' },
+    facture: { icone: 'fi fi-rr-credit-card', classe: 'facture' },
+    intervention: { icone: 'fi fi-rr-tools', classe: 'intervention' },
+    formation: { icone: 'fi fi-rr-graduation-cap', classe: 'formation' },
+    message: { icone: 'fi fi-rr-envelope', classe: 'message' },
+    contrat: { icone: 'fi fi-rr-document-signed', classe: 'contrat' },
+    alerte: { icone: 'fi fi-rr-triangle-warning', classe: 'alerte' },
+    systeme: { icone: 'fi fi-rr-settings', classe: 'systeme' }
+  };
+
+  /* ============================================================
+     COMPTEURS
+     ============================================================ */
+  function compterNonLues() {
+    return NOTIFICATIONS.filter(n => !n.lu).length;
+  }
+
+  function majBadges() {
+    const nb = compterNonLues();
+
+    // Badge dans l'en-tête
+    const badge = document.getElementById('badgeNonLues');
+    if (badge) {
+      if (nb > 0) {
+        badge.textContent = nb + ' non lue' + (nb > 1 ? 's' : '');
+        badge.classList.remove('is-vide');
+      } else {
+        badge.textContent = 'Tout est lu';
+        badge.classList.add('is-vide');
+      }
+    }
+
+    // Badge dans le header (notifs)
+    document.querySelectorAll('[data-badge-notifs]').forEach(el => {
+      if (nb > 0) {
+        el.textContent = nb > 99 ? '99+' : nb;
+        el.style.display = 'flex';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+
+  /* ============================================================
+     COMPTEURS DES FILTRES
+     ============================================================ */
+  function majCompteursFiltres() {
+    const compteurs = {
+      toutes: NOTIFICATIONS.length,
+      'non-lues': compterNonLues(),
+      client: NOTIFICATIONS.filter(n => n.type === 'client').length,
+      facture: NOTIFICATIONS.filter(n => n.type === 'facture' || n.type === 'alerte').length,
+      intervention: NOTIFICATIONS.filter(n => n.type === 'intervention').length
+    };
+    document.querySelectorAll('[data-filtre-notif]').forEach(btn => {
+      const cle = btn.dataset.filtreNotif;
+      const span = btn.querySelector('.filtre-admin__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  /* ============================================================
+     FILTRAGE
+     ============================================================ */
+  function getNotifsFiltrees() {
+    let liste = [...NOTIFICATIONS];
+
+    // Filtre
+    if (filtreActif === 'non-lues') {
+      liste = liste.filter(n => !n.lu);
+    } else if (filtreActif === 'client') {
+      liste = liste.filter(n => n.type === 'client');
+    } else if (filtreActif === 'facture') {
+      liste = liste.filter(n => n.type === 'facture' || n.type === 'alerte');
+    } else if (filtreActif === 'intervention') {
+      liste = liste.filter(n => n.type === 'intervention');
+    }
+
+    // Recherche
+    if (termeRecherche) {
+      const t = termeRecherche.toLowerCase();
+      liste = liste.filter(n => {
+        const texte = [n.titre, n.texte].filter(Boolean).join(' ').toLowerCase();
+        return texte.includes(t);
+      });
+    }
+
+    // Tri par date décroissante
+    liste.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    return liste;
+  }
+
+  /* ============================================================
+     RENDU
+     ============================================================ */
+  function rendreNotifications() {
+    const conteneur = document.getElementById('notifListe');
+    const vide = document.getElementById('videNotifs');
+    const compteur = document.getElementById('compteurNotifs');
+    if (!conteneur) return;
+
+    const liste = getNotifsFiltrees();
+    if (compteur) compteur.textContent = liste.length;
+
+    // État vide global
+    if (NOTIFICATIONS.length === 0) {
+      conteneur.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucune notification';
+      document.getElementById('videTexte').textContent = 'Vous êtes à jour ! Toutes vos notifications apparaîtront ici.';
+      return;
+    }
+
+    // État vide filtre/recherche
+    if (liste.length === 0) {
+      conteneur.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucun résultat';
+      document.getElementById('videTexte').textContent = 'Aucune notification ne correspond à votre recherche ou à vos filtres.';
+      return;
+    }
+
+    conteneur.style.display = '';
+    vide.style.display = 'none';
+
+    conteneur.innerHTML = '';
+    liste.forEach(n => {
+      const infos = typeLibelles[n.type] || typeLibelles.systeme;
+
+      const el = document.createElement('div');
+      el.className = 'notif-item' + (!n.lu ? ' is-non-lu' : '');
+      el.dataset.id = n.id;
+
+      el.innerHTML = `
+        <div class="notif-item__icone notif-item__icone--${infos.classe}">
+          <i class="${infos.icone}"></i>
+        </div>
+
+        <div class="notif-item__contenu">
+          <div class="notif-item__entete">
+            <div class="notif-item__titre">${window.JosDore.UTILS.escapeHtml(n.titre)}</div>
+            ${!n.lu ? '<span class="notif-item__nouveau">Nouveau</span>' : ''}
+          </div>
+          <div class="notif-item__texte">${window.JosDore.UTILS.escapeHtml(n.texte)}</div>
+          <div class="notif-item__meta">
+            <span><i class="fi fi-rr-clock"></i> ${window.JosDore.UTILS.dateRelative(n.date)}</span>
+          </div>
+        </div>
+
+        <div class="notif-item__actions">
+          ${n.lien ? `
+            <a href="${n.lien}" class="btn-notif-action btn-notif-action--or" title="Voir le détail" onclick="event.stopPropagation();">
+              <i class="fi fi-rr-eye"></i>
+            </a>
+          ` : ''}
+          ${!n.lu ? `
+            <button type="button" class="btn-notif-action btn-notif-action--vert" title="Marquer comme lue" data-action="marquer-lu" data-id="${n.id}" onclick="event.stopPropagation();">
+              <i class="fi fi-rr-check"></i>
+            </button>
+          ` : ''}
+          <button type="button" class="btn-notif-action btn-notif-action--gris" title="Supprimer" data-action="supprimer" data-id="${n.id}" onclick="event.stopPropagation();">
+            <i class="fi fi-rr-trash"></i>
+          </button>
+        </div>
+      `;
+
+      // Clic sur la ligne → marquer comme lue + ouvrir le lien
+      el.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+
+        // Marquer comme lue
+        if (!n.lu) {
+          n.lu = true;
+          majBadges();
+          majCompteursFiltres();
+        }
+
+        // Naviguer si lien
+        if (n.lien) {
+          window.location.href = n.lien;
+        } else {
+          rendreNotifications();
+        }
+      });
+
+      conteneur.appendChild(el);
+    });
+
+    // Écouteurs actions
+    conteneur.querySelectorAll('[data-action="marquer-lu"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        marquerLue(btn.dataset.id);
+      });
+    });
+    conteneur.querySelectorAll('[data-action="supprimer"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        supprimerNotif(btn.dataset.id);
+      });
+    });
+  }
+
+  /* ============================================================
+     ACTIONS
+     ============================================================ */
+  function marquerLue(id) {
+    const n = NOTIFICATIONS.find(x => x.id === id);
+    if (!n || n.lu) return;
+
+    n.lu = true;
+    majBadges();
+    majCompteursFiltres();
+    rendreNotifications();
+
+    if (window.JosDore.Widgets) {
+      window.JosDore.Widgets.toastSucces('Notification marquée comme lue.');
+    }
+  }
+
+  async function supprimerNotif(id) {
+    const n = NOTIFICATIONS.find(x => x.id === id);
+    if (!n) return;
+
+    if (!window.JosDore.Widgets || !window.JosDore.Widgets.confirmer) return;
+
+    const confirme = await window.JosDore.Widgets.confirmer(
+      `Supprimer la notification "${n.titre}" ?`,
+      {
+        titre: 'Supprimer une notification',
+        libelleConfirmer: 'Supprimer',
+        libelleAnnuler: 'Annuler',
+        variante: 'rouge',
+        icone: 'fi fi-rr-trash'
+      }
+    );
+
+    if (confirme) {
+      const index = NOTIFICATIONS.findIndex(x => x.id === id);
+      if (index !== -1) NOTIFICATIONS.splice(index, 1);
+
+      majBadges();
+      majCompteursFiltres();
+      rendreNotifications();
+
+      window.JosDore.Widgets.toastSucces('Notification supprimée.');
+    }
+  }
+
+  /* ============================================================
+     TOUT MARQUER COMME LU
+     ============================================================ */
+  const btnToutMarquerLu = document.getElementById('btnToutMarquerLu');
+  if (btnToutMarquerLu) {
+    btnToutMarquerLu.addEventListener('click', () => {
+      const nb = compterNonLues();
+      if (nb === 0) {
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastInfo('Aucune notification non lue.');
+        }
+        return;
+      }
+
+      NOTIFICATIONS.forEach(n => { n.lu = true; });
+      majBadges();
+      majCompteursFiltres();
+      rendreNotifications();
+
+      if (window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastSucces('Toutes les notifications sont marquées comme lues.');
+      }
+    });
+  }
+
+  /* ============================================================
+     ÉCOUTEURS
+     ============================================================ */
+
+  // Recherche
+  const rechercheInput = document.getElementById('rechercheNotif');
+  if (rechercheInput) {
+    let timer;
+    rechercheInput.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        termeRecherche = rechercheInput.value.trim();
+        rendreNotifications();
+      }, 250);
+    });
+  }
+
+  // Filtres
+  document.querySelectorAll('[data-filtre-notif]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre-notif]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtreNotif;
+      rendreNotifications();
+    });
+  });
+
+  /* ============================================================
+     🚀 INITIALISATION
+     ============================================================ */
+  majBadges();
+  majCompteursFiltres();
+  rendreNotifications();
+
+  /* ---------- LOG ---------- */
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Admin notifications chargé — ' + NOTIFICATIONS.length + ' notifications');
+  }
+
+});
+</script>
+
+</body>
+</html>

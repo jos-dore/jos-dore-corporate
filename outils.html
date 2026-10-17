@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outils gratuits — Jos Dore | Simplifiez votre quotidien</title>
+<meta name="description" content="Découvrez les outils gratuits Jos Dore : générateur de devis, calculateur de TVA, générateur de QR Code, et bien plus. Sans inscription.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Outils gratuits — Jos Dore">
+<meta property="og:description" content="Des outils simples et gratuits pour les entreprises et particuliers au Bénin.">
+<meta property="og:image" content="/ressources/images/og/og-outils.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/outils.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE OUTILS — Styles spécifiques
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-outils {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-outils::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-outils__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-outils__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-outils h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-outils h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-outils p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  /* --- SECTION OUTILS --- */
+  .section-outils {
+    padding: 64px 0 80px;
+    background: var(--gris-50);
+  }
+
+  /* --- FILTRES --- */
+  .filtres-outils {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .filtre-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover {
+    border-color: var(--or);
+    color: var(--or-fonce);
+  }
+  .filtre-btn.is-actif {
+    background: var(--or);
+    border-color: var(--or);
+    color: var(--nuit);
+  }
+
+  /* --- GRILLE OUTILS --- */
+  .outils-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .outil-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 28px 24px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .outil-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .outil-card__icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .outil-card__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .outil-card__desc {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .outil-card__lien {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: auto;
+  }
+  .outil-card__lien i {
+    transition: transform var(--transition);
+  }
+  .outil-card:hover .outil-card__lien i {
+    transform: translateX(4px);
+  }
+
+  /* --- CTA --- */
+  .cta-outils {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 72px 24px;
+    text-align: center;
+  }
+  .cta-outils__inner {
+    max-width: 640px; margin: 0 auto;
+  }
+  .cta-outils h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 14px;
+  }
+  .cta-outils h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-outils p {
+    color: #CBD5E1;
+    font-size: 1rem;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .cta-outils__actions {
+    display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .hero-outils { padding: 40px 0 56px; }
+    .section-outils { padding: 48px 0 64px; }
+    .outils-grille { grid-template-columns: 1fr; gap: 16px; }
+    .cta-outils { padding: 56px 20px; }
+    .cta-outils__actions { flex-direction: column; }
+    .cta-outils__actions .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER (Menu Desktop + Mobile)                                -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html">Académie</a>
+      <a href="/outils.html" class="is-actif">Outils</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" style="display:none; md:inline-flex;">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+        <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR MOBILE                                                -->
+<!-- ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien is-actif"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien"><i class="fi fi-rr-gamepad"></i> Jeux & Quiz</a>
+  <a href="/blog/" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+  
+  <div class="sidebar__sep"></div>
+  <div style="padding: 10px 16px;">
+    <a href="/contact.html" class="btn btn--or btn--block" style="width: 100%;">Devis gratuit</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-outils">
+    <div class="hero-outils__inner">
+      <div class="hero-outils__badge">
+        <i class="fi fi-rr-apps"></i>
+        Outils gratuits
+      </div>
+      <h1>Des outils pour <span>simplifier votre quotidien.</span></h1>
+      <p>Générez vos devis, calculez votre TVA, créez des QR Codes. Tous nos outils sont 100% gratuits et ne nécessitent aucune inscription.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION OUTILS ============ -->
+  <section class="section-outils" id="outils">
+    
+    <!-- Filtres -->
+    <div class="filtres-outils">
+      <button type="button" class="filtre-btn is-actif" data-filtre="tous">
+        <i class="fi fi-rr-apps"></i> Tous
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="gestion">
+        <i class="fi fi-rr-briefcase"></i> Gestion
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="calcul">
+        <i class="fi fi-rr-calculator"></i> Calculs
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="web">
+        <i class="fi fi-rr-globe"></i> Web & Texte
+      </button>
+    </div>
+
+    <!-- Grille remplie par JS -->
+    <div class="outils-grille" id="outilsGrille"></div>
+
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-outils">
+    <div class="cta-outils__inner">
+      <h2>Besoin d'un <span>outil spécifique</span> ?</h2>
+      <p>Vous ne trouvez pas l'outil qu'il vous faut ? Dites-nous ce qui pourrait vous faciliter la vie, on le développera peut-être !</p>
+      <div class="cta-outils__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-comment"></i> Suggérer un outil
+        </a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Explorer</h4>
+      <div class="footer__liens">
+        <a href="/services.html">Nos services</a>
+        <a href="/boutique.html">Boutique</a>
+        <a href="/academie.html">Académie</a>
+        <a href="/outils.html">Outils gratuits</a>
+        <a href="/jeux.html">Jeux & Quiz</a>
+        <a href="/blog/">Articles & Conseils</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+      <h4 class="footer__titre" style="margin-top: 24px;">Communauté</h4>
+      <div class="footer__liens">
+        <a href="https://whatsapp.com/channel/0029VbDlvsH7IUYeKsw8p32Q" target="_blank" rel="noopener">Chaîne WhatsApp</a>
+        <a href="https://chat.whatsapp.com/L16NYw18Uk84JuAcYQYTNx" target="_blank" rel="noopener">Groupe WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   LOGIQUE DE LA PAGE OUTILS (Filtres + Rendu)
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const OUTILS = [
+    { id: 'calculateur-tva', nom: 'Calculateur de TVA', categorie: 'calcul', description: 'Calculez facilement la TVA (18% au Bénin) sur vos factures et devis.', icone: 'fi fi-rr-percent', lien: '/outil.html?id=calculateur-tva' },
+    { id: 'generateur-devis', nom: 'Générateur de Devis', categorie: 'gestion', description: 'Créez des devis professionnels en 2 minutes, prêts à envoyer à vos clients.', icone: 'fi fi-rr-document-signed', lien: '/outil.html?id=generateur-devis' },
+    { id: 'calculateur-pret', nom: 'Calculateur de Prêt', categorie: 'calcul', description: 'Simulez vos mensualités et le coût total de vos emprunts bancaires.', icone: 'fi fi-rr-bank', lien: '/outil.html?id=calculateur-pret' },
+    { id: 'generateur-qrcode', nom: 'Générateur de QR Code', categorie: 'web', description: 'Créez un QR Code pour votre site web, votre WhatsApp ou vos paiements Mobile Money.', icone: 'fi fi-rr-qrcode', lien: '/outil.html?id=generateur-qrcode' },
+    { id: 'compteur-mots', nom: 'Compteur de Mots', categorie: 'web', description: 'Comptez instantanément les mots, caractères et phrases de vos textes.', icone: 'fi fi-rr-text', lien: '/outil.html?id=compteur-mots' },
+    { id: 'convertisseur-devise', nom: 'Convertisseur FCFA / Euro', categorie: 'calcul', description: 'Convertissez rapidement vos montants entre Franc CFA et Euro.', icone: 'fi fi-rr-coins', lien: '/outil.html?id=convertisseur-devise' }
+  ];
+
+  let filtreActif = 'tous';
+  const grille = document.getElementById('outilsGrille');
+  const filtresBtns = document.querySelectorAll('.filtre-btn');
+
+  function afficherOutils() {
+    let outilsFiltres = OUTILS;
+    if (filtreActif !== 'tous') outilsFiltres = OUTILS.filter(o => o.categorie === filtreActif);
+    if (outilsFiltres.length === 0) { grille.innerHTML = '<p style="text-align:center;grid-column:1/-1;">Aucun outil dans cette catégorie.</p>'; return; }
+    
+    grille.innerHTML = outilsFiltres.map(o => `
+      <a href="${o.lien}" class="outil-card">
+        <div class="outil-card__icon"><i class="${o.icone}"></i></div>
+        <h3 class="outil-card__titre">${o.nom}</h3>
+        <p class="outil-card__desc">${o.description}</p>
+        <span class="outil-card__lien">Utiliser l'outil <i class="fi fi-rr-arrow-right"></i></span>
+      </a>
+    `).join('');
+  }
+
+  filtresBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtresBtns.forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtre;
+      afficherOutils();
+    });
+  });
+
+  afficherOutils();
+});
+</script>
+
+</body>
+</html>
