@@ -231,34 +231,45 @@
   };
 
   /* ============================================================
-     6. INITIALISATION SUPABASE
+     6. INITIALISATION SUPABASE (SÉCURISÉE)
      ============================================================ */
-  // Remplace par tes vraies clés (Settings > API dans Supabase)
   const SUPABASE_URL = 'https://jfzoqnzqtlluluvrxaof.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_MQl60Ye1pHseu--Qq2qTSw_yF8iwtsL';
 
-  // On vérifie que la librairie Supabase est bien chargée dans le HTML
   let supabaseClient = null;
-  if (global.supabase) {
-    supabaseClient = global.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // On vérifie que la librairie Supabase (CDN) est bien chargée
+  if (!global.supabase || typeof global.supabase.createClient !== 'function') {
+    LOG.error('ERREUR FATALE : La librairie Supabase (CDN) n\'est pas chargée. Vérifie l\'ordre des scripts dans ton HTML.');
   } else {
-    console.error('[JosDore] ERREUR : La librairie Supabase n\'est pas chargée. Vérifie ton HTML.');
+    try {
+      // Création du client
+      supabaseClient = global.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      LOG.info('Client Supabase initialisé avec succès.');
+    } catch (err) {
+      LOG.error('Erreur lors de la création du client Supabase :', err);
+    }
   }
 
   /* ============================================================
      7. EXPOSITION GLOBALE
      ============================================================ */
-  global.JosDore = { 
+  // On s'assure que l'objet global JosDore existe déjà ou on le crée
+  global.JosDore = global.JosDore || {};
+  
+  // On assigne nos modules
+  global.JosDore = Object.assign(global.JosDore, {
     CONFIG, 
     CONST, 
     STORAGE, 
     UTILS, 
     LOG,
-    supabase: supabaseClient // On expose le client pour que auth.js puisse l'utiliser
-  };
+    supabase: supabaseClient // C'est CE client que auth.js utilise
+  });
 
   LOG.info('Configuration chargée — v' + CONFIG.version);
   if (!STORAGE.disponible()) LOG.warn('localStorage indisponible.');
+  
   if (CONFIG.debug) {
     console.log(
       '%c Jos Dore — Corporate ', 
