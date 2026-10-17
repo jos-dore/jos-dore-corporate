@@ -310,13 +310,19 @@
     .auth-page { grid-template-columns: 1fr; }
     .auth-formule { padding: 0; background: #fff; }
   }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
 </style>
 </head>
 <body>
 
-<!-- ============================================================ -->
-<!-- HEADER SIMPLIFIÉ                                              -->
-<!-- ============================================================ -->
+<!-- HEADER SIMPLIFIÉ -->
 <header class="header header--auth" id="header">
   <div class="header__inner">
     <a href="/" class="logo" aria-label="Jos Dore — Accueil">
@@ -334,12 +340,9 @@
   </div>
 </header>
 
-<!-- ============================================================ -->
-<!-- PAGE MOT DE PASSE OUBLIÉ                                      -->
-<!-- ============================================================ -->
+<!-- PAGE MOT DE PASSE OUBLIÉ -->
 <main class="auth-page">
 
-  <!-- ===== COLONNE GAUCHE : VISUEL ===== -->
   <section class="auth-visuel">
     <div class="auth-visuel__inner">
       <a href="/" class="auth-visuel__logo" aria-label="Retour à l'accueil">
@@ -381,7 +384,6 @@
     </div>
   </section>
 
-  <!-- ===== COLONNE DROITE : FORMULAIRE ===== -->
   <section class="auth-formule">
     <div class="auth-formule__inner">
 
@@ -448,9 +450,7 @@
 
 </main>
 
-<!-- ============================================================ -->
-<!-- MINI FOOTER                                                   -->
-<!-- ============================================================ -->
+<!-- MINI FOOTER -->
 <footer class="auth-pied">
   <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
   <div class="auth-pied__liens">
@@ -461,16 +461,12 @@
   </div>
 </footer>
 
-<!-- ============================================================ -->
-<!-- BOUTON WHATSAPP FLOTTANT                                      -->
-<!-- ============================================================ -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Aide WhatsApp">
   <i class="fi fi-brands-whatsapp"></i>
 </a>
 
-<!-- ============================================================ -->
-<!-- COOKIES                                                       -->
-<!-- ============================================================ -->
+<!-- COOKIES -->
 <div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
   <div class="cookies__inner">
     <div class="cookies__texte">
@@ -484,9 +480,7 @@
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SCRIPTS                                                       -->
-<!-- ============================================================ -->
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/ressources/js/config.js" defer></script>
 <script src="/ressources/js/auth.js" defer></script>
@@ -496,9 +490,6 @@
 <script src="/ressources/js/scripts.js" defer></script>
 
 <script>
-/* ============================================================
-   LOGIQUE DE LA PAGE MOT DE PASSE OUBLIÉ
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
   const form = document.getElementById('authForm');
@@ -532,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const email = emailInput.value.trim();
 
-    // Validation basique
     if (!email) {
       emailInput.classList.add('is-invalide');
       emailInput.focus();
@@ -553,7 +543,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
 
     try {
-      // Appel à Supabase via auth.js
       const resultat = await window.JosDore.Auth.demanderReinitialisation(email);
 
       if (!resultat.succes) {
@@ -563,16 +552,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Succès
       emailSucces.textContent = email;
       vueFormulaire.style.display = 'none';
       vueSucces.classList.add('is-visible');
 
       if (window.JosDore.Widgets) {
-        window.JosDore.Widgets.toastSucces(
-          'Consultez votre boîte de réception.',
-          'Email envoyé !'
-        );
+        window.JosDore.Widgets.toastSucces('Consultez votre boîte de réception.', 'Email envoyé !');
       }
 
     } catch (error) {
@@ -586,16 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
   emailInput.focus();
 });
 </script>
-
-<style>
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-6px); }
-    40% { transform: translateX(6px); }
-    60% { transform: translateX(-4px); }
-    80% { transform: translateX(4px); }
-  }
-</style>
 
 </body>
 </html>
