@@ -231,10 +231,10 @@
   };
 
   /* ============================================================
-     6. INITIALISATION SUPABASE (SÉCURISÉE)
+     6. INITIALISATION SUPABASE (NOUVELLES CLÉS)
      ============================================================ */
-  const SUPABASE_URL = 'https://jfzoqnzqtlluluvrxaof.supabase.co';
-  const SUPABASE_ANON_KEY = 'sb_publishable_MQl60Ye1pHseu--Qq2qTSw_yF8iwtsL';
+  const SUPABASE_URL = 'https://kjjpuulpkamxnrzbhgjp.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_Fd6NNfkV7AUQ72c8RtfExA_CpIZW8RE';
 
   let supabaseClient = null;
 
