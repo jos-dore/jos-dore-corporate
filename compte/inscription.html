@@ -763,7 +763,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
 
     try {
-      // ⚠️ AJOUT DE await car Supabase est asynchrone
       const resultat = await window.JosDore.Auth.inscrire({
         nom: nom,
         email: email,
@@ -777,6 +776,17 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.remove('is-chargement');
         btn.disabled = false;
         afficherAlerte(resultat.erreur || 'Impossible de créer le compte.');
+        return;
+      }
+
+      // 🟢 AJOUT IMPORTANT : Gestion de la confirmation par email
+      if (resultat.necessiteConfirmation) {
+        btn.classList.remove('is-chargement');
+        btn.disabled = false;
+        // On affiche un message de succès (en vert si possible, sinon l'alerte standard)
+        afficherAlerte("Un email de confirmation vous a été envoyé. Vérifiez votre boîte de réception.");
+        // Optionnel : masquer le formulaire pour éviter les clics répétés
+        // form.style.display = 'none'; 
         return;
       }
 
