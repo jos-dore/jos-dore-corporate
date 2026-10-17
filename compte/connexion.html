@@ -636,12 +636,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
 
     try {
-      // ⚠️ AJOUT DE await car Supabase est asynchrone
       const resultat = await window.JosDore.Auth.connecter(email, motDePasse);
 
       if (!resultat.succes) {
         btn.classList.remove('is-chargement');
         btn.disabled = false;
+        // Affiche le message d'erreur réel renvoyé par auth.js
         afficherAlerte(resultat.erreur || 'Email ou mot de passe incorrect.');
         mdpInput.select();
         return;
