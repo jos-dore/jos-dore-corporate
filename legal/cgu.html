@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGU — Jos Dore | Conditions Générales d'Utilisation</title>
+<meta name="description" content="Conditions Générales d'Utilisation du site josdore.com. Droits et obligations des utilisateurs.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="index, follow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  .hero-legal {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 56px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-legal::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-legal__inner {
+    position: relative; z-index: 2;
+    max-width: 900px; margin: 0 auto; padding: 0 24px;
+  }
+  .hero-legal__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero-legal h1 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .hero-legal h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-legal p {
+    font-size: 1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 20px;
+  }
+  .hero-legal__meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #94A3B8;
+    font-weight: 600;
+  }
+  .hero-legal__meta-item { display: flex; align-items: center; gap: 6px; }
+  .hero-legal__meta-item i { color: var(--or); font-size: 14px; }
+
+  .section-legal { padding: 64px 0 80px; }
+
+  .legal-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: flex-start;
+  }
+
+  .sommaire {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    background: var(--gris-50);
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 24px;
+  }
+  .sommaire__titre {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-900);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gris-200);
+  }
+  .sommaire__titre i { color: var(--or-fonce); font-size: 16px; }
+  .sommaire__liens { display: flex; flex-direction: column; gap: 4px; }
+  .sommaire__lien {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--rayon-sm);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris-600);
+    text-decoration: none;
+    transition: var(--transition);
+    line-height: 1.4;
+  }
+  .sommaire__lien:hover {
+    background: rgba(245,158,11,0.08);
+    color: var(--or-fonce);
+    text-decoration: none;
+  }
+  .sommaire__lien i {
+    color: var(--gris-400);
+    font-size: 12px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .legal-contenu {
+    max-width: 760px;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--gris-700);
+  }
+
+  .legal-intro {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border-left: 4px solid var(--or);
+    border-radius: var(--rayon-md);
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gris-700);
+  }
+  .legal-intro__titre {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .legal-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 100px;
+  }
+  .legal-section h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.55rem);
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .legal-section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--grad-or);
+    color: var(--nuit);
+    font-size: 14px;
+    font-weight: 900;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+  .legal-section h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin: 24px 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .legal-section p { margin-bottom: 16px; }
+  .legal-section p:last-child { margin-bottom: 0; }
+  .legal-section strong { color: var(--gris-900); font-weight: 700; }
+  .legal-section a {
+    color: var(--or-fonce);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(245,158,11,0.4);
+    text-underline-offset: 3px;
+    transition: var(--transition);
+  }
+  .legal-section a:hover {
+    color: var(--or);
+    text-decoration-color: var(--or);
+  }
+  .legal-section ul,
+  .legal-section ol {
+    margin: 0 0 18px;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .legal-section ul li,
+  .legal-section ol li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.7;
+  }
+  .legal-section ul li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--or);
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+  .legal-section ol { counter-reset: num; }
+  .legal-section ol li { counter-increment: num; }
+  .legal-section ol li::before {
+    content: counter(num) '.';
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--or-fonce);
+    flex-shrink: 0;
+    min-width: 20px;
+    margin-top: 2px;
+  }
+
+  .placeholder {
+    display: inline-block;
+    padding: 2px 10px;
+    background: rgba(245,158,11,0.12);
+    border: 1px dashed var(--or);
+    border-radius: var(--rayon-sm);
+    color: var(--or-fonce);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--police-titre);
+    margin: 0 2px;
+  }
+
+  .legal-note {
+    background: var(--info-bg);
+    border-left: 4px solid var(--bleu);
+    border-radius: var(--rayon-md);
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #1E40AF;
+  }
+  .legal-note strong { color: #1E3A8A; }
+  .legal-note i { color: var(--bleu); margin-right: 6px; }
+
+  .legal-avertissement {
+    background: var(--alerte-bg);
+    border-left: 4px solid var(--or);
+    border-radius: var(--rayon-md);
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #92400E;
+  }
+  .legal-avertissement strong { color: #78350F; }
+  .legal-avertissement i { color: var(--or-fonce); margin-right: 6px; }
+
+  .legal-contact {
+    background: var(--gris-50);
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 32px;
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .legal-contact__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .legal-contact__contenu { flex: 1; min-width: 0; }
+  .legal-contact__contenu h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .legal-contact__contenu p {
+    font-size: 14.5px;
+    color: var(--gris-600);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .legal-contact__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .legal-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    border-top: 1px solid var(--gris-200);
+  }
+  .legal-nav__card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 22px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .legal-nav__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-md);
+    border-color: var(--or);
+    text-decoration: none;
+    color: inherit;
+  }
+  .legal-nav__card.is-actif {
+    border-color: var(--or);
+    background: rgba(245,158,11,0.06);
+  }
+  .legal-nav__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+    color: var(--or-fonce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .legal-nav__texte { flex: 1; min-width: 0; }
+  .legal-nav__titre {
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 2px;
+  }
+  .legal-nav__sous { font-size: 12px; color: var(--gris-500); font-weight: 600; }
+
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @media (max-width: 960px) {
+    .legal-layout { grid-template-columns: 1fr; gap: 32px; }
+    .sommaire { position: static; }
+    .sommaire__liens {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .sommaire__lien {
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--gris-200);
+      border-radius: var(--rayon-full);
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-legal { padding: 40px 0 48px; }
+    .section-legal { padding: 40px 0 56px; }
+    .legal-contenu { font-size: 15px; }
+    .legal-section h2 { font-size: 1.2rem; }
+    .legal-section h2 .num { width: 28px; height: 28px; font-size: 13px; }
+    .legal-intro, .legal-note, .legal-avertissement { padding: 18px 20px; }
+    .legal-contact { padding: 24px 22px; flex-direction: column; gap: 14px; }
+    .legal-nav { padding: 32px 20px 0; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html">Académie</a>
+      <a href="/outils.html">Outils</a>
+      <a href="/jeux.html">Jeux</a>
+      <a href="/blog/">Blog</a>
+      <a href="/aide/">Aide</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" data-header="invite">Connexion</a>
+      <a href="/espace-client/tableau-de-bord.html" class="btn btn--ghost btn--sm" data-header="connecte" style="display:none;">Mon espace</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien"><i class="fi fi-rr-gamepad"></i> Jeux & Quiz</a>
+  <a href="/blog/" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/a-propos.html" class="sidebar__lien"><i class="fi fi-rr-info"></i> À propos</a>
+  <a href="/aide/" class="sidebar__lien"><i class="fi fi-rr-interrogation"></i> Aide</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+
+  <div class="sidebar__sep"></div>
+  <div style="padding: 10px 16px;">
+    <a href="/contact.html" class="btn btn--or btn--block" style="width: 100%;">Devis gratuit</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main>
+
+  <section class="hero-legal">
+    <div class="hero-legal__inner">
+      <div class="hero-legal__badge">
+        <i class="fi fi-rr-document-signed"></i>
+        Document légal
+      </div>
+
+      <h1>Conditions Générales <span>d'Utilisation</span></h1>
+
+      <p>
+        Les présentes CGU régissent l'utilisation du site josdore.com
+        et des services proposés par Jos Dore. En utilisant notre site,
+        vous acceptez ces conditions.
+      </p>
+
+      <div class="hero-legal__meta">
+        <div class="hero-legal__meta-item">
+          <i class="fi fi-rr-calendar"></i>
+          Version 1.0
+        </div>
+        <div class="hero-legal__meta-item">
+          <i class="fi fi-rr-time-fast"></i>
+          En vigueur au 15 octobre 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-legal">
+    <div class="legal-layout">
+
+      <aside class="sommaire">
+        <div class="sommaire__titre">
+          <i class="fi fi-rr-list"></i>
+          Sommaire
+        </div>
+        <nav class="sommaire__liens">
+          <a href="#article-1" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 1. Objet</a>
+          <a href="#article-2" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 2. Mentions légales</a>
+          <a href="#article-3" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 3. Accès au site</a>
+          <a href="#article-4" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 4. Services</a>
+          <a href="#article-5" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 5. Compte utilisateur</a>
+          <a href="#article-6" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 6. Propriété intellectuelle</a>
+          <a href="#article-7" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 7. Responsabilités</a>
+          <a href="#article-8" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 8. Données personnelles</a>
+          <a href="#article-9" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 9. Modification</a>
+          <a href="#article-10" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 10. Droit applicable</a>
+          <a href="#article-11" class="sommaire__lien"><i class="fi fi-rr-angle-small-right"></i> 11. Contact</a>
+        </nav>
+      </aside>
+
+      <div class="legal-contenu">
+
+        <div class="legal-intro">
+          <div class="legal-intro__titre">
+            <i class="fi fi-rr-info"></i>
+            À lire attentivement
+          </div>
+          Les présentes Conditions Générales d'Utilisation (CGU) définissent
+          les règles d'accès et d'utilisation du site <strong>josdore.com</strong>,
+          édité par Jos Dore. En naviguant sur ce site, vous reconnaissez
+          avoir lu et accepté sans réserve les présentes conditions.
+        </div>
+
+        <div class="legal-section" id="article-1">
+          <h2><span class="num">1</span> Objet</h2>
+          <p>
+            Les présentes CGU ont pour objet de définir les modalités
+            d'utilisation du site <strong>josdore.com</strong> ainsi que
+            les services proposés par <strong>Jos Dore</strong>, entreprise
+            individuelle spécialisée dans la maintenance informatique et
+            l'infogérance.
+          </p>
+          <p>Le site a pour vocation de :</p>
+          <ul>
+            <li>Présenter les services proposés par Jos Dore</li>
+            <li>Permettre aux visiteurs de demander un devis ou un diagnostic</li>
+            <li>Offrir un espace client aux utilisateurs inscrits</li>
+            <li>Publier des articles d'information et de conseil</li>
+          </ul>
+        </div>
+
+        <div class="legal-section" id="article-2">
+          <h2><span class="num">2</span> Mentions légales</h2>
+          <p>Le site josdore.com est édité par :</p>
+          <ul>
+            <li><strong>Dénomination :</strong> Jos Dore</li>
+            <li><strong>Forme juridique :</strong> Entreprise Individuelle</li>
+            <li><strong>Adresse :</strong> Abomey-Calavi, Bénin</li>
+            <li><strong>Email :</strong> <span data-contact="email">contact@josdore.com</span></li>
+            <li><strong>Téléphone :</strong> <a href="tel:+22901532162 76" data-contact="telephone">+229 01 53 21 62 76</a></li>
+            <li><strong>RCCM :</strong> <span class="placeholder">À venir</span></li>
+            <li><strong>IFU :</strong> <span class="placeholder">À venir</span></li>
+          </ul>
+          <div class="legal-note">
+            <i class="fi fi-rr-info"></i>
+            <strong>Information :</strong> Jos Dore est en cours de
+            formalisation administrative. Les numéros RCCM et IFU seront
+            affichés dès leur obtention.
+          </div>
+          <p>
+            Le site est hébergé par <strong>Vercel Inc.</strong>, 340 S Lemon
+            Ave #4133, Walnut, CA 91789, États-Unis.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-3">
+          <h2><span class="num">3</span> Accès au site</h2>
+          <p>
+            Le site josdore.com est accessible gratuitement à tout utilisateur
+            disposant d'un accès à internet. L'ensemble des coûts liés à
+            cet accès (matériel, connexion, logiciels) reste à la charge
+            de l'utilisateur.
+          </p>
+          <p>
+            Jos Dore met tout en œuvre pour assurer un accès continu au
+            site, mais ne peut garantir :
+          </p>
+          <ul>
+            <li>L'absence d'interruption pour maintenance ou mise à jour</li>
+            <li>L'absence d'erreurs ou de bugs</li>
+            <li>La disponibilité permanente des services</li>
+          </ul>
+          <p>
+            Jos Dore ne saurait être tenue responsable des dommages directs
+            ou indirects résultant d'une indisponibilité du site.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-4">
+          <h2><span class="num">4</span> Services proposés</h2>
+          <p>Jos Dore propose les services suivants :</p>
+          <ul>
+            <li>
+              <strong>Maintenance informatique</strong> — contrats préventifs
+              pour TPE/PME et dépannage pour particuliers
+            </li>
+            <li>
+              <strong>Formation initiation informatique</strong> — sessions
+              individuelles ou en groupe
+            </li>
+            <li>
+              <strong>Articles & conseils</strong> — publications
+              d'information sur notre blog
+            </li>
+          </ul>
+          <p>
+            Les services sont fournis dans les conditions définies par
+            les devis, contrats et conventions signés entre Jos Dore et
+            ses clients. Les tarifs et modalités sont précisés dans chaque
+            devis.
+          </p>
+          <div class="legal-avertissement">
+            <i class="fi fi-rr-triangle-warning"></i>
+            <strong>Important :</strong> Les informations présentées sur
+            le site (tarifs, disponibilités, descriptions) sont données
+            à titre indicatif et peuvent évoluer. Seul le devis signé
+            fait foi.
+          </div>
+        </div>
+
+        <div class="legal-section" id="article-5">
+          <h2><span class="num">5</span> Compte utilisateur</h2>
+          <p>
+            La création d'un compte utilisateur est facultative. Elle
+            donne accès à un espace personnel permettant de :
+          </p>
+          <ul>
+            <li>Suivre ses services et interventions</li>
+            <li>Consulter ses factures et formations</li>
+            <li>Recevoir les mises à jour et notifications</li>
+          </ul>
+          <p>En créant un compte, l'utilisateur s'engage à :</p>
+          <ol>
+            <li>Fournir des informations exactes et à jour</li>
+            <li>Maintenir la confidentialité de son mot de passe</li>
+            <li>Ne pas partager son compte avec des tiers</li>
+            <li>Nous informer immédiatement en cas d'utilisation non autorisée</li>
+          </ol>
+          <p>
+            Jos Dore se réserve le droit de suspendre ou supprimer tout
+            compte en cas de manquement aux présentes CGU.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-6">
+          <h2><span class="num">6</span> Propriété intellectuelle</h2>
+          <p>
+            L'ensemble des éléments du site josdore.com (textes, images,
+            logos, graphismes, articles, structure, code) est la propriété
+            exclusive de Jos Dore ou de ses partenaires, et est protégé par
+            les lois béninoises et internationales relatives à la propriété
+            intellectuelle.
+          </p>
+          <p>
+            Toute reproduction, représentation, modification, diffusion
+            ou exploitation, totale ou partielle, sans autorisation écrite
+            préalable de Jos Dore est strictement interdite.
+          </p>
+          <p>
+            Le logo, le nom « Jos Dore » et la marque « Jos Dore » sont
+            des marques protégées.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-7">
+          <h2><span class="num">7</span> Responsabilités</h2>
+
+          <h3>Responsabilité de Jos Dore</h3>
+          <p>
+            Jos Dore s'efforce d'assurer l'exactitude des informations
+            publiées sur son site. Toutefois, elle ne peut garantir
+            l'absence totale d'erreurs ou d'omissions. Les informations
+            sont fournies à titre indicatif et ne sauraient engager la
+            responsabilité de Jos Dore.
+          </p>
+          <p>Jos Dore ne peut être tenue responsable :</p>
+          <ul>
+            <li>Des dommages résultant d'une utilisation non conforme du site</li>
+            <li>Des interruptions de service pour maintenance</li>
+            <li>Du contenu des sites tiers accessibles via des liens</li>
+            <li>De la perte de données liée à l'utilisation de nos services</li>
+          </ul>
+
+          <h3>Responsabilité de l'utilisateur</h3>
+          <p>
+            L'utilisateur s'engage à utiliser le site conformément aux
+            présentes CGU et à la réglementation en vigueur. Il s'interdit
+            notamment :
+          </p>
+          <ul>
+            <li>Toute utilisation frauduleuse ou illicite du site</li>
+            <li>Toute tentative d'intrusion ou d'atteinte à la sécurité</li>
+            <li>Toute publication de contenu illégal, diffamatoire ou offensant</li>
+            <li>Toute collecte massive de données sans autorisation</li>
+          </ul>
+        </div>
+
+        <div class="legal-section" id="article-8">
+          <h2><span class="num">8</span> Données personnelles</h2>
+          <p>
+            Jos Dore collecte et traite des données personnelles dans le
+            cadre de son activité. Ces traitements sont effectués dans le
+            respect de la vie privée des utilisateurs.
+          </p>
+          <p>
+            Pour toute information relative à la collecte, au traitement
+            et à la protection de vos données personnelles, veuillez
+            consulter notre
+            <a href="/legal/confidentialite.html">Politique de confidentialité</a>.
+          </p>
+          <p>
+            Vous disposez d'un droit d'accès, de rectification et de
+            suppression de vos données. Pour exercer ces droits,
+            contactez-nous à <strong data-contact="email">contact@josdore.com</strong>.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-9">
+          <h2><span class="num">9</span> Modification des CGU</h2>
+          <p>
+            Jos Dore se réserve le droit de modifier les présentes CGU à
+            tout moment, notamment pour les adapter aux évolutions
+            législatives, réglementaires ou techniques.
+          </p>
+          <p>
+            Les modifications prennent effet dès leur publication sur le
+            site. Il appartient à l'utilisateur de consulter régulièrement
+            les CGU pour prendre connaissance des éventuelles modifications.
+          </p>
+          <p>La date de dernière mise à jour figure en haut de cette page.</p>
+        </div>
+
+        <div class="legal-section" id="article-10">
+          <h2><span class="num">10</span> Droit applicable</h2>
+          <p>
+            Les présentes CGU sont régies par le <strong>droit béninois</strong>.
+            Tout litige relatif à l'interprétation ou à l'exécution des
+            présentes conditions sera soumis aux juridictions compétentes
+            de <strong>Cotonou, Bénin</strong>.
+          </p>
+          <p>
+            En cas de litige, une solution amiable sera recherchée en
+            priorité avant toute action judiciaire.
+          </p>
+        </div>
+
+        <div class="legal-section" id="article-11">
+          <h2><span class="num">11</span> Contact</h2>
+          <p>Pour toute question relative aux présentes CGU, vous pouvez nous contacter :</p>
+          <ul>
+            <li><strong>Email :</strong> <span data-contact="email">contact@josdore.com</span></li>
+            <li><strong>Téléphone / WhatsApp :</strong> <span data-contact="telephone">+229 01 53 21 62 76</span></li>
+            <li><strong>Adresse :</strong> Abomey-Calavi, Bénin</li>
+          </ul>
+        </div>
+
+        <div class="legal-contact">
+          <div class="legal-contact__icon">
+            <i class="fi fi-rr-comment-alt"></i>
+          </div>
+          <div class="legal-contact__contenu">
+            <h3>Une question sur nos CGU ?</h3>
+            <p>
+              Si vous avez la moindre question sur nos conditions
+              d'utilisation, n'hésitez pas à nous contacter. Nous vous
+              répondrons avec plaisir.
+            </p>
+            <div class="legal-contact__actions">
+              <a href="/contact.html" class="btn btn--or btn--sm">
+                <i class="fi fi-rr-envelope"></i> Nous écrire
+              </a>
+              <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+                <i class="fi fi-brands-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <nav class="legal-nav">
+      <a href="/legal/cgu.html" class="legal-nav__card is-actif">
+        <div class="legal-nav__icon">
+          <i class="fi fi-rr-document-signed"></i>
+        </div>
+        <div class="legal-nav__texte">
+          <div class="legal-nav__titre">CGU</div>
+          <div class="legal-nav__sous">Conditions d'utilisation</div>
+        </div>
+      </a>
+      <a href="/legal/confidentialite.html" class="legal-nav__card">
+        <div class="legal-nav__icon">
+          <i class="fi fi-rr-shield-check"></i>
+        </div>
+        <div class="legal-nav__texte">
+          <div class="legal-nav__titre">Confidentialité</div>
+          <div class="legal-nav__sous">Protection des données</div>
+        </div>
+      </a>
+      <a href="/legal/mentions-legales.html" class="legal-nav__card">
+        <div class="legal-nav__icon">
+          <i class="fi fi-rr-info"></i>
+        </div>
+        <div class="legal-nav__texte">
+          <div class="legal-nav__titre">Mentions légales</div>
+          <div class="legal-nav__sous">Informations éditeur</div>
+        </div>
+      </a>
+    </nav>
+  </section>
+
+</main>
+
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+</body>
+</html>

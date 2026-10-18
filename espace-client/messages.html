@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messagerie — Jos Dore | Mon espace client</title>
+<meta name="description" content="Échangez avec le support Jos Dore.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE MESSAGERIE CLIENT
+     ============================================================ */
+  :root { --sidebar-w: 280px; }
+  body { background: var(--gris-50); }
+  .app-layout { min-height: 100vh; }
+  @media (min-width: 1024px) {
+    .sidebar { display: block !important; transform: translateX(0) !important; }
+    .overlay { display: none !important; }
+  }
+  .main-app {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 32px 24px 80px;
+    height: calc(100vh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 1024px) {
+    .main-app {
+      margin-left: var(--sidebar-w);
+      padding: 32px 32px 40px;
+    }
+  }
+  .main-app__inner { max-width: 1000px; margin: 0 auto; width: 100%; flex: 1; display: flex; flex-direction: column; }
+
+  /* EN-TÊTE DE PAGE */
+  .page-entete {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; margin-bottom: 24px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900;
+    color: var(--gris-900); letter-spacing: -0.03em;
+    line-height: 1.15; margin-bottom: 6px;
+  }
+  .page-entete__sous { font-size: 15px; color: var(--gris-500); line-height: 1.5; }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* MESSAGERIE */
+  .chat-container {
+    background: #fff; border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg); display: flex; flex-direction: column;
+    flex: 1; min-height: 500px; max-height: calc(100vh - 220px);
+    overflow: hidden; box-shadow: 0 4px 20px rgba(10,37,64,0.05);
+  }
+  .chat__entete {
+    padding: 16px 24px; border-bottom: 1px solid var(--gris-200);
+    display: flex; align-items: center; gap: 16px; background: #fff; flex-shrink: 0;
+  }
+  .chat__avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--grad-or); color: var(--nuit);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--police-titre); font-size: 20px; font-weight: 900; flex-shrink: 0;
+  }
+  .chat__infos { flex: 1; min-width: 0; }
+  .chat__nom {
+    font-size: 16px; font-weight: 800; color: var(--gris-900);
+    margin-bottom: 2px; line-height: 1.3; display: flex; align-items: center; gap: 8px;
+  }
+  .chat__nom i { color: var(--or-fonce); font-size: 16px; }
+  .chat__statut {
+    font-size: 12.5px; color: var(--vert); font-weight: 700;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .chat__statut::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--vert); box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+  }
+
+  /* Zone de messages */
+  .chat__messages {
+    flex: 1; overflow-y: auto; padding: 24px;
+    background: var(--gris-50); display: flex; flex-direction: column; gap: 16px;
+  }
+  .chat__date {
+    display: flex; align-items: center; justify-content: center;
+    margin: 16px 0; font-size: 11.5px; font-weight: 800;
+    color: var(--gris-500); text-transform: uppercase; letter-spacing: 1px;
+  }
+  .chat__date::before, .chat__date::after {
+    content: ''; flex: 1; height: 1px; background: var(--gris-200); max-width: 100px;
+  }
+  .chat__date span { padding: 0 16px; background: var(--gris-50); border-radius: var(--rayon-full); }
+
+  .bulle { max-width: 75%; display: flex; gap: 10px; align-items: flex-end; }
+  .bulle--recu { align-self: flex-start; }
+  .bulle--envoye { align-self: flex-end; flex-direction: row-reverse; }
+
+  .bulle__avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--grad-or); color: var(--nuit);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--police-titre); font-size: 12px; font-weight: 900; flex-shrink: 0;
+  }
+  .bulle--envoye .bulle__avatar { background: var(--nuit); color: var(--or); }
+
+  .bulle__contenu {
+    background: #fff; border: 1px solid var(--gris-200);
+    border-radius: 16px 16px 16px 4px; padding: 14px 18px;
+    font-size: 14.5px; line-height: 1.55; color: var(--gris-700);
+    box-shadow: 0 2px 5px rgba(10,37,64,0.03); position: relative; word-wrap: break-word;
+  }
+  .bulle--envoye .bulle__contenu {
+    background: var(--grad-or); color: var(--nuit);
+    border: none; border-radius: 16px 16px 4px 16px;
+    box-shadow: 0 4px 12px rgba(245,158,11,0.25);
+  }
+  .bulle__heure {
+    display: block; font-size: 11px; margin-top: 8px;
+    color: var(--gris-400); font-weight: 600;
+  }
+  .bulle--envoye .bulle__heure { color: rgba(10,37,64,0.6); text-align: right; }
+
+  /* Zone de saisie */
+  .chat__saisie {
+    padding: 16px 24px; border-top: 1px solid var(--gris-200);
+    background: #fff; display: flex; gap: 12px; align-items: flex-end; flex-shrink: 0;
+  }
+  .chat__saisie-zone {
+    flex: 1; display: flex; align-items: flex-end; gap: 8px;
+    background: var(--gris-50); border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-lg); padding: 10px 16px; transition: var(--transition);
+  }
+  .chat__saisie-zone:focus-within {
+    border-color: var(--or); background: #fff; box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+  .chat__saisie-zone textarea {
+    flex: 1; border: none; background: transparent; font-family: inherit;
+    font-size: 15px; color: var(--gris-900); resize: none; outline: none;
+    max-height: 120px; line-height: 1.5; padding: 4px 0;
+  }
+  .chat__saisie-zone textarea::placeholder { color: var(--gris-400); }
+  
+  .chat__saisie-btn-envoyer {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--grad-or);
+    color: var(--nuit); border: none; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: var(--transition); flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+  }
+  .chat__saisie-btn-envoyer:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(245,158,11,0.4); }
+  .chat__saisie-btn-envoyer:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* État vide */
+  .chat__vide {
+    text-align: center; padding: 60px 20px; color: var(--gris-500);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;
+  }
+  .chat__vide-icone {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(245,158,11,0.1); color: var(--or-fonce);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; margin-bottom: 20px;
+  }
+  .chat__vide h3 { font-size: 18px; font-weight: 800; color: var(--gris-900); margin-bottom: 8px; }
+  .chat__vide p { font-size: 14.5px; line-height: 1.6; max-width: 300px; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .main-app { padding: 20px 16px 40px; }
+    .chat-container { max-height: calc(100vh - 180px); }
+    .chat__messages { padding: 16px; }
+    .chat__saisie { padding: 12px 16px; }
+    .bulle { max-width: 88%; }
+    .bulle__contenu { padding: 12px 14px; font-size: 14px; }
+    .chat__saisie-btn-envoyer { width: 42px; height: 42px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER APP -->
+<header class="header header--app" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+    <a href="/espace-client/tableau-de-bord.html" class="logo" aria-label="Jos Dore — Espace client">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Espace client</span>
+      </div>
+    </a>
+    <div class="header__actions">
+      <a href="/espace-client/mises-a-jour.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/aide/" class="header__icone" aria-label="Aide">
+        <i class="fi fi-rr-interrogation"></i>
+      </a>
+      <a href="/espace-client/mon-profil.html" class="header__avatar" data-user-avatar title="Mon profil">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar" aria-label="Navigation de l'espace client">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Client</span>
+        <i class="fi fi-rr-check-circle" title="Compte vérifié"></i>
+      </div>
+      <div class="sidebar__profil-role" data-user-role>client</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Mon espace</div>
+  <a href="/espace-client/tableau-de-bord.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i> <span>Tableau de bord</span>
+  </a>
+  <a href="/espace-client/mes-services.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings"></i> <span>Mes services</span>
+  </a>
+  <a href="/espace-client/mes-formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i> <span>Mes formations</span>
+  </a>
+  <a href="/espace-client/mes-factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i> <span>Mes factures</span>
+  </a>
+  <a href="/espace-client/mon-materiel.html" class="sidebar__lien">
+    <i class="fi fi-rr-computer"></i> <span>Mon matériel</span>
+  </a>
+  
+  <a href="/espace-client/messages.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-comments"></i> <span>Messagerie</span>
+  </a>
+
+  <a href="/espace-client/mises-a-jour.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i> <span>Mises à jour</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon compte</div>
+  <a href="/espace-client/mon-profil.html" class="sidebar__lien">
+    <i class="fi fi-rr-user"></i> <span>Mon profil</span>
+  </a>
+  <a href="/espace-client/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i> <span>Paramètres</span>
+  </a>
+  <a href="/aide/" class="sidebar__lien">
+    <i class="fi fi-rr-interrogation"></i> <span>Aide & support</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i> <span>Se déconnecter</span>
+  </button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- CONTENU -->
+<main class="app-layout">
+  <div class="main-app">
+    <div class="main-app__inner">
+      
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">Messagerie</h1>
+          <p class="page-entete__sous">
+            Échangez directement avec l'équipe Jos Dore.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/aide/contact-support.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-headset"></i> Support
+          </a>
+        </div>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat__entete">
+          <div class="chat__avatar">J</div>
+          <div class="chat__infos">
+            <div class="chat__nom">
+              Support Jos Dore
+              <i class="fi fi-rr-shield-check" title="Compte officiel"></i>
+            </div>
+            <div class="chat__statut">En ligne</div>
+          </div>
+        </div>
+
+        <div class="chat__messages" id="chatMessages"></div>
+
+        <div class="chat__saisie">
+          <div class="chat__saisie-zone">
+            <textarea id="chatInput" rows="1" placeholder="Écrivez votre message ici…" autocomplete="off"></textarea>
+          </div>
+          <button type="button" class="chat__saisie-btn-envoyer" id="chatEnvoyer" title="Envoyer (Entrée)">
+            <i class="fi fi-sr-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   MESSAGERIE CLIENT (Optimistic UI + Supabase Realtime)
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ---------- PROTECTION ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger();
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (!session) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  document.querySelectorAll('[data-user-prenom]').forEach(el => {
+    el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Client';
+  });
+  document.querySelectorAll('[data-user-initiales]').forEach(el => {
+    el.textContent = window.JosDore.UTILS.initiales(session.nom);
+  });
+  document.querySelectorAll('[data-user-role]').forEach(el => {
+    el.textContent = session.role === 'admin' ? 'Administrateur' : 'Client';
+  });
+
+  /* ============================================================
+     VARIABLES
+     ============================================================ */
+  let MESSAGES = [];
+  const conteneurMessages = document.getElementById('chatMessages');
+  const input = document.getElementById('chatInput');
+  const btnEnvoyer = document.getElementById('chatEnvoyer');
+
+  /* ============================================================
+     CHARGEMENT DES MESSAGES
+     ============================================================ */
+  async function chargerMessages() {
+    if (!supabase) return [];
+    try {
+      // On récupère les messages où le client est l'expéditeur OU le destinataire
+      // Cela inclut les messages envoyés au support (destinataire_id = null)
+      const { data, error } = await supabase
+        .from('messages')
+        .select('*')
+        .or(`expediteur_id.eq.${session.id},destinataire_id.eq.${session.id}`)
+        .order('created_at', { ascending: true });
+
+      if (error) {
+        console.warn('[Messages Client] Erreur :', error.message);
+        return [];
+      }
+      return data || [];
+    } catch (e) {
+      console.warn('[Messages Client] Exception :', e);
+      return [];
+    }
+  }
+
+  MESSAGES = await chargerMessages();
+
+  /* ============================================================
+     FORMATAGE DES DATES
+     ============================================================ */
+  function formatHeure(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function formatDateSep(dateStr) {
+    const d = new Date(dateStr);
+    const maintenant = new Date();
+    const diffJours = Math.floor((maintenant - d) / (1000 * 60 * 60 * 24));
+
+    if (diffJours === 0) return 'Aujourd\'hui';
+    if (diffJours === 1) return 'Hier';
+    return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+
+  /* ============================================================
+     RENDU DES MESSAGES
+     ============================================================ */
+  function rendreMessages() {
+    if (!conteneurMessages) return;
+
+    conteneurMessages.innerHTML = '';
+    
+    if (MESSAGES.length === 0) {
+      conteneurMessages.innerHTML = `
+        <div class="chat__vide">
+          <div class="chat__vide-icone"><i class="fi fi-rr-comments"></i></div>
+          <h3>Bienvenue dans votre messagerie</h3>
+          <p>Posez votre question à notre équipe. Nous vous répondrons dans les plus brefs délais.</p>
+        </div>
+      `;
+      return;
+    }
+
+    let dateActuelle = '';
+
+    MESSAGES.forEach(m => {
+      const dateMsg = new Date(m.created_at).toDateString();
+
+      if (dateMsg !== dateActuelle) {
+        dateActuelle = dateMsg;
+        const sep = document.createElement('div');
+        sep.className = 'chat__date';
+        sep.innerHTML = '<span>' + formatDateSep(m.created_at) + '</span>';
+        conteneurMessages.appendChild(sep);
+      }
+
+      const estEnvoye = (m.expediteur_id === session.id);
+      const bulle = document.createElement('div');
+      bulle.className = 'bulle ' + (estEnvoye ? 'bulle--envoye' : 'bulle--recu');
+
+      const avatarTxt = estEnvoye 
+        ? window.JosDore.UTILS.initiales(session.nom) 
+        : 'J';
+
+      bulle.innerHTML = `
+        <div class="bulle__avatar">${avatarTxt}</div>
+        <div class="bulle__contenu">
+          ${window.JosDore.UTILS.escapeHtml(m.contenu)}
+          <span class="bulle__heure">
+            ${formatHeure(m.created_at)}
+          </span>
+        </div>
+      `;
+
+      conteneurMessages.appendChild(bulle);
+    });
+
+    setTimeout(() => {
+      conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
+    }, 100);
+  }
+
+  rendreMessages();
+
+  /* ============================================================
+     ENVOYER UN MESSAGE (Corrigé avec Optimistic UI)
+     ============================================================ */
+  async function envoyerMessage() {
+    const texte = input.value.trim();
+    if (!texte) return;
+
+    // 1. On nettoie l'interface immédiatement
+    input.value = '';
+    input.style.height = 'auto';
+    btnEnvoyer.disabled = true;
+
+    // 2. On crée un message temporaire pour l'afficher tout de suite
+    const tempId = 'temp-' + Date.now();
+    const messageLocal = {
+      id: tempId,
+      expediteur_id: session.id,
+      destinataire_id: null,
+      contenu: texte,
+      lu: false,
+      created_at: new Date().toISOString()
+    };
+
+    // 3. On l'ajoute à la liste et on affiche
+    MESSAGES.push(messageLocal);
+    rendreMessages();
+
+    // 4. On envoie en arrière-plan à Supabase
+    if (supabase) {
+      try {
+        const { data, error } = await supabase.from('messages').insert({
+          expediteur_id: session.id,
+          destinataire_id: null, 
+          contenu: texte,
+          lu: false
+        }).select().single(); // .select().single() permet de récupérer l'ID réel créé
+
+        if (error) throw error;
+
+        // 5. Succès : On remplace le message temporaire par le vrai
+        if (data) {
+          const index = MESSAGES.findIndex(m => m.id === tempId);
+          if (index !== -1) {
+            MESSAGES[index] = data;
+          }
+        }
+
+      } catch (e) {
+        console.error('[Messages Client] Envoi :', e);
+        if (window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastErreur("Impossible d'envoyer le message. Vérifiez votre connexion.");
+        }
+        // En cas d'erreur : on retire le message temporaire et on remet le texte
+        MESSAGES = MESSAGES.filter(m => m.id !== tempId);
+        rendreMessages();
+        input.value = texte; 
+      }
+    }
+
+    btnEnvoyer.disabled = false;
+    input.focus();
+  }
+
+  /* ============================================================
+     ÉCOUTEURS D'ÉVÉNEMENTS
+     ============================================================ */
+  if (btnEnvoyer) btnEnvoyer.addEventListener('click', envoyerMessage);
+
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        envoyerMessage();
+      }
+    });
+
+    input.addEventListener('input', () => {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    });
+  }
+
+  /* ============================================================
+     TEMPS RÉEL (Realtime) - Pour recevoir la réponse de l'admin
+     ============================================================ */
+  if (supabase) {
+    supabase
+      .channel('client-chat-channel')
+      .on('postgres_changes', { 
+        event: 'INSERT', 
+        schema: 'public', 
+        table: 'messages'
+      }, async (payload) => {
+        const nouveauMsg = payload.new;
+        
+        // Si le message concerne le client
+        if (nouveauMsg.expediteur_id === session.id || nouveauMsg.destinataire_id === session.id) {
+          
+          // On vérifie si on ne l'a pas déjà affiché (pour éviter les doublons avec l'Optimistic UI)
+          const existeDeja = MESSAGES.some(m => m.id === nouveauMsg.id);
+          
+          if (!existeDeja) {
+            MESSAGES.push(nouveauMsg);
+            rendreMessages();
+          }
+          
+          // Si c'est un message de l'admin (donc reçu), on le marque comme lu
+          if (nouveauMsg.expediteur_id !== session.id) {
+             await supabase.from('messages').update({ lu: true }).eq('id', nouveauMsg.id);
+          }
+        }
+      })
+      .subscribe();
+  }
+
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Messagerie client chargée — ' + MESSAGES.length + ' messages');
+  }
+
+});
+</script>
+
+</body>
+</html>

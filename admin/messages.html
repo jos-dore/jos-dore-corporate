@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages — Jos Dore | Administration</title>
+<meta name="description" content="Messagerie admin Jos Dore.">
+<meta name="theme-color" content="#DC2626">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ✅ FIX : variables admin + sidebar-w
+     ============================================================ */
+  :root {
+    --admin-rouge: #DC2626;
+    --admin-rouge-fonce: #B91C1C;
+    --admin-rouge-bg: rgba(220,38,38,0.08);
+    --admin-grad: linear-gradient(135deg, #DC2626, #B91C1C);
+    --admin-sidebar-w: 280px;
+    --sidebar-w: 280px;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(220,38,38,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: #fff; }
+  .header--admin .logo__mark::after { background: #fff; }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header--admin .menu-btn {
+    background: transparent;
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+  .header--admin .menu-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
+  }
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(220,38,38,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { min-height: 100vh; }
+
+  @media (min-width: 1024px) {
+    .sidebar--admin {
+      display: flex !important;
+      flex-direction: column;
+      transform: translateX(0) !important;
+    }
+    .overlay { display: none !important; }
+  }
+
+  .main-admin {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 28px 20px 40px;
+  }
+  @media (min-width: 1024px) {
+    .main-admin {
+      margin-left: var(--admin-sidebar-w);
+      padding: 32px 28px 40px;
+    }
+  }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(220,38,38,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: #fff; }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: #fff; }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- MESSAGERIE ---------- */
+  .messagerie {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    height: calc(100vh - var(--header-h) - 200px);
+    min-height: 560px;
+    max-height: 780px;
+  }
+  @media (max-width: 900px) {
+    .messagerie {
+      grid-template-columns: 1fr;
+      height: auto;
+      max-height: none;
+    }
+  }
+
+  /* ---------- COLONNE GAUCHE ---------- */
+  .conv-liste {
+    background: var(--gris-50);
+    border-right: 1px solid var(--gris-200);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+  }
+  @media (max-width: 900px) {
+    .conv-liste { border-right: none; border-bottom: 1px solid var(--gris-200); max-height: 400px; }
+  }
+
+  .conv-liste__entete {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  .conv-liste__titre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 12px;
+  }
+  .conv-liste__titre span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .conv-liste__titre i {
+    color: var(--admin-rouge);
+    font-size: 17px;
+  }
+  .conv-liste__compteur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: 11px;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .conv-recherche { position: relative; }
+  .conv-recherche i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .conv-recherche input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .conv-recherche input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+  }
+
+  .conv-filtres {
+    display: flex;
+    gap: 4px;
+    padding: 10px 18px;
+    background: #fff;
+    border-bottom: 1px solid var(--gris-100);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .conv-filtres::-webkit-scrollbar { display: none; }
+  .conv-filtre {
+    flex-shrink: 0;
+    padding: 5px 11px;
+    background: transparent;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--gris-600);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .conv-filtre:hover { border-color: var(--admin-rouge); color: var(--admin-rouge); }
+  .conv-filtre.is-actif {
+    background: var(--admin-rouge);
+    border-color: var(--admin-rouge);
+    color: #fff;
+  }
+
+  .conv-items {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
+  .conv-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gris-100);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+  .conv-item:hover { background: #fff; text-decoration: none; color: inherit; }
+  .conv-item.is-actif {
+    background: #fff;
+    border-left: 3px solid var(--admin-rouge);
+    padding-left: 15px;
+  }
+  .conv-item.is-non-lu { background: rgba(220,38,38,0.03); }
+  .conv-item.is-non-lu .conv-item__nom { font-weight: 900; color: var(--gris-900); }
+  .conv-item.is-non-lu .conv-item__extrait { color: var(--gris-700); font-weight: 700; }
+
+  .conv-item__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--admin-grad);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 900;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.02em;
+  }
+  .conv-item__avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .conv-item__contenu { flex: 1; min-width: 0; }
+  .conv-item__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .conv-item__nom {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+  .conv-item__date {
+    font-size: 11px;
+    color: var(--gris-500);
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .conv-item__extrait {
+    font-size: 12.5px;
+    color: var(--gris-500);
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
+  .conv-item__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    margin-top: 4px;
+  }
+
+  /* ---------- COLONNE DROITE ---------- */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .chat__entete {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gris-200);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .chat__avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--admin-grad);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 900;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+    overflow: hidden;
+  }
+  .chat__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .chat__infos { flex: 1; min-width: 0; }
+  .chat__nom {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+  .chat__meta {
+    font-size: 12px;
+    color: var(--gris-500);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chat__actions { display: flex; gap: 6px; }
+  .btn-icon-chat {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-icon-chat:hover { background: var(--admin-rouge); color: #fff; text-decoration: none; }
+  .btn-icon-chat--whatsapp:hover { background: #25D366; color: #fff; }
+
+  .chat__messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 20px;
+    background: linear-gradient(180deg, var(--gris-50), #fff);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+  }
+
+  .chat__date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gris-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .chat__date::before,
+  .chat__date::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gris-200);
+    max-width: 80px;
+  }
+  .chat__date span {
+    padding: 0 12px;
+    background: var(--gris-50);
+    border-radius: var(--rayon-full);
+  }
+
+  .bulle {
+    max-width: 70%;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .bulle--recu { align-self: flex-start; }
+  .bulle--envoye { align-self: flex-end; flex-direction: row-reverse; }
+
+  .bulle__avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--admin-grad);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--police-titre);
+    font-size: 11px;
+    font-weight: 900;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+  .bulle--envoye .bulle__avatar {
+    background: linear-gradient(135deg, #64748B, #475569);
+  }
+
+  .bulle__contenu {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: 16px 16px 16px 4px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gris-700);
+    box-shadow: 0 1px 3px rgba(10,37,64,0.04);
+    position: relative;
+    word-wrap: break-word;
+  }
+  .bulle--envoye .bulle__contenu {
+    background: var(--admin-grad);
+    color: #fff;
+    border: none;
+    border-radius: 16px 16px 4px 16px;
+    box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+  }
+  .bulle__heure {
+    display: block;
+    font-size: 11px;
+    margin-top: 6px;
+    color: var(--gris-400);
+    font-weight: 600;
+  }
+  .bulle--envoye .bulle__heure {
+    color: rgba(255,255,255,0.7);
+    text-align: right;
+  }
+  .bulle__statut {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .chat__saisie {
+    padding: 16px 20px;
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .chat__saisie-zone {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: var(--gris-50);
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 8px 12px;
+    transition: var(--transition);
+  }
+  .chat__saisie-zone:focus-within {
+    border-color: var(--admin-rouge);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+  }
+  .chat__saisie-zone textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--gris-900);
+    resize: none;
+    outline: none;
+    max-height: 120px;
+    line-height: 1.55;
+    padding: 6px 0;
+  }
+  .chat__saisie-zone textarea::placeholder { color: var(--gris-400); }
+  .chat__saisie-btn-icone {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--gris-500);
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .chat__saisie-btn-icone:hover { background: var(--gris-200); color: var(--gris-900); }
+  .chat__saisie-btn-envoyer {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--admin-grad);
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(220,38,38,0.25);
+  }
+  .chat__saisie-btn-envoyer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(220,38,38,0.4);
+  }
+  .chat__saisie-btn-envoyer:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .chat__vide {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+    background: var(--gris-50);
+  }
+  .chat__vide-icone {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px dashed var(--gris-300);
+    color: var(--gris-400);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .chat__vide-titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-700);
+    margin-bottom: 8px;
+  }
+  .chat__vide-texte {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    max-width: 320px;
+  }
+
+  .conv-vide {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--gris-500);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .app-footer--admin {
+    padding: 16px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer--admin { margin-left: var(--admin-sidebar-w); }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .main-admin { padding: 20px 16px 32px; }
+    .messagerie { min-height: auto; }
+    .chat { min-height: 500px; }
+    .chat__messages { min-height: 300px; }
+    .bulle { max-width: 85%; }
+  }
+
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 16px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .conv-liste__entete { padding: 12px 14px 10px; }
+    .conv-item { padding: 12px 14px; }
+    .conv-item__avatar { width: 40px; height: 40px; font-size: 13px; }
+    .chat__entete { padding: 12px 14px; }
+    .chat__avatar { width: 40px; height: 40px; font-size: 13px; }
+    .chat__actions .btn-icon-chat:nth-child(n+2) { display: none; }
+    .chat__messages { padding: 16px 14px; }
+    .bulle { max-width: 90%; }
+    .bulle__contenu { padding: 10px 14px; font-size: 13.5px; }
+    .chat__saisie { padding: 12px 14px; gap: 8px; }
+    .chat__saisie-btn-envoyer { width: 40px; height: 40px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER ADMIN                                                  -->
+<!-- ============================================================ -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR ADMIN                                                 -->
+<!-- ============================================================ -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i>
+    <span>Clients</span>
+  </a>
+  <a href="/admin/materiel.html" class="sidebar__lien">
+    <i class="fi fi-rr-computer"></i>
+    <span>Matériel</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien">
+    <i class="fi fi-rr-document-signed"></i>
+    <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i>
+    <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Factures</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien">
+    <i class="fi fi-rr-pencil"></i>
+    <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-envelope"></i>
+    <span>Messages</span>
+    <span class="sidebar__lien-badge" id="sidebarBadgeMsg" style="display:none;">0</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i>
+    <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Messages
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+          </h1>
+          <p class="page-entete__sous">
+            Échangez avec vos clients, répondez à leurs demandes.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnToutMarquerLu">
+            <i class="fi fi-rr-check-double"></i> Tout marquer lu
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ MESSAGERIE ============ -->
+      <div class="messagerie">
+
+        <!-- ============ COLONNE GAUCHE ============ -->
+        <aside class="conv-liste">
+          <div class="conv-liste__entete">
+            <div class="conv-liste__titre">
+              <span>
+                <i class="fi fi-rr-comments"></i>
+                Conversations
+              </span>
+              <span class="conv-liste__compteur" id="convCompteur">0</span>
+            </div>
+            <div class="conv-recherche">
+              <i class="fi fi-rr-search"></i>
+              <input type="search" id="rechercheConv" placeholder="Rechercher un client…" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="conv-filtres">
+            <button type="button" class="conv-filtre is-actif" data-filtre-conv="toutes">
+              <i class="fi fi-rr-apps"></i> Toutes
+            </button>
+            <button type="button" class="conv-filtre" data-filtre-conv="non-lues">
+              <i class="fi fi-rr-eye"></i> Non lues
+            </button>
+            <button type="button" class="conv-filtre" data-filtre-conv="recentes">
+              <i class="fi fi-rr-time-fast"></i> Récentes
+            </button>
+          </div>
+
+          <div class="conv-items" id="convItems"></div>
+        </aside>
+
+        <!-- ============ COLONNE DROITE ============ -->
+        <section class="chat" id="chat">
+          <div class="chat__vide" id="chatVide">
+            <div class="chat__vide-icone">
+              <i class="fi fi-rr-comments"></i>
+            </div>
+            <div class="chat__vide-titre">Sélectionnez une conversation</div>
+            <p class="chat__vide-texte">
+              Choisissez une conversation dans la liste de gauche pour
+              afficher les messages et y répondre.
+            </p>
+          </div>
+
+          <div id="chatActif" style="display: none; flex-direction: column; height: 100%;">
+            <div class="chat__entete">
+              <div class="chat__avatar" id="chatAvatar">?</div>
+              <div class="chat__infos">
+                <div class="chat__nom" id="chatNom">—</div>
+                <div class="chat__meta" id="chatMeta">
+                  <span class="chat__statut">Client</span>
+                </div>
+              </div>
+              <div class="chat__actions">
+                <a href="#" class="btn-icon-chat btn-icon-chat--whatsapp" id="chatWhatsapp" title="Ouvrir WhatsApp" target="_blank" rel="noopener">
+                  <i class="fi fi-brands-whatsapp"></i>
+                </a>
+                <a href="#" class="btn-icon-chat" id="chatProfil" title="Voir la fiche client">
+                  <i class="fi fi-rr-user"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="chat__messages" id="chatMessages"></div>
+
+            <div class="chat__saisie">
+              <div class="chat__saisie-zone">
+                <textarea id="chatInput" rows="1" placeholder="Écrivez votre message…" autocomplete="off"></textarea>
+              </div>
+              <button type="button" class="chat__saisie-btn-envoyer" id="chatEnvoyer" title="Envoyer (Entrée)">
+                <i class="fi fi-sr-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER ADMIN                                                  -->
+<!-- ============================================================ -->
+<footer class="app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   ADMIN — MESSAGES (Connecté à Supabase + Realtime)
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+  }
+
+  /* ---------- ANNÉE ---------- */
+  const annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+
+  /* ============================================================
+     ÉTAT & DONNÉES
+     ============================================================ */
+  let CONVERSATIONS = [];
+  let convActive = null;
+  let filtreActif = 'toutes';
+  let termeRecherche = '';
+
+  /* ============================================================
+     CHARGEMENT DEPUIS SUPABASE
+     ============================================================ */
+  async function chargerConversations() {
+    if (!supabase || !session) return [];
+    try {
+      // 1. Récupérer tous les messages
+      const { data: messages, error } = await supabase
+        .from('messages')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      if (error) {
+        console.warn('[Messages] Erreur chargement :', error.message);
+        return [];
+      }
+
+      if (!messages || messages.length === 0) return [];
+
+      // 2. Récupérer les profils pour avoir les noms
+      const { data: profils } = await supabase.from('profiles').select('id, nom, entreprise, avatar_url');
+      const profilsMap = {};
+      (profils || []).forEach(p => profilsMap[p.id] = p);
+
+      // 3. Regrouper par client
+      const groupes = {};
+      messages.forEach(m => {
+        // Le client est celui qui n'est pas l'admin connecté
+        const clientId = (m.expediteur_id === session.id) ? m.destinataire_id : m.expediteur_id;
+        
+        // Si c'est un message envoyé à null (support général), on l'attribue à l'expéditeur
+        const finalClientId = clientId || m.expediteur_id;
+        
+        if (!finalClientId) return;
+
+        if (!groupes[finalClientId]) {
+          const p = profilsMap[finalClientId] || { nom: 'Client inconnu', entreprise: null, avatar_url: null };
+          groupes[finalClientId] = {
+            id: 'conv-' + finalClientId,
+            client: {
+              id: finalClientId,
+              nom: p.nom,
+              entreprise: p.entreprise,
+              avatar: p.avatar_url
+            },
+            nonLus: 0,
+            enLigne: false,
+            dernierMessageDate: m.created_at,
+            messages: []
+          };
+        }
+
+        const estAdmin = (m.expediteur_id === session.id);
+
+        groupes[finalClientId].messages.push({
+          id: m.id,
+          de: estAdmin ? 'admin' : 'client',
+          texte: m.contenu,
+          date: m.created_at,
+          lu: m.lu
+        });
+
+        // Compter les non lus (messages envoyés par le client ET non lus)
+        if (!m.lu && !estAdmin) {
+          groupes[finalClientId].nonLus++;
+        }
+        groupes[finalClientId].dernierMessageDate = m.created_at;
+      });
+
+      return Object.values(groupes);
+    } catch (e) {
+      console.warn('[Messages] Erreur :', e);
+      return [];
+    }
+  }
+
+  CONVERSATIONS = await chargerConversations();
+  console.log('[Admin Chat] Conversations chargées :', CONVERSATIONS);
+
+  /* ============================================================
+     FORMATAGE
+     ============================================================ */
+  function formatHeure(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function formatDateCourt(dateStr) {
+    const d = new Date(dateStr);
+    const maintenant = new Date();
+    const diffJours = Math.floor((maintenant - d) / (1000 * 60 * 60 * 24));
+
+    if (diffJours === 0) return formatHeure(dateStr);
+    if (diffJours === 1) return 'Hier';
+    if (diffJours < 7) return ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'][d.getDay()] + '.';
+    return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
+  }
+
+  function formatDateSep(dateStr) {
+    const d = new Date(dateStr);
+    const maintenant = new Date();
+    const diffJours = Math.floor((maintenant - d) / (1000 * 60 * 60 * 24));
+
+    if (diffJours === 0) return 'Aujourd\'hui';
+    if (diffJours === 1) return 'Hier';
+    return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+
+  /* ============================================================
+     BADGES
+     ============================================================ */
+  function compterNonLusTotal() {
+    return CONVERSATIONS.reduce((sum, c) => sum + (c.nonLus || 0), 0);
+  }
+
+  function majBadges() {
+    const nb = compterNonLusTotal();
+
+    const sidebarBadge = document.getElementById('sidebarBadgeMsg');
+    if (sidebarBadge) {
+      if (nb > 0) {
+        sidebarBadge.textContent = nb > 99 ? '99+' : nb;
+        sidebarBadge.style.display = '';
+      } else {
+        sidebarBadge.style.display = 'none';
+      }
+    }
+
+    document.querySelectorAll('[data-badge-messages]').forEach(el => {
+      if (nb > 0) {
+        el.textContent = nb > 99 ? '99+' : nb;
+        el.style.display = 'flex';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (window.JosDore.Header && window.JosDore.Header.rafraichir) {
+      window.JosDore.Header.rafraichir();
+    }
+  }
+
+  /* ============================================================
+     FILTRAGE
+     ============================================================ */
+  function getConversationsFiltrees() {
+    let liste = [...CONVERSATIONS];
+
+    if (filtreActif === 'non-lues') {
+      liste = liste.filter(c => c.nonLus > 0);
+    } else if (filtreActif === 'recentes') {
+      const il7j = Date.now() - 7 * 24 * 60 * 60 * 1000;
+      liste = liste.filter(c => new Date(c.dernierMessageDate).getTime() >= il7j);
+    }
+
+    if (termeRecherche) {
+      const t = termeRecherche.toLowerCase();
+      liste = liste.filter(c => {
+        const texte = [c.client?.nom, c.client?.entreprise].filter(Boolean).join(' ').toLowerCase();
+        return texte.includes(t);
+      });
+    }
+
+    liste.sort((a, b) => new Date(b.dernierMessageDate) - new Date(a.dernierMessageDate));
+
+    return liste;
+  }
+
+  /* ============================================================
+     RENDU LISTE
+     ============================================================ */
+  function rendreConversations() {
+    const conteneur = document.getElementById('convItems');
+    if (!conteneur) return;
+
+    const liste = getConversationsFiltrees();
+
+    const compteur = document.getElementById('convCompteur');
+    if (compteur) {
+      const nbTotal = compterNonLusTotal();
+      compteur.textContent = nbTotal;
+      compteur.style.display = nbTotal > 0 ? '' : 'none';
+    }
+
+    if (liste.length === 0) {
+      conteneur.innerHTML = `
+        <div class="conv-vide">
+          <i class="fi fi-rr-comments" style="font-size: 32px; color: var(--gris-300); display: block; margin-bottom: 12px;"></i>
+          Aucune conversation${termeRecherche ? ' pour cette recherche' : ''}
+        </div>
+      `;
+      return;
+    }
+
+    conteneur.innerHTML = '';
+    liste.forEach(c => {
+      const dernierMsg = c.messages[c.messages.length - 1];
+      if (!dernierMsg) return;
+      const initiales = window.JosDore.UTILS.initiales(c.client?.nom || '?');
+
+      const el = document.createElement('div');
+      el.className = 'conv-item' + (c.nonLus > 0 ? ' is-non-lu' : '') + (convActive === c.id ? ' is-actif' : '');
+      el.dataset.id = c.id;
+
+      el.innerHTML = `
+        <div class="conv-item__avatar">
+          ${c.client?.avatar ? '<img src="' + window.JosDore.UTILS.escapeHtml(c.client.avatar) + '" alt="">' : initiales}
+        </div>
+        <div class="conv-item__contenu">
+          <div class="conv-item__entete">
+            <div class="conv-item__nom">${window.JosDore.UTILS.escapeHtml(c.client?.nom || '—')}</div>
+            <div class="conv-item__date">${formatDateCourt(c.dernierMessageDate)}</div>
+          </div>
+          <div class="conv-item__extrait">
+            ${dernierMsg.de === 'admin' ? '<i class="fi fi-rr-check-double" style="margin-right: 4px; color: var(--or-fonce);"></i>' : ''}
+            ${window.JosDore.UTILS.escapeHtml(window.JosDore.UTILS.tronquer(dernierMsg.texte, 60))}
+          </div>
+          ${c.nonLus > 0 ? '<span class="conv-item__badge">' + c.nonLus + ' nouveau' + (c.nonLus > 1 ? 'x' : '') + '</span>' : ''}
+        </div>
+      `;
+
+      el.addEventListener('click', () => ouvrirConversation(c.id));
+      conteneur.appendChild(el);
+    });
+  }
+
+  /* ============================================================
+     OUVRIR CONVERSATION
+     ============================================================ */
+  async function ouvrirConversation(id) {
+    const conv = CONVERSATIONS.find(c => c.id === id);
+    if (!conv) return;
+
+    convActive = id;
+    
+    // Marquer comme lu dans Supabase
+    if (supabase && session && conv.client?.id) {
+      try {
+        await supabase.from('messages')
+          .update({ lu: true })
+          .eq('expediteur_id', conv.client.id)
+          .eq('destinataire_id', session.id);
+      } catch (e) {
+        console.warn("Erreur mise à jour 'lu':", e);
+      }
+    }
+
+    conv.nonLus = 0;
+    conv.messages.forEach(m => { if (m.de === 'client') m.lu = true; });
+
+    rendreConversations();
+    majBadges();
+
+    document.getElementById('chatVide').style.display = 'none';
+    document.getElementById('chatActif').style.display = 'flex';
+
+    // Avatar
+    const avatar = document.getElementById('chatAvatar');
+    if (avatar) {
+      avatar.innerHTML = conv.client?.avatar
+        ? '<img src="' + window.JosDore.UTILS.escapeHtml(conv.client.avatar) + '" alt="">'
+        : window.JosDore.UTILS.initiales(conv.client?.nom || '?');
+    }
+
+    const nom = document.getElementById('chatNom');
+    if (nom) nom.textContent = conv.client?.nom || '—';
+
+    const meta = document.getElementById('chatMeta');
+    if (meta) {
+      meta.innerHTML = `
+        ${conv.client?.entreprise ? '<span>' + window.JosDore.UTILS.escapeHtml(conv.client.entreprise) + '</span>' : '<span>Client</span>'}
+      `;
+    }
+
+    const wa = document.getElementById('chatWhatsapp');
+    if (wa) {
+      wa.href = 'https://wa.me/message/JWTG7DIGJR4XA1';
+      wa.style.display = '';
+    }
+
+    const profil = document.getElementById('chatProfil');
+    if (profil) {
+      profil.href = '/admin/client-detail.html?id=' + (conv.client?.id || '');
+    }
+
+    rendreMessages(conv);
+
+    setTimeout(() => {
+      const input = document.getElementById('chatInput');
+      if (input) input.focus();
+    }, 100);
+  }
+
+  /* ============================================================
+     RENDRE MESSAGES
+     ============================================================ */
+  function rendreMessages(conv) {
+    const conteneur = document.getElementById('chatMessages');
+    if (!conteneur) return;
+
+    conteneur.innerHTML = '';
+    let dateActuelle = '';
+
+    conv.messages.forEach(m => {
+      const dateMsg = new Date(m.date).toDateString();
+
+      if (dateMsg !== dateActuelle) {
+        dateActuelle = dateMsg;
+        const sep = document.createElement('div');
+        sep.className = 'chat__date';
+        sep.innerHTML = '<span>' + formatDateSep(m.date) + '</span>';
+        conteneur.appendChild(sep);
+      }
+
+      const bulle = document.createElement('div');
+      const estEnvoye = m.de === 'admin';
+      bulle.className = 'bulle ' + (estEnvoye ? 'bulle--envoye' : 'bulle--recu');
+
+      const avatarTxt = estEnvoye
+        ? window.JosDore.UTILS.initiales(session?.nom || 'Admin')
+        : window.JosDore.UTILS.initiales(conv.client?.nom || '?');
+
+      bulle.innerHTML = `
+        <div class="bulle__avatar">${avatarTxt}</div>
+        <div class="bulle__contenu">
+          ${window.JosDore.UTILS.escapeHtml(m.texte)}
+          <span class="bulle__heure">
+            ${formatHeure(m.date)}
+            ${estEnvoye ? '<i class="fi fi-rr-check-double bulle__statut"></i>' : ''}
+          </span>
+        </div>
+      `;
+
+      conteneur.appendChild(bulle);
+    });
+
+    setTimeout(() => {
+      conteneur.scrollTop = conteneur.scrollHeight;
+    }, 100);
+  }
+
+  /* ============================================================
+     ENVOYER MESSAGE (Avec Optimistic UI)
+     ============================================================ */
+  async function envoyerMessage() {
+    const input = document.getElementById('chatInput');
+    if (!input) return;
+
+    const texte = input.value.trim();
+    if (!texte) return;
+
+    const conv = CONVERSATIONS.find(c => c.id === convActive);
+    if (!conv || !session) return;
+
+    // 1. On nettoie l'interface
+    input.value = '';
+    input.style.height = 'auto';
+    const btnEnvoyer = document.getElementById('chatEnvoyer');
+    if (btnEnvoyer) btnEnvoyer.disabled = true;
+
+    // 2. On crée un message temporaire
+    const tempId = 'temp-' + Date.now();
+    const messageLocal = {
+      id: tempId,
+      de: 'admin',
+      texte: texte,
+      date: new Date().toISOString(),
+      lu: true
+    };
+
+    // 3. On l'ajoute et on affiche
+    conv.messages.push(messageLocal);
+    conv.dernierMessageDate = new Date().toISOString();
+    rendreMessages(conv);
+    rendreConversations();
+
+    // 4. On envoie en arrière-plan
+    if (supabase) {
+      try {
+        const { data, error } = await supabase.from('messages').insert({
+          expediteur_id: session.id,
+          destinataire_id: conv.client.id,
+          contenu: texte,
+          lu: false
+        }).select().single();
+
+        if (error) throw error;
+
+        // 5. Remplacer le message temporaire par le vrai
+        if (data) {
+          const index = conv.messages.findIndex(m => m.id === tempId);
+          if (index !== -1) {
+            conv.messages[index].id = data.id;
+          }
+        }
+
+      } catch (e) {
+        console.warn('[Messages] Envoi :', e);
+        if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur("Erreur d'envoi du message.");
+        
+        // En cas d'erreur : on retire le message et on remet le texte
+        conv.messages = conv.messages.filter(m => m.id !== tempId);
+        input.value = texte;
+        rendreMessages(conv);
+      }
+    }
+
+    if (btnEnvoyer) btnEnvoyer.disabled = false;
+    input.focus();
+  }
+
+  /* ============================================================
+     REALTIME (Mise à jour instantanée)
+     ============================================================ */
+  function initRealtime() {
+    if (!supabase) return;
+    
+    supabase
+      .channel('public:messages')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, async (payload) => {
+        console.log('Nouveau message reçu !', payload.new);
+        
+        // On recharge toutes les conversations
+        CONVERSATIONS = await chargerConversations();
+        
+        // Si on discute avec ce client
+        if (convActive) {
+          const conv = CONVERSATIONS.find(c => c.id === convActive);
+          if (conv) {
+             rendreMessages(conv);
+             await supabase.from('messages').update({ lu: true }).eq('id', payload.new.id);
+             conv.nonLus = 0;
+          }
+        }
+        
+        rendreConversations();
+        majBadges();
+      })
+      .subscribe();
+  }
+
+  /* ============================================================
+     ÉCOUTEURS
+     ============================================================ */
+  const btnEnvoyer = document.getElementById('chatEnvoyer');
+  if (btnEnvoyer) btnEnvoyer.addEventListener('click', envoyerMessage);
+
+  const input = document.getElementById('chatInput');
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        envoyerMessage();
+      }
+    });
+    input.addEventListener('input', () => {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    });
+  }
+
+  const rechercheInput = document.getElementById('rechercheConv');
+  if (rechercheInput) {
+    let timer;
+    rechercheInput.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        termeRecherche = rechercheInput.value.trim();
+        rendreConversations();
+      }, 250);
+    });
+  }
+
+  document.querySelectorAll('[data-filtre-conv]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre-conv]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtreConv;
+      rendreConversations();
+    });
+  });
+
+  const btnToutMarquerLu = document.getElementById('btnToutMarquerLu');
+  if (btnToutMarquerLu) {
+    btnToutMarquerLu.addEventListener('click', async () => {
+      const nb = compterNonLusTotal();
+      if (nb === 0) {
+        if (window.JosDore.Widgets) window.JosDore.Widgets.toastInfo('Aucun message non lu.');
+        return;
+      }
+
+      CONVERSATIONS.forEach(c => { c.nonLus = 0; });
+      CONVERSATIONS.forEach(c => c.messages.forEach(m => { if(m.de === 'client') m.lu = true; }));
+
+      if (supabase && session) {
+        try {
+          await supabase.from('messages').update({ lu: true }).eq('destinataire_id', session.id).eq('lu', false);
+        } catch (e) { console.warn(e); }
+      }
+
+      rendreConversations();
+      majBadges();
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastSucces('Tous les messages sont lus.');
+    });
+  }
+
+  /* ============================================================
+     INITIALISATION
+     ============================================================ */
+  rendreConversations();
+  majBadges();
+  initRealtime();
+
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Admin messages chargé (Supabase) — ' + CONVERSATIONS.length + ' conversations');
+  }
+
+});
+</script>
+
+</body>
+</html>

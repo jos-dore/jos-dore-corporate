@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factures — Jos Dore | Administration</title>
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<!-- Librairie pour générer le PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  :root {
+    --admin-rouge: #F59E0B;
+    --admin-rouge-fonce: #D97706;
+    --admin-rouge-bg: rgba(245,158,11,0.12);
+    --admin-grad: linear-gradient(135deg, #F59E0B, #D97706);
+    --admin-sidebar-w: 280px;
+    --text-on-primary: #0A2540;
+  }
+  body { background: var(--gris-50); }
+  .header--admin { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-bottom: 1px solid rgba(245,158,11,0.3); }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .header--admin .logo__mark::after { background: var(--text-on-primary); }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge); color: var(--text-on-primary); border-radius: var(--rayon-full); font-size: 9.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-left: 8px; font-family: var(--police-titre); }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(245,158,11,0.5); }
+  .header--admin .menu-btn { background: transparent; border-color: rgba(255,255,255,0.2); color: #fff; }
+  .header--admin .menu-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+  
+  .admin-layout { min-height: 100vh; }
+  @media (min-width: 1024px) { .sidebar--admin { display: flex !important; flex-direction: column; transform: translateX(0) !important; } .overlay { display: none !important; } }
+  .main-admin { margin-left: 0; transition: margin-left 0.25s ease; padding: 28px 20px 80px; }
+  @media (min-width: 1024px) { .main-admin { margin-left: var(--admin-sidebar-w); padding: 32px 28px 80px; } }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  .sidebar--admin { width: var(--admin-sidebar-w); background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%); border-right: 1px solid rgba(245,158,11,0.2); padding: 20px 14px; }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: var(--text-on-primary); }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: var(--text-on-primary); }
+
+  .page-entete { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .page-entete__titre { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--gris-900); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .page-entete__tag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+  .page-entete__sous { font-size: 15px; color: var(--gris-500); line-height: 1.5; }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .stats-mini-admin { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-mini-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-md); padding: 16px 18px; display: flex; align-items: center; gap: 12px; transition: var(--transition); }
+  .stat-mini-admin:hover { border-color: var(--admin-rouge); box-shadow: 0 4px 12px rgba(245,158,11,0.15); }
+  .stat-mini-admin__icone { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .stat-mini-admin__icone--or { background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); }
+  .stat-mini-admin__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-mini-admin__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-mini-admin__icone--rouge { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .stat-mini-admin__texte { min-width: 0; }
+  .stat-mini-admin__valeur { font-family: var(--police-titre); font-size: 20px; font-weight: 900; color: var(--gris-900); line-height: 1.1; letter-spacing: -0.02em; }
+  .stat-mini-admin__label { font-size: 11.5px; color: var(--gris-500); font-weight: 600; margin-top: 2px; }
+
+  .barre-outils { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); padding: 16px 20px; }
+  .recherche-admin { flex: 1; min-width: 240px; position: relative; }
+  .recherche-admin > i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--gris-400); font-size: 17px; pointer-events: none; }
+  .recherche-admin input { width: 100%; padding: 11px 16px 11px 46px; background: var(--gris-50); border: 1.5px solid transparent; border-radius: var(--rayon-sm); font-family: inherit; font-size: 14.5px; color: var(--gris-900); transition: var(--transition); }
+  .recherche-admin input:focus { outline: none; background: #fff; border-color: var(--admin-rouge); box-shadow: 0 0 0 4px rgba(245,158,11,0.1); }
+  .filtres-admin { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filtre-admin { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; background: var(--gris-50); border: 1.5px solid transparent; border-radius: var(--rayon-sm); font-family: var(--police-titre); font-size: 12.5px; font-weight: 700; color: var(--gris-600); cursor: pointer; transition: var(--transition); }
+  .filtre-admin:hover { background: #fff; border-color: var(--admin-rouge); color: var(--admin-rouge-fonce); }
+  .filtre-admin.is-actif { background: var(--admin-rouge); color: var(--text-on-primary); border-color: var(--admin-rouge); }
+  .filtre-admin__compteur { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: rgba(0,0,0,0.08); font-size: 11px; font-weight: 900; }
+  .filtre-admin.is-actif .filtre-admin__compteur { background: rgba(0,0,0,0.15); }
+
+  .bloc-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); overflow: hidden; }
+  .tableau-factures { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .tableau-factures thead { background: var(--gris-50); border-bottom: 1px solid var(--gris-200); }
+  .tableau-factures th { padding: 12px 18px; text-align: left; font-family: var(--police-titre); font-size: 11px; font-weight: 900; color: var(--gris-500); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; }
+  .tableau-factures td { padding: 14px 18px; border-top: 1px solid var(--gris-100); color: var(--gris-700); vertical-align: middle; }
+  .tableau-factures tbody tr { transition: var(--transition); }
+  .tableau-factures tbody tr:hover { background: var(--gris-50); }
+  .facture-num { font-family: var(--police-titre); font-size: 13.5px; font-weight: 800; color: var(--gris-900); }
+  .facture-client { display: flex; align-items: center; gap: 10px; }
+  .facture-client__avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--admin-grad); color: var(--text-on-primary); display: flex; align-items: center; justify-content: center; font-family: var(--police-titre); font-size: 12px; font-weight: 900; }
+  .facture-montant { font-family: var(--police-titre); font-size: 15px; font-weight: 900; color: var(--gris-900); }
+  .badge-facture { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .badge-facture--payee { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .badge-facture--attente { background: rgba(245,158,11,0.14); color: var(--admin-rouge-fonce); }
+  .badge-facture--retard { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .facture-actions { display: flex; gap: 6px; justify-content: flex-end; }
+  .btn-action-admin { width: 34px; height: 34px; border-radius: 9px; background: var(--gris-100); color: var(--gris-600); border: none; display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; transition: var(--transition); }
+  .btn-action-admin:hover { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .btn-action-admin--vert:hover { background: var(--vert); color: #fff; }
+  .btn-action-admin--danger:hover { background: var(--rouge); color: #fff; }
+  .btn-action-admin--whatsapp:hover { background: #25D366; color: #fff; }
+
+  .modale-admin { position: fixed; inset: 0; z-index: 9999; background: rgba(10,37,64,0.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modale-admin.is-visible { display: flex; }
+  .modale-admin__contenu { background: #fff; border-radius: var(--rayon-lg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; animation: popIn 0.3s ease; }
+  @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modale-admin__entete { padding: 20px 24px; background: var(--admin-grad); color: var(--text-on-primary); display: flex; align-items: center; justify-content: space-between; }
+  .modale-admin__titre { font-size: 16px; font-weight: 800; margin: 0; }
+  .modale-admin__fermer { width: 34px; height: 34px; border-radius: 50%; background: rgba(10,37,64,0.15); border: none; color: var(--text-on-primary); cursor: pointer; }
+  .modale-admin__corps { padding: 24px; }
+  .modale-admin__pied { padding: 16px 24px; border-top: 1px solid var(--gris-100); background: var(--gris-50); display: flex; justify-content: flex-end; gap: 10px; }
+  .champ { display: flex; flex-direction: column; margin-bottom: 16px; }
+  .champ__label { font-size: 12px; font-weight: 800; color: var(--gris-700); margin-bottom: 8px; text-transform: uppercase; }
+  .champ__input, .champ__select { width: 100%; padding: 12px 16px; border: 1.5px solid var(--gris-200); border-radius: var(--rayon-sm); font-size: 14.5px; }
+  .champ-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .app-footer--admin { padding: 20px 24px; text-align: center; font-size: 12px; color: var(--gris-500); border-top: 1px solid var(--gris-200); background: #fff; }
+  @media (min-width: 1024px) { .app-footer--admin { margin-left: var(--admin-sidebar-w); } }
+
+  @media (max-width: 1023px) { .main-admin { padding: 20px 16px 64px; } .tableau-factures th:nth-child(3), .tableau-factures td:nth-child(3) { display: none; } }
+  @media (max-width: 640px) { .champ-row { grid-template-columns: 1fr; } }
+
+  /* Style pour le PDF */
+  #facture-pdf-template { padding: 40px; background: #fff; color: #0A2540; font-family: 'Inter', sans-serif; }
+  #facture-pdf-template h1 { color: #F59E0B; border-bottom: 2px solid #F59E0B; padding-bottom: 10px; }
+  #facture-pdf-template table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  #facture-pdf-template th, #facture-pdf-template td { border: 1px solid #E2E8F0; padding: 10px; text-align: left; }
+</style>
+</head>
+<body>
+
+<!-- HEADER ADMIN -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu"><i class="fi fi-rr-menu-burger" id="menuIcon"></i></button>
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">Jos<span>Dore</span><span class="logo__suffix">Administration</span></div>
+      <span class="header__badge-admin"><i class="fi fi-rr-shield-check"></i> Admin</span>
+    </a>
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone"><i class="fi fi-rr-envelope"></i></a>
+      <a href="/admin/notifications.html" class="header__icone"><i class="fi fi-rr-bell"></i></a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar><span data-user-initiales>?</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR ADMIN -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar><span data-user-initiales>?</span></div>
+    <div>
+      <div class="sidebar__profil-nom"><span data-user-prenom>Admin</span><i class="fi fi-rr-shield-check" title="Administrateur"></i></div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> <span>Tableau de bord</span></a>
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien"><i class="fi fi-rr-users"></i> <span>Clients</span></a>
+  <a href="/admin/contrats.html" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> <span>Contrats</span></a>
+  <a href="/admin/interventions.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> <span>Interventions</span></a>
+  <a href="/admin/factures.html" class="sidebar__lien is-actif"><i class="fi fi-rr-credit-card"></i> <span>Factures</span></a>
+  <a href="/admin/formations.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> <span>Formations</span></a>
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien"><i class="fi fi-rr-pencil"></i> <span>Articles</span></a>
+  <a href="/admin/messages.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> <span>Messages</span></a>
+  <a href="/admin/notifications.html" class="sidebar__lien"><i class="fi fi-rr-bell"></i> <span>Notifications</span></a>
+  <div class="sidebar__sep"></div>
+  <a href="/admin/parametres.html" class="sidebar__lien"><i class="fi fi-rr-settings-sliders"></i> <span>Paramètres</span></a>
+  <a href="/" class="sidebar__lien" target="_blank"><i class="fi fi-rr-external-link"></i> <span>Voir le site public</span></a>
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;"><i class="fi fi-rr-sign-out-alt"></i> <span>Se déconnecter</span></button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- CONTENU -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">Factures <span class="page-entete__tag"><i class="fi fi-rr-shield-check"></i> Admin</span></h1>
+          <p class="page-entete__sous">Gérez vos factures, encaissez et relancez vos clients.</p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm"><i class="fi fi-rr-arrow-small-left"></i> Retour</a>
+          <button type="button" class="btn btn--or btn--sm" id="btnNouvelleFacture"><i class="fi fi-rr-plus"></i> Nouvelle facture</button>
+        </div>
+      </div>
+
+      <div class="stats-mini-admin">
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--or"><i class="fi fi-rr-credit-card"></i></div>
+          <div class="stat-mini-admin__texte"><div class="stat-mini-admin__valeur" id="sTotal">0</div><div class="stat-mini-admin__label">Factures</div></div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--vert"><i class="fi fi-rr-check-circle"></i></div>
+          <div class="stat-mini-admin__texte"><div class="stat-mini-admin__valeur" id="sPayees">0</div><div class="stat-mini-admin__label">Payées</div></div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--bleu"><i class="fi fi-rr-wallet"></i></div>
+          <div class="stat-mini-admin__texte"><div class="stat-mini-admin__valeur" id="sEncaisse">0</div><div class="stat-mini-admin__label">CA encaissé</div></div>
+        </div>
+      </div>
+
+      <div class="bloc-admin">
+        <table class="tableau-factures">
+          <thead>
+            <tr>
+              <th>Facture</th>
+              <th>Client</th>
+              <th>Date</th>
+              <th>Montant</th>
+              <th>Statut</th>
+              <th style="text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="facturesBody"></tbody>
+        </table>
+        <div class="vide-admin" id="videFactures" style="display: none; padding: 40px; text-align: center;">
+          <p>Aucune facture. Créez-en une nouvelle !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- MODALE CREATION FACTURE -->
+<div class="modale-admin" id="modaleFacture">
+  <div class="modale-admin__contenu">
+    <div class="modale-admin__entete">
+      <h2 class="modale-admin__titre">Nouvelle Facture</h2>
+      <button type="button" class="modale-admin__fermer" id="modaleFermer"><i class="fi fi-rr-cross-small"></i></button>
+    </div>
+    <form id="formFacture">
+      <div class="modale-admin__corps">
+        <div class="champ">
+          <label class="champ__label">Client *</label>
+          <select id="facClient" class="champ__select" required>
+            <option value="">Sélectionnez un client...</option>
+          </select>
+        </div>
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label">Numéro de facture *</label>
+            <input type="text" id="facNumero" class="champ__input" required placeholder="JD-2026-0001">
+          </div>
+          <div class="champ">
+            <label class="champ__label">Montant (FCFA) *</label>
+            <input type="number" id="facMontant" class="champ__input" required min="0">
+          </div>
+        </div>
+        <div class="champ">
+          <label class="champ__label">Description</label>
+          <input type="text" id="facDesc" class="champ__input" placeholder="Ex: Maintenance mensuelle">
+        </div>
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label">Date d'émission</label>
+            <input type="date" id="facDate" class="champ__input">
+          </div>
+          <div class="champ">
+            <label class="champ__label">Date d'échéance</label>
+            <input type="date" id="facEcheance" class="champ__input">
+          </div>
+        </div>
+      </div>
+      <div class="modale-admin__pied">
+        <button type="button" class="btn btn--ghost" id="modaleAnnuler">Annuler</button>
+        <button type="submit" class="btn btn--or"><i class="fi fi-rr-check"></i> Créer la facture</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TEMPLATE PDF CACHÉ -->
+<div id="facture-pdf-template" style="display: none;"></div>
+
+<!-- FOOTER ADMIN -->
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+  let FACTURES = [];
+  let CLIENTS = [];
+
+  /* ---------- CHARGEMENT DES DONNEES ---------- */
+  async function chargerDonnees() {
+    // 1. Charger les clients
+    const { data: profils } = await supabase.from('profiles').select('id, nom, email').eq('role', 'client');
+    CLIENTS = profils || [];
+
+    // Remplir le select du formulaire
+    const selectClient = document.getElementById('facClient');
+    selectClient.innerHTML = '<option value="">Sélectionnez un client...</option>';
+    CLIENTS.forEach(c => {
+      selectClient.innerHTML += `<option value="${c.id}">${c.nom} (${c.email})</option>`;
+    });
+
+    // 2. Charger les factures avec le nom du client
+    const { data: facturesData, error } = await supabase
+      .from('factures')
+      .select('*, profiles:user_id(nom, email)')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.warn(error);
+      return;
+    }
+
+    FACTURES = facturesData || [];
+    rendreFactures();
+    majStats();
+  }
+
+  /* ---------- RENDU DU TABLEAU ---------- */
+  function rendreFactures() {
+    const tbody = document.getElementById('facturesBody');
+    const vide = document.getElementById('videFactures');
+    tbody.innerHTML = '';
+
+    if (FACTURES.length === 0) {
+      vide.style.display = 'block';
+      return;
+    }
+    vide.style.display = 'none';
+
+    FACTURES.forEach(f => {
+      const clientNom = f.profiles?.nom || 'Client inconnu';
+      const initiales = window.JosDore.UTILS.initiales(clientNom);
+      
+      let badgeClass = 'attente';
+      let badgeLabel = 'En attente';
+      if (f.statut === 'payee') { badgeClass = 'payee'; badgeLabel = 'Payée'; }
+      if (f.statut === 'retard') { badgeClass = 'retard'; badgeLabel = 'En retard'; }
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="facture-num">${f.numero}</div>
+          <div style="font-size:11.5px; color:var(--gris-500);">${f.description || ''}</div>
+        </td>
+        <td>
+          <div class="facture-client">
+            <div class="facture-client__avatar">${initiales}</div>
+            <div>
+              <div style="font-weight:800; font-size:13.5px;">${clientNom}</div>
+            </div>
+          </div>
+        </td>
+        <td>${new Date(f.date_emission || f.created_at).toLocaleDateString('fr-FR')}</td>
+        <td><div class="facture-montant">${window.JosDore.UTILS.formaterMontant(f.montant)}</div></td>
+        <td><span class="badge-facture badge-facture--${badgeClass}">${badgeLabel}</span></td>
+        <td>
+          <div class="facture-actions">
+            <button class="btn-action-admin" title="Télécharger PDF" onclick="genererPDF('${f.id}')"><i class="fi fi-rr-download"></i></button>
+            <button class="btn-action-admin btn-action-admin--whatsapp" title="Relancer par WhatsApp" onclick="relancerWhatsApp('${f.id}')"><i class="fi fi-brands-whatsapp"></i></button>
+            ${f.statut !== 'payee' ? `<button class="btn-action-admin btn-action-admin--vert" title="Marquer payée" onclick="marquerPayee('${f.id}')"><i class="fi fi-rr-check"></i></button>` : ''}
+            <button class="btn-action-admin btn-action-admin--danger" title="Supprimer" onclick="supprimerFacture('${f.id}')"><i class="fi fi-rr-trash"></i></button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function majStats() {
+    document.getElementById('sTotal').textContent = FACTURES.length;
+    document.getElementById('sPayees').textContent = FACTURES.filter(f => f.statut === 'payee').length;
+    const ca = FACTURES.filter(f => f.statut === 'payee').reduce((sum, f) => sum + Number(f.montant), 0);
+    document.getElementById('sEncaisse').textContent = ca >= 1000 ? Math.round(ca/1000) + 'K' : ca;
+  }
+
+  /* ---------- ACTIONS GLOBALES ---------- */
+  window.marquerPayee = async (id) => {
+    if (!(await window.JosDore.Widgets.confirmer('Marquer cette facture comme payée ?', { titre: 'Paiement', variante: 'vert' }))) return;
+    await supabase.from('factures').update({ statut: 'payee' }).eq('id', id);
+    window.JosDore.Widgets.toastSucces('Facture marquée comme payée.');
+    chargerDonnees();
+  };
+
+  window.supprimerFacture = async (id) => {
+    if (!(await window.JosDore.Widgets.confirmer('Supprimer définitivement cette facture ?', { titre: 'Supprimer', variante: 'rouge' }))) return;
+    await supabase.from('factures').delete().eq('id', id);
+    window.JosDore.Widgets.toastSucces('Facture supprimée.');
+    chargerDonnees();
+  };
+
+  window.relancerWhatsApp = (id) => {
+    const f = FACTURES.find(x => x.id === id);
+    if (!f) return;
+    const msg = `Bonjour ${f.profiles.nom}, nous vous rappelons la facture ${f.numero} d'un montant de ${window.JosDore.UTILS.formaterMontant(f.montant)}. Merci de procéder au règlement. Cordialement, Jos Dore.`;
+    // Utilise le numéro de téléphone si dispo, sinon le lien général
+    window.open(`https://wa.me/message/JWTG7DIGJR4XA1?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  window.genererPDF = (id) => {
+    const f = FACTURES.find(x => x.id === id);
+    if (!f) return;
+    
+    const template = document.getElementById('facture-pdf-template');
+    template.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+        <div>
+          <h1 style="margin:0; font-size:28px;">FACTURE</h1>
+          <p style="margin:5px 0; font-size:14px; color:#64748B;">N° ${f.numero}</p>
+        </div>
+        <div style="text-align:right;">
+          <h2 style="margin:0; font-size:20px; color:#0A2540;">Jos Dore</h2>
+          <p style="margin:5px 0; font-size:12px; color:#64748B;">Maintenance & Infogérance</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:30px; font-size:14px;">
+        <div>
+          <strong style="color:#64748B; font-size:11px; text-transform:uppercase;">Facturé à</strong><br>
+          ${f.profiles.nom}<br>
+          ${f.profiles.email}
+        </div>
+        <div style="text-align:right;">
+          <strong style="color:#64748B; font-size:11px; text-transform:uppercase;">Date d'émission</strong><br>
+          ${new Date(f.date_emission || f.created_at).toLocaleDateString('fr-FR')}<br><br>
+          <strong style="color:#64748B; font-size:11px; text-transform:uppercase;">Date d'échéance</strong><br>
+          ${f.date_echeance ? new Date(f.date_echeance).toLocaleDateString('fr-FR') : '—'}
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="background:#F8FAFC;">Description</th>
+            <th style="background:#F8FAFC; text-align:right;">Montant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${f.description || 'Prestation de service'}</td>
+            <td style="text-align:right;">${window.JosDore.UTILS.formaterMontant(f.montant)}</td>
+          </tr>
+          <tr>
+            <td style="text-align:right; font-weight:bold; border:none; padding-top:20px;">TOTAL À PAYER</td>
+            <td style="text-align:right; font-weight:bold; font-size:18px; color:#F59E0B; border:none; padding-top:20px;">${window.JosDore.UTILS.formaterMontant(f.montant)}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:40px; text-align:center; font-size:11px; color:#94A3B8;">
+        Merci de votre confiance. Pour toute question, contactez-nous sur WhatsApp.
+      </div>
+    `;
+
+    const opt = {
+      margin:       10,
+      filename:     `Facture_${f.numero}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(template).save();
+  };
+
+  /* ---------- MODALE CREATION ---------- */
+  const modale = document.getElementById('modaleFacture');
+  document.getElementById('btnNouvelleFacture').addEventListener('click', () => {
+    document.getElementById('formFacture').reset();
+    document.getElementById('facDate').value = new Date().toISOString().split('T')[0];
+    modale.classList.add('is-visible');
+  });
+  document.getElementById('modaleFermer').addEventListener('click', () => modale.classList.remove('is-visible'));
+  document.getElementById('modaleAnnuler').addEventListener('click', () => modale.classList.remove('is-visible'));
+
+  document.getElementById('formFacture').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fi fi-rr-refresh"></i> Création...';
+
+    const donnees = {
+      user_id: document.getElementById('facClient').value,
+      numero: document.getElementById('facNumero').value.trim(),
+      montant: parseInt(document.getElementById('facMontant').value),
+      description: document.getElementById('facDesc').value.trim(),
+      date_emission: document.getElementById('facDate').value || null,
+      date_echeance: document.getElementById('facEcheance').value || null,
+      statut: 'attente'
+    };
+
+    const { error } = await supabase.from('factures').insert(donnees);
+    
+    if (error) {
+      window.JosDore.Widgets.toastErreur("Erreur: " + error.message);
+      btn.disabled = false;
+      btn.innerHTML = 'Créer la facture';
+    } else {
+      window.JosDore.Widgets.toastSucces('Facture créée avec succès !');
+      modale.classList.remove('is-visible');
+      btn.disabled = false;
+      btn.innerHTML = 'Créer la facture';
+      chargerDonnees();
+    }
+  });
+
+  /* ---------- INITIALISATION ---------- */
+  await chargerDonnees();
+  document.getElementById('annee').textContent = new Date().getFullYear();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formations — Jos Dore | Administration</title>
+<meta name="description" content="Gestion des formations Jos Dore.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — FORMATIONS (Thème Doré)
+     ============================================================ */
+
+  :root {
+    --admin-rouge: #F59E0B;
+    --admin-rouge-fonce: #D97706;
+    --admin-rouge-bg: rgba(245,158,11,0.12);
+    --admin-grad: linear-gradient(135deg, #F59E0B, #D97706);
+    --admin-sidebar-w: 280px;
+    --text-on-primary: #0A2540; /* Couleur sombre pour le texte sur fond doré */
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(245,158,11,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .header--admin .logo__mark::after { background: var(--text-on-primary); }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: var(--text-on-primary);
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(245,158,11,0.5); }
+  .header--admin .menu-btn { background: transparent; border-color: rgba(255,255,255,0.2); color: #fff; }
+  .header--admin .menu-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { min-height: 100vh; }
+  @media (min-width: 1024px) {
+    .sidebar--admin { display: flex !important; flex-direction: column; transform: translateX(0) !important; }
+    .overlay { display: none !important; }
+  }
+  .main-admin { margin-left: 0; transition: margin-left 0.25s ease; padding: 28px 20px 80px; }
+  @media (min-width: 1024px) {
+    .main-admin { margin-left: var(--admin-sidebar-w); padding: 32px 28px 80px; }
+  }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(245,158,11,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: var(--text-on-primary); }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: var(--text-on-primary); }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .page-entete__titre { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--gris-900); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .page-entete__tag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+  .page-entete__sous { font-size: 15px; color: var(--gris-500); line-height: 1.5; }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- BANDEAU YOUTUBE ---------- */
+  .info-youtube { background: linear-gradient(135deg, rgba(220,38,38,0.05), rgba(220,38,38,0.01)); border: 1px solid rgba(220,38,38,0.2); border-left: 4px solid #FF0000; border-radius: var(--rayon-lg); padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .info-youtube__icone { width: 40px; height: 40px; border-radius: 11px; background: #FF0000; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .info-youtube__contenu { flex: 1; min-width: 200px; }
+  .info-youtube__titre { font-size: 13px; font-weight: 800; color: var(--gris-900); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+  .info-youtube__titre i { color: #FF0000; font-size: 14px; }
+  .info-youtube__texte { font-size: 12.5px; color: var(--gris-600); line-height: 1.5; }
+
+  /* ---------- STATS MINI ---------- */
+  .stats-mini-admin { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-mini-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-md); padding: 16px 18px; display: flex; align-items: center; gap: 12px; transition: var(--transition); }
+  .stat-mini-admin:hover { border-color: var(--admin-rouge); box-shadow: 0 4px 12px rgba(245,158,11,0.15); }
+  .stat-mini-admin__icone { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .stat-mini-admin__icone--or { background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); }
+  .stat-mini-admin__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-mini-admin__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-mini-admin__icone--rouge { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .stat-mini-admin__texte { min-width: 0; }
+  .stat-mini-admin__valeur { font-family: var(--police-titre); font-size: 20px; font-weight: 900; color: var(--gris-900); line-height: 1.1; letter-spacing: -0.02em; }
+  .stat-mini-admin__label { font-size: 11.5px; color: var(--gris-500); font-weight: 600; margin-top: 2px; }
+
+  /* ---------- DEMANDES EN ATTENTE ---------- */
+  .demandes-attente { background: #fff; border: 1px solid rgba(245,158,11,0.3); border-radius: var(--rayon-lg); padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(245,158,11,0.08); display: none; }
+  .demandes-attente.is-visible { display: block; }
+  .demandes-attente__titre { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; color: var(--gris-900); margin-bottom: 16px; }
+  .demandes-attente__titre i { color: var(--admin-rouge-fonce); font-size: 18px; }
+  .demande-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--gris-50); border-radius: var(--rayon-sm); margin-bottom: 10px; border-left: 3px solid var(--admin-rouge); flex-wrap: wrap; gap: 12px; }
+  .demande-item:last-child { margin-bottom: 0; }
+  .demande-item__info { flex: 1; min-width: 200px; }
+  .demande-item__client { font-size: 14px; font-weight: 800; color: var(--gris-900); }
+  .demande-item__formation { font-size: 13px; color: var(--gris-500); margin-top: 2px; }
+  .demande-item__actions { display: flex; gap: 8px; }
+
+  /* ---------- BARRE D'OUTILS ---------- */
+  .barre-outils { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); padding: 16px 20px; }
+  .recherche-admin { flex: 1; min-width: 240px; position: relative; }
+  .recherche-admin > i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--gris-400); font-size: 17px; pointer-events: none; }
+  .recherche-admin input { width: 100%; padding: 11px 16px 11px 46px; background: var(--gris-50); border: 1.5px solid transparent; border-radius: var(--rayon-sm); font-family: inherit; font-size: 14.5px; color: var(--gris-900); transition: var(--transition); }
+  .recherche-admin input:focus { outline: none; background: #fff; border-color: var(--admin-rouge); box-shadow: 0 0 0 4px rgba(245,158,11,0.1); }
+  
+  .filtres-admin { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filtre-admin { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; background: var(--gris-50); border: 1.5px solid transparent; border-radius: var(--rayon-sm); font-family: var(--police-titre); font-size: 12.5px; font-weight: 700; color: var(--gris-600); cursor: pointer; transition: var(--transition); }
+  .filtre-admin:hover { background: #fff; border-color: var(--admin-rouge); color: var(--admin-rouge-fonce); }
+  .filtre-admin.is-actif { background: var(--admin-rouge); color: var(--text-on-primary); border-color: var(--admin-rouge); }
+  .filtre-admin__compteur { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: rgba(0,0,0,0.08); font-size: 11px; font-weight: 900; }
+  .filtre-admin.is-actif .filtre-admin__compteur { background: rgba(0,0,0,0.15); }
+
+  /* ---------- GRILLE FORMATIONS ---------- */
+  .formations-grille-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .formation-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; position: relative; }
+  .formation-admin:hover { transform: translateY(-3px); box-shadow: var(--ombre-lg); border-color: var(--admin-rouge); }
+  
+  .formation-admin__vignette { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg, #1E293B, #334155); overflow: hidden; }
+  .formation-admin__vignette img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .formation-admin:hover .formation-admin__vignette img { transform: scale(1.05); }
+  .formation-admin__badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; z-index: 2; }
+  .formation-admin__badge { padding: 5px 10px; background: var(--admin-rouge); color: var(--text-on-primary); border-radius: var(--rayon-full); font-size: 10px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; }
+  .formation-admin__badge--statut-publiee { background: var(--vert); color: #fff; }
+  .formation-admin__badge--statut-brouillon { background: var(--or-fonce); color: #fff; }
+  .formation-admin__badge--statut-archivee { background: var(--gris-500); color: #fff; }
+  .formation-admin__badge--niveau { background: rgba(10,37,64,0.85); color: #fff; backdrop-filter: blur(8px); }
+  .formation-admin__duree { position: absolute; bottom: 10px; right: 10px; padding: 4px 9px; background: rgba(0,0,0,0.78); color: #fff; border-radius: 6px; font-size: 11px; font-weight: 800; backdrop-filter: blur(8px); z-index: 2; display: inline-flex; align-items: center; gap: 4px; }
+  .formation-admin__yt-icon { position: absolute; bottom: 10px; left: 10px; padding: 4px 8px; background: #FF0000; color: #fff; border-radius: 6px; font-size: 12px; font-weight: 900; display: flex; align-items: center; gap: 4px; z-index: 2; }
+
+  .formation-admin__corps { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .formation-admin__categorie { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; color: var(--admin-rouge-fonce); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .formation-admin__titre { font-size: 15.5px; font-weight: 800; color: var(--gris-900); line-height: 1.35; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .formation-admin__desc { font-size: 12.5px; color: var(--gris-500); line-height: 1.55; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .formation-admin__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 0; margin-bottom: 14px; border-top: 1px solid var(--gris-100); border-bottom: 1px solid var(--gris-100); }
+  .formation-admin__stat { display: flex; flex-direction: column; gap: 2px; }
+  .formation-admin__stat-valeur { font-family: var(--police-titre); font-size: 15px; font-weight: 900; color: var(--gris-900); line-height: 1; }
+  .formation-admin__stat-label { font-size: 11px; color: var(--gris-500); font-weight: 600; }
+
+  .formation-admin__actions { display: flex; gap: 6px; }
+  .btn-action-admin { flex: 1; height: 36px; border-radius: 10px; background: var(--gris-100); color: var(--gris-600); border: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--police-titre); font-size: 12px; font-weight: 800; cursor: pointer; transition: var(--transition); text-decoration: none; }
+  .btn-action-admin:hover { background: var(--admin-rouge); color: var(--text-on-primary); text-decoration: none; }
+  .btn-action-admin--vert:hover { background: var(--vert); color: #fff; }
+  .btn-action-admin--danger:hover { background: var(--rouge); color: #fff; }
+  .btn-action-admin--icone { flex: 0 0 36px; }
+
+  /* ---------- MODALES ---------- */
+  .modale-admin { position: fixed; inset: 0; z-index: 9999; background: rgba(10,37,64,0.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modale-admin.is-visible { display: flex; }
+  .modale-admin__contenu { background: #fff; border-radius: var(--rayon-lg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; animation: popIn 0.3s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modale-admin__entete { padding: 20px 24px; background: var(--grad-or); color: var(--text-on-primary); display: flex; align-items: center; justify-content: space-between; border-radius: var(--rayon-lg) var(--rayon-lg) 0 0; }
+  .modale-admin__titre { font-size: 16px; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 10px; }
+  .modale-admin__fermer { width: 34px; height: 34px; border-radius: 50%; background: rgba(10,37,64,0.15); border: none; color: var(--text-on-primary); cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .modale-admin__fermer:hover { background: rgba(10,37,64,0.25); transform: rotate(90deg); }
+  .modale-admin__corps { padding: 24px; }
+  .modale-admin__pied { padding: 16px 24px; border-top: 1px solid var(--gris-100); background: var(--gris-50); display: flex; justify-content: flex-end; gap: 10px; border-radius: 0 0 var(--rayon-lg) var(--rayon-lg); }
+
+  .champ { display: flex; flex-direction: column; margin-bottom: 16px; }
+  .champ__label { font-size: 12px; font-weight: 800; color: var(--gris-700); margin-bottom: 8px; text-transform: uppercase; }
+  .champ__input, .champ__textarea, .champ__select { width: 100%; padding: 12px 16px; background: #fff; border: 1.5px solid var(--gris-200); border-radius: var(--rayon-sm); font-family: inherit; font-size: 14.5px; color: var(--gris-900); transition: var(--transition); }
+  .champ__input:focus, .champ__textarea:focus, .champ__select:focus { outline: none; border-color: var(--admin-rouge); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
+  .champ__textarea { min-height: 80px; resize: vertical; }
+  .champ-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ---------- FOOTER ADMIN ---------- */
+  .app-footer--admin { padding: 20px 24px; text-align: center; font-size: 12px; color: var(--gris-500); border-top: 1px solid var(--gris-200); background: #fff; }
+  @media (min-width: 1024px) { .app-footer--admin { margin-left: var(--admin-sidebar-w); } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) { .main-admin { padding: 20px 16px 64px; } }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .barre-outils { padding: 14px 16px; }
+    .recherche-admin { min-width: 100%; }
+    .formations-grille-admin { grid-template-columns: 1fr; gap: 16px; }
+    .formation-admin__corps { padding: 16px; }
+    .champ-row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER ADMIN -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR ADMIN -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i> <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i> <span>Clients</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien">
+    <i class="fi fi-rr-document-signed"></i> <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i> <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i> <span>Factures</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-graduation-cap"></i> <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien">
+    <i class="fi fi-rr-pencil"></i> <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien">
+    <i class="fi fi-rr-envelope"></i> <span>Messages</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i> <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i> <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i> <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i> <span>Se déconnecter</span>
+  </button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- CONTENU -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- EN-TÊTE -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Formations
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+          </h1>
+          <p class="page-entete__sous">
+            Gérez votre catalogue et validez les paiements de vos clients.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnNouvelleFormation">
+            <i class="fi fi-rr-plus"></i> Nouvelle formation
+          </button>
+        </div>
+      </div>
+
+      <!-- BANDEAU YOUTUBE -->
+      <div class="info-youtube">
+        <div class="info-youtube__icone"><i class="fi fi-brands-youtube"></i></div>
+        <div class="info-youtube__contenu">
+          <div class="info-youtube__titre"><i class="fi fi-rr-lock"></i> Vidéos hébergées sur YouTube</div>
+          <div class="info-youtube__texte">Collez l'ID YouTube de la vidéo (11 caractères) pour l'ajouter.</div>
+        </div>
+      </div>
+
+      <!-- SECTION DEMANDES EN ATTENTE (Cachée par défaut) -->
+      <div class="demandes-attente" id="sectionDemandes">
+        <div class="demandes-attente__titre">
+          <i class="fi fi-rr-time-fast"></i>
+          Demandes de déblocage en attente
+        </div>
+        <div id="listeDemandes"></div>
+      </div>
+
+      <!-- STATS MINI -->
+      <div class="stats-mini-admin">
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--or"><i class="fi fi-rr-graduation-cap"></i></div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sTotal">0</div>
+            <div class="stat-mini-admin__label">Formations totales</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--vert"><i class="fi fi-rr-check-circle"></i></div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sPubliees">0</div>
+            <div class="stat-mini-admin__label">Publiées</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--bleu"><i class="fi fi-rr-users"></i></div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sInscrits">0</div>
+            <div class="stat-mini-admin__label">Élèves total</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARRE D'OUTILS -->
+      <div class="barre-outils">
+        <div class="recherche-admin">
+          <i class="fi fi-rr-search"></i>
+          <input type="search" id="rechercheFormation" placeholder="Rechercher une formation…" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- GRILLE FORMATIONS -->
+      <div class="formations-grille-admin" id="formationsGrille"></div>
+
+      <!-- ÉTAT VIDE -->
+      <div class="vide-admin" id="videFormations" style="display: none; background:#fff; border:2px dashed var(--gris-200); border-radius:var(--rayon-lg); padding: 50px 20px; text-align:center;">
+        <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px;">
+          <i class="fi fi-rr-graduation-cap"></i>
+        </div>
+        <div style="font-size: 17px; font-weight: 800; color: var(--gris-900); margin-bottom: 8px;">Aucune formation</div>
+        <p style="font-size: 14px; color: var(--gris-500); margin-bottom: 24px;">Créez votre première formation pour la proposer à vos clients.</p>
+        <button type="button" class="btn btn--or btn--sm" id="btnNouvelleVide">
+          <i class="fi fi-rr-plus"></i> Créer une formation
+        </button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER ADMIN -->
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+</footer>
+
+<!-- MODALE FORMATION -->
+<div class="modale-admin" id="modaleFormation">
+  <div class="modale-admin__contenu">
+    <div class="modale-admin__entete">
+      <h2 class="modale-admin__titre" id="modaleFormationTitre">
+        <i class="fi fi-rr-plus"></i> Nouvelle formation
+      </h2>
+      <button type="button" class="modale-admin__fermer" id="modaleFormationFermer"><i class="fi fi-rr-cross-small"></i></button>
+    </div>
+    
+    <form id="formFormation">
+      <div class="modale-admin__corps">
+        <input type="hidden" id="formId">
+        
+        <div class="champ">
+          <label class="champ__label">Titre de la formation *</label>
+          <input type="text" id="formTitre" class="champ__input" required placeholder="Ex: Initiation à l'ordinateur">
+        </div>
+
+        <div class="champ">
+          <label class="champ__label">Description</label>
+          <textarea id="formDesc" class="champ__textarea" placeholder="Décrivez brièvement le contenu..."></textarea>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label">ID Vidéo YouTube *</label>
+            <input type="text" id="formVideo" class="champ__input" required placeholder="Ex: dQw4w9WgXcQ">
+          </div>
+          <div class="champ">
+            <label class="champ__label">Prix (FCFA)</label>
+            <input type="number" id="formPrix" class="champ__input" value="0" min="0">
+          </div>
+        </div>
+
+        <div class="champ-row">
+          <div class="champ">
+            <label class="champ__label">Durée</label>
+            <input type="text" id="formDuree" class="champ__input" placeholder="Ex: 1h 30">
+          </div>
+          <div class="champ">
+            <label class="champ__label">Niveau</label>
+            <select id="formNiveau" class="champ__select">
+              <option value="Débutant">Débutant</option>
+              <option value="Intermédiaire">Intermédiaire</option>
+              <option value="Avancé">Avancé</option>
+              <option value="Tous niveaux">Tous niveaux</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="champ">
+          <label class="champ__label">Statut</label>
+          <select id="formStatut" class="champ__select">
+            <option value="publiee">Publiée (Visible par les clients)</option>
+            <option value="brouillon">Brouillon (Cachée)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modale-admin__pied">
+        <button type="button" class="btn btn--ghost" id="modaleFormationAnnuler">Annuler</button>
+        <button type="submit" class="btn btn--or" id="modaleFormationEnregistrer">
+          <i class="fi fi-rr-check"></i> Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin');
+    document.querySelectorAll('[data-user-initiales]').forEach(el => el.textContent = window.JosDore.UTILS.initiales(session.nom));
+  }
+  const annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+
+  /* ============================================================
+     VARIABLES GLOBALES
+     ============================================================ */
+  let FORMATIONS = [];
+  let DEMANDES = []; // Inscriptions en attente
+
+  /* ============================================================
+     CHARGEMENT DES DONNÉES DEPUIS SUPABASE
+     ============================================================ */
+  async function chargerDonnees() {
+    if (!supabase) return;
+    try {
+      // 1. Charger les formations
+      const { data: fData, error: errF } = await supabase.from('formations').select('*').order('created_at', { ascending: false });
+      if (errF) throw errF;
+
+      // 2. Charger les demandes en attente (inscriptions avec statut en_attente)
+      const { data: iData, error: errI } = await supabase
+        .from('inscriptions')
+        .select(`
+          id, statut, created_at, user_id,
+          profiles:user_id (nom, email),
+          formations:formation_id (titre)
+        `)
+        .eq('statut', 'en_attente');
+
+      if (errI) throw errI;
+
+      // 3. Compter les inscrits par formation (pour l'affichage)
+      const { data: allInscriptions } = await supabase.from('inscriptions').select('formation_id');
+      
+      FORMATIONS = (fData || []).map(f => {
+        const inscrits = (allInscriptions || []).filter(i => i.formation_id === f.id).length;
+        return {
+          id: f.id,
+          titre: f.titre,
+          description: f.description,
+          video_id: f.video_id,
+          duree: f.duree,
+          niveau: f.niveau,
+          prix: f.prix,
+          statut: f.statut,
+          created_at: f.created_at,
+          inscrits: inscrits
+        };
+      });
+
+      DEMANDES = iData || [];
+
+      majStats();
+      afficherDemandes();
+      rendreFormations();
+
+    } catch (e) {
+      console.error("Erreur de chargement:", e);
+      if (window.JosDore.Widgets) window.JosDore.Widgets.toastErreur("Impossible de charger les données.");
+    }
+  }
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+  function majStats() {
+    document.getElementById('sTotal').textContent = FORMATIONS.length;
+    document.getElementById('sPubliees').textContent = FORMATIONS.filter(f => f.statut === 'publiee').length;
+    document.getElementById('sInscrits').textContent = FORMATIONS.reduce((sum, f) => sum + f.inscrits, 0);
+  }
+
+  /* ============================================================
+     AFFICHAGE DES DEMANDES EN ATTENTE
+     ============================================================ */
+  function afficherDemandes() {
+    const section = document.getElementById('sectionDemandes');
+    const liste = document.getElementById('listeDemandes');
+
+    if (DEMANDES.length === 0) {
+      section.classList.remove('is-visible');
+      return;
+    }
+
+    section.classList.add('is-visible');
+    liste.innerHTML = '';
+
+    DEMANDES.forEach(d => {
+      const nomClient = d.profiles?.nom || 'Client inconnu';
+      const titreFormation = d.formations?.titre || 'Formation inconnue';
+
+      const el = document.createElement('div');
+      el.className = 'demande-item';
+      el.innerHTML = `
+        <div class="demande-item__info">
+          <div class="demande-item__client"><i class="fi fi-rr-user"></i> ${window.JosDore.UTILS.escapeHtml(nomClient)}</div>
+          <div class="demande-item__formation">souhaite débloquer : <strong>${window.JosDore.UTILS.escapeHtml(titreFormation)}</strong></div>
+        </div>
+        <div class="demande-item__actions">
+          <button type="button" class="btn btn--or btn--sm" onclick="validerPaiement('${d.id}')">
+            <i class="fi fi-rr-lock-open-alt"></i> Débloquer
+          </button>
+        </div>
+      `;
+      liste.appendChild(el);
+    });
+  }
+
+  // Fonction globale pour être appelée par le onclick
+  window.validerPaiement = async function(inscriptionId) {
+    const confirme = await window.JosDore.Widgets.confirmer(
+      "Confirmez-vous avoir reçu le paiement Mobile Money de ce client ?",
+      { titre: "Valider le paiement", libelleConfirmer: "Oui, débloquer", variante: "or" }
+    );
+
+    if (!confirme) return;
+
+    try {
+      const { error } = await supabase
+        .from('inscriptions')
+        .update({ statut: 'debloque', date_paiement: new Date().toISOString() })
+        .eq('id', inscriptionId);
+
+      if (error) throw error;
+
+      window.JosDore.Widgets.toastSucces("La formation a été débloquée pour ce client !");
+      chargerDonnees(); // Recharger pour faire disparaître la demande
+    } catch (e) {
+      console.error(e);
+      window.JosDore.Widgets.toastErreur("Erreur lors de la validation.");
+    }
+  };
+
+  /* ============================================================
+     RENDU DU CATALOGUE
+     ============================================================ */
+  function rendreFormations() {
+    const grille = document.getElementById('formationsGrille');
+    const vide = document.getElementById('videFormations');
+    
+    if (FORMATIONS.length === 0) {
+      grille.innerHTML = '';
+      grille.style.display = 'none';
+      vide.style.display = 'block';
+      return;
+    }
+
+    vide.style.display = 'none';
+    grille.style.display = 'grid';
+    grille.innerHTML = '';
+
+    FORMATIONS.forEach(f => {
+      const badgeStatut = f.statut === 'publiee' ? 'Publiee' : 'Brouillon';
+      const classeBadge = f.statut === 'publiee' ? 'publiee' : 'brouillon';
+
+      const carte = document.createElement('article');
+      carte.className = 'formation-admin';
+      carte.innerHTML = `
+        <div class="formation-admin__vignette">
+          <img src="https://img.youtube.com/vi/${f.video_id}/maxresdefault.jpg" alt="${window.JosDore.UTILS.escapeHtml(f.titre)}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${f.video_id}/hqdefault.jpg';">
+          <div class="formation-admin__badges">
+            <span class="formation-admin__badge formation-admin__badge--statut-${classeBadge}">${badgeStatut}</span>
+            <span class="formation-admin__badge formation-admin__badge--niveau">${f.niveau}</span>
+          </div>
+          <div class="formation-admin__yt-icon"><i class="fi fi-brands-youtube"></i> Non listée</div>
+          <div class="formation-admin__duree"><i class="fi fi-rr-clock"></i> ${f.duree || '—'}</div>
+        </div>
+
+        <div class="formation-admin__corps">
+          <div class="formation-admin__categorie"><i class="fi fi-rr-graduation-cap"></i> Formation</div>
+          <h3 class="formation-admin__titre">${window.JosDore.UTILS.escapeHtml(f.titre)}</h3>
+          <p class="formation-admin__desc">${window.JosDore.UTILS.escapeHtml(f.description || '')}</p>
+
+          <div class="formation-admin__stats">
+            <div class="formation-admin__stat">
+              <div class="formation-admin__stat-valeur">${f.inscrits || 0}</div>
+              <div class="formation-admin__stat-label">Inscrits</div>
+            </div>
+            <div class="formation-admin__stat">
+              <div class="formation-admin__stat-valeur">${window.JosDore.UTILS.formaterMontant(f.prix)}</div>
+              <div class="formation-admin__stat-label">Prix</div>
+            </div>
+          </div>
+
+          <div class="formation-admin__actions">
+            <a href="https://www.youtube.com/watch?v=${f.video_id}" target="_blank" class="btn-action-admin btn-action-admin--icone" title="Voir sur YouTube"><i class="fi fi-brands-youtube"></i></a>
+            <button type="button" class="btn-action-admin btn-action-admin--icone" onclick="ouvrirModaleFormation('${f.id}')" title="Modifier"><i class="fi fi-rr-pencil"></i></button>
+            <button type="button" class="btn-action-admin btn-action-admin--danger btn-action-admin--icone" onclick="supprimerFormation('${f.id}')" title="Supprimer"><i class="fi fi-rr-trash"></i></button>
+          </div>
+        </div>
+      `;
+      grille.appendChild(carte);
+    });
+  }
+
+  /* ============================================================
+     MODALE AJOUT / MODIFICATION
+     ============================================================ */
+  const modale = document.getElementById('modaleFormation');
+  const form = document.getElementById('formFormation');
+
+  window.ouvrirModaleFormation = function(id = null) {
+    form.reset();
+    document.getElementById('formId').value = '';
+
+    if (id) {
+      const f = FORMATIONS.find(x => x.id === id);
+      if (!f) return;
+      
+      document.getElementById('modaleFormationTitre').innerHTML = '<i class="fi fi-rr-pencil"></i> Modifier la formation';
+      document.getElementById('formId').value = f.id;
+      document.getElementById('formTitre').value = f.titre;
+      document.getElementById('formDesc').value = f.description || '';
+      document.getElementById('formVideo').value = f.video_id;
+      document.getElementById('formPrix').value = f.prix;
+      document.getElementById('formDuree').value = f.duree || '';
+      document.getElementById('formNiveau').value = f.niveau;
+      document.getElementById('formStatut').value = f.statut;
+    } else {
+      document.getElementById('modaleFormationTitre').innerHTML = '<i class="fi fi-rr-plus"></i> Nouvelle formation';
+    }
+
+    modale.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function fermerModale() {
+    modale.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modaleFormationFermer').addEventListener('click', fermerModale);
+  document.getElementById('modaleFormationAnnuler').addEventListener('click', fermerModale);
+  document.getElementById('btnNouvelleFormation').addEventListener('click', () => ouvrirModaleFormation(null));
+  document.getElementById('btnNouvelleVide').addEventListener('click', () => ouvrirModaleFormation(null));
+
+  // SOUMISSION DU FORMULAIRE (Insert / Update)
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('modaleFormationEnregistrer');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fi fi-rr-refresh"></i> Enregistrement...';
+
+    const id = document.getElementById('formId').value;
+    const donnees = {
+      titre: document.getElementById('formTitre').value.trim(),
+      description: document.getElementById('formDesc').value.trim(),
+      video_id: document.getElementById('formVideo').value.trim(),
+      prix: parseInt(document.getElementById('formPrix').value) || 0,
+      duree: document.getElementById('formDuree').value.trim(),
+      niveau: document.getElementById('formNiveau').value,
+      statut: document.getElementById('formStatut').value
+    };
+
+    try {
+      if (id) {
+        // Update
+        const { error } = await supabase.from('formations').update(donnees).eq('id', id);
+        if (error) throw error;
+        window.JosDore.Widgets.toastSucces("Formation modifiée avec succès.");
+      } else {
+        // Insert
+        const { error } = await supabase.from('formations').insert(donnees);
+        if (error) throw error;
+        window.JosDore.Widgets.toastSucces("Nouvelle formation ajoutée !");
+      }
+      fermerModale();
+      chargerDonnees();
+    } catch (err) {
+      console.error(err);
+      window.JosDore.Widgets.toastErreur("Erreur : " + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fi fi-rr-check"></i> Enregistrer';
+    }
+  });
+
+  /* ============================================================
+     SUPPRESSION
+     ============================================================ */
+  window.supprimerFormation = async function(id) {
+    const f = FORMATIONS.find(x => x.id === id);
+    if (!f) return;
+
+    const confirme = await window.JosDore.Widgets.confirmer(
+      `Supprimer définitivement la formation "${f.titre}" ? Tous les élèves liés perdront l'accès.`,
+      { titre: 'Supprimer la formation', libelleConfirmer: 'Supprimer', variante: 'rouge', icone: 'fi fi-rr-trash' }
+    );
+
+    if (!confirme) return;
+
+    try {
+      const { error } = await supabase.from('formations').delete().eq('id', id);
+      if (error) throw error;
+      window.JosDore.Widgets.toastSucces("Formation supprimée.");
+      chargerDonnees();
+    } catch (e) {
+      console.error(e);
+      window.JosDore.Widgets.toastErreur("Impossible de supprimer (des élèves y sont peut-être inscrits).");
+    }
+  };
+
+  /* ============================================================
+     INITIALISATION
+     ============================================================ */
+  await chargerDonnees();
+
+});
+</script>
+
+</body>
+</html>

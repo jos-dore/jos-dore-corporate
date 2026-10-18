@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles & conseils — Jos Dore | Blog informatique Bénin</title>
+<meta name="description" content="Guides pratiques, conseils d'achat, astuces de sécurité et actualités tech au Bénin. Le blog Jos Dore vous aide à mieux gérer votre informatique.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Articles & conseils — Jos Dore">
+<meta property="og:description" content="Guides pratiques et conseils pour mieux gérer votre informatique au Bénin.">
+<meta property="og:image" content="/ressources/images/og/og-blog.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/blog/">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  .hero-blog {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-blog::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-blog::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-blog__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-blog__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-blog h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-blog h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-blog p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .section-blog { padding: 64px 0 80px; }
+  .section-blog--grise { background: var(--gris-50); }
+
+  .filtres {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .filtre-btn {
+    padding: 10px 20px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover { border-color: var(--or); color: var(--or-fonce); }
+  .filtre-btn.is-actif { background: var(--or); border-color: var(--or); color: var(--nuit); }
+
+  .vedette {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    padding: 0 24px;
+  }
+  .vedette__lien {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+  }
+  .vedette__lien:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+    text-decoration: none;
+  }
+  .vedette__img {
+    background: linear-gradient(135deg, #1E293B, #334155);
+    min-height: 340px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.25);
+    font-size: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vedette__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+  .vedette__badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    padding: 6px 14px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .vedette__contenu {
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .vedette__meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .vedette__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gris-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .vedette__meta-item i { color: var(--or-fonce); font-size: 14px; }
+  .vedette__titre {
+    font-family: var(--police-titre);
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .vedette__desc {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .vedette__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--police-titre);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--or-fonce);
+  }
+  .vedette__cta i { transition: transform var(--transition); }
+  .vedette__lien:hover .vedette__cta i { transform: translateX(4px); }
+
+  .articles-grille {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .article-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+    text-decoration: none;
+    color: inherit;
+  }
+  .article-card__img {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.25);
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .article-card__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+  .article-card__badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    padding: 4px 10px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .article-card__body {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .article-card__date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .article-card__date i { color: var(--or-fonce); font-size: 13px; }
+  .article-card__titre {
+    font-family: var(--police-titre);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .article-card__desc {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .article-card__lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    margin-top: auto;
+  }
+  .article-card__lien i { transition: transform var(--transition); }
+  .article-card:hover .article-card__lien i { transform: translateX(4px); }
+
+  .etat-vide {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .etat-vide__icon {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--gris-100);
+    color: var(--gris-400);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 20px;
+  }
+  .etat-vide h3 {
+    font-size: 18px;
+    color: var(--gris-700);
+    margin-bottom: 8px;
+  }
+  .etat-vide p {
+    font-size: 14px;
+    color: var(--gris-500);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .newsletter {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 72px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .newsletter__inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+  .newsletter__icon {
+    width: 72px; height: 72px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05));
+    color: var(--or);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 24px;
+  }
+  .newsletter h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .newsletter h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .newsletter p { color: #CBD5E1; font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  .newsletter__form {
+    display: flex; gap: 10px; max-width: 500px;
+    margin: 0 auto; flex-wrap: wrap;
+  }
+  .newsletter__input {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    border-radius: var(--rayon-sm);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    transition: var(--transition);
+  }
+  .newsletter__input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter__input:focus {
+    outline: none;
+    border-color: var(--or);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 4px rgba(245,158,11,0.15);
+  }
+  .newsletter__note { font-size: 12px; color: #94A3B8; margin-top: 14px; line-height: 1.5; }
+
+  .cta-blog {
+    padding: 72px 24px;
+    text-align: center;
+    background: var(--gris-50);
+  }
+  .cta-blog__inner { max-width: 640px; margin: 0 auto; }
+  .cta-blog h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--gris-900);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .cta-blog p {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .cta-blog__actions {
+    display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn-whatsapp-float__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @media (max-width: 960px) {
+    .vedette__lien { grid-template-columns: 1fr; }
+    .vedette__img { min-height: 220px; font-size: 60px; }
+    .vedette__contenu { padding: 32px 28px; }
+  }
+  @media (max-width: 640px) {
+    .hero-blog { padding: 40px 0 56px; }
+    .section-blog { padding: 48px 0 64px; }
+    .vedette { margin-bottom: 40px; }
+    .vedette__contenu { padding: 28px 22px; }
+    .articles-grille { gap: 20px; }
+    .newsletter { padding: 56px 20px; }
+    .newsletter__form { flex-direction: column; }
+    .newsletter__input { width: 100%; }
+    .cta-blog { padding: 56px 20px; }
+    .cta-blog__actions { flex-direction: column; }
+    .cta-blog__actions .btn { width: 100%; }
+    .btn-whatsapp-float {
+      width: 52px; height: 52px;
+      font-size: 26px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html">Académie</a>
+      <a href="/outils.html">Outils</a>
+      <a href="/jeux.html">Jeux</a>
+      <a href="/blog/" class="is-actif">Blog</a>
+      <a href="/aide/">Aide</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" data-header="invite">Connexion</a>
+      <a href="/espace-client/tableau-de-bord.html" class="btn btn--ghost btn--sm" data-header="connecte" style="display:none;">Mon espace</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis gratuit
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien"><i class="fi fi-rr-gamepad"></i> Jeux & Quiz</a>
+  <a href="/blog/" class="sidebar__lien is-actif"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/a-propos.html" class="sidebar__lien"><i class="fi fi-rr-info"></i> À propos</a>
+  <a href="/aide/" class="sidebar__lien"><i class="fi fi-rr-interrogation"></i> Aide</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+
+  <div class="sidebar__sep"></div>
+  <div style="padding: 10px 16px;">
+    <a href="/contact.html" class="btn btn--or btn--block" style="width: 100%;">Devis gratuit</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main>
+
+  <section class="hero-blog">
+    <div class="hero-blog__inner">
+      <div class="hero-blog__badge">
+        <i class="fi fi-rr-document-signed"></i>
+        Articles & conseils
+      </div>
+
+      <h1>Apprenez, comprenez, <span>progressez.</span></h1>
+
+      <p>
+        Des articles simples et pratiques pour mieux comprendre votre
+        matériel, éviter les pièges et faire les bons choix. Adaptés au
+        contexte béninois.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-blog" style="padding-bottom: 24px;">
+    <div class="filtres">
+      <button type="button" class="filtre-btn is-actif" data-filtre="tous">Tous</button>
+      <button type="button" class="filtre-btn" data-filtre="guide">Guides</button>
+      <button type="button" class="filtre-btn" data-filtre="conseil">Conseils</button>
+      <button type="button" class="filtre-btn" data-filtre="securite">Sécurité</button>
+      <button type="button" class="filtre-btn" data-filtre="actualite">Actualités</button>
+    </div>
+  </section>
+
+  <!-- VEDETTE — sera remplacée par JS si des articles existent en base -->
+  <section class="vedette" id="vedette">
+    <a href="/blog/article.html?id=article-01" class="vedette__lien" data-categorie="guide">
+      <div class="vedette__img">
+        <i class="fi fi-rr-shield-check"></i>
+        <span class="vedette__badge">À la une</span>
+      </div>
+      <div class="vedette__contenu">
+        <div class="vedette__meta">
+          <div class="vedette__meta-item">
+            <i class="fi fi-rr-tag"></i> Guide
+          </div>
+          <div class="vedette__meta-item">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <div class="vedette__meta-item">
+            <i class="fi fi-rr-time-fast"></i> 5 min de lecture
+          </div>
+        </div>
+        <h2 class="vedette__titre">
+          Comment reconnaître un ordinateur infecté par un virus
+        </h2>
+        <p class="vedette__desc">
+          Les 7 signes qui ne trompent pas, comment réagir rapidement,
+          et les bons réflexes pour protéger vos données. Un guide
+          essentiel pour tous les utilisateurs.
+        </p>
+        <div class="vedette__cta">
+          Lire l'article <i class="fi fi-rr-arrow-right"></i>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- GRILLE ARTICLES — sera remplacée par JS si des articles existent en base -->
+  <section class="section-blog" style="padding-top: 0;">
+    <div class="articles-grille" id="articlesGrille">
+
+      <a href="/blog/article.html?id=article-02" class="article-card" data-categorie="conseil">
+        <div class="article-card__img">
+          <i class="fi fi-rr-picture"></i>
+          <span class="article-card__badge">Conseil</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <h3 class="article-card__titre">
+            Bien choisir son ordinateur portable en 2026
+          </h3>
+          <p class="article-card__desc">
+            Processeur, RAM, disque dur, autonomie : les critères
+            essentiels pour ne pas se tromper et investir intelligemment.
+          </p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/article.html?id=article-03" class="article-card" data-categorie="securite">
+        <div class="article-card__img">
+          <i class="fi fi-rr-picture"></i>
+          <span class="article-card__badge">Sécurité</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <h3 class="article-card__titre">
+            Sauvegarder ses données : la règle 3-2-1
+          </h3>
+          <p class="article-card__desc">
+            La méthode simple et efficace pour ne jamais perdre vos
+            fichiers importants. Explications et exemples concrets.
+          </p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/article.html?id=article-04" class="article-card" data-categorie="guide">
+        <div class="article-card__img">
+          <i class="fi fi-rr-picture"></i>
+          <span class="article-card__badge">Guide</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <h3 class="article-card__titre">
+            Nettoyer son ordinateur : le guide complet
+          </h3>
+          <p class="article-card__desc">
+            Nettoyage physique et logiciel : comment prolonger la durée
+            de vie de votre PC et améliorer ses performances.
+          </p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/article.html?id=article-05" class="article-card" data-categorie="securite">
+        <div class="article-card__img">
+          <i class="fi fi-rr-picture"></i>
+          <span class="article-card__badge">Sécurité</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <h3 class="article-card__titre">
+            Reconnaître un email frauduleux en 5 indices
+          </h3>
+          <p class="article-card__desc">
+            Les techniques des arnaqueurs évoluent. Voici comment
+            démasquer un phishing avant de tomber dans le piège.
+          </p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/article.html?id=article-06" class="article-card" data-categorie="conseil">
+        <div class="article-card__img">
+          <i class="fi fi-rr-picture"></i>
+          <span class="article-card__badge">Conseil</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> Bientôt disponible
+          </div>
+          <h3 class="article-card__titre">
+            Mots de passe : les 6 erreurs à éviter
+          </h3>
+          <p class="article-card__desc">
+            123456, date de naissance, prénom du chat… Découvrez
+            pourquoi ces mots de passe sont dangereux et comment
+            en créer un solide.
+          </p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+
+      <div class="etat-vide" id="etatVide" style="display:none;">
+        <div class="etat-vide__icon">
+          <i class="fi fi-rr-search"></i>
+        </div>
+        <h3>Aucun article dans cette catégorie</h3>
+        <p>
+          D'autres articles arrivent bientôt. En attendant, contactez-nous
+          pour toute question spécifique.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="newsletter__inner">
+      <div class="newsletter__icon">
+        <i class="fi fi-rr-envelope"></i>
+      </div>
+      <h2>Recevez nos <span>nouveaux articles</span></h2>
+      <p>
+        Un email quand un nouvel article est publié. Pas de spam,
+        pas de pub. Désabonnement en un clic.
+      </p>
+
+      <form class="newsletter__form" id="newsletterForm" novalidate>
+        <input
+          type="email"
+          class="newsletter__input"
+          id="newsletterEmail"
+          placeholder="Votre adresse email"
+          required
+          autocomplete="email"
+        >
+        <button type="submit" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-paper-plane"></i> S'abonner
+        </button>
+      </form>
+
+      <div class="newsletter__note">
+        Nous ne partagerons jamais votre email. Zéro spam, promis.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-blog">
+    <div class="cta-blog__inner">
+      <h2>Un problème concret ?</h2>
+      <p>
+        Nos articles vous aident à mieux comprendre. Mais si vous avez
+        un souci précis, n'hésitez pas : le diagnostic initial est gratuit
+        et sans engagement.
+      </p>
+      <div class="cta-blog__actions">
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-calendar"></i> Diagnostic gratuit
+        </a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<footer class="footer">
+  <div class="footer__grille">
+
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Services</h4>
+      <div class="footer__liens">
+        <a href="/service-maintenance.html">Maintenance</a>
+        <a href="/service-formation.html">Formation</a>
+        <a href="/blog/">Articles</a>
+        <a href="/contact.html">Devis gratuit</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   BLOG — Chargement Supabase + Filtres + Newsletter
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  const supabase = window.JosDore && window.JosDore.supabase;
+  const U = window.JosDore && window.JosDore.UTILS;
+
+  let ARTICLES = [];
+
+  const CATEGORIE_LABELS = {
+    guide: { label: 'Guide', icone: 'fi fi-rr-document' },
+    conseil: { label: 'Conseil', icone: 'fi fi-rr-bulb' },
+    securite: { label: 'Sécurité', icone: 'fi fi-rr-shield-check' },
+    actualite: { label: 'Actualité', icone: 'fi fi-rr-megaphone' }
+  };
+
+  /* ---------- HELPERS ---------- */
+  function formatDate(d) {
+    if (!d) return 'Bientôt disponible';
+    try {
+      return new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+    } catch (e) { return 'Bientôt disponible'; }
+  }
+
+  function escapeHtml(txt) {
+    if (U && U.escapeHtml) return U.escapeHtml(txt);
+    return String(txt || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* ---------- CHARGEMENT SUPABASE ---------- */
+  async function chargerArticles() {
+    if (!supabase) return [];
+    try {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('statut', 'publie')
+        .order('publie_le', { ascending: false, nullsFirst: false });
+
+      if (error) {
+        console.warn('[Blog] Erreur Supabase :', error.message);
+        return [];
+      }
+
+      return (data || []).sort((a, b) => {
+        const da = new Date(b.publie_le || b.created_at || 0);
+        const db = new Date(a.publie_le || a.created_at || 0);
+        return da - db;
+      });
+    } catch (e) {
+      console.warn('[Blog] Exception :', e);
+      return [];
+    }
+  }
+
+  /* ---------- RENDU VEDETTE ---------- */
+  function rendreVedette(article) {
+    const wrap = document.getElementById('vedette');
+    if (!wrap || !article) return;
+
+    const cat = CATEGORIE_LABELS[article.categorie] || { label: article.categorie || 'Article', icone: 'fi fi-rr-document' };
+    const imageHtml = article.image_url
+      ? `<img src="${escapeHtml(article.image_url)}" alt="${escapeHtml(article.titre)}" onerror="this.remove();">`
+      : `<i class="fi fi-rr-document-signed"></i>`;
+
+    const lien = '/blog/article.html?slug=' + encodeURIComponent(article.slug || '');
+
+    wrap.innerHTML = `
+      <a href="${lien}" class="vedette__lien" data-categorie="${escapeHtml(article.categorie || '')}">
+        <div class="vedette__img">
+          ${imageHtml}
+          <span class="vedette__badge">À la une</span>
+        </div>
+        <div class="vedette__contenu">
+          <div class="vedette__meta">
+            <div class="vedette__meta-item">
+              <i class="${cat.icone}"></i> ${escapeHtml(cat.label)}
+            </div>
+            <div class="vedette__meta-item">
+              <i class="fi fi-rr-calendar"></i> ${formatDate(article.publie_le || article.created_at)}
+            </div>
+          </div>
+          <h2 class="vedette__titre">${escapeHtml(article.titre || 'Sans titre')}</h2>
+          <p class="vedette__desc">${escapeHtml(article.extrait || '')}</p>
+          <div class="vedette__cta">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  /* ---------- RENDU GRILLE ---------- */
+  function rendreGrille(articles) {
+    const grille = document.getElementById('articlesGrille');
+    if (!grille) return;
+
+    // Nettoyer sauf l'état vide
+    const etatVide = document.getElementById('etatVide');
+    grille.innerHTML = '';
+    if (etatVide) grille.appendChild(etatVide);
+
+    if (!articles || articles.length === 0) {
+      if (etatVide) {
+        etatVide.style.display = 'block';
+        etatVide.querySelector('h3').textContent = 'Aucun article publié pour le moment';
+        etatVide.querySelector('p').textContent = 'Les articles publiés depuis l\'administration apparaîtront ici automatiquement.';
+      }
+      return;
+    }
+
+    if (etatVide) etatVide.style.display = 'none';
+
+    articles.forEach(a => {
+      const cat = CATEGORIE_LABELS[a.categorie] || { label: a.categorie || 'Article', icone: 'fi fi-rr-document' };
+      const imageHtml = a.image_url
+        ? `<img src="${escapeHtml(a.image_url)}" alt="${escapeHtml(a.titre)}" onerror="this.remove();">`
+        : `<i class="fi fi-rr-picture"></i>`;
+
+      const lien = '/blog/article.html?slug=' + encodeURIComponent(a.slug || '');
+
+      const carte = document.createElement('a');
+      carte.href = lien;
+      carte.className = 'article-card';
+      carte.dataset.categorie = a.categorie || '';
+      carte.innerHTML = `
+        <div class="article-card__img">
+          ${imageHtml}
+          <span class="article-card__badge">${escapeHtml(cat.label)}</span>
+        </div>
+        <div class="article-card__body">
+          <div class="article-card__date">
+            <i class="fi fi-rr-calendar"></i> ${formatDate(a.publie_le || a.created_at)}
+          </div>
+          <h3 class="article-card__titre">${escapeHtml(a.titre || 'Sans titre')}</h3>
+          <p class="article-card__desc">${escapeHtml(a.extrait || '')}</p>
+          <div class="article-card__lien">
+            Lire l'article <i class="fi fi-rr-arrow-right"></i>
+          </div>
+        </div>
+      `;
+      grille.insertBefore(carte, etatVide);
+    });
+  }
+
+  /* ---------- CHARGEMENT ---------- */
+  ARTICLES = await chargerArticles();
+
+  if (ARTICLES.length > 0) {
+    // Premier article → vedette, le reste → grille
+    rendreVedette(ARTICLES[0]);
+    rendreGrille(ARTICLES.slice(1));
+    if (window.JosDore && window.JosDore.LOG) {
+      window.JosDore.LOG.info('Blog — ' + ARTICLES.length + ' articles depuis Supabase');
+    }
+  } else {
+    // Fallback : garder le HTML statique (le rendu statique reste visible)
+    if (window.JosDore && window.JosDore.LOG) {
+      window.JosDore.LOG.info('Blog — aucun article dans Supabase, fallback statique');
+    }
+  }
+
+  /* ============================================================
+     FILTRES
+     ============================================================ */
+  const filtres = document.querySelectorAll('.filtre-btn');
+  const vedette = document.getElementById('vedette');
+  const etatVide = document.getElementById('etatVide');
+
+  // ✅ FIX : cartes sans la vedette (bug de double filtrage)
+  function getCartes() {
+    return document.querySelectorAll('.article-card[data-categorie]');
+  }
+
+  filtres.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const categorie = btn.dataset.filtre;
+
+      filtres.forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+
+      // Filtrer les cartes
+      let nbVisibles = 0;
+      getCartes().forEach(carte => {
+        const cat = carte.dataset.categorie;
+        const ok = (categorie === 'tous' || cat === categorie);
+        carte.style.display = ok ? '' : 'none';
+        if (ok) nbVisibles++;
+      });
+
+      // Filtrer la vedette séparément
+      if (vedette) {
+        const lienVedette = vedette.querySelector('.vedette__lien');
+        if (lienVedette) {
+          const catVedette = lienVedette.dataset.categorie;
+          const afficherVedette = (categorie === 'tous' || catVedette === categorie);
+          vedette.style.display = afficherVedette ? '' : 'none';
+          if (afficherVedette) nbVisibles++;
+        }
+      }
+
+      // État vide
+      if (etatVide) {
+        etatVide.style.display = (nbVisibles === 0) ? 'block' : 'none';
+      }
+    });
+  });
+
+  /* ============================================================
+     NEWSLETTER
+     ============================================================ */
+  const newsletterForm = document.getElementById('newsletterForm');
+  const newsletterEmail = document.getElementById('newsletterEmail');
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = newsletterEmail.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (window.JosDore && window.JosDore.Widgets) {
+          window.JosDore.Widgets.toastErreur('Veuillez entrer une adresse email valide.');
+        }
+        newsletterEmail.focus();
+        return;
+      }
+
+      try {
+        const inscrits = JSON.parse(localStorage.getItem('josdore_newsletter') || '[]');
+        if (inscrits.includes(email)) {
+          if (window.JosDore && window.JosDore.Widgets) {
+            window.JosDore.Widgets.toastInfo('Vous êtes déjà inscrit à la newsletter.');
+          }
+          return;
+        }
+        inscrits.push(email);
+        localStorage.setItem('josdore_newsletter', JSON.stringify(inscrits));
+      } catch (err) {
+        console.warn('Erreur sauvegarde newsletter :', err);
+      }
+
+      if (window.JosDore && window.JosDore.Widgets) {
+        window.JosDore.Widgets.toastSucces(
+          'Vous recevrez un email à chaque nouvel article.',
+          'Inscription confirmée !'
+        );
+      }
+
+      newsletterEmail.value = '';
+    });
+  }
+
+});
+</script>
+
+</body>
+</html>

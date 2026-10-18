@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau de bord — Jos Dore | Mon espace client</title>
+<meta name="description" content="Votre tableau de bord Jos Dore : suivi de vos services, formations, factures et interventions.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ✅ FIX #3 : --sidebar-w était utilisé mais jamais défini
+     ============================================================ */
+  :root {
+    --sidebar-w: 280px;
+  }
+
+  /* ============================================================
+     PAGE TABLEAU DE BORD — Jos Dore
+     ============================================================ */
+
+  body { background: var(--gris-50); }
+
+  /* ✅ FIX #4 : plus de padding-top (header est sticky, prend déjà sa place) */
+  .app-layout {
+    min-height: 100vh;
+  }
+
+  /* ============================================================
+     ✅ FIX #5 : header.css cache la sidebar en desktop (display:none!important à 961px+)
+     On la ré-affiche pour les pages de l'espace client.
+     ============================================================ */
+  @media (min-width: 1024px) {
+    .sidebar {
+      display: block !important;
+      transform: translateX(0) !important;
+    }
+    .overlay {
+      display: none !important;
+    }
+  }
+
+  .main-app {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 32px 24px 80px;
+  }
+
+  @media (min-width: 1024px) {
+    .main-app {
+      margin-left: var(--sidebar-w);
+      padding: 40px 32px 80px;
+    }
+  }
+
+  .main-app__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ============================================================
+     EN-TÊTE DE PAGE
+     ============================================================ */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .page-entete__titre span {
+    background: linear-gradient(135deg, var(--or), var(--or-fonce));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     CARTE DE BIENVENUE
+     ============================================================ */
+  .bienvenue {
+    background: linear-gradient(135deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    border-radius: var(--rayon-lg);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .bienvenue::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,158,11,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .bienvenue::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .bienvenue__texte {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-width: 0;
+  }
+  .bienvenue__salut {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(245,158,11,0.15);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .bienvenue__titre {
+    color: #fff;
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .bienvenue__titre span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bienvenue__desc {
+    font-size: 15px;
+    color: #CBD5E1;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0;
+  }
+  .bienvenue__visuel {
+    position: relative;
+    z-index: 2;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(245,158,11,0.15);
+    border: 2px solid rgba(245,158,11,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    color: var(--or);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .bienvenue__visuel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ============================================================
+     STATS (4 cartes)
+     ============================================================ */
+  .stats-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 22px;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-md);
+    border-color: var(--or);
+    text-decoration: none;
+    color: inherit;
+  }
+  .stat-card__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .stat-card__icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .stat-card__icone--or { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .stat-card__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-card__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-card__icone--violet { background: rgba(124,58,237,0.10); color: var(--violet); }
+
+  .stat-card__badge {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: var(--rayon-full);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-card__badge--or { background: rgba(245,158,11,0.14); color: var(--or-fonce); }
+  .stat-card__badge--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-card__badge--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-card__badge--gris { background: var(--gris-100); color: var(--gris-500); }
+
+  .stat-card__valeur {
+    font-family: var(--police-titre);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.03em;
+  }
+  .stat-card__label {
+    font-size: 13px;
+    color: var(--gris-500);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+     SECTIONS / BLOCS
+     ============================================================ */
+  .grille-2col {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 960px) {
+    .grille-2col { grid-template-columns: 1fr; }
+  }
+
+  .bloc {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+  }
+  .bloc__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--gris-100);
+    flex-wrap: wrap;
+  }
+  .bloc__titre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--police-titre);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.02em;
+  }
+  .bloc__titre i {
+    color: var(--or-fonce);
+    font-size: 20px;
+  }
+  .bloc__lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .bloc__lien:hover { color: var(--or); text-decoration: none; }
+  .bloc__lien i {
+    font-size: 14px;
+    transition: transform var(--transition);
+  }
+  .bloc__lien:hover i { transform: translateX(3px); }
+
+  .bloc__corps { padding: 8px 0; }
+  .bloc__pied {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gris-100);
+    text-align: center;
+  }
+
+  /* ============================================================
+     ACTIONS RAPIDES
+     ============================================================ */
+  .actions-liste {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+  }
+  .action-lien {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--rayon-sm);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gris-700);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .action-lien:hover {
+    background: rgba(245,158,11,0.06);
+    color: var(--or-fonce);
+    text-decoration: none;
+  }
+  .action-lien__icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+  .action-lien:hover .action-lien__icone {
+    background: rgba(245,158,11,0.15);
+    color: var(--or-fonce);
+  }
+  .action-lien span { flex: 1; }
+  .action-lien i.fi-rr-arrow-small-right {
+    color: var(--gris-400);
+    font-size: 20px;
+    transition: transform var(--transition);
+  }
+  .action-lien:hover i.fi-rr-arrow-small-right {
+    color: var(--or-fonce);
+    transform: translateX(3px);
+  }
+
+  /* ============================================================
+     MISE À JOUR / NOUVEAUTÉS
+     ============================================================ */
+  .maj-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gris-100);
+  }
+  .maj-item:last-child { border-bottom: none; }
+  .maj-item__point {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--or);
+    flex-shrink: 0;
+    margin-top: 6px;
+    box-shadow: 0 0 0 4px rgba(245,158,11,0.15);
+  }
+  .maj-item__contenu { flex: 1; min-width: 0; }
+  .maj-item__titre {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .maj-item__desc {
+    font-size: 13px;
+    color: var(--gris-500);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .maj-item__date {
+    font-size: 11px;
+    color: var(--gris-400);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============================================================
+     ÉTAT VIDE
+     ============================================================ */
+  .vide-app {
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .vide-app__icone {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gris-100);
+    color: var(--gris-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+  }
+  .vide-app__titre {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gris-700);
+    margin-bottom: 6px;
+  }
+  .vide-app__texte {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.55;
+    max-width: 340px;
+    margin: 0 auto 18px;
+  }
+
+  /* ============================================================
+     MINI FOOTER
+     ============================================================ */
+  .app-footer {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+    margin-left: 0;
+  }
+  @media (min-width: 1024px) {
+    .app-footer { margin-left: var(--sidebar-w); }
+  }
+  .app-footer__liens {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .app-footer a {
+    color: var(--gris-500);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .app-footer a:hover { color: var(--or-fonce); }
+
+  /* ============================================================
+     BOUTON WHATSAPP FLOTTANT
+     ============================================================ */
+  .btn-whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    z-index: 90;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-whatsapp-float:hover {
+    transform: scale(1.08);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1023px) {
+    .main-app { padding: 24px 16px 64px; }
+    .bienvenue { padding: 24px 20px; }
+    .bienvenue__visuel { width: 80px; height: 80px; font-size: 40px; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 24px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .stats-grille { gap: 12px; margin-bottom: 24px; }
+    .stat-card { padding: 18px; }
+    .stat-card__valeur { font-size: 26px; }
+    .bloc__entete { padding: 16px 18px; }
+    .maj-item { padding: 14px 18px; }
+    .btn-whatsapp-float {
+      width: 48px; height: 48px;
+      font-size: 24px;
+      bottom: 16px; right: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER APP (avec menu burger)                                 -->
+<!-- ============================================================ -->
+<header class="header header--app" id="header">
+  <div class="header__inner">
+
+    <!-- ✅ FIX #6 : class="menu-btn" (au lieu de header__menu) pour matcher header.css -->
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/espace-client/tableau-de-bord.html" class="logo" aria-label="Jos Dore — Espace client">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Espace client</span>
+      </div>
+    </a>
+
+    <div class="header__actions">
+
+      <!-- Notifications -->
+      <a href="/espace-client/mises-a-jour.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+
+      <!-- Aide -->
+      <a href="/aide/" class="header__icone" aria-label="Aide">
+        <i class="fi fi-rr-interrogation"></i>
+      </a>
+
+      <!-- Avatar utilisateur -->
+      <a href="/espace-client/mon-profil.html" class="header__avatar" data-user-avatar title="Mon profil">
+        <span data-user-initiales>?</span>
+      </a>
+
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR (navigation espace client)                            -->
+<!-- ============================================================ -->
+<aside class="sidebar" id="sidebar" aria-label="Navigation de l'espace client">
+
+  <!-- Profil en haut -->
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Client</span>
+        <i class="fi fi-rr-check-circle" title="Compte vérifié"></i>
+      </div>
+      <div class="sidebar__profil-role" data-user-role>client</div>
+    </div>
+  </div>
+
+  <!-- Navigation principale -->
+  <div class="sidebar__titre">Mon espace</div>
+
+  <a href="/espace-client/tableau-de-bord.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <a href="/espace-client/mes-services.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings"></i>
+    <span>Mes services</span>
+  </a>
+
+  <a href="/espace-client/mes-formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Mes formations</span>
+  </a>
+
+  <a href="/espace-client/mes-factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Mes factures</span>
+  </a>
+
+  <a href="/espace-client/mises-a-jour.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Mises à jour</span>
+    <span class="sidebar__lien-badge">3</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <!-- Compte -->
+  <div class="sidebar__titre">Mon compte</div>
+
+  <a href="/espace-client/mon-profil.html" class="sidebar__lien">
+    <i class="fi fi-rr-user"></i>
+    <span>Mon profil</span>
+  </a>
+
+  <a href="/espace-client/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+
+  <a href="/aide/" class="sidebar__lien">
+    <i class="fi fi-rr-interrogation"></i>
+    <span>Aide & support</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <!-- Déconnexion -->
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<!-- Overlay (mobile) -->
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU PRINCIPAL                                             -->
+<!-- ============================================================ -->
+<main class="app-layout">
+  <div class="main-app">
+    <div class="main-app__inner">
+
+      <!-- ============ EN-TÊTE DE PAGE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Bonjour <span data-user-prenom>Client</span> 👋
+          </h1>
+          <p class="page-entete__sous">
+            Voici un aperçu de votre activité chez Jos Dore.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/aide/contact-support.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-headset"></i> Support
+          </a>
+          <a href="/espace-client/mes-services.html" class="btn btn--or btn--sm">
+            <i class="fi fi-rr-plus"></i> Nouveau service
+          </a>
+        </div>
+      </div>
+
+      <!-- ============ CARTE BIENVENUE ============ -->
+      <section class="bienvenue">
+        <div class="bienvenue__texte">
+          <div class="bienvenue__salut">
+            <i class="fi fi-rr-shield-check"></i>
+            Espace client sécurisé
+          </div>
+          <h2 class="bienvenue__titre">
+            Content de vous revoir, <span data-user-prenom>Client</span>.
+          </h2>
+          <p class="bienvenue__desc">
+            Suivez vos services, consultez vos factures, retrouvez vos
+            formations et restez informé des nouveautés Jos Dore. Tout
+            est à portée de main.
+          </p>
+        </div>
+        <div class="bienvenue__visuel">
+          <i class="fi fi-rr-smile"></i>
+        </div>
+      </section>
+
+      <!-- ============ STATS ============ -->
+      <section class="stats-grille">
+
+        <a href="/espace-client/mes-services.html" class="stat-card">
+          <div class="stat-card__entete">
+            <div class="stat-card__icone stat-card__icone--or">
+              <i class="fi fi-rr-settings"></i>
+            </div>
+            <span class="stat-card__badge stat-card__badge--or">Actif</span>
+          </div>
+          <div class="stat-card__valeur" id="statServices">0</div>
+          <div class="stat-card__label">Services en cours</div>
+        </a>
+
+        <a href="/espace-client/mes-services.html" class="stat-card">
+          <div class="stat-card__entete">
+            <div class="stat-card__icone stat-card__icone--bleu">
+              <i class="fi fi-rr-time-fast"></i>
+            </div>
+            <span class="stat-card__badge stat-card__badge--bleu">À venir</span>
+          </div>
+          <div class="stat-card__valeur" id="statInterventions">0</div>
+          <div class="stat-card__label">Interventions planifiées</div>
+        </a>
+
+        <a href="/espace-client/mes-factures.html" class="stat-card">
+          <div class="stat-card__entete">
+            <div class="stat-card__icone stat-card__icone--vert">
+              <i class="fi fi-rr-credit-card"></i>
+            </div>
+            <span class="stat-card__badge stat-card__badge--vert">Payé</span>
+          </div>
+          <div class="stat-card__valeur" id="statFactures">0</div>
+          <div class="stat-card__label">Factures réglées</div>
+        </a>
+
+        <a href="/espace-client/mes-formations.html" class="stat-card">
+          <div class="stat-card__entete">
+            <div class="stat-card__icone stat-card__icone--violet">
+              <i class="fi fi-rr-graduation-cap"></i>
+            </div>
+            <span class="stat-card__badge stat-card__badge--gris">Formation</span>
+          </div>
+          <div class="stat-card__valeur" id="statFormations">0</div>
+          <div class="stat-card__label">Formations suivies</div>
+        </a>
+
+      </section>
+
+      <!-- ============ GRILLE 2 COLONNES ============ -->
+      <div class="grille-2col">
+
+        <!-- COLONNE GAUCHE (large) -->
+        <div>
+
+          <!-- Interventions récentes -->
+          <section class="bloc" style="margin-bottom: 24px;">
+            <div class="bloc__entete">
+              <h3 class="bloc__titre">
+                <i class="fi fi-rr-time-fast"></i>
+                Prochaines interventions
+              </h3>
+              <a href="/espace-client/mes-services.html" class="bloc__lien">
+                Tout voir <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+            </div>
+            <div class="bloc__corps">
+              <div class="vide-app" id="videInterventions">
+                <div class="vide-app__icone">
+                  <i class="fi fi-rr-calendar"></i>
+                </div>
+                <div class="vide-app__titre">Aucune intervention planifiée</div>
+                <p class="vide-app__texte">
+                  Vous n'avez pas encore de service actif. Contactez-nous
+                  pour un diagnostic gratuit et découvrez comment nous
+                  pouvons vous aider.
+                </p>
+                <a href="/contact.html" class="btn btn--or btn--sm">
+                  <i class="fi fi-rr-calendar"></i> Demander un diagnostic
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Factures récentes -->
+          <section class="bloc">
+            <div class="bloc__entete">
+              <h3 class="bloc__titre">
+                <i class="fi fi-rr-document-signed"></i>
+                Factures récentes
+              </h3>
+              <a href="/espace-client/mes-factures.html" class="bloc__lien">
+                Tout voir <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+            </div>
+            <div class="bloc__corps">
+              <div class="vide-app" id="videFactures">
+                <div class="vide-app__icone">
+                  <i class="fi fi-rr-credit-card"></i>
+                </div>
+                <div class="vide-app__titre">Aucune facture pour le moment</div>
+                <p class="vide-app__texte">
+                  Vos factures apparaîtront ici dès que vous commencerez
+                  à utiliser nos services.
+                </p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- COLONNE DROITE (étroite) -->
+        <div>
+
+          <!-- Actions rapides -->
+          <section class="bloc" style="margin-bottom: 24px;">
+            <div class="bloc__entete">
+              <h3 class="bloc__titre">
+                <i class="fi fi-rr-bolt"></i>
+                Actions rapides
+              </h3>
+            </div>
+            <div class="actions-liste">
+
+              <a href="/espace-client/mon-profil.html" class="action-lien">
+                <div class="action-lien__icone">
+                  <i class="fi fi-rr-user"></i>
+                </div>
+                <span>Modifier mon profil</span>
+                <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+
+              <a href="/espace-client/parametres.html" class="action-lien">
+                <div class="action-lien__icone">
+                  <i class="fi fi-rr-settings-sliders"></i>
+                </div>
+                <span>Paramètres du compte</span>
+                <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+
+              <a href="/contact.html" class="action-lien">
+                <div class="action-lien__icone">
+                  <i class="fi fi-rr-calendar"></i>
+                </div>
+                <span>Demander un devis</span>
+                <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+
+              <a href="/aide/contact-support.html" class="action-lien">
+                <div class="action-lien__icone">
+                  <i class="fi fi-rr-headset"></i>
+                </div>
+                <span>Contacter le support</span>
+                <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+
+              <a href="/blog/" class="action-lien">
+                <div class="action-lien__icone">
+                  <i class="fi fi-rr-document-signed"></i>
+                </div>
+                <span>Lire nos articles</span>
+                <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+
+            </div>
+          </section>
+
+          <!-- Mises à jour -->
+          <section class="bloc">
+            <div class="bloc__entete">
+              <h3 class="bloc__titre">
+                <i class="fi fi-rr-bell"></i>
+                Nouveautés
+              </h3>
+              <a href="/espace-client/mises-a-jour.html" class="bloc__lien">
+                Tout voir <i class="fi fi-rr-arrow-small-right"></i>
+              </a>
+            </div>
+            <div class="bloc__corps">
+
+              <div class="maj-item">
+                <div class="maj-item__point"></div>
+                <div class="maj-item__contenu">
+                  <div class="maj-item__titre">Bienvenue sur votre espace client</div>
+                  <p class="maj-item__desc">
+                    Vous pouvez désormais suivre vos services, vos factures
+                    et vos formations depuis un seul endroit.
+                  </p>
+                  <div class="maj-item__date">Aujourd'hui</div>
+                </div>
+              </div>
+
+              <div class="maj-item">
+                <div class="maj-item__point"></div>
+                <div class="maj-item__contenu">
+                  <div class="maj-item__titre">Diagnostic gratuit pour les nouveaux clients</div>
+                  <p class="maj-item__desc">
+                    Profitez d'un premier diagnostic à 0 FCFA pour évaluer
+                    votre parc informatique.
+                  </p>
+                  <div class="maj-item__date">Cette semaine</div>
+                </div>
+              </div>
+
+              <div class="maj-item">
+                <div class="maj-item__point"></div>
+                <div class="maj-item__contenu">
+                  <div class="maj-item__titre">Nouveaux articles bientôt disponibles</div>
+                  <p class="maj-item__desc">
+                    Guides pratiques, conseils d'achat et astuces de
+                    sécurité arrivent régulièrement sur notre blog.
+                  </p>
+                  <div class="maj-item__date">À venir</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="bloc__pied">
+              <a href="/espace-client/mises-a-jour.html" class="btn btn--ghost btn--sm">
+                Voir toutes les nouveautés
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- MINI FOOTER                                                   -->
+<!-- ============================================================ -->
+<footer class="app-footer">
+  <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+  <div class="app-footer__liens">
+    <a href="/legal/mentions-legales.html">Mentions légales</a>
+    <a href="/legal/cgu.html">CGU</a>
+    <a href="/legal/confidentialite.html">Confidentialité</a>
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<!-- ✅ FIX #2 : WhatsApp → JWTG7DIGJR4XA1 -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter le support">
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<!-- ✅ FIX #1 CRITIQUE : CDN Supabase AVANT config.js (sinon config.js plante) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   PROTECTION + INITIALISATION DU TABLEAU DE BORD
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) {
+    console.error('[Dashboard] Auth non disponible');
+    return;
+  }
+
+  const estConnecte = window.JosDore.Auth.proteger();
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION DES DONNÉES UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Client';
+    });
+    document.querySelectorAll('[data-user-nom]').forEach(el => {
+      el.textContent = session.nom || 'Client';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+    document.querySelectorAll('[data-user-role]').forEach(el => {
+      el.textContent = session.role === 'admin' ? 'Administrateur' : 'Client';
+    });
+  }
+
+  /* ---------- ANIMATION DES COMPTEURS ---------- */
+  function animerCompteur(id, valeurCible) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (valeurCible === 0) { el.textContent = '0'; return; }
+    let valeur = 0;
+    const pas = Math.max(1, Math.ceil(valeurCible / 30));
+    const intervalle = setInterval(() => {
+      valeur += pas;
+      if (valeur >= valeurCible) { valeur = valeurCible; clearInterval(intervalle); }
+      el.textContent = valeur;
+    }, 30);
+  }
+
+  // Valeurs de démo (à brancher plus tard avec Supabase)
+  animerCompteur('statServices', 0);
+  animerCompteur('statInterventions', 0);
+  animerCompteur('statFactures', 0);
+  animerCompteur('statFormations', 0);
+
+  /* ---------- MESSAGE DE BIENVENUE (une seule fois par session) ---------- */
+  const cleBienvenue = 'josdore_bienvenue_' + (session ? session.id : 'anonyme');
+  const dejaVu = sessionStorage.getItem(cleBienvenue);
+
+  if (!dejaVu && window.JosDore.Widgets) {
+    setTimeout(() => {
+      window.JosDore.Widgets.toast({
+        type: 'info',
+        titre: 'Bienvenue dans votre espace !',
+        message: 'Découvrez vos services, factures et formations.',
+        duree: 5000,
+        icone: 'fi fi-rr-smile'
+      });
+    }, 800);
+    sessionStorage.setItem(cleBienvenue, '1');
+  }
+
+  window.JosDore.LOG.info('Tableau de bord chargé pour :', session ? session.email : 'anonyme');
+
+});
+</script>
+
+</body>
+</html>

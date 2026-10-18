@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matériel — Jos Dore | Administration</title>
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  :root {
+    --admin-rouge: #F59E0B;
+    --admin-rouge-fonce: #D97706;
+    --admin-rouge-bg: rgba(245,158,11,0.12);
+    --admin-grad: linear-gradient(135deg, #F59E0B, #D97706);
+    --admin-sidebar-w: 280px;
+    --text-on-primary: #0A2540;
+  }
+  body { background: var(--gris-50); }
+  .header--admin { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-bottom: 1px solid rgba(245,158,11,0.3); }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .header--admin .logo__mark::after { background: var(--text-on-primary); }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge); color: var(--text-on-primary); border-radius: var(--rayon-full); font-size: 9.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-left: 8px; font-family: var(--police-titre); }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(245,158,11,0.5); }
+  .header--admin .menu-btn { background: transparent; border-color: rgba(255,255,255,0.2); color: #fff; }
+  
+  .admin-layout { min-height: 100vh; }
+  @media (min-width: 1024px) { .sidebar--admin { display: flex !important; flex-direction: column; transform: translateX(0) !important; } .overlay { display: none !important; } }
+  .main-admin { margin-left: 0; transition: margin-left 0.25s ease; padding: 28px 20px 80px; }
+  @media (min-width: 1024px) { .main-admin { margin-left: var(--admin-sidebar-w); padding: 32px 28px 80px; } }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  .sidebar--admin { width: var(--admin-sidebar-w); background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%); border-right: 1px solid rgba(245,158,11,0.2); padding: 20px 14px; }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: var(--text-on-primary); }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: var(--text-on-primary); }
+
+  .page-entete { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .page-entete__titre { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--gris-900); letter-spacing: -0.03em; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+  .page-entete__tag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+  .page-entete__sous { font-size: 15px; color: var(--gris-500); }
+  .page-entete__actions { display: flex; gap: 10px; }
+
+  .stats-mini-admin { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-mini-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-md); padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+  .stat-mini-admin__icone { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .stat-mini-admin__icone--or { background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); }
+  .stat-mini-admin__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-mini-admin__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-mini-admin__icone--rouge { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .stat-mini-admin__valeur { font-family: var(--police-titre); font-size: 20px; font-weight: 900; color: var(--gris-900); }
+  .stat-mini-admin__label { font-size: 11.5px; color: var(--gris-500); font-weight: 600; margin-top: 2px; }
+
+  .bloc-admin { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); overflow: hidden; }
+  .tableau-admin { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .tableau-admin thead { background: var(--gris-50); border-bottom: 1px solid var(--gris-200); }
+  .tableau-admin th { padding: 12px 18px; text-align: left; font-family: var(--police-titre); font-size: 11px; font-weight: 900; color: var(--gris-500); text-transform: uppercase; letter-spacing: 0.8px; }
+  .tableau-admin td { padding: 14px 18px; border-top: 1px solid var(--gris-100); color: var(--gris-700); vertical-align: middle; }
+  
+  .client-cell { display: flex; align-items: center; gap: 10px; }
+  .client-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--admin-grad); color: var(--text-on-primary); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; }
+  .materiel-info__nom { font-weight: 800; color: var(--gris-900); font-size: 14px; }
+  .materiel-info__marque { font-size: 12px; color: var(--gris-500); }
+  
+  .badge-statut { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; text-transform: uppercase; }
+  .badge-statut--sous-contrat { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .badge-statut--hors-contrat { background: var(--gris-100); color: var(--gris-500); }
+  .badge-statut--a-surveiller { background: rgba(245,158,11,0.14); color: var(--admin-rouge-fonce); }
+  .badge-statut--en-panne { background: rgba(220,38,38,0.10); color: var(--rouge); }
+
+  .btn-action-admin { width: 34px; height: 34px; border-radius: 9px; background: var(--gris-100); color: var(--gris-600); border: none; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; transition: 0.2s; }
+  .btn-action-admin:hover { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .btn-action-admin--danger:hover { background: var(--rouge); color: #fff; }
+
+  .app-footer--admin { padding: 20px 24px; text-align: center; font-size: 12px; color: var(--gris-500); border-top: 1px solid var(--gris-200); background: #fff; }
+  @media (min-width: 1024px) { .app-footer--admin { margin-left: var(--admin-sidebar-w); } }
+</style>
+</head>
+<body>
+
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn"><i class="fi fi-rr-menu-burger" id="menuIcon"></i></button>
+    <a href="/admin/index.html" class="logo">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">Jos<span>Dore</span><span class="logo__suffix">Administration</span></div>
+      <span class="header__badge-admin"><i class="fi fi-rr-shield-check"></i> Admin</span>
+    </a>
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone"><i class="fi fi-rr-envelope"></i></a>
+      <a href="/admin/notifications.html" class="header__icone"><i class="fi fi-rr-bell"></i></a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar><span data-user-initiales>?</span></a>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar sidebar--admin" id="sidebar">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar><span data-user-initiales>?</span></div>
+    <div>
+      <div class="sidebar__profil-nom"><span data-user-prenom>Admin</span><i class="fi fi-rr-shield-check"></i></div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> <span>Tableau de bord</span></a>
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien"><i class="fi fi-rr-users"></i> <span>Clients</span></a>
+  <a href="/admin/materiel.html" class="sidebar__lien is-actif"><i class="fi fi-rr-computer"></i> <span>Matériel</span></a>
+  <a href="/admin/contrats.html" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> <span>Contrats</span></a>
+  <a href="/admin/interventions.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> <span>Interventions</span></a>
+  <a href="/admin/factures.html" class="sidebar__lien"><i class="fi fi-rr-credit-card"></i> <span>Factures</span></a>
+  <a href="/admin/formations.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> <span>Formations</span></a>
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien"><i class="fi fi-rr-pencil"></i> <span>Articles</span></a>
+  <a href="/admin/messages.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> <span>Messages</span></a>
+  <a href="/admin/notifications.html" class="sidebar__lien"><i class="fi fi-rr-bell"></i> <span>Notifications</span></a>
+  <div class="sidebar__sep"></div>
+  <a href="/admin/parametres.html" class="sidebar__lien"><i class="fi fi-rr-settings-sliders"></i> <span>Paramètres</span></a>
+  <a href="/" class="sidebar__lien" target="_blank"><i class="fi fi-rr-external-link"></i> <span>Site public</span></a>
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion"><i class="fi fi-rr-sign-out-alt"></i> <span>Se déconnecter</span></button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+      
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">Parc Informatique <span class="page-entete__tag"><i class="fi fi-rr-shield-check"></i> Admin</span></h1>
+          <p class="page-entete__sous">Tous les équipements déclarés par vos clients.</p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm"><i class="fi fi-rr-arrow-small-left"></i> Retour</a>
+        </div>
+      </div>
+
+      <div class="stats-mini-admin">
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--or"><i class="fi fi-rr-computer"></i></div>
+          <div><div class="stat-mini-admin__valeur" id="sTotal">0</div><div class="stat-mini-admin__label">Équipements</div></div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--vert"><i class="fi fi-rr-shield-check"></i></div>
+          <div><div class="stat-mini-admin__valeur" id="sSousContrat">0</div><div class="stat-mini-admin__label">Sous contrat</div></div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--rouge"><i class="fi fi-rr-warning"></i></div>
+          <div><div class="stat-mini-admin__valeur" id="sEnPanne">0</div><div class="stat-mini-admin__label">En panne</div></div>
+        </div>
+      </div>
+
+      <div class="bloc-admin">
+        <table class="tableau-admin">
+          <thead>
+            <tr>
+              <th>Équipement</th>
+              <th>Client</th>
+              <th>Type</th>
+              <th>N° Série</th>
+              <th>Statut</th>
+              <th style="text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="materielBody"></tbody>
+        </table>
+        <div id="videMateriel" style="display:none; padding:40px; text-align:center; color:var(--gris-500);">
+          Aucun équipement enregistré pour le moment.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  if (!window.JosDore.Auth.proteger({ roles: ['admin'] })) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+  let MATERIEL = [];
+
+  // Inject user
+  document.querySelectorAll('[data-user-prenom]').forEach(el => el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin');
+  document.querySelectorAll('[data-user-initiales]').forEach(el => el.textContent = window.JosDore.UTILS.initiales(session.nom));
+  document.getElementById('annee').textContent = new Date().getFullYear();
+
+  async function chargerMateriel() {
+    // On récupère le matériel ET le profil du client associé
+    const { data, error } = await supabase
+      .from('materiel')
+      .select('*, profiles:user_id(nom, email)')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.warn(error); return; }
+    MATERIEL = data || [];
+    
+    majStats();
+    rendreMateriel();
+  }
+
+  function rendreMateriel() {
+    const tbody = document.getElementById('materielBody');
+    const vide = document.getElementById('videMateriel');
+    tbody.innerHTML = '';
+
+    if (MATERIEL.length === 0) { vide.style.display = 'block'; return; }
+    vide.style.display = 'none';
+
+    MATERIEL.forEach(m => {
+      const clientNom = m.profiles?.nom || 'Inconnu';
+      const initiales = window.JosDore.UTILS.initiales(clientNom);
+      
+      let badgeClass = m.statut || 'hors-contrat';
+      let label = badgeClass === 'en-panne' ? 'En panne' : badgeClass === 'sous-contrat' ? 'Sous contrat' : 'Hors contrat';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="materiel-info__nom">${window.JosDore.UTILS.escapeHtml(m.nom)}</div>
+          <div class="materiel-info__marque">${window.JosDore.UTILS.escapeHtml(m.marque || '')} ${window.JosDore.UTILS.escapeHtml(m.modele || '')}</div>
+        </td>
+        <td>
+          <div class="client-cell">
+            <div class="client-avatar">${initiales}</div>
+            <div>
+              <div style="font-weight:800; font-size:13.5px;">${clientNom}</div>
+              <div style="font-size:11.5px; color:var(--gris-500);">${m.profiles?.email || ''}</div>
+            </div>
+          </div>
+        </td>
+        <td>${m.type}</td>
+        <td>${m.numero_serie || '—'}</td>
+        <td><span class="badge-statut badge-statut--${badgeClass}">${label}</span></td>
+        <td style="text-align:right;">
+          <button class="btn-action-admin" title="Changer statut" onclick="changerStatut('${m.id}')"><i class="fi fi-rr-edit"></i></button>
+          <button class="btn-action-admin btn-action-admin--danger" title="Supprimer" onclick="supprimer('${m.id}')"><i class="fi fi-rr-trash"></i></button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function majStats() {
+    document.getElementById('sTotal').textContent = MATERIEL.length;
+    document.getElementById('sSousContrat').textContent = MATERIEL.filter(m => m.statut === 'sous-contrat').length;
+    document.getElementById('sEnPanne').textContent = MATERIEL.filter(m => m.statut === 'en-panne').length;
+  }
+
+  // Actions Admin
+  window.changerStatut = async (id) => {
+    const m = MATERIEL.find(x => x.id === id);
+    if (!m) return;
+
+    // Petit menu prompt pour changer le statut
+    const nouveauStatut = prompt(
+      "Changer le statut de '" + m.nom + "'\n\nOptions : sous-contrat, hors-contrat, a-surveiller, en-panne", 
+      m.statut
+    );
+    
+    if (!nouveauStatut || !['sous-contrat', 'hors-contrat', 'a-surveiller', 'en-panne'].includes(nouveauStatut)) return;
+
+    await supabase.from('materiel').update({ statut: nouveauStatut }).eq('id', id);
+    window.JosDore.Widgets.toastSucces('Statut mis à jour.');
+    chargerMateriel();
+  };
+
+  window.supprimer = async (id) => {
+    if (!(await window.JosDore.Widgets.confirmer('Supprimer cet équipement ?', { titre: 'Supprimer', variante: 'rouge' }))) return;
+    await supabase.from('materiel').delete().eq('id', id);
+    window.JosDore.Widgets.toastSucces('Équipement supprimé.');
+    chargerMateriel();
+  };
+
+  await chargerMateriel();
+});
+</script>
+</body>
+</html>

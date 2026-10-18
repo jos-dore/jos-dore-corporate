@@ -1,0 +1,174 @@
+/* ============================================================
+   JOS DORE CORPORATE — RESPONSIVE GLOBAL
+   ------------------------------------------------------------
+   Gère uniquement les ajustements structurels généraux 
+   (conteneurs, sections, typographies, grilles) sur mobile, 
+   tablette et desktop. Les styles spécifiques aux composants 
+   (Hero, Cartes, etc.) sont gérés dans leurs fichiers respectifs.
+   ============================================================ */
+
+/* ============================================================
+   TABLETTE — à partir de 640px
+   ============================================================ */
+@media (min-width: 640px) {
+  /* Conteneurs */
+  .conteneur, .conteneur-large {
+    padding: 0 var(--espace-6);
+  }
+
+  /* Grilles de base */
+  .grille--2 { grid-template-columns: repeat(2, 1fr); }
+  .grille--3 { grid-template-columns: repeat(2, 1fr); }
+  .grille--4 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Formulaires */
+  .form-row { grid-template-columns: 1fr 1fr; }
+
+  /* Sections */
+  .section, .section-corporate {
+    padding: var(--espace-16) 0;
+  }
+}
+
+/* ============================================================
+   DESKTOP — à partir de 1024px
+   ============================================================ */
+@media (min-width: 1024px) {
+  /* Grilles de base */
+  .grille--3 { grid-template-columns: repeat(3, 1fr); }
+  .grille--4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* Sections */
+  .section, .section-corporate {
+    padding: var(--espace-20) 0;
+  }
+}
+
+/* ============================================================
+   GRAND ÉCRAN — à partir de 1280px
+   ============================================================ */
+@media (min-width: 1280px) {
+  .conteneur {
+    padding: 0 var(--espace-8);
+  }
+}
+
+/* ============================================================
+   MOBILE — jusqu'à 767px
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Conteneurs */
+  .conteneur, .conteneur-large {
+    padding: 0 var(--espace-4);
+  }
+
+  /* Sections */
+  .section, .section-corporate {
+    padding: var(--espace-12) 0;
+  }
+
+  /* Titres */
+  .titre-xl { font-size: var(--taille-2xl); }
+  .titre-lg { font-size: var(--taille-xl); }
+
+  /* Cartes */
+  .carte { padding: var(--espace-5); border-radius: var(--rayon-md); }
+
+  /* Formulaires */
+  .form-row { grid-template-columns: 1fr; }
+  .form-actions { flex-direction: column; }
+  .form-actions .btn { width: 100%; }
+
+  /* Boutons */
+  .btn { padding: 12px 20px; font-size: 13px; }
+  .btn--lg { padding: 14px 24px; font-size: 14px; }
+
+  /* Bas de page */
+  .footer__bas { flex-direction: column; text-align: center; gap: var(--espace-3); }
+  .footer__bas-liens { justify-content: center; }
+
+  /* Bannière Cookies */
+  .cookies { padding: var(--espace-4); }
+  .cookies__actions { width: 100%; }
+  .cookies__btn { flex: 1; }
+}
+
+/* ============================================================
+   TRÈS PETIT MOBILE — jusqu'à 480px
+   ============================================================ */
+@media (max-width: 480px) {
+  /* Header compact */
+  .header__inner { padding: 0 var(--espace-3); gap: var(--espace-2); }
+  .logo__text { font-size: 15px; }
+  .logo__mark { width: 34px; height: 34px; font-size: 17px; }
+  .logo__suffix { display: none; }
+
+  /* Titres */
+  .titre-xl { font-size: 1.6rem; }
+  .titre-lg { font-size: 1.4rem; }
+
+  /* Boutons */
+  .btn { padding: 11px 18px; font-size: 12px; }
+  .btn--xl { padding: 14px 24px; font-size: 14px; }
+
+  /* Grilles : passage en 1 colonne forcé */
+  .grille--2, .grille--3, .grille--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   MODE PAYSAGE (Mobile tourné)
+   ============================================================ */
+@media (max-width: 767px) and (orientation: landscape) {
+  .section, .section-corporate {
+    padding: var(--espace-8) 0;
+  }
+}
+
+/* ============================================================
+   PRINT (Impression)
+   ============================================================ */
+@media print {
+  .header, .footer, .sidebar, .overlay, .menu-btn, 
+  .cookies, .toast, .btn-whatsapp-float, .btn-haut {
+    display: none !important;
+  }
+
+  body { background: #fff; color: #000; }
+  a { color: #000; text-decoration: underline; }
+  
+  .carte, .service-card, .pourqui-card, .avantage {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  
+  .btn {
+    border: 1px solid #000;
+    background: transparent !important;
+    color: #000 !important;
+  }
+}
+
+/* ============================================================
+   PRÉFÉRENCES UTILISATEUR (Accessibilité)
+   ============================================================ */
+@media (prefers-contrast: high) {
+  .carte, .service-card, .pourqui-card, .avantage {
+    border-width: 2px;
+  }
+  .btn { border-width: 3px; }
+  .badge { border: 1px solid currentColor; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header, .sidebar, .overlay, .btn, .carte, .service-card, 
+  .pourqui-card, .avantage, .blog-card, a {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .btn-whatsapp-float__pulse {
+    animation: none !important;
+  }
+}

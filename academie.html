@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jos Dore Académie — Formations informatiques au Bénin</title>
+<meta name="description" content="Apprenez l'informatique avec Jos Dore Académie : initiation, bureautique, sécurité et développement web. Formations en ligne gratuites et premium.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Jos Dore Académie">
+<meta property="og:description" content="Formations en ligne pour maîtriser l'informatique au quotidien.">
+<meta property="og:image" content="/ressources/images/og/og-academie.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://josdore.com/academie.html">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     PAGE ACADÉMIE — Styles spécifiques
+     ============================================================ */
+
+  /* --- HERO --- */
+  .hero-academie {
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-academie::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-academie__inner {
+    position: relative; z-index: 2;
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    text-align: center;
+  }
+  .hero-academie__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: var(--rayon-full);
+    color: var(--or);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero-academie h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-academie h1 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-academie p {
+    font-size: 1.1rem;
+    color: #CBD5E1;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  /* --- SECTION FORMATIONS --- */
+  .section-academie {
+    padding: 64px 0 80px;
+  }
+
+  /* --- FILTRES --- */
+  .filtres-academie {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .filtre-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: var(--rayon-full);
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-btn:hover {
+    border-color: var(--or);
+    color: var(--or-fonce);
+  }
+  .filtre-btn.is-actif {
+    background: var(--or);
+    border-color: var(--or);
+    color: var(--nuit);
+  }
+
+  /* --- GRILLE FORMATIONS --- */
+  .formations-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .formation-card {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .formation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-lg);
+    border-color: transparent;
+  }
+
+  /* Vignette */
+  .formation-card__vignette {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .formation-card__vignette img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .formation-card:hover .formation-card__vignette img {
+    transform: scale(1.05);
+  }
+  .formation-card__vignette-icon {
+    font-size: 64px;
+    color: rgba(255,255,255,0.2);
+    position: absolute;
+  }
+  .formation-card__play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(245,158,11,0.9);
+    color: var(--nuit);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: var(--transition);
+  }
+  .formation-card:hover .formation-card__play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--or);
+  }
+
+  /* Badges */
+  .formation-card__badges {
+    position: absolute;
+    top: 12px; left: 12px;
+    display: flex; gap: 6px;
+    flex-wrap: wrap; z-index: 2;
+  }
+  .badge-form {
+    padding: 4px 10px;
+    background: var(--or);
+    color: var(--nuit);
+    border-radius: var(--rayon-full);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-form--niveau {
+    background: rgba(10,37,64,0.85);
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+  .badge-form--gratuit {
+    background: var(--vert);
+    color: #fff;
+  }
+
+  /* Corps */
+  .formation-card__corps {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .formation-card__categorie {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--or-fonce);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .formation-card__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .formation-card__desc {
+    font-size: 13.5px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Meta */
+  .formation-card__meta {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gris-100);
+  }
+  .formation-card__meta span {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .formation-card__meta i { color: var(--or-fonce); font-size: 14px; }
+
+  /* Bouton */
+  .formation-card__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- CTA FINAL --- */
+  .cta-academie {
+    background: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
+    color: #fff;
+    padding: 72px 24px;
+    text-align: center;
+  }
+  .cta-academie__inner { max-width: 640px; margin: 0 auto; }
+  .cta-academie h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 14px;
+  }
+  .cta-academie h2 span {
+    background: linear-gradient(135deg, var(--or), #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-academie p {
+    color: #CBD5E1;
+    font-size: 1rem;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .cta-academie__actions {
+    display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .hero-academie { padding: 40px 0 56px; }
+    .section-academie { padding: 48px 0 64px; }
+    .formations-grille { grid-template-columns: 1fr; gap: 20px; }
+    .cta-academie { padding: 56px 20px; }
+    .cta-academie__actions { flex-direction: column; }
+    .cta-academie__actions .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER (Menu Desktop + Mobile)                                -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html" class="is-actif">Académie</a>
+      <a href="/outils.html">Outils</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" style="display:none; md:inline-flex;">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+        <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR MOBILE (Menu court et propre)                         -->
+<!-- ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien is-actif"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien"><i class="fi fi-rr-gamepad"></i> Jeux & Quiz</a>
+  <a href="/blog/" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+  
+  <div class="sidebar__sep"></div>
+  <div style="padding: 10px 16px;">
+    <a href="/contact.html" class="btn btn--or btn--block" style="width: 100%;">Devis gratuit</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-academie">
+    <div class="hero-academie__inner">
+      <div class="hero-academie__badge">
+        <i class="fi fi-rr-graduation-cap"></i>
+        Jos Dore Académie
+      </div>
+
+      <h1>Apprenez l'informatique <span>à votre rythme.</span></h1>
+
+      <p>
+        Des formations vidéo claires et pratiques pour maîtriser l'ordinateur,
+        la bureautique et la sécurité en ligne. Pour les débutants comme pour les professionnels.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FORMATIONS ============ -->
+  <section class="section-academie" id="formations">
+    
+    <!-- Filtres -->
+    <div class="filtres-academie">
+      <button type="button" class="filtre-btn is-actif" data-filtre="toutes">
+        <i class="fi fi-rr-apps"></i> Toutes
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="initiation">
+        <i class="fi fi-rr-computer"></i> Initiation
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="bureautique">
+        <i class="fi fi-rr-document"></i> Bureautique
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="securite">
+        <i class="fi fi-rr-shield-check"></i> Sécurité
+      </button>
+      <button type="button" class="filtre-btn" data-filtre="web">
+        <i class="fi fi-rr-globe"></i> Développement Web
+      </button>
+    </div>
+
+    <!-- Grille remplie par JS -->
+    <div class="formations-grille" id="formationsGrille"></div>
+
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-academie">
+    <div class="cta-academie__inner">
+      <h2>Besoin d'une formation <span>en présentiel</span> ?</h2>
+      <p>
+        L'Académie en ligne est géniale, mais parfois rien ne vaut une session
+        en face à face avec un formateur. Découvrez nos formations individuelles ou en groupe.
+      </p>
+      <div class="cta-academie__actions">
+        <a href="/service-formation.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-users"></i> Voir nos formations sur mesure
+        </a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn btn--blanc btn--lg">
+          <i class="fi fi-brands-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- BOUTON WHATSAPP FLOTTANT                                      -->
+<!-- ============================================================ -->
+<a href="https://wa.me/message/JWTG7DIGJR4XA1" target="_blank" rel="noopener" class="btn-whatsapp-float" aria-label="Contacter Jos Dore sur WhatsApp">
+  <span class="btn-whatsapp-float__pulse"></span>
+  <i class="fi fi-brands-whatsapp"></i>
+</a>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Explorer</h4>
+      <div class="footer__liens">
+        <a href="/services.html">Nos services</a>
+        <a href="/boutique.html">Boutique</a>
+        <a href="/academie.html">Académie</a>
+        <a href="/outils.html">Outils gratuits</a>
+        <a href="/jeux.html">Jeux & Quiz</a>
+        <a href="/blog/">Articles & Conseils</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+      <h4 class="footer__titre" style="margin-top: 24px;">Communauté</h4>
+      <div class="footer__liens">
+        <a href="https://whatsapp.com/channel/0029VbDlvsH7IUYeKsw8p32Q" target="_blank" rel="noopener">Chaîne WhatsApp</a>
+        <a href="https://chat.whatsapp.com/L16NYw18Uk84JuAcYQYTNx" target="_blank" rel="noopener">Groupe WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   LOGIQUE DE L'ACADÉMIE (Filtres + Rendu des formations)
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Liste des formations
+  const FORMATIONS = [
+    {
+      id: 'f-001',
+      titre: 'Initiation à l\'ordinateur — Les bases',
+      description: 'Allumer, éteindre, utiliser la souris et le clavier, gérer ses fichiers.',
+      categorie: 'initiation',
+      niveau: 'Débutant',
+      duree: '1h 20',
+      videoId: 'dQw4w9WgXcQ', // Remplacer par ton ID YouTube
+      prix: 0, // 0 = Gratuit
+      icone: 'fi fi-rr-computer'
+    },
+    {
+      id: 'f-002',
+      titre: 'Word — Créer un document professionnel',
+      description: 'Mise en forme, styles, tableaux et export PDF pour vos documents pro.',
+      categorie: 'bureautique',
+      niveau: 'Débutant',
+      duree: '1h 45',
+      videoId: 'dQw4w9WgXcQ',
+      prix: 0,
+      icone: 'fi fi-rr-document'
+    },
+    {
+      id: 'f-003',
+      titre: 'Excel — Les formules essentielles',
+      description: 'SOMME, MOYENNE, SI, RECHERCHEV : les formules qu\'il faut maîtriser.',
+      categorie: 'bureautique',
+      niveau: 'Intermédiaire',
+      duree: '2h 10',
+      videoId: 'dQw4w9WgXcQ',
+      prix: 0,
+      icone: 'fi fi-rr-chart-histogram'
+    },
+    {
+      id: 'f-004',
+      titre: 'Sécurité en ligne — Se protéger des arnaques',
+      description: 'Reconnaître le phishing, créer des mots de passe solides, sauvegarder ses données.',
+      categorie: 'securite',
+      niveau: 'Tous niveaux',
+      duree: '55 min',
+      videoId: 'dQw4w9WgXcQ',
+      prix: 0,
+      icone: 'fi fi-rr-shield-check'
+    },
+    {
+      id: 'f-005',
+      titre: 'HTML & CSS — Créer son premier site web',
+      description: 'Les bases du code pour construire une page web moderne et responsive.',
+      categorie: 'web',
+      niveau: 'Débutant',
+      duree: '3h 00',
+      videoId: 'dQw4w9WgXcQ',
+      prix: 5000, // Formation Premium
+      icone: 'fi fi-rr-browser'
+    }
+  ];
+
+  let filtreActif = 'toutes';
+
+  const grille = document.getElementById('formationsGrille');
+  const filtresBtns = document.querySelectorAll('.filtre-btn');
+
+  function formatPrix(prix) {
+    if (prix === 0) return '<span style="color:var(--vert);font-weight:800;">Gratuit</span>';
+    return prix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' FCFA';
+  }
+
+  function afficherFormations() {
+    let formationsFiltrees = FORMATIONS;
+
+    if (filtreActif !== 'toutes') {
+      formationsFiltrees = FORMATIONS.filter(f => f.categorie === filtreActif);
+    }
+
+    if (formationsFiltrees.length === 0) {
+      grille.innerHTML = '<p style="text-align:center;grid-column:1/-1;color:var(--gris-500);">Aucune formation dans cette catégorie pour le moment.</p>';
+      return;
+    }
+
+    grille.innerHTML = formationsFiltrees.map(f => {
+      const badgeGratuit = f.prix === 0 ? '<span class="badge-form badge-form--gratuit">Gratuit</span>' : '';
+      const imgYt = `https://img.youtube.com/vi/${f.videoId}/maxresdefault.jpg`;
+      
+      const imageHTML = `
+        <img src="${imgYt}" alt="${f.titre}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="${f.icone} formation-card__vignette-icon" style="display:none;"></i>
+      `;
+
+      return `
+        <div class="formation-card">
+          <div class="formation-card__vignette">
+            ${imageHTML}
+            <div class="formation-card__play"><i class="fi fi-sr-play"></i></div>
+            <div class="formation-card__badges">
+              ${badgeGratuit}
+              <span class="badge-form badge-form--niveau">${f.niveau}</span>
+            </div>
+          </div>
+          <div class="formation-card__corps">
+            <div class="formation-card__categorie">${f.categorie}</div>
+            <h3 class="formation-card__titre">${f.titre}</h3>
+            <p class="formation-card__desc">${f.description}</p>
+            
+            <div class="formation-card__meta">
+              <span><i class="fi fi-rr-clock"></i> ${f.duree}</span>
+              <span><i class="fi fi-rr-tag"></i> ${formatPrix(f.prix)}</span>
+            </div>
+
+            <div class="formation-card__actions">
+              <a href="/compte/connexion.html?redirect=/espace-client/mes-formations.html" class="btn btn--or btn--sm">
+                <i class="fi fi-rr-play-circle"></i> Commencer
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  filtresBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtresBtns.forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtre;
+      afficherFormations();
+    });
+  });
+
+  afficherFormations();
+});
+</script>
+
+</body>
+</html>

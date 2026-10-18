@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux Éducatifs — Jos Dore Games</title>
+<meta name="description" content="Découvre 31 jeux éducatifs gratuits : quiz, mémoire, arcade, anglais et défis pour apprendre en t'amusant.">
+<meta name="theme-color" content="#F59E0B">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<!-- CSS Spécifique aux Jeux -->
+<link rel="stylesheet" href="/ressources/css/games.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="/" class="logo" aria-label="Jos Dore — Accueil">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Informatique</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/services.html">Services</a>
+      <a href="/boutique.html">Boutique</a>
+      <a href="/academie.html">Académie</a>
+      <a href="/outils.html">Outils</a>
+      <a href="/jeux.html" class="is-actif">Jeux</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/compte/connexion.html" class="btn btn--ghost btn--sm" style="display:none; md:inline-flex;">Connexion</a>
+      <a href="/contact.html" class="btn btn--or btn--sm">
+        <i class="fi fi-rr-calendar"></i> Devis
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+        <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR MOBILE                                                -->
+<!-- ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar__titre">Navigation</div>
+  <a href="/" class="sidebar__lien"><i class="fi fi-rr-home"></i> Accueil</a>
+  <a href="/services.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> Services</a>
+  <a href="/boutique.html" class="sidebar__lien"><i class="fi fi-rr-shopping-cart"></i> Boutique</a>
+  <a href="/academie.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> Académie</a>
+  <a href="/outils.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> Outils</a>
+  <a href="/jeux.html" class="sidebar__lien is-actif"><i class="fi fi-rr-gamepad"></i> Jeux</a>
+  <a href="/blog/" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> Blog</a>
+  <a href="/contact.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> Contact</a>
+
+  <div class="sidebar__sep"></div>
+  <div class="sidebar__titre">Mon Compte</div>
+  <a href="/compte/connexion.html" class="sidebar__lien"><i class="fi fi-rr-user"></i> Connexion</a>
+  <a href="/compte/inscription.html" class="sidebar__lien"><i class="fi fi-rr-user-add"></i> Créer un compte</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="games-hero">
+    <div class="games-hero-conteneur">
+      <div class="games-hero-badge">
+        <i class="fi fi-rr-gamepad"></i> JosDore Games
+      </div>
+      <h1>Apprends en <span>t'amusant</span>.</h1>
+      <p>31 jeux éducatifs gratuits pour tester tes connaissances en informatique, anglais, culture générale et bien plus.</p>
+
+      <!-- Chiffres dynamiques (remplis par JS) -->
+      <div class="games-hero-chiffres" id="games-hero-chiffres"></div>
+
+      <div class="games-hero-actions">
+        <a href="#jeux" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-play"></i> Voir les jeux
+        </a>
+        <a href="/" class="btn btn--ghost btn--lg">
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATÉGORIES ============ -->
+  <section class="games-section">
+    <div class="games-conteneur">
+      <div class="section-titre">
+        <h2>Explore par catégorie</h2>
+        <p>Choisis ton type de jeu préféré</p>
+      </div>
+      <!-- Grille des catégories (remplie par JS) -->
+      <div class="games-categories" id="games-categories"></div>
+    </div>
+  </section>
+
+  <!-- ============ TOUS LES JEUX ============ -->
+  <section class="games-section games-section-grise" id="jeux">
+    <div class="games-conteneur">
+      <div class="section-titre">
+        <h2>🎮 Tous nos jeux</h2>
+        <p>100% gratuits, sans inscription</p>
+      </div>
+
+      <!-- Filtres -->
+      <div class="games-filtres" id="games-filtres">
+        <button class="games-filtre actif" data-filtre="tous">
+          <i class="fi fi-rr-apps"></i> Tous
+        </button>
+        <button class="games-filtre" data-filtre="quiz">
+          <i class="fi fi-rr-question"></i> Quiz
+        </button>
+        <button class="games-filtre" data-filtre="arcade">
+          <i class="fi fi-rr-gamepad"></i> Arcade
+        </button>
+        <button class="games-filtre" data-filtre="memoire">
+          <i class="fi fi-rr-brain"></i> Mémoire
+        </button>
+        <button class="games-filtre" data-filtre="calcul">
+          <i class="fi fi-rr-calculator"></i> Calcul
+        </button>
+        <button class="games-filtre" data-filtre="culture">
+          <i class="fi fi-rr-globe"></i> Culture
+        </button>
+        <button class="games-filtre" data-filtre="english">
+          <i class="fi fi-rr-comments"></i> Anglais
+        </button>
+      </div>
+
+      <!-- Recherche -->
+      <div class="games-recherche">
+        <i class="fi fi-rr-search"></i>
+        <input type="text" id="games-recherche" placeholder="Rechercher un jeu…" autocomplete="off">
+      </div>
+
+      <!-- Grille des jeux (remplie par JS) -->
+      <div class="games-grid" id="games-grid"></div>
+
+      <!-- Aucun résultat -->
+      <div class="games-vide" id="games-vide" style="display:none;">
+        <i class="fi fi-rr-gamepad"></i>
+        <h3>Aucun jeu trouvé</h3>
+        <p>Essaie un autre mot-clé ou une autre catégorie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA PROPOSER UN JEU ============ -->
+  <section class="games-section">
+    <div class="games-conteneur">
+      <div class="games-cta">
+        <i class="fi fi-rr-trophy"></i>
+        <h2>Tu veux proposer un jeu ?</h2>
+        <p>Tu as une idée de jeu éducatif qui pourrait aider les apprenants africains ? Contacte-nous !</p>
+        <a href="/contact.html" class="btn btn--or btn--lg">
+          <i class="fi fi-rr-paper-plane"></i> Proposer une idée
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer__grille">
+    <div class="footer__marque">
+      <div class="footer__logo">
+        <div class="logo__mark">J</div>
+        <div>Jos<span>Dore</span></div>
+      </div>
+      <p class="footer__desc">
+        Maintenance informatique & infogérance à Cotonou et Abomey-Calavi.<br>
+        <strong>Votre partenaire informatique de proximité.</strong>
+      </p>
+      <div class="footer__reseaux">
+        <a href="https://www.facebook.com/share/19inMddugC/" class="footer__reseau" aria-label="Facebook" target="_blank" rel="noopener"><i class="fi fi-brands-facebook"></i></a>
+        <a href="https://wa.me/message/JWTG7DIGJR4XA1" class="footer__reseau" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fi fi-brands-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/jos-dore/" class="footer__reseau" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fi fi-brands-linkedin"></i></a>
+        <a href="https://www.youtube.com/@Josdore" class="footer__reseau" aria-label="YouTube" target="_blank" rel="noopener"><i class="fi fi-brands-youtube"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Explorer</h4>
+      <div class="footer__liens">
+        <a href="/services.html">Nos services</a>
+        <a href="/boutique.html">Boutique</a>
+        <a href="/academie.html">Académie</a>
+        <a href="/outils.html">Outils gratuits</a>
+        <a href="/jeux.html">Jeux & Quiz</a>
+        <a href="/blog/">Articles & Conseils</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Entreprise</h4>
+      <div class="footer__liens">
+        <a href="/a-propos.html">À propos</a>
+        <a href="/vision.html">Vision</a>
+        <a href="/partenariat.html">Partenariat</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer__titre">Mon espace</h4>
+      <div class="footer__liens">
+        <a href="/compte/connexion.html">Connexion</a>
+        <a href="/compte/inscription.html">Créer un compte</a>
+        <a href="/espace-client/tableau-de-bord.html">Tableau de bord</a>
+        <a href="/aide/">Aide</a>
+      </div>
+      <h4 class="footer__titre" style="margin-top: 24px;">Communauté</h4>
+      <div class="footer__liens">
+        <a href="https://whatsapp.com/channel/0029VbDlvsH7IUYeKsw8p32Q" target="_blank" rel="noopener">Chaîne WhatsApp</a>
+        <a href="https://chat.whatsapp.com/L16NYw18Uk84JuAcYQYTNx" target="_blank" rel="noopener">Groupe WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bas">
+    <div>© <span id="annee"></span> Jos Dore — Tous droits réservés.</div>
+    <div class="footer__bas-liens">
+      <a href="/legal/mentions-legales.html">Mentions légales</a>
+      <a href="/legal/cgu.html">CGU</a>
+      <a href="/legal/confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- COOKIES                                                       -->
+<!-- ============================================================ -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Consentement cookies">
+  <div class="cookies__inner">
+    <div class="cookies__texte">
+      <strong>Nous respectons ta vie privée.</strong>
+      Jos Dore utilise des cookies pour améliorer ton expérience et mesurer l'audience.
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="cookies__btn cookies__btn--refuse" id="cookiesRefuse">Refuser</button>
+      <button type="button" class="cookies__btn cookies__btn--accept" id="cookiesAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<!-- Scripts spécifiques aux jeux -->
+<script src="/ressources/js/games-data.js" defer></script>
+<script src="/ressources/js/games-liste.js" defer></script>
+
+</body>
+</html>

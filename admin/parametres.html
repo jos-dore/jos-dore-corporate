@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramètres — Jos Dore | Administration</title>
+<meta name="description" content="Paramètres de l'administration Jos Dore.">
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — PARAMÈTRES (Thème Doré)
+     ============================================================ */
+  :root {
+    --admin-rouge: #F59E0B;
+    --admin-rouge-fonce: #D97706;
+    --admin-rouge-bg: rgba(245,158,11,0.12);
+    --admin-grad: linear-gradient(135deg, #F59E0B, #D97706);
+    --admin-sidebar-w: 280px;
+    --text-on-primary: #0A2540;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-bottom: 1px solid rgba(245,158,11,0.3); }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: var(--text-on-primary); }
+  .header--admin .logo__mark::after { background: var(--text-on-primary); }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header--admin .menu-btn { background: transparent; border-color: rgba(255,255,255,0.2); color: #fff; }
+  .header--admin .menu-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+  .header__badge-admin { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge); color: var(--text-on-primary); border-radius: var(--rayon-full); font-size: 9.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-left: 8px; font-family: var(--police-titre); }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(245,158,11,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { min-height: 100vh; }
+  @media (min-width: 1024px) { .sidebar--admin { display: flex !important; flex-direction: column; transform: translateX(0) !important; } .overlay { display: none !important; } }
+  .main-admin { margin-left: 0; transition: margin-left 0.25s ease; padding: 28px 20px 80px; }
+  @media (min-width: 1024px) { .main-admin { margin-left: var(--admin-sidebar-w); padding: 32px 28px 80px; } }
+  .main-admin__inner { max-width: 1100px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin { width: var(--admin-sidebar-w); background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%); border-right: 1px solid rgba(245,158,11,0.2); padding: 20px 14px; }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: var(--text-on-primary); }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: var(--text-on-primary); }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .page-entete__titre { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--gris-900); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .page-entete__tag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+  .page-entete__sous { font-size: 15px; color: var(--gris-500); line-height: 1.5; }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- NAVIGATION INTERNE ---------- */
+  .nav-interne { display: flex; gap: 6px; margin-bottom: 20px; padding: 6px; background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav-interne::-webkit-scrollbar { display: none; }
+  .nav-interne__lien { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: transparent; border: none; border-radius: var(--rayon-md); font-family: var(--police-titre); font-size: 12.5px; font-weight: 800; color: var(--gris-600); cursor: pointer; transition: var(--transition); white-space: nowrap; text-decoration: none; }
+  .nav-interne__lien:hover { background: var(--gris-50); color: var(--gris-900); text-decoration: none; }
+  .nav-interne__lien.is-actif { background: var(--admin-grad); color: var(--text-on-primary); box-shadow: 0 6px 18px rgba(245,158,11,0.25); }
+  .nav-interne__lien i { font-size: 15px; }
+
+  /* ---------- BLOC PARAMÈTRES ---------- */
+  .bloc-p { background: #fff; border: 1px solid var(--gris-200); border-radius: var(--rayon-lg); overflow: hidden; margin-bottom: 20px; scroll-margin-top: calc(var(--header-h) + 20px); }
+  .bloc-p__entete { display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-bottom: 1px solid var(--gris-100); background: var(--gris-50); }
+  .bloc-p__entete-icone { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .bloc-p__entete-icone--rouge { background: var(--admin-rouge-bg); color: var(--admin-rouge-fonce); }
+  .bloc-p__entete-icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .bloc-p__entete-icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .bloc-p__entete-icone--or { background: rgba(245,158,11,0.12); color: var(--admin-rouge-fonce); }
+  .bloc-p__entete-icone--violet { background: rgba(124,58,237,0.10); color: var(--violet); }
+  .bloc-p__entete-texte { flex: 1; min-width: 0; }
+  .bloc-p__entete-texte h2 { font-size: 15.5px; font-weight: 800; color: var(--gris-900); margin-bottom: 3px; letter-spacing: -0.02em; }
+  .bloc-p__entete-texte p { font-size: 13px; color: var(--gris-500); margin: 0; line-height: 1.5; }
+  .bloc-p__corps { padding: 22px; }
+
+  /* ---------- CHAMPS ---------- */
+  .champ-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+  .champ-row--1 { grid-template-columns: 1fr; }
+  @media (max-width: 640px) { .champ-row { grid-template-columns: 1fr; } }
+  .champ { display: flex; flex-direction: column; }
+  .champ__label { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; font-weight: 800; color: var(--gris-700); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .champ__label .requis { color: var(--rouge); }
+  .champ__wrap { position: relative; }
+  .champ__wrap > i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gris-400); font-size: 16px; pointer-events: none; }
+  .champ__input { width: 100%; padding: 12px 14px 12px 42px; background: #fff; border: 1.5px solid var(--gris-200); border-radius: var(--rayon-sm); font-family: inherit; font-size: 14.5px; color: var(--gris-900); transition: var(--transition); }
+  .champ__input:focus { outline: none; border-color: var(--admin-rouge); box-shadow: 0 0 0 4px rgba(245,158,11,0.15); }
+  .champ__input--textarea { min-height: 90px; resize: vertical; padding: 12px 14px; line-height: 1.6; font-family: inherit; }
+  .champ__aide { font-size: 12px; color: var(--gris-500); margin-top: 6px; line-height: 1.5; }
+
+  /* ---------- LIGNE PARAMÈTRE ---------- */
+  .ligne-p { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--gris-100); }
+  .ligne-p:last-child { border-bottom: none; padding-bottom: 0; }
+  .ligne-p:first-child { padding-top: 0; }
+  .ligne-p__texte { flex: 1; min-width: 0; }
+  .ligne-p__titre { display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 800; color: var(--gris-900); margin-bottom: 4px; }
+  .ligne-p__titre i { color: var(--admin-rouge-fonce); font-size: 16px; flex-shrink: 0; }
+  .ligne-p__desc { font-size: 13px; color: var(--gris-500); line-height: 1.55; margin: 0; }
+
+  /* Toggle Switch */
+  .switch { position: relative; display: inline-block; width: 48px; height: 28px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch__slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--gris-300); border-radius: 28px; transition: 0.3s; }
+  .switch__slider::before { content: ''; position: absolute; height: 22px; width: 22px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+  .switch input:checked + .switch__slider { background: var(--admin-rouge); }
+  .switch input:checked + .switch__slider::before { transform: translateX(20px); }
+  .switch input:focus-visible + .switch__slider { box-shadow: 0 0 0 4px rgba(245,158,11,0.2); }
+
+  /* Select */
+  .select-p { min-width: 160px; padding: 10px 38px 10px 14px; background: #fff; border: 1.5px solid var(--gris-200); border-radius: var(--rayon-sm); font-family: inherit; font-size: 14px; font-weight: 600; color: var(--gris-900); cursor: pointer; transition: var(--transition); -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+  .select-p:focus { outline: none; border-color: var(--admin-rouge); box-shadow: 0 0 0 4px rgba(245,158,11,0.15); }
+
+  /* ---------- PIED DE BLOC ---------- */
+  .bloc-p__pied { display: flex; gap: 10px; padding: 16px 22px; border-top: 1px solid var(--gris-100); background: var(--gris-50); flex-wrap: wrap; justify-content: flex-end; }
+  @media (max-width: 640px) { .bloc-p__pied { flex-direction: column; } .bloc-p__pied .btn { width: 100%; } }
+
+  /* ---------- BADGE STATUT ---------- */
+  .badge-statut-legal { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(245,158,11,0.14); color: var(--admin-rouge-fonce); border-radius: var(--rayon-full); font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; margin-left: 8px; }
+
+  /* ---------- BLOC DANGER ---------- */
+  .bloc-p--danger { border-color: rgba(220,38,38,0.25); }
+  .bloc-p--danger .bloc-p__entete { background: rgba(220,38,38,0.04); border-bottom-color: rgba(220,38,38,0.15); }
+  .bloc-p--danger .bloc-p__entete-texte h2 { color: var(--rouge); }
+  .btn-danger-outline { background: transparent; color: var(--rouge); border: 1.5px solid var(--rouge); padding: 11px 18px; border-radius: var(--rayon-sm); font-family: var(--police-titre); font-size: 13px; font-weight: 800; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+  .btn-danger-outline:hover { background: var(--rouge); color: #fff; }
+
+  /* ---------- APERÇU ENTREPRISE ---------- */
+  .apercu-entreprise { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); color: #fff; border-radius: var(--rayon-lg); padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; border: 1px solid rgba(245,158,11,0.2); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .apercu-entreprise::before { content: ''; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(245,158,11,0.25), transparent 65%); border-radius: 50%; pointer-events: none; }
+  .apercu-entreprise__logo { width: 64px; height: 64px; border-radius: 16px; background: var(--admin-grad); display: flex; align-items: center; justify-content: center; font-family: var(--police-titre); font-size: 28px; font-weight: 900; position: relative; z-index: 2; flex-shrink: 0; box-shadow: 0 8px 20px rgba(245,158,11,0.4); overflow: hidden; }
+  .apercu-entreprise__logo img { width: 100%; height: 100%; object-fit: cover; }
+  .apercu-entreprise__infos { position: relative; z-index: 2; flex: 1; min-width: 200px; }
+  .apercu-entreprise__nom { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .apercu-entreprise__slogan { font-size: 13.5px; color: #CBD5E1; font-style: italic; margin-bottom: 10px; }
+  .apercu-entreprise__meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: #94A3B8; }
+  .apercu-entreprise__meta span { display: inline-flex; align-items: center; gap: 5px; }
+  .apercu-entreprise__meta i { color: var(--or); font-size: 13px; }
+
+  /* ---------- FOOTER ADMIN ---------- */
+  .app-footer--admin { padding: 20px 24px; text-align: center; font-size: 12px; color: var(--gris-500); border-top: 1px solid var(--gris-200); background: #fff; }
+  @media (min-width: 1024px) { .app-footer--admin { margin-left: var(--admin-sidebar-w); } }
+  .app-footer--admin a { color: var(--gris-500); text-decoration: none; }
+  .app-footer--admin a:hover { color: var(--admin-rouge-fonce); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) { .main-admin { padding: 20px 16px 64px; } }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .bloc-p__corps { padding: 18px; }
+    .ligne-p { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .ligne-p .switch, .ligne-p .select-p { align-self: flex-end; }
+    .select-p { width: 100%; }
+    .apercu-entreprise { padding: 20px; }
+    .apercu-entreprise__logo { width: 56px; height: 56px; font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER ADMIN -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR ADMIN -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar><span data-user-initiales>?</span></div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien"><i class="fi fi-rr-apps"></i> <span>Tableau de bord</span></a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien"><i class="fi fi-rr-users"></i> <span>Clients</span></a>
+  <a href="/admin/contrats.html" class="sidebar__lien"><i class="fi fi-rr-document-signed"></i> <span>Contrats</span></a>
+  <a href="/admin/interventions.html" class="sidebar__lien"><i class="fi fi-rr-tools"></i> <span>Interventions</span></a>
+  <a href="/admin/factures.html" class="sidebar__lien"><i class="fi fi-rr-credit-card"></i> <span>Factures</span></a>
+  <a href="/admin/formations.html" class="sidebar__lien"><i class="fi fi-rr-graduation-cap"></i> <span>Formations</span></a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien"><i class="fi fi-rr-pencil"></i> <span>Articles</span></a>
+  <a href="/admin/messages.html" class="sidebar__lien"><i class="fi fi-rr-envelope"></i> <span>Messages</span></a>
+  <a href="/admin/notifications.html" class="sidebar__lien"><i class="fi fi-rr-bell"></i> <span>Notifications</span></a>
+
+  <div class="sidebar__sep"></div>
+  <a href="/admin/parametres.html" class="sidebar__lien is-actif"><i class="fi fi-rr-settings-sliders"></i> <span>Paramètres</span></a>
+  <a href="/" class="sidebar__lien" target="_blank"><i class="fi fi-rr-external-link"></i> <span>Voir le site public</span></a>
+
+  <div class="sidebar__sep"></div>
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i> <span>Se déconnecter</span>
+  </button>
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- CONTENU -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- EN-TÊTE -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Paramètres
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+          </h1>
+          <p class="page-entete__sous">
+            Configurez votre entreprise, vos services, vos préférences.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+        </div>
+      </div>
+
+      <!-- NAV INTERNE -->
+      <nav class="nav-interne">
+        <a href="#entreprise" class="nav-interne__lien"><i class="fi fi-rr-building"></i> Entreprise</a>
+        <a href="#services" class="nav-interne__lien"><i class="fi fi-rr-settings"></i> Services</a>
+        <a href="#notifications" class="nav-interne__lien"><i class="fi fi-rr-bell"></i> Notifications</a>
+        <a href="#integrations" class="nav-interne__lien"><i class="fi fi-rr-plug"></i> Intégrations</a>
+        <a href="#securite" class="nav-interne__lien"><i class="fi fi-rr-lock"></i> Sécurité</a>
+        <a href="#avance" class="nav-interne__lien"><i class="fi fi-rr-settings-sliders"></i> Avancé</a>
+        <a href="#danger" class="nav-interne__lien"><i class="fi fi-rr-triangle-warning"></i> Danger</a>
+      </nav>
+
+      <!-- APERÇU ENTREPRISE -->
+      <section class="apercu-entreprise">
+        <div class="apercu-entreprise__logo" id="apercuLogo">J</div>
+        <div class="apercu-entreprise__infos">
+          <div class="apercu-entreprise__nom" id="apercuNom">Jos Dore</div>
+          <div class="apercu-entreprise__slogan" id="apercuSlogan">Votre partenaire informatique de proximité</div>
+          <div class="apercu-entreprise__meta" id="apercuMeta">
+            <!-- Rempli par JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOC 1 : ENTREPRISE -->
+      <section class="bloc-p" id="entreprise">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--rouge"><i class="fi fi-rr-building"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Informations de l'entreprise</h2>
+            <p>Nom, slogan, coordonnées et localisation.</p>
+          </div>
+        </div>
+        <form id="formEntreprise">
+          <div class="bloc-p__corps">
+            <div class="champ-row">
+              <div class="champ">
+                <label class="champ__label" for="entNom">Nom de l'entreprise <span class="requis">*</span></label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-building"></i>
+                  <input type="text" id="entNom" class="champ__input" required>
+                </div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="entSlogan">Slogan</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-quote-right"></i>
+                  <input type="text" id="entSlogan" class="champ__input">
+                </div>
+              </div>
+            </div>
+            <div class="champ-row">
+              <div class="champ">
+                <label class="champ__label" for="entEmail">Email de contact</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-envelope"></i>
+                  <input type="email" id="entEmail" class="champ__input">
+                </div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="entTelephone">Téléphone</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-phone-call"></i>
+                  <input type="tel" id="entTelephone" class="champ__input">
+                </div>
+              </div>
+            </div>
+            <div class="champ-row">
+              <div class="champ">
+                <label class="champ__label" for="entWhatsapp">WhatsApp</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-brands-whatsapp"></i>
+                  <input type="text" id="entWhatsapp" class="champ__input">
+                </div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="entVille">Ville</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-marker"></i>
+                  <input type="text" id="entVille" class="champ__input">
+                </div>
+              </div>
+            </div>
+            <div class="champ-row champ-row--1">
+              <div class="champ">
+                <label class="champ__label" for="entAdresse">Adresse complète</label>
+                <textarea id="entAdresse" class="champ__input champ__input--textarea"></textarea>
+              </div>
+            </div>
+            <div class="champ-row champ-row--1">
+              <div class="champ">
+                <label class="champ__label" for="entDescription">Description courte</label>
+                <textarea id="entDescription" class="champ__input champ__input--textarea"></textarea>
+              </div>
+            </div>
+            <div style="margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--gris-100);">
+              <h3 style="font-size: 14px; font-weight: 800; color: var(--gris-900); margin-bottom: 16px; letter-spacing: -0.01em;">
+                <i class="fi fi-rr-document-signed" style="color: var(--admin-rouge-fonce);"></i> Informations légales
+              </h3>
+              <div class="champ-row">
+                <div class="champ">
+                  <label class="champ__label" for="entRccm">RCCM <span class="badge-statut-legal"><i class="fi fi-rr-time-fast"></i> En attente</span></label>
+                  <div class="champ__wrap">
+                    <i class="fi fi-rr-id-badge"></i>
+                    <input type="text" id="entRccm" class="champ__input" placeholder="À remplir dès obtention">
+                  </div>
+                </div>
+                <div class="champ">
+                  <label class="champ__label" for="entIfu">IFU <span class="badge-statut-legal"><i class="fi fi-rr-time-fast"></i> En attente</span></label>
+                  <div class="champ__wrap">
+                    <i class="fi fi-rr-id-badge"></i>
+                    <input type="text" id="entIfu" class="champ__input" placeholder="À remplir dès obtention">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bloc-p__pied">
+            <button type="button" class="btn btn--ghost btn--sm" id="btnResetEntreprise"><i class="fi fi-rr-refresh"></i> Réinitialiser</button>
+            <button type="submit" class="btn btn--or btn--sm"><i class="fi fi-rr-check"></i> Enregistrer</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- BLOC 2 : SERVICES -->
+      <section class="bloc-p" id="services">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--or"><i class="fi fi-rr-settings"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Services & tarifs</h2>
+            <p>Tarif contrat, zones, délais d'intervention.</p>
+          </div>
+        </div>
+        <form id="formServices">
+          <div class="bloc-p__corps">
+            <div class="champ-row">
+              <div class="champ">
+                <label class="champ__label" for="srvTarifContrat">Tarif contrat TPE/PME (FCFA/mois)</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-credit-card"></i>
+                  <input type="number" id="srvTarifContrat" class="champ__input" min="0">
+                </div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="srvDelaiIntervention">Délai d'intervention</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-time-fast"></i>
+                  <input type="text" id="srvDelaiIntervention" class="champ__input">
+                </div>
+              </div>
+            </div>
+            <div class="champ-row">
+              <div class="champ">
+                <label class="champ__label" for="srvZones">Zones d'intervention</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-marker"></i>
+                  <input type="text" id="srvZones" class="champ__input">
+                </div>
+                <div class="champ__aide">Séparées par des virgules</div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="srvVisitesParAn">Visites préventives par an</label>
+                <div class="champ__wrap">
+                  <i class="fi fi-rr-calendar"></i>
+                  <input type="number" id="srvVisitesParAn" class="champ__input" min="1" max="52">
+                </div>
+              </div>
+            </div>
+            <div class="ligne-p">
+              <div class="ligne-p__texte">
+                <div class="ligne-p__titre"><i class="fi fi-rr-gift"></i> Diagnostic initial gratuit</div>
+                <p class="ligne-p__desc">Proposer automatiquement un premier diagnostic gratuit aux nouveaux clients.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="srvDiagGratuit">
+                <span class="switch__slider"></span>
+              </label>
+            </div>
+            <div class="ligne-p">
+              <div class="ligne-p__texte">
+                <div class="ligne-p__titre"><i class="fi fi-rr-bolt"></i> Interventions urgentes 24h/24</div>
+                <p class="ligne-p__desc">Autoriser les demandes d'intervention en dehors des horaires classiques.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="srvUrgence247">
+                <span class="switch__slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="bloc-p__pied">
+            <button type="submit" class="btn btn--or btn--sm"><i class="fi fi-rr-check"></i> Enregistrer</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- BLOC 3 : NOTIFICATIONS -->
+      <section class="bloc-p" id="notifications">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--bleu"><i class="fi fi-rr-bell"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Notifications admin</h2>
+            <p>Choisissez quand vous recevez des notifications.</p>
+          </div>
+        </div>
+        <div class="bloc-p__corps">
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-user-add"></i> Nouveaux clients inscrits</div>
+              <p class="ligne-p__desc">Être notifié à chaque nouvelle inscription sur le site.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifNouveauClient"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-envelope"></i> Nouveaux messages clients</div>
+              <p class="ligne-p__desc">Alerte dès qu'un client envoie un message.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifNouveauMessage"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-triangle-warning"></i> Factures en retard</div>
+              <p class="ligne-p__desc">Être alerté dès qu'une facture dépasse son échéance.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifFactureRetard"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-wallet"></i> Paiements reçus</div>
+              <p class="ligne-p__desc">Confirmation à chaque paiement enregistré.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifPaiement"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-calendar"></i> Rappels d'interventions</div>
+              <p class="ligne-p__desc">Rappel la veille de chaque intervention planifiée.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifRappelInterv"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-envelope"></i> Résumé hebdomadaire par email</div>
+              <p class="ligne-p__desc">Recevoir un récapitulatif de l'activité chaque lundi matin.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="notifResumeHebdo"><span class="switch__slider"></span></label>
+          </div>
+        </div>
+        <div class="bloc-p__pied">
+          <button type="button" class="btn btn--or btn--sm" id="btnSaveNotifs"><i class="fi fi-rr-check"></i> Enregistrer mes préférences</button>
+        </div>
+      </section>
+
+      <!-- BLOC 4 : INTÉGRATIONS -->
+      <section class="bloc-p" id="integrations">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--vert"><i class="fi fi-rr-plug"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Intégrations</h2>
+            <p>WhatsApp, emails, paiement mobile, hébergement.</p>
+          </div>
+        </div>
+        <div class="bloc-p__corps">
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-brands-whatsapp"></i> WhatsApp Business <span class="badge-statut-legal" style="background: rgba(22,163,74,0.10); color: var(--vert);"><i class="fi fi-rr-check"></i> Connecté</span></div>
+              <p class="ligne-p__desc">Numéro : +229 01 53 21 62 76 · Utilisé pour les boutons de contact et les relances.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-integration="WhatsApp Business"><i class="fi fi-rr-settings"></i> Configurer</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-envelope"></i> Email transactionnel <span class="badge-statut-legal"><i class="fi fi-rr-time-fast"></i> À configurer</span></div>
+              <p class="ligne-p__desc">Service d'envoi d'emails (devis, factures, notifications).</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-integration="Email transactionnel"><i class="fi fi-rr-settings"></i> Configurer</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-credit-card"></i> Paiement mobile (KKiaPay) <span class="badge-statut-legal"><i class="fi fi-rr-time-fast"></i> À configurer</span></div>
+              <p class="ligne-p__desc">Encaisser les paiements par MTN MoMo, Moov Money, Visa, Mastercard.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-integration="Paiement mobile (KKiaPay)"><i class="fi fi-rr-settings"></i> Configurer</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-brands-youtube"></i> YouTube <span class="badge-statut-legal" style="background: rgba(22,163,74,0.10); color: var(--vert);"><i class="fi fi-rr-check"></i> Utilisé</span></div>
+              <p class="ligne-p__desc">Hébergement des vidéos de formation en mode non répertorié.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-integration="YouTube"><i class="fi fi-rr-settings"></i> Configurer</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-database"></i> Supabase (Backend) <span class="badge-statut-legal" style="background: rgba(22,163,74,0.10); color: var(--vert);"><i class="fi fi-rr-check"></i> Connecté</span></div>
+              <p class="ligne-p__desc">Base de données et authentification — déjà connecté via config.js.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-integration="Supabase"><i class="fi fi-rr-settings"></i> Configurer</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOC 5 : SÉCURITÉ -->
+      <section class="bloc-p" id="securite">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--violet"><i class="fi fi-rr-lock"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Sécurité</h2>
+            <p>Mot de passe, sessions, double authentification.</p>
+          </div>
+        </div>
+        <div class="bloc-p__corps">
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-key"></i> Mot de passe</div>
+              <p class="ligne-p__desc">Changez votre mot de passe administrateur pour plus de sécurité.</p>
+            </div>
+            <a href="/espace-client/parametres.html" class="btn btn--ghost btn--sm"><i class="fi fi-rr-refresh"></i> Modifier</a>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-shield-check"></i> Double authentification (2FA)</div>
+              <p class="ligne-p__desc">Ajoutez une couche de sécurité supplémentaire à votre compte admin.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="secu2FA"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-monitor"></i> Sessions actives</div>
+              <p class="ligne-p__desc">Une seule session en cours sur cet appareil.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="btnDeconnexionGlobale"><i class="fi fi-rr-sign-out-alt"></i> Déconnecter partout</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-time-past"></i> Déconnexion automatique</div>
+              <p class="ligne-p__desc">Fermer automatiquement la session après une période d'inactivité.</p>
+            </div>
+            <select class="select-p" id="secuTimeout">
+              <option value="15">15 minutes</option>
+              <option value="30" selected>30 minutes</option>
+              <option value="60">1 heure</option>
+              <option value="120">2 heures</option>
+              <option value="0">Jamais</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOC 6 : AVANCÉ -->
+      <section class="bloc-p" id="avance">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--bleu"><i class="fi fi-rr-settings-sliders"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Avancé</h2>
+            <p>Mode développeur, thème, export de données.</p>
+          </div>
+        </div>
+        <div class="bloc-p__corps">
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-bug"></i> Mode développeur</div>
+              <p class="ligne-p__desc">Afficher les logs détaillés dans la console. À désactiver en production.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="avanceDebug"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-moon"></i> Thème sombre (admin)</div>
+              <p class="ligne-p__desc">Utiliser un thème sombre pour votre interface admin.</p>
+            </div>
+            <label class="switch"><input type="checkbox" id="avanceThemeSombre"><span class="switch__slider"></span></label>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-download"></i> Exporter les données</div>
+              <p class="ligne-p__desc">Télécharger l'ensemble des paramètres en JSON.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="btnExportDonnees"><i class="fi fi-rr-download"></i> Exporter (JSON)</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-backup"></i> Sauvegarder maintenant</div>
+              <p class="ligne-p__desc">Créer une sauvegarde manuelle de vos paramètres.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="btnSauvegarder"><i class="fi fi-rr-backup"></i> Sauvegarder</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOC 7 : DANGER -->
+      <section class="bloc-p bloc-p--danger" id="danger">
+        <div class="bloc-p__entete">
+          <div class="bloc-p__entete-icone bloc-p__entete-icone--rouge"><i class="fi fi-rr-triangle-warning"></i></div>
+          <div class="bloc-p__entete-texte">
+            <h2>Zone sensible</h2>
+            <p>Ces actions sont irréversibles. À utiliser avec précaution.</p>
+          </div>
+        </div>
+        <div class="bloc-p__corps">
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-refresh"></i> Réinitialiser les paramètres</div>
+              <p class="ligne-p__desc">Remet tous les paramètres de cette page à leurs valeurs par défaut.</p>
+            </div>
+            <button type="button" class="btn-danger-outline" id="btnResetParams"><i class="fi fi-rr-refresh"></i> Réinitialiser</button>
+          </div>
+          <div class="ligne-p">
+            <div class="ligne-p__texte">
+              <div class="ligne-p__titre"><i class="fi fi-rr-exclamation"></i> Zone critique</div>
+              <p class="ligne-p__desc">Se déconnecter de toutes les sessions et repartir de zéro. Vos données Supabase sont conservées.</p>
+            </div>
+            <button type="button" class="btn-danger-outline" id="btnSupprimerAdmin"><i class="fi fi-rr-trash"></i> Réinitialiser la session</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER ADMIN -->
+<footer class="app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  const supabase = window.JosDore.supabase;
+  const session = window.JosDore.Auth.sessionActuelle();
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin');
+    document.querySelectorAll('[data-user-initiales]').forEach(el => el.textContent = window.JosDore.UTILS.initiales(session.nom));
+  }
+  const annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+
+  /* ============================================================
+     HELPERS & DEFAUTS
+     ============================================================ */
+  const toast = (msg, type = 'succes') => window.JosDore.Widgets?.toast({ message: msg, type });
+  const confirmer = (msg, opts) => window.JosDore.Widgets?.confirmer(msg, opts) || Promise.resolve(confirm(msg));
+
+  const ENTREPRISE_DEFAUT = { nom: 'Jos Dore', slogan: 'Votre partenaire informatique', email: 'contact@josdore.com', telephone: '+229 01 53 21 62 76', whatsapp: '+229 01 53 21 62 76', ville: 'Abomey-Calavi', adresse: '98RQ+HW Godomey, Abomey-Calavi, Bénin', description: 'Maintenance & infogérance', rccm: '', ifu: '' };
+  const SERVICES_DEFAUT = { tarifContrat: 40000, delaiIntervention: '24-48h', zones: 'Cotonou, Abomey-Calavi', visitesParAn: 12, diagGratuit: true, urgence247: false };
+  const NOTIFS_DEFAUT = { nouveauClient: true, nouveauMessage: true, factureRetard: true, paiement: true, rappelInterv: true, resumeHebdo: false };
+  const SECU_DEFAUT = { deuxFA: false, timeout: 30 };
+  const AVANCE_DEFAUT = { debug: true, themeSombre: false };
+
+  let PARAMS = { entreprise: ENTREPRISE_DEFAUT, services: SERVICES_DEFAUT, notifications: NOTIFS_DEFAUT, securite: SECU_DEFAUT, avance: AVANCE_DEFAUT };
+
+  /* ============================================================
+     CHARGEMENT DES PARAMÈTRES DEPUIS SUPABASE
+     ============================================================ */
+  async function chargerParametres() {
+    if (!supabase) return;
+    const { data, error } = await supabase.from('parametres').select('*').eq('id', 1).single();
+    if (error) { console.warn(error); return; }
+    
+    if (data) {
+      PARAMS.entreprise = data.entreprise || ENTREPRISE_DEFAUT;
+      PARAMS.services = data.services || SERVICES_DEFAUT;
+      PARAMS.notifications = data.notifications || NOTIFS_DEFAUT;
+      PARAMS.securite = data.securite || SECU_DEFAUT;
+      PARAMS.avance = data.avance || AVANCE_DEFAUT;
+    }
+
+    // Remplir l'interface
+    remplirEntreprise();
+    remplirServices();
+    remplirNotifs();
+    remplirSecu();
+    remplirAvance();
+    majApercu();
+  }
+
+  async function sauvegarderParametre(section, nouvellesValeurs) {
+    if (!supabase) return;
+    PARAMS[section] = nouvellesValeurs;
+    const { error } = await supabase.from('parametres').update({ [section]: nouvellesValeurs, updated_at: new Date().toISOString() }).eq('id', 1);
+    if (error) { toast('Erreur de sauvegarde', 'erreur'); console.error(error); }
+    else { toast('Modifications enregistrées avec succès.'); }
+  }
+
+  /* ============================================================
+     BLOC 1 : ENTREPRISE
+     ============================================================ */
+  function remplirEntreprise() {
+    const d = PARAMS.entreprise;
+    document.getElementById('entNom').value = d.nom || '';
+    document.getElementById('entSlogan').value = d.slogan || '';
+    document.getElementById('entEmail').value = d.email || '';
+    document.getElementById('entTelephone').value = d.telephone || '';
+    document.getElementById('entWhatsapp').value = d.whatsapp || '';
+    document.getElementById('entVille').value = d.ville || '';
+    document.getElementById('entAdresse').value = d.adresse || '';
+    document.getElementById('entDescription').value = d.description || '';
+    document.getElementById('entRccm').value = d.rccm || '';
+    document.getElementById('entIfu').value = d.ifu || '';
+  }
+
+  function majApercu() {
+    const d = PARAMS.entreprise;
+    document.getElementById('apercuNom').textContent = d.nom || 'Jos Dore';
+    document.getElementById('apercuSlogan').textContent = d.slogan || '';
+    document.getElementById('apercuMeta').innerHTML = `
+      <span><i class="fi fi-rr-envelope"></i> ${window.JosDore.UTILS.escapeHtml(d.email || '')}</span>
+      <span><i class="fi fi-rr-phone-call"></i> ${window.JosDore.UTILS.escapeHtml(d.telephone || '')}</span>
+      <span><i class="fi fi-rr-marker"></i> ${window.JosDore.UTILS.escapeHtml(d.ville || '')}</span>
+    `;
+  }
+
+  document.getElementById('formEntreprise').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+      nom: document.getElementById('entNom').value.trim(),
+      slogan: document.getElementById('entSlogan').value.trim(),
+      email: document.getElementById('entEmail').value.trim(),
+      telephone: document.getElementById('entTelephone').value.trim(),
+      whatsapp: document.getElementById('entWhatsapp').value.trim(),
+      ville: document.getElementById('entVille').value.trim(),
+      adresse: document.getElementById('entAdresse').value.trim(),
+      description: document.getElementById('entDescription').value.trim(),
+      rccm: document.getElementById('entRccm').value.trim(),
+      ifu: document.getElementById('entIfu').value.trim()
+    };
+    if (!data.nom) return toast('Le nom est obligatoire.', 'erreur');
+    await sauvegarderParametre('entreprise', data);
+    majApercu();
+  });
+
+  document.getElementById('btnResetEntreprise').addEventListener('click', async () => {
+    if (await confirmer('Réinitialiser ?', { titre: 'Réinitialiser' })) {
+      await sauvegarderParametre('entreprise', ENTREPRISE_DEFAUT);
+      remplirEntreprise();
+      majApercu();
+    }
+  });
+
+  /* ============================================================
+     BLOC 2 : SERVICES
+     ============================================================ */
+  function remplirServices() {
+    const d = PARAMS.services;
+    document.getElementById('srvTarifContrat').value = d.tarifContrat || 0;
+    document.getElementById('srvDelaiIntervention').value = d.delaiIntervention || '';
+    document.getElementById('srvZones').value = d.zones || '';
+    document.getElementById('srvVisitesParAn').value = d.visitesParAn || 12;
+    document.getElementById('srvDiagGratuit').checked = d.diagGratuit !== false;
+    document.getElementById('srvUrgence247').checked = !!d.urgence247;
+  }
+
+  document.getElementById('formServices').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+      tarifContrat: parseInt(document.getElementById('srvTarifContrat').value, 10) || 0,
+      delaiIntervention: document.getElementById('srvDelaiIntervention').value.trim(),
+      zones: document.getElementById('srvZones').value.trim(),
+      visitesParAn: parseInt(document.getElementById('srvVisitesParAn').value, 10) || 12,
+      diagGratuit: document.getElementById('srvDiagGratuit').checked,
+      urgence247: document.getElementById('srvUrgence247').checked
+    };
+    await sauvegarderParametre('services', data);
+  });
+
+  /* ============================================================
+     BLOC 3 : NOTIFICATIONS
+     ============================================================ */
+  function remplirNotifs() {
+    const d = PARAMS.notifications;
+    document.getElementById('notifNouveauClient').checked = d.nouveauClient;
+    document.getElementById('notifNouveauMessage').checked = d.nouveauMessage;
+    document.getElementById('notifFactureRetard').checked = d.factureRetard;
+    document.getElementById('notifPaiement').checked = d.paiement;
+    document.getElementById('notifRappelInterv').checked = d.rappelInterv;
+    document.getElementById('notifResumeHebdo').checked = d.resumeHebdo;
+  }
+
+  document.getElementById('btnSaveNotifs').addEventListener('click', async () => {
+    const data = {
+      nouveauClient: document.getElementById('notifNouveauClient').checked,
+      nouveauMessage: document.getElementById('notifNouveauMessage').checked,
+      factureRetard: document.getElementById('notifFactureRetard').checked,
+      paiement: document.getElementById('notifPaiement').checked,
+      rappelInterv: document.getElementById('notifRappelInterv').checked,
+      resumeHebdo: document.getElementById('notifResumeHebdo').checked
+    };
+    await sauvegarderParametre('notifications', data);
+  });
+
+  /* ============================================================
+     BLOC 4 : INTÉGRATIONS (Message d'info)
+     ============================================================ */
+  document.querySelectorAll('[data-integration]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nom = btn.dataset.integration;
+      window.JosDore.Widgets?.alerter('La configuration de "' + nom + '" sera bientôt disponible.', { titre: 'Configuration', type: 'info' });
+    });
+  });
+
+  /* ============================================================
+     BLOC 5 : SÉCURITÉ
+     ============================================================ */
+  function remplirSecu() {
+    document.getElementById('secu2FA').checked = !!PARAMS.securite.deuxFA;
+    document.getElementById('secuTimeout').value = String(PARAMS.securite.timeout || 30);
+  }
+
+  document.getElementById('secu2FA').addEventListener('change', async () => {
+    await sauvegarderParametre('securite', { ...PARAMS.securite, deuxFA: document.getElementById('secu2FA').checked });
+  });
+
+  document.getElementById('secuTimeout').addEventListener('change', async () => {
+    await sauvegarderParametre('securite', { ...PARAMS.securite, timeout: parseInt(document.getElementById('secuTimeout').value, 10) || 30 });
+  });
+
+  document.getElementById('btnDeconnexionGlobale').addEventListener('click', async () => {
+    if (!(await confirmer('Déconnecter toutes les sessions ?', { titre: 'Déconnexion globale', variante: 'rouge' }))) return;
+    try { await supabase.auth.signOut({ scope: 'global' }); } catch (e) {}
+    window.JosDore.STORAGE.remove(window.JosDore.CONFIG.cles.session);
+    toast('Sessions fermées.');
+    setTimeout(() => window.location.href = '/compte/connexion.html', 1200);
+  });
+
+  /* ============================================================
+     BLOC 6 : AVANCÉ
+     ============================================================ */
+  function remplirAvance() {
+    document.getElementById('avanceDebug').checked = PARAMS.avance.debug !== false;
+    document.getElementById('avanceThemeSombre').checked = !!PARAMS.avance.themeSombre;
+    appliquerThemeSombre(!!PARAMS.avance.themeSombre);
+  }
+
+  function appliquerThemeSombre(actif) {
+    document.documentElement.setAttribute('data-theme-admin', actif ? 'sombre' : 'clair');
+  }
+
+  document.getElementById('avanceDebug').addEventListener('change', async () => {
+    await sauvegarderParametre('avance', { ...PARAMS.avance, debug: document.getElementById('avanceDebug').checked });
+  });
+
+  document.getElementById('avanceThemeSombre').addEventListener('change', async () => {
+    const val = document.getElementById('avanceThemeSombre').checked;
+    await sauvegarderParametre('avance', { ...PARAMS.avance, themeSombre: val });
+    appliquerThemeSombre(val);
+  });
+
+  document.getElementById('btnExportDonnees').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(PARAMS, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'josdore-parametres.json';
+    a.click(); URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('btnSauvegarder').addEventListener('click', () => {
+    toast('Sauvegarde effectuée à ' + new Date().toLocaleTimeString() + '.');
+  });
+
+  /* ============================================================
+     BLOC 7 : DANGER
+     ============================================================ */
+  document.getElementById('btnResetParams').addEventListener('click', async () => {
+    if (!(await confirmer('Réinitialiser tous les paramètres aux valeurs par défaut ?', { titre: 'Réinitialisation', variante: 'rouge' }))) return;
+    await supabase.from('parametres').update({ entreprise: ENTREPRISE_DEFAUT, services: SERVICES_DEFAUT, notifications: NOTIFS_DEFAUT, securite: SECU_DEFAUT, avance: AVANCE_DEFAUT }).eq('id', 1);
+    toast('Paramètres réinitialisés.'); setTimeout(() => location.reload(), 1000);
+  });
+
+  document.getElementById('btnSupprimerAdmin').addEventListener('click', async () => {
+    if (!(await confirmer('Déconnecter toutes les sessions et réinitialiser ?', { titre: 'Session', variante: 'rouge' }))) return;
+    try { await supabase.auth.signOut({ scope: 'global' }); } catch (e) {}
+    window.JosDore.STORAGE.remove(window.JosDore.CONFIG.cles.session);
+    toast('Redirection...');
+    setTimeout(() => window.location.href = '/compte/connexion.html', 1200);
+  });
+
+  /* ============================================================
+     SMOOTH SCROLL NAV INTERNE
+     ============================================================ */
+  document.querySelectorAll('.nav-interne__lien').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cible = document.querySelector(link.getAttribute('href'));
+      if (!cible) return;
+      const top = cible.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+      document.querySelectorAll('.nav-interne__lien').forEach(l => l.classList.remove('is-actif'));
+      link.classList.add('is-actif');
+    });
+  });
+
+  /* ============================================================
+     INITIALISATION
+     ============================================================ */
+  await chargerParametres();
+
+  if (window.JosDore.LOG) window.JosDore.LOG.info('Admin paramètres chargés (Supabase)');
+
+});
+</script>
+
+</body>
+</html>

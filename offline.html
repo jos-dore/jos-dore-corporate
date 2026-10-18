@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hors ligne — Jos Dore</title>
+<meta name="theme-color" content="#F59E0B">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/ressources/images/logo/favicon.ico" type="image/ico+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+
+<style>
+  .offline-page {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0A2540 0%, #143154 60%, #1E3A5F 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .offline-page::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .offline-page::after {
+    content: '';
+    position: absolute; bottom: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.20), transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .offline-inner { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; }
+  .offline-icon {
+    width: 100px; height: 100px;
+    border-radius: 28px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    color: #F59E0B;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    margin: 0 auto 28px;
+    animation: flotter 3s ease-in-out infinite;
+  }
+  @keyframes flotter {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+  .offline-inner h1 {
+    color: #fff;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .offline-inner h1 span {
+    background: linear-gradient(135deg, #F59E0B, #FBBF24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .offline-inner p {
+    color: #CBD5E1;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .offline-actions {
+    display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .offline-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 14px;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+    border: none; cursor: pointer;
+  }
+  .offline-btn--or { background: #F59E0B; color: #0A2540; }
+  .offline-btn--or:hover { background: #D97706; transform: translateY(-2px); }
+  .offline-btn--ghost {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .offline-btn--ghost:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+  .offline-status {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: #94A3B8;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .offline-status.is-online { color: #4ADE80; }
+  .offline-status.is-offline { color: #F87171; }
+  .offline-status i { font-size: 16px; }
+</style>
+</head>
+<body>
+
+<section class="offline-page">
+  <div class="offline-inner">
+    <div class="offline-icon"><i class="fi fi-rr-wifi-slash"></i></div>
+    <h1>Vous êtes <span>hors ligne.</span></h1>
+    <p>
+      Il semble que vous n'ayez pas de connexion Internet.
+      Certaines pages que vous avez déjà visitées restent accessibles.
+      Reconnectez-vous pour profiter de tout le site.
+    </p>
+    <div class="offline-actions">
+      <button type="button" class="offline-btn offline-btn--or" onclick="window.location.reload()">
+        <i class="fi fi-rr-refresh"></i> Réessayer
+      </button>
+      <a href="/" class="offline-btn offline-btn--ghost">
+        <i class="fi fi-rr-home"></i> Accueil
+      </a>
+    </div>
+    <div class="offline-status" id="offlineStatus">
+      <i class="fi fi-rr-wifi-slash"></i>
+      <span id="offlineStatusText">Connexion perdue</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  function majStatut() {
+    const status = document.getElementById('offlineStatus');
+    const text = document.getElementById('offlineStatusText');
+    const icon = status.querySelector('i');
+
+    if (navigator.onLine) {
+      status.classList.remove('is-offline');
+      status.classList.add('is-online');
+      text.textContent = 'Connexion rétablie';
+      icon.className = 'fi fi-rr-wifi';
+      // Recharge automatique après 1,5s si la connexion revient
+      setTimeout(() => window.location.reload(), 1500);
+    } else {
+      status.classList.remove('is-online');
+      status.classList.add('is-offline');
+      text.textContent = 'Connexion perdue';
+      icon.className = 'fi fi-rr-wifi-slash';
+    }
+  }
+
+  window.addEventListener('online', majStatut);
+  window.addEventListener('offline', majStatut);
+  majStatut();
+</script>
+
+</body>
+</html>

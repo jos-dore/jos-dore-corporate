@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrats — Jos Dore | Administration</title>
+<meta name="description" content="Gestion des contrats de maintenance Jos Dore.">
+<meta name="theme-color" content="#DC2626">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="/ressources/images/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/ressources/images/logo/favicon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Uicons -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+
+<!-- CSS JosDore -->
+<link rel="stylesheet" href="/ressources/css/variables.css">
+<link rel="stylesheet" href="/ressources/css/style.css">
+<link rel="stylesheet" href="/ressources/css/header.css">
+<link rel="stylesheet" href="/ressources/css/footer.css">
+<link rel="stylesheet" href="/ressources/css/responsive.css">
+
+<style>
+  /* ============================================================
+     ADMIN — CONTRATS
+     ============================================================ */
+
+  :root {
+    --admin-rouge: #DC2626;
+    --admin-rouge-fonce: #B91C1C;
+    --admin-rouge-bg: rgba(220,38,38,0.08);
+    --admin-grad: linear-gradient(135deg, #DC2626, #B91C1C);
+    --admin-sidebar-w: 280px;
+  }
+
+  body { background: var(--gris-50); }
+
+  /* ---------- HEADER ADMIN ---------- */
+  .header--admin {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-bottom: 1px solid rgba(220,38,38,0.3);
+  }
+  .header--admin .header__inner { max-width: 100%; padding: 0 20px; }
+  .header--admin .logo { color: #fff; }
+  .header--admin .logo__mark { background: var(--admin-rouge); color: #fff; }
+  .header--admin .logo__mark::after { background: #fff; }
+  .header--admin .logo__text span { color: var(--or); }
+  .header--admin .logo__suffix { color: rgba(255,255,255,0.6); }
+  .header__badge-admin {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge);
+    color: #fff;
+    border-radius: var(--rayon-full);
+    font-size: 9.5px; font-weight: 900;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-left: 8px;
+    font-family: var(--police-titre);
+  }
+  .header--admin .header__icone { color: rgba(255,255,255,0.75); }
+  .header--admin .header__icone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header--admin .header__avatar { border: 2px solid rgba(220,38,38,0.5); }
+
+  /* ---------- LAYOUT ---------- */
+  .admin-layout { padding-top: var(--header-h); min-height: 100vh; }
+  .main-admin {
+    margin-left: 0;
+    transition: margin-left 0.25s ease;
+    padding: 28px 20px 80px;
+  }
+  @media (min-width: 1024px) {
+    .main-admin {
+      margin-left: var(--admin-sidebar-w);
+      padding: 32px 28px 80px;
+    }
+  }
+  .main-admin__inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- SIDEBAR ADMIN ---------- */
+  .sidebar--admin {
+    width: var(--admin-sidebar-w);
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    border-right: 1px solid rgba(220,38,38,0.2);
+    padding: 20px 14px;
+  }
+  .sidebar--admin .sidebar__profil { border-bottom-color: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__profil-avatar { background: var(--admin-grad); color: #fff; }
+  .sidebar--admin .sidebar__profil-nom { color: #fff; }
+  .sidebar--admin .sidebar__profil-nom i { color: var(--or); }
+  .sidebar--admin .sidebar__profil-role { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__titre { color: rgba(255,255,255,0.4); }
+  .sidebar--admin .sidebar__lien { color: rgba(255,255,255,0.75); }
+  .sidebar--admin .sidebar__lien i { color: rgba(255,255,255,0.5); }
+  .sidebar--admin .sidebar__lien:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .sidebar--admin .sidebar__lien:hover i { color: #fff; }
+  .sidebar--admin .sidebar__lien.is-actif { background: var(--admin-rouge-bg); color: var(--or); }
+  .sidebar--admin .sidebar__lien.is-actif i { color: var(--or); }
+  .sidebar--admin .sidebar__lien--danger { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger i { color: #F87171; }
+  .sidebar--admin .sidebar__lien--danger:hover { background: rgba(220,38,38,0.15); }
+  .sidebar--admin .sidebar__sep { background: rgba(255,255,255,0.08); }
+  .sidebar--admin .sidebar__lien-badge { background: var(--admin-rouge); color: #fff; }
+
+  /* ---------- EN-TÊTE DE PAGE ---------- */
+  .page-entete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .page-entete__titre {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 900;
+    color: var(--gris-900);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .page-entete__tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .page-entete__sous {
+    font-size: 15px;
+    color: var(--gris-500);
+    line-height: 1.5;
+  }
+  .page-entete__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- BARRE D'OUTILS ---------- */
+  .barre-outils {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    padding: 16px 20px;
+  }
+  .recherche-admin {
+    flex: 1;
+    min-width: 240px;
+    position: relative;
+  }
+  .recherche-admin > i {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gris-400);
+    font-size: 17px;
+    pointer-events: none;
+  }
+  .recherche-admin input {
+    width: 100%;
+    padding: 11px 16px 11px 46px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--gris-900);
+    transition: var(--transition);
+  }
+  .recherche-admin input::placeholder { color: var(--gris-400); }
+  .recherche-admin input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--admin-rouge);
+    box-shadow: 0 0 0 4px rgba(220,38,38,0.1);
+  }
+
+  .filtres-admin {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filtre-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: var(--police-titre);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gris-600);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filtre-admin:hover {
+    background: #fff;
+    border-color: var(--admin-rouge);
+    color: var(--admin-rouge);
+  }
+  .filtre-admin.is-actif {
+    background: var(--admin-rouge);
+    color: #fff;
+    border-color: var(--admin-rouge);
+  }
+  .filtre-admin__compteur {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    font-size: 11px; font-weight: 900;
+  }
+  .filtre-admin.is-actif .filtre-admin__compteur { background: rgba(255,255,255,0.25); }
+
+  .tri-admin {
+    padding: 9px 34px 9px 14px;
+    background: var(--gris-50);
+    border: 1.5px solid transparent;
+    border-radius: var(--rayon-sm);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .tri-admin:focus { outline: none; border-color: var(--admin-rouge); }
+
+  /* ---------- STATS MINI ---------- */
+  .stats-mini-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-mini-admin {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-md);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+  }
+  .stat-mini-admin:hover {
+    border-color: var(--admin-rouge);
+    box-shadow: 0 4px 12px rgba(10,37,64,0.06);
+  }
+  .stat-mini-admin__icone {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .stat-mini-admin__icone--rouge { background: var(--admin-rouge-bg); color: var(--admin-rouge); }
+  .stat-mini-admin__icone--vert { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .stat-mini-admin__icone--or { background: rgba(245,158,11,0.12); color: var(--or-fonce); }
+  .stat-mini-admin__icone--bleu { background: rgba(37,99,235,0.10); color: var(--bleu); }
+  .stat-mini-admin__texte { min-width: 0; }
+  .stat-mini-admin__valeur {
+    font-family: var(--police-titre);
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gris-900);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .stat-mini-admin__label {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* ---------- BLOC / TABLEAU ---------- */
+  .bloc-admin {
+    background: #fff;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon-lg);
+    overflow: hidden;
+  }
+  .bloc-admin__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gris-100);
+    flex-wrap: wrap;
+  }
+  .bloc-admin__titre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--police-titre);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.02em;
+  }
+  .bloc-admin__titre i { color: var(--admin-rouge); font-size: 18px; }
+  .bloc-admin__compteur {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 24px; height: 24px;
+    padding: 0 8px;
+    border-radius: 12px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    font-family: var(--police-titre);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .tableau-contrats {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .tableau-contrats thead {
+    background: var(--gris-50);
+    border-bottom: 1px solid var(--gris-200);
+  }
+  .tableau-contrats th {
+    padding: 12px 18px;
+    text-align: left;
+    font-family: var(--police-titre);
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--gris-500);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+  }
+  .tableau-contrats td {
+    padding: 14px 18px;
+    border-top: 1px solid var(--gris-100);
+    color: var(--gris-700);
+    vertical-align: middle;
+  }
+  .tableau-contrats tbody tr {
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .tableau-contrats tbody tr:hover { background: var(--gris-50); }
+
+  /* Colonne numéro */
+  .contrat-num {
+    font-family: var(--police-titre);
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    letter-spacing: -0.01em;
+  }
+  .contrat-formule {
+    font-size: 12px;
+    color: var(--gris-500);
+    margin-top: 2px;
+    font-weight: 600;
+  }
+
+  /* Colonne client */
+  .contrat-client {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .contrat-client__avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--admin-grad);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--police-titre);
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+    overflow: hidden;
+  }
+  .contrat-client__avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .contrat-client__infos { min-width: 0; }
+  .contrat-client__nom {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--gris-900);
+    line-height: 1.3;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .contrat-client__entreprise {
+    font-size: 11.5px;
+    color: var(--gris-500);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Colonne période */
+  .contrat-periode {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 12.5px;
+  }
+  .contrat-periode__ligne {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gris-600);
+    font-weight: 600;
+  }
+  .contrat-periode__ligne i {
+    color: var(--or-fonce);
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Colonne montant */
+  .contrat-montant {
+    font-family: var(--police-titre);
+    font-size: 14.5px;
+    font-weight: 900;
+    color: var(--gris-900);
+    white-space: nowrap;
+  }
+  .contrat-montant__note {
+    display: block;
+    font-size: 11px;
+    color: var(--gris-500);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* Colonne visites (progression) */
+  .contrat-visites {
+    min-width: 120px;
+  }
+  .contrat-visites__texte {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--gris-500);
+    margin-bottom: 5px;
+  }
+  .contrat-visites__texte strong {
+    color: var(--gris-900);
+    font-weight: 900;
+    font-family: var(--police-titre);
+  }
+  .contrat-visites__barre {
+    height: 5px;
+    background: var(--gris-100);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .contrat-visites__remplie {
+    height: 100%;
+    background: var(--admin-grad);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  /* Badge statut */
+  .badge-contrat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: var(--rayon-full);
+    font-size: 10.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .badge-contrat--actif { background: rgba(22,163,74,0.10); color: var(--vert); }
+  .badge-contrat--pause { background: rgba(245,158,11,0.14); color: var(--or-fonce); }
+  .badge-contrat--resilie { background: var(--gris-100); color: var(--gris-500); }
+  .badge-contrat--bientot { background: rgba(220,38,38,0.10); color: var(--rouge); }
+  .badge-contrat i { font-size: 11px; }
+
+  /* Colonne actions */
+  .contrat-actions {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+  .btn-action-admin {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--gris-100);
+    color: var(--gris-600);
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .btn-action-admin:hover {
+    background: var(--admin-rouge);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-action-admin--or:hover { background: var(--or); color: var(--nuit); }
+  .btn-action-admin--danger:hover { background: var(--rouge); color: #fff; }
+
+  /* ---------- ÉTAT VIDE ---------- */
+  .vide-admin {
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .vide-admin__icone {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--admin-rouge-bg);
+    color: var(--admin-rouge);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 20px;
+  }
+  .vide-admin__titre {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--gris-900);
+    margin-bottom: 8px;
+  }
+  .vide-admin__texte {
+    font-size: 14px;
+    color: var(--gris-500);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto 24px;
+  }
+
+  /* ---------- PAGINATION ---------- */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--gris-100);
+    flex-wrap: wrap;
+  }
+  .pagination__info {
+    font-size: 13px;
+    color: var(--gris-500);
+    font-weight: 600;
+  }
+  .pagination__boutons { display: flex; gap: 6px; }
+  .pagination__btn {
+    min-width: 36px; height: 36px;
+    padding: 0 10px;
+    background: #fff;
+    border: 1.5px solid var(--gris-200);
+    border-radius: 10px;
+    font-family: var(--police-titre);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gris-700);
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pagination__btn:hover:not(:disabled) {
+    border-color: var(--admin-rouge);
+    color: var(--admin-rouge);
+  }
+  .pagination__btn.is-actif {
+    background: var(--admin-rouge);
+    border-color: var(--admin-rouge);
+    color: #fff;
+  }
+  .pagination__btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* ---------- FOOTER ADMIN ---------- */
+  .app-footer--admin {
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-500);
+    border-top: 1px solid var(--gris-200);
+    background: #fff;
+  }
+  @media (min-width: 1024px) {
+    .app-footer--admin { margin-left: var(--admin-sidebar-w); }
+  }
+  .app-footer--admin a { color: var(--gris-500); text-decoration: none; }
+  .app-footer--admin a:hover { color: var(--admin-rouge); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1023px) {
+    .main-admin { padding: 20px 16px 64px; }
+    .tableau-contrats th:nth-child(3),
+    .tableau-contrats td:nth-child(3) { display: none; }
+  }
+  @media (max-width: 768px) {
+    .tableau-contrats th:nth-child(5),
+    .tableau-contrats td:nth-child(5) { display: none; }
+  }
+  @media (max-width: 640px) {
+    .page-entete { margin-bottom: 20px; }
+    .page-entete__actions { width: 100%; }
+    .page-entete__actions .btn { flex: 1; }
+    .barre-outils { padding: 14px 16px; }
+    .recherche-admin { min-width: 100%; }
+    .tableau-contrats th,
+    .tableau-contrats td { padding: 10px 12px; }
+    .contrat-client__avatar { width: 30px; height: 30px; font-size: 11px; }
+    .contrat-actions { flex-direction: column; }
+    .contrat-visites { min-width: 90px; }
+    .pagination { justify-content: center; }
+    .pagination__info { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER ADMIN                                                  -->
+<!-- ============================================================ -->
+<header class="header header--admin" id="header">
+  <div class="header__inner">
+
+    <button class="header__menu" id="menuBtn" aria-label="Ouvrir le menu">
+      <i class="fi fi-rr-menu-burger" id="menuIcon"></i>
+    </button>
+
+    <a href="/admin/index.html" class="logo" aria-label="Jos Dore — Administration">
+      <div class="logo__mark">J</div>
+      <div class="logo__text">
+        Jos<span>Dore</span>
+        <span class="logo__suffix">Administration</span>
+      </div>
+      <span class="header__badge-admin">
+        <i class="fi fi-rr-shield-check"></i> Admin
+      </span>
+    </a>
+
+    <div class="header__actions">
+      <a href="/admin/messages.html" class="header__icone" aria-label="Messages">
+        <i class="fi fi-rr-envelope"></i>
+        <span class="header__badge" data-badge-messages style="display:none;">0</span>
+      </a>
+      <a href="/admin/notifications.html" class="header__icone" aria-label="Notifications">
+        <i class="fi fi-rr-bell"></i>
+        <span class="header__badge" data-badge-notifs style="display:none;">0</span>
+      </a>
+      <a href="/admin/parametres.html" class="header__avatar" data-user-avatar title="Mon profil admin">
+        <span data-user-initiales>?</span>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SIDEBAR ADMIN                                                 -->
+<!-- ============================================================ -->
+<aside class="sidebar sidebar--admin" id="sidebar" aria-label="Navigation administration">
+
+  <div class="sidebar__profil">
+    <div class="sidebar__profil-avatar" data-user-avatar>
+      <span data-user-initiales>?</span>
+    </div>
+    <div>
+      <div class="sidebar__profil-nom">
+        <span data-user-prenom>Admin</span>
+        <i class="fi fi-rr-shield-check" title="Administrateur"></i>
+      </div>
+      <div class="sidebar__profil-role">Administrateur</div>
+    </div>
+  </div>
+
+  <div class="sidebar__titre">Vue d'ensemble</div>
+  <a href="/admin/index.html" class="sidebar__lien">
+    <i class="fi fi-rr-apps"></i>
+    <span>Tableau de bord</span>
+  </a>
+
+  <div class="sidebar__titre">Gestion</div>
+  <a href="/admin/clients.html" class="sidebar__lien">
+    <i class="fi fi-rr-users"></i>
+    <span>Clients</span>
+  </a>
+  <a href="/admin/contrats.html" class="sidebar__lien is-actif">
+    <i class="fi fi-rr-document-signed"></i>
+    <span>Contrats</span>
+  </a>
+  <a href="/admin/interventions.html" class="sidebar__lien">
+    <i class="fi fi-rr-tools"></i>
+    <span>Interventions</span>
+  </a>
+  <a href="/admin/factures.html" class="sidebar__lien">
+    <i class="fi fi-rr-credit-card"></i>
+    <span>Factures</span>
+    <span class="sidebar__lien-badge">3</span>
+  </a>
+  <a href="/admin/formations.html" class="sidebar__lien">
+    <i class="fi fi-rr-graduation-cap"></i>
+    <span>Formations</span>
+  </a>
+
+  <div class="sidebar__titre">Contenu</div>
+  <a href="/admin/articles.html" class="sidebar__lien">
+    <i class="fi fi-rr-pencil"></i>
+    <span>Articles</span>
+  </a>
+  <a href="/admin/messages.html" class="sidebar__lien">
+    <i class="fi fi-rr-envelope"></i>
+    <span>Messages</span>
+    <span class="sidebar__lien-badge">2</span>
+  </a>
+  <a href="/admin/notifications.html" class="sidebar__lien">
+    <i class="fi fi-rr-bell"></i>
+    <span>Notifications</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <a href="/admin/parametres.html" class="sidebar__lien">
+    <i class="fi fi-rr-settings-sliders"></i>
+    <span>Paramètres</span>
+  </a>
+  <a href="/" class="sidebar__lien" target="_blank">
+    <i class="fi fi-rr-external-link"></i>
+    <span>Voir le site public</span>
+  </a>
+
+  <div class="sidebar__sep"></div>
+
+  <button type="button" class="sidebar__lien sidebar__lien--danger" data-action="deconnexion" style="width: 100%; text-align: left;">
+    <i class="fi fi-rr-sign-out-alt"></i>
+    <span>Se déconnecter</span>
+  </button>
+
+</aside>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- CONTENU                                                       -->
+<!-- ============================================================ -->
+<main class="admin-layout">
+  <div class="main-admin">
+    <div class="main-admin__inner">
+
+      <!-- ============ EN-TÊTE ============ -->
+      <div class="page-entete">
+        <div>
+          <h1 class="page-entete__titre">
+            Contrats
+            <span class="page-entete__tag">
+              <i class="fi fi-rr-shield-check"></i> Admin
+            </span>
+          </h1>
+          <p class="page-entete__sous">
+            Gérez les contrats de maintenance : actifs, en pause, résiliés.
+          </p>
+        </div>
+        <div class="page-entete__actions">
+          <a href="/admin/index.html" class="btn btn--ghost btn--sm">
+            <i class="fi fi-rr-arrow-small-left"></i> Tableau de bord
+          </a>
+          <button type="button" class="btn btn--or btn--sm" id="btnNouveauContrat">
+            <i class="fi fi-rr-plus"></i> Nouveau contrat
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ STATS MINI ============ -->
+      <div class="stats-mini-admin">
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--rouge">
+            <i class="fi fi-rr-document-signed"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sTotal">0</div>
+            <div class="stat-mini-admin__label">Contrats au total</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--vert">
+            <i class="fi fi-rr-check-circle"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sActifs">0</div>
+            <div class="stat-mini-admin__label">Actifs</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--or">
+            <i class="fi fi-rr-wallet"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sMRR">0</div>
+            <div class="stat-mini-admin__label">MRR (FCFA)</div>
+          </div>
+        </div>
+        <div class="stat-mini-admin">
+          <div class="stat-mini-admin__icone stat-mini-admin__icone--bleu">
+            <i class="fi fi-rr-time-fast"></i>
+          </div>
+          <div class="stat-mini-admin__texte">
+            <div class="stat-mini-admin__valeur" id="sEcheance">0</div>
+            <div class="stat-mini-admin__label">Échéance &lt; 30j</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ BARRE D'OUTILS ============ -->
+      <div class="barre-outils">
+        <div class="recherche-admin">
+          <i class="fi fi-rr-search"></i>
+          <input type="search" id="rechercheContrat" placeholder="Rechercher un contrat (numéro, client, formule…)" autocomplete="off">
+        </div>
+
+        <div class="filtres-admin">
+          <button type="button" class="filtre-admin is-actif" data-filtre-contrat="tous">
+            <i class="fi fi-rr-apps"></i> Tous
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-contrat="actif">
+            <i class="fi fi-rr-check-circle"></i> Actifs
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-contrat="pause">
+            <i class="fi fi-rr-pause"></i> En pause
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+          <button type="button" class="filtre-admin" data-filtre-contrat="resilie">
+            <i class="fi fi-rr-cross-circle"></i> Résiliés
+            <span class="filtre-admin__compteur">0</span>
+          </button>
+        </div>
+
+        <select class="tri-admin" id="triContrat">
+          <option value="recent">Plus récents</option>
+          <option value="ancien">Plus anciens</option>
+          <option value="montant-desc">Montant (élevé → faible)</option>
+          <option value="montant-asc">Montant (faible → élevé)</option>
+          <option value="client-asc">Client (A → Z)</option>
+        </select>
+      </div>
+
+      <!-- ============ TABLEAU ============ -->
+      <div class="bloc-admin">
+        <div class="bloc-admin__entete">
+          <h2 class="bloc-admin__titre">
+            <i class="fi fi-rr-document-signed"></i>
+            Liste des contrats
+            <span class="bloc-admin__compteur" id="compteurContrats">0</span>
+          </h2>
+        </div>
+
+        <table class="tableau-contrats">
+          <thead>
+            <tr>
+              <th>Contrat</th>
+              <th>Client</th>
+              <th>Période</th>
+              <th>Montant</th>
+              <th>Visites</th>
+              <th>Statut</th>
+              <th style="text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="contratsBody">
+            <!-- Rempli par JavaScript -->
+          </tbody>
+        </table>
+
+        <!-- État vide -->
+        <div class="vide-admin" id="videContrats" style="display: none;">
+          <div class="vide-admin__icone">
+            <i class="fi fi-rr-document-signed"></i>
+          </div>
+          <div class="vide-admin__titre" id="videTitre">Aucun contrat pour le moment</div>
+          <p class="vide-admin__texte" id="videTexte">
+            Les contrats créés pour vos clients apparaîtront ici. Créez votre
+            premier contrat de maintenance dès maintenant.
+          </p>
+          <button type="button" class="btn btn--or btn--sm" id="btnNouveauVide">
+            <i class="fi fi-rr-plus"></i> Créer mon premier contrat
+          </button>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination" style="display: none;">
+          <div class="pagination__info" id="paginationInfo">0 contrat affiché</div>
+          <div class="pagination__boutons" id="paginationBtns"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER ADMIN                                                  -->
+<!-- ============================================================ -->
+<footer class="app-footer app-footer--admin">
+  <div>© <span id="annee"></span> Jos Dore — Administration</div>
+  <div style="margin-top: 6px;">
+    <a href="/admin/parametres.html">Paramètres</a> ·
+    <a href="/" target="_blank">Site public</a> ·
+    <a href="/aide/">Aide</a>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="/ressources/js/config.js" defer></script>
+<script src="/ressources/js/auth.js" defer></script>
+<script src="/ressources/js/roles.js" defer></script>
+<script src="/ressources/js/header.js" defer></script>
+<script src="/ressources/js/widgets.js" defer></script>
+<script src="/ressources/js/scripts.js" defer></script>
+
+<script>
+/* ============================================================
+   ADMIN — CONTRATS
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- PROTECTION ADMIN ---------- */
+  if (!window.JosDore || !window.JosDore.Auth) return;
+  const estConnecte = window.JosDore.Auth.proteger({ roles: ['admin'] });
+  if (!estConnecte) return;
+
+  /* ---------- INJECTION UTILISATEUR ---------- */
+  const session = window.JosDore.Auth.sessionActuelle();
+  if (session) {
+    document.querySelectorAll('[data-user-prenom]').forEach(el => {
+      el.textContent = session.nom ? String(session.nom).split(' ')[0] : 'Admin';
+    });
+    document.querySelectorAll('[data-user-initiales]').forEach(el => {
+      el.textContent = window.JosDore.UTILS.initiales(session.nom);
+    });
+  }
+
+  /* ============================================================
+     📊 DONNÉES CONTRATS (DEMO — à brancher avec Supabase)
+     ============================================================ */
+  const CONTRATS_DEMO = [
+    {
+      id: 'ct-001',
+      numero: 'JD-CT-2026-001',
+      formule: 'Contrat TPE/PME',
+      client: { nom: 'Koffi Adande', entreprise: 'SARL KAD Technologie', avatar: null },
+      debut: '2026-09-15',
+      fin: '2027-09-15',
+      montant: 40000,
+      visites: 2,
+      visitesTotales: 12,
+      statut: 'actif'
+    },
+    {
+      id: 'ct-002',
+      numero: 'JD-CT-2026-002',
+      formule: 'Contrat TPE/PME',
+      client: { nom: 'École Les Génies', entreprise: 'École Les Génies', avatar: null },
+      debut: '2026-08-25',
+      fin: '2027-08-25',
+      montant: 60000,
+      visites: 3,
+      visitesTotales: 12,
+      statut: 'actif'
+    },
+    {
+      id: 'ct-003',
+      numero: 'JD-CT-2026-003',
+      formule: 'Contrat cabinet',
+      client: { nom: 'Cabinet Zenith Avocats', entreprise: 'Cabinet Zenith', avatar: null },
+      debut: '2026-07-18',
+      fin: '2027-07-18',
+      montant: 50000,
+      visites: 4,
+      visitesTotales: 12,
+      statut: 'actif'
+    },
+    {
+      id: 'ct-004',
+      numero: 'JD-CT-2026-004',
+      formule: 'Contrat TPE/PME',
+      client: { nom: 'Boutique 2M', entreprise: 'Boutique 2M', avatar: null },
+      debut: '2026-06-30',
+      fin: '2027-06-30',
+      montant: 40000,
+      visites: 5,
+      visitesTotales: 12,
+      statut: 'actif'
+    },
+    {
+      id: 'ct-005',
+      numero: 'JD-CT-2026-005',
+      formule: 'Contrat TPE/PME',
+      client: { nom: 'Pharmacie du Lac', entreprise: 'Pharmacie du Lac', avatar: null },
+      debut: '2026-04-22',
+      fin: '2027-04-22',
+      montant: 40000,
+      visites: 7,
+      visitesTotales: 12,
+      statut: 'actif'
+    },
+    {
+      id: 'ct-006',
+      numero: 'JD-CT-2026-006',
+      formule: 'Contrat particulier',
+      client: { nom: 'Aline Dossou', entreprise: null, avatar: null },
+      debut: '2025-10-15',
+      fin: '2026-10-15',
+      montant: 15000,
+      visites: 10,
+      visitesTotales: 12,
+      statut: 'pause'
+    },
+    {
+      id: 'ct-007',
+      numero: 'JD-CT-2025-014',
+      formule: 'Contrat TPE/PME',
+      client: { nom: 'Ancien Client SARL', entreprise: 'OldCorp', avatar: null },
+      debut: '2025-06-01',
+      fin: '2026-06-01',
+      montant: 40000,
+      visites: 12,
+      visitesTotales: 12,
+      statut: 'resilie'
+    }
+  ];
+
+  // 🔽 État actuel : vide. Remplacer par CONTRATS_DEMO pour tester.
+  const CONTRATS = [];
+
+  /* ============================================================
+     ÉTAT
+     ============================================================ */
+  let filtreActif = 'tous';
+  let termeRecherche = '';
+  let triActif = 'recent';
+  let pageActuelle = 1;
+  const PAR_PAGE = 10;
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+  function calculerStats() {
+    const actifs = CONTRATS.filter(c => c.statut === 'actif');
+    const mrr = actifs.reduce((sum, c) => sum + (c.montant || 0), 0);
+
+    // Échéance < 30 jours
+    const maintenant = new Date();
+    const dans30j = new Date(maintenant.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const echeance = CONTRATS.filter(c => {
+      if (c.statut !== 'actif' || !c.fin) return false;
+      const d = new Date(c.fin);
+      return d >= maintenant && d <= dans30j;
+    }).length;
+
+    return {
+      total: CONTRATS.length,
+      actifs: actifs.length,
+      mrr: mrr,
+      echeance: echeance
+    };
+  }
+
+  function animer(id, cible, suffixe = '') {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (cible === 0) { el.textContent = '0' + suffixe; return; }
+    let v = 0;
+    const pas = Math.max(1, Math.ceil(cible / 20));
+    const t = setInterval(() => {
+      v += pas;
+      if (v >= cible) { v = cible; clearInterval(t); }
+      el.textContent = (v >= 1000 ? v.toLocaleString('fr-FR') : v) + suffixe;
+    }, 30);
+  }
+
+  function majStats() {
+    const s = calculerStats();
+    animer('sTotal', s.total);
+    animer('sActifs', s.actifs);
+    animer('sMRR', s.mrr);
+    animer('sEcheance', s.echeance);
+  }
+
+  /* ============================================================
+     COMPTEURS DES FILTRES
+     ============================================================ */
+  function majCompteursFiltres() {
+    const compteurs = {
+      tous: CONTRATS.length,
+      actif: CONTRATS.filter(c => c.statut === 'actif').length,
+      pause: CONTRATS.filter(c => c.statut === 'pause').length,
+      resilie: CONTRATS.filter(c => c.statut === 'resilie').length
+    };
+    document.querySelectorAll('[data-filtre-contrat]').forEach(btn => {
+      const cle = btn.dataset.filtreContrat;
+      const span = btn.querySelector('.filtre-admin__compteur');
+      if (span) span.textContent = compteurs[cle] || 0;
+    });
+  }
+
+  /* ============================================================
+     LIBELLÉS STATUT
+     ============================================================ */
+  const statutLibelles = {
+    actif: { label: 'Actif', icone: 'fi fi-rr-check-circle' },
+    pause: { label: 'En pause', icone: 'fi fi-rr-pause' },
+    resilie: { label: 'Résilié', icone: 'fi fi-rr-cross-circle' }
+  };
+
+  /* ============================================================
+     FILTRAGE / TRI / PAGINATION
+     ============================================================ */
+  function appliquerFiltres() {
+    let liste = [...CONTRATS];
+
+    // Filtre statut
+    if (filtreActif !== 'tous') {
+      liste = liste.filter(c => c.statut === filtreActif);
+    }
+
+    // Recherche
+    if (termeRecherche) {
+      const t = termeRecherche.toLowerCase();
+      liste = liste.filter(c => {
+        const texte = [
+          c.numero,
+          c.formule,
+          c.client?.nom,
+          c.client?.entreprise
+        ].filter(Boolean).join(' ').toLowerCase();
+        return texte.includes(t);
+      });
+    }
+
+    // Tri
+    switch (triActif) {
+      case 'recent':
+        liste.sort((a, b) => new Date(b.debut) - new Date(a.debut));
+        break;
+      case 'ancien':
+        liste.sort((a, b) => new Date(a.debut) - new Date(b.debut));
+        break;
+      case 'montant-desc':
+        liste.sort((a, b) => (b.montant || 0) - (a.montant || 0));
+        break;
+      case 'montant-asc':
+        liste.sort((a, b) => (a.montant || 0) - (b.montant || 0));
+        break;
+      case 'client-asc':
+        liste.sort((a, b) => (a.client?.nom || '').localeCompare(b.client?.nom || '', 'fr'));
+        break;
+    }
+
+    return liste;
+  }
+
+  /* ============================================================
+     RENDU
+     ============================================================ */
+  function rendreContrats() {
+    const tbody = document.getElementById('contratsBody');
+    const vide = document.getElementById('videContrats');
+    const pagination = document.getElementById('pagination');
+    const compteur = document.getElementById('compteurContrats');
+    const tableau = document.querySelector('.tableau-contrats');
+    if (!tbody) return;
+
+    const listeFiltree = appliquerFiltres();
+    if (compteur) compteur.textContent = listeFiltree.length;
+
+    // État vide global
+    if (CONTRATS.length === 0) {
+      tableau.style.display = 'none';
+      pagination.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucun contrat pour le moment';
+      document.getElementById('videTexte').textContent = 'Les contrats créés pour vos clients apparaîtront ici. Créez votre premier contrat de maintenance dès maintenant.';
+      return;
+    }
+
+    // État vide filtre/recherche
+    if (listeFiltree.length === 0) {
+      tableau.style.display = 'none';
+      pagination.style.display = 'none';
+      vide.style.display = '';
+      document.getElementById('videTitre').textContent = 'Aucun résultat';
+      document.getElementById('videTexte').textContent = 'Aucun contrat ne correspond à votre recherche ou à vos filtres.';
+      return;
+    }
+
+    tableau.style.display = '';
+    vide.style.display = 'none';
+    pagination.style.display = '';
+
+    // Pagination
+    const totalPages = Math.ceil(listeFiltree.length / PAR_PAGE);
+    if (pageActuelle > totalPages) pageActuelle = totalPages;
+    const debut = (pageActuelle - 1) * PAR_PAGE;
+    const fin = Math.min(debut + PAR_PAGE, listeFiltree.length);
+    const page = listeFiltree.slice(debut, fin);
+
+    tbody.innerHTML = '';
+    page.forEach(c => {
+      const s = statutLibelles[c.statut] || statutLibelles.actif;
+      const progression = c.visitesTotales > 0
+        ? Math.round((c.visites / c.visitesTotales) * 100)
+        : 0;
+      const initiales = window.JosDore.UTILS.initiales(c.client?.nom || '?');
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="contrat-num">${window.JosDore.UTILS.escapeHtml(c.numero)}</div>
+          <div class="contrat-formule">${window.JosDore.UTILS.escapeHtml(c.formule)}</div>
+        </td>
+        <td>
+          <div class="contrat-client">
+            <div class="contrat-client__avatar">${c.client?.avatar ? '<img src="' + c.client.avatar + '" alt="">' : initiales}</div>
+            <div class="contrat-client__infos">
+              <div class="contrat-client__nom">${window.JosDore.UTILS.escapeHtml(c.client?.nom || '—')}</div>
+              ${c.client?.entreprise ? '<div class="contrat-client__entreprise">' + window.JosDore.UTILS.escapeHtml(c.client.entreprise) + '</div>' : ''}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="contrat-periode">
+            <div class="contrat-periode__ligne"><i class="fi fi-rr-calendar"></i> Depuis ${window.JosDore.UTILS.formaterDate(c.debut, 'court')}</div>
+            ${c.fin ? '<div class="contrat-periode__ligne"><i class="fi fi-rr-time-past"></i> Jusqu\'au ' + window.JosDore.UTILS.formaterDate(c.fin, 'court') + '</div>' : ''}
+          </div>
+        </td>
+        <td>
+          <div class="contrat-montant">
+            ${window.JosDore.UTILS.formaterMontant(c.montant)}
+            <span class="contrat-montant__note">par mois</span>
+          </div>
+        </td>
+        <td>
+          <div class="contrat-visites">
+            <div class="contrat-visites__texte">
+              <span>Visites</span>
+              <strong>${c.visites} / ${c.visitesTotales}</strong>
+            </div>
+            <div class="contrat-visites__barre">
+              <div class="contrat-visites__remplie" style="width: ${progression}%"></div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="badge-contrat badge-contrat--${c.statut}">
+            <i class="${s.icone}"></i> ${s.label}
+          </span>
+        </td>
+        <td>
+          <div class="contrat-actions">
+            <a href="/admin/contrats.html?id=${c.id}" class="btn-action-admin btn-action-admin--or" title="Voir le contrat" onclick="event.stopPropagation();">
+              <i class="fi fi-rr-eye"></i>
+            </a>
+            <button type="button" class="btn-action-admin" title="Modifier" data-action="modifier" data-id="${c.id}" onclick="event.stopPropagation();">
+              <i class="fi fi-rr-pencil"></i>
+            </button>
+            <button type="button" class="btn-action-admin btn-action-admin--danger" title="Supprimer" data-action="supprimer" data-id="${c.id}" onclick="event.stopPropagation();">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      `;
+
+      // Clic sur la ligne → fiche contrat
+      tr.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        window.location.href = '/admin/contrats.html?id=' + c.id;
+      });
+
+      tbody.appendChild(tr);
+    });
+
+    rendrePagination(listeFiltree.length, totalPages, debut, fin);
+
+    // Actions
+    tbody.querySelectorAll('[data-action="supprimer"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        supprimerContrat(btn.dataset.id);
+      });
+    });
+
+    tbody.querySelectorAll('[data-action="modifier"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modifierContrat(btn.dataset.id);
+      });
+    });
+  }
+
+  /* ============================================================
+     PAGINATION
+     ============================================================ */
+  function rendrePagination(total, totalPages, debut, fin) {
+    const info = document.getElementById('paginationInfo');
+    const btns = document.getElementById('paginationBtns');
+
+    if (info) {
+      info.textContent = `Affichage de ${debut + 1} à ${fin} sur ${total} contrat${total > 1 ? 's' : ''}`;
+    }
+
+    if (!btns) return;
+    btns.innerHTML = '';
+
+    const btnPrec = document.createElement('button');
+    btnPrec.className = 'pagination__btn';
+    btnPrec.innerHTML = '<i class="fi fi-rr-angle-small-left"></i>';
+    btnPrec.disabled = pageActuelle === 1;
+    btnPrec.addEventListener('click', () => {
+      if (pageActuelle > 1) {
+        pageActuelle--;
+        rendreContrats();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    btns.appendChild(btnPrec);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const b = document.createElement('button');
+      b.className = 'pagination__btn' + (i === pageActuelle ? ' is-actif' : '');
+      b.textContent = i;
+      b.addEventListener('click', () => {
+        pageActuelle = i;
+        rendreContrats();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      btns.appendChild(b);
+    }
+
+    const btnSuiv = document.createElement('button');
+    btnSuiv.className = 'pagination__btn';
+    btnSuiv.innerHTML = '<i class="fi fi-rr-angle-small-right"></i>';
+    btnSuiv.disabled = pageActuelle === totalPages;
+    btnSuiv.addEventListener('click', () => {
+      if (pageActuelle < totalPages) {
+        pageActuelle++;
+        rendreContrats();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    btns.appendChild(btnSuiv);
+  }
+
+  /* ============================================================
+     SUPPRESSION
+     ============================================================ */
+  async function supprimerContrat(id) {
+    const contrat = CONTRATS.find(c => c.id === id);
+    if (!contrat) return;
+
+    if (!window.JosDore.Widgets || !window.JosDore.Widgets.confirmer) return;
+
+    const confirme = await window.JosDore.Widgets.confirmer(
+      `Supprimer le contrat "${contrat.numero}" de ${contrat.client?.nom || 'ce client'} ? Cette action est irréversible.`,
+      {
+        titre: 'Supprimer un contrat',
+        libelleConfirmer: 'Supprimer',
+        libelleAnnuler: 'Annuler',
+        variante: 'rouge',
+        icone: 'fi fi-rr-trash'
+      }
+    );
+
+    if (confirme) {
+      const index = CONTRATS.findIndex(c => c.id === id);
+      if (index !== -1) CONTRATS.splice(index, 1);
+
+      window.JosDore.Widgets.toastSucces(`Le contrat "${contrat.numero}" a été supprimé.`);
+      majStats();
+      majCompteursFiltres();
+      rendreContrats();
+    }
+  }
+
+  /* ============================================================
+     MODIFICATION (à brancher plus tard)
+     ============================================================ */
+  function modifierContrat(id) {
+    const contrat = CONTRATS.find(c => c.id === id);
+    if (!contrat || !window.JosDore.Widgets) return;
+
+    window.JosDore.Widgets.alerter(
+      'Le contrat ' + contrat.numero + ' — ' + contrat.client?.nom + '\n\n' +
+      'Formule : ' + contrat.formule + '\n' +
+      'Montant : ' + window.JosDore.UTILS.formaterMontant(contrat.montant) + '/mois\n' +
+      'Début : ' + window.JosDore.UTILS.formaterDate(contrat.debut, 'court') + '\n' +
+      'Statut : ' + contrat.statut,
+      { titre: 'Modifier le contrat', icone: 'fi fi-rr-pencil' }
+    );
+  }
+
+  /* ============================================================
+     NOUVEAU CONTRAT
+     ============================================================ */
+  function nouveauContrat() {
+    if (!window.JosDore.Widgets) return;
+    window.JosDore.Widgets.alerter(
+      'Le formulaire de création de contrat sera bientôt disponible.\n\nEn attendant, contactez le support technique.',
+      { titre: 'Nouveau contrat', icone: 'fi fi-rr-plus', type: 'info' }
+    );
+  }
+
+  const btnNouveau = document.getElementById('btnNouveauContrat');
+  if (btnNouveau) btnNouveau.addEventListener('click', nouveauContrat);
+
+  const btnNouveauVide = document.getElementById('btnNouveauVide');
+  if (btnNouveauVide) btnNouveauVide.addEventListener('click', nouveauContrat);
+
+  /* ============================================================
+     ÉCOUTEURS
+     ============================================================ */
+
+  // Recherche
+  const rechercheInput = document.getElementById('rechercheContrat');
+  if (rechercheInput) {
+    let timer;
+    rechercheInput.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        termeRecherche = rechercheInput.value.trim();
+        pageActuelle = 1;
+        rendreContrats();
+      }, 250);
+    });
+  }
+
+  // Filtres
+  document.querySelectorAll('[data-filtre-contrat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filtre-contrat]').forEach(b => b.classList.remove('is-actif'));
+      btn.classList.add('is-actif');
+      filtreActif = btn.dataset.filtreContrat;
+      pageActuelle = 1;
+      rendreContrats();
+    });
+  });
+
+  // Tri
+  const triSelect = document.getElementById('triContrat');
+  if (triSelect) {
+    triSelect.addEventListener('change', () => {
+      triActif = triSelect.value;
+      pageActuelle = 1;
+      rendreContrats();
+    });
+  }
+
+  /* ============================================================
+     🚀 INITIALISATION
+     ============================================================ */
+  majStats();
+  majCompteursFiltres();
+  rendreContrats();
+
+  /* ---------- LOG ---------- */
+  if (window.JosDore.LOG) {
+    window.JosDore.LOG.info('Admin contrats chargé — ' + CONTRATS.length + ' contrats');
+  }
+
+});
+</script>
+
+</body>
+</html>

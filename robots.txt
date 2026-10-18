@@ -1,0 +1,22 @@
+﻿User-agent: *
+Allow: /
+
+# ==========================================
+# ZONES PRIVÉES (Interdites aux robots)
+# ==========================================
+Disallow: /compte/
+Disallow: /espace-client/
+Disallow: /admin/
+Disallow: /api/
+
+# ==========================================
+# FICHIERS TECHNIQUES
+# ==========================================
+Disallow: /ressources/js/
+Disallow: /ressources/donnees/
+Disallow: /ressources/css/
+
+# ==========================================
+# PLAN DU SITE
+# ==========================================
+Sitemap: https://josdore.com/sitemap.xml
